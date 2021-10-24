@@ -34,7 +34,7 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`${siteConfig.title}`}
+      //title={`${siteConfig.title}`}
       description="Welcome to C/C++ Notes, a handy collection of information, instructions, tips and tricks about these two programming languages.">
       <HomepageHeader />
       <main>
