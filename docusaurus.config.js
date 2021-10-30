@@ -39,14 +39,26 @@ const config = {
     ],
   ],
 
+  // https://docusaurus.io/docs/api/themes/configuration
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+	  announcementBar: {
+		id: 'support_us',
+		content:
+		  'This website is under construction. 🚧 Please be patient for more advanced topics.',
+		backgroundColor: '#fafbfc',
+		textColor: '#091E42',
+		isCloseable: true,
+	  },
       navbar: {
         title: 'C/C++ Notes',
         logo: {
           alt: 'Logo',
           src: 'img/logo.svg',
+		  // srcDark: 'img/logo_dark.svg',
+          // href: 'https://docusaurus.io/',
+          // target: '_self',
         },
         items: [
           {
@@ -62,21 +74,47 @@ const config = {
             label: 'C',
           },
           //{to: '/blog', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/SamMed05',
-            label: 'GitHub',
+		  
+		  
+		    {
+            label: 'Links',
             position: 'right',
+            items: [
+              {
+                href: 'https://github.com/SamMed05',
+				label: 'GitHub',
+				position: 'right',
+              },
+              {
+                href: 'https://sammed05.github.io/sm_blog/',
+				label: 'Personal blog',
+				position: 'right',
+              },
+			  {
+				href: 'https://twitter.com/MedianiSamuel',
+				label: 'Twitter',
+				position: 'right',
+			  },
+              // ... more items
+            ],
           },
-		  {
-            href: 'https://sammed05.github.io/sm_blog/',
-            label: 'Personal blog',
-            position: 'right',
-          },
-		  {
-            href: 'https://twitter.com/MedianiSamuel',
-            label: 'Twitter',
-            position: 'right',
-          },
+		  
+		  
+          // {
+            // href: 'https://github.com/SamMed05',
+            // label: 'GitHub',
+            // position: 'right',
+          // },
+		  // {
+            // href: 'https://sammed05.github.io/sm_blog/',
+            // label: 'Personal blog',
+            // position: 'right',
+          // },
+		  // {
+            // href: 'https://twitter.com/MedianiSamuel',
+            // label: 'Twitter',
+            // position: 'right',
+          // },
         ],
       },
       footer: {
@@ -122,6 +160,12 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+		defaultLanguage: 'cpp', // https://prismjs.com/#supported-languages
+      },
+	  
+	  tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 5,
       },
     }),
 };

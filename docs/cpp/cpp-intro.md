@@ -4,4 +4,4 @@ sidebar_position: 1
 
 # Introduction to C++
 
-C++
+This section is under construction. 🚧

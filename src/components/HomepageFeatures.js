@@ -10,7 +10,8 @@ const FeatureList = [
       <>
         These notes aim to provide a simple and easily readable 
 		guide to C and C++, to learn or revise these two languages 
-		quickly and without excessive in-depth concepts.
+		quickly and without excessive in-depth concepts, as well as 
+		many code examples for algorithms, formulas, tips and tricks.
       </>
     ),
   },
@@ -30,9 +31,9 @@ const FeatureList = [
     Svg: require('../../static/img/exercises-and-examples.svg').default,
     description: (
       <>
-        To really understand the concept in practice every argument is 
-		accompanied by one or more examples, and exercises to some exercises to 
-		challenge the reader and check that the problem has been definitively understood.
+        To really understand the concept in practice, every argument is 
+		followed by one or more code examples, and also many exercises 
+		that challenge you, test your mind and check that the problem has been definitively understood.
 		
       </>
     ),
