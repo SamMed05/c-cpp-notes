@@ -11,7 +11,7 @@ const FeatureList = [
         These notes aim to provide a simple and easily readable 
 		guide to C and C++, to learn or revise these two languages 
 		quickly and without excessive in-depth concepts, as well as 
-		many code examples for algorithms, formulas, tips and tricks.
+		many code examples for algorithms, techniques, formulas, tips and tricks.
       </>
     ),
   },

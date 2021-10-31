@@ -73,7 +73,7 @@ figcaption {
   margin-bottom: 2em;
 }
 
-
+/* Bigger font */
 @media screen and (max-width: 996px) {
   :root {
     --ifm-font-size-base: 110%;
@@ -82,7 +82,6 @@ figcaption {
     font-size: 2.5rem !important;
   }
 }
-
 @media screen and (min-width: 997px) {
   :root {
     --ifm-font-size-base: 110%;
@@ -91,10 +90,14 @@ figcaption {
     font-size: 2.7rem !important;
   }
 }
+.navbar {
+	font-size: .9rem;
+}
 
-
+/* Thinner article section */
 article {
   max-width: 850px;
   margin-left: auto;
   margin-right: auto;
 }
+

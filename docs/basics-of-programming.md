@@ -47,3 +47,17 @@ In this situation, every program is *effective* because the desired output is ob
 The efficiency, though, is different because the amount of resources used to execute and obtain the output varies from program to program.
 
 Of course, the less resources we use the better, so that we can say that our program is *efficient*, in addition to being effective.
+
+## General recommendations
+
+While programming (or coding) in general, it's important to keep in mind some relevant advices, principles and best practices:
+
+- Be very fussy and meticulous
+- Use meaningful names for variables
+- Code as if another person will have to read it tomorrow, without being in your mind
+- Keep the code well commented
+- Complicated is different from complex, and it's better to avoid the first one: Keep It Simple
+- Give the right importance to indentation
+- Think in advance about reusability of the code you are writing now.
+
+Following these steps, along with practice and a strong (strong!) motivation, will trasform you in a good and proud programmer.
