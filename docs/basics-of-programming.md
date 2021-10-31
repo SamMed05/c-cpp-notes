@@ -1,7 +1,7 @@
 ---
+sidebar_position: 1
 id: basics
 title: Basics of programming
-sidebar_position: 0
 hide_title: false
 hide_table_of_contents: false
 sidebar_label: Basics

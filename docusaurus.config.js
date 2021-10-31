@@ -125,11 +125,11 @@ const config = {
             items: [
               {
                 label: 'C++',
-                to: '/docs/cpp-intro',
+                to: '/docs/cpp/cpp-intro',
               },
 			  {
                 label: 'C',
-                to: '/docs/c-intro',
+                to: '/docs/c/c-intro',
               },
             ],
           },
