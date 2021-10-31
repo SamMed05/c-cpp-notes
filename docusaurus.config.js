@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'C/C++ Notes',
   tagline: 'A collection of school notes about coding in C++ and C programming languages.',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://c-cpp-notes.vercel.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -24,13 +24,14 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
+          editUrl: 'https://github.com/SamMed05/c-cpp-notes/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/main/website/blog/',
+			// 'https://github.com/facebook/docusaurus/edit/main/website/blog/',
+			'https://github.com/SamMed05/c-cpp-notes',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
