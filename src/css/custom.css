@@ -34,26 +34,26 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 /* https://www.w3schools.com/cssref/css_selectors.asp */
 
-html[data-theme='dark'] {
-	p, features_src-components- > svg {
-	-webkit-filter: invert(90%);
-		filter: invert(90%);
-	}
-	
-	p, features_src-components- > img {
-	-webkit-filter: invert(.9);
-		filter: invert(.9);
-	}
-}
 html[data-theme='light'] {
-	p, features_src-components- > svg {
+	.container > svg {
 	-webkit-filter: invert(0%);
 		filter: invert(0%);
 	}
 	
-	p, features_src-components- > img {
+	.container > img {
 	-webkit-filter: invert(0);
 		filter: invert(0);
+	}
+}
+html[data-theme='dark'] {
+	.container > svg {
+	-webkit-filter: invert(90%);
+		filter: invert(90%);
+	}
+	
+	.container > img {
+	-webkit-filter: invert(.9);
+		filter: invert(.9);
 	}
 }
 
