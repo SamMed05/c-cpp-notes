@@ -12,4 +12,8 @@ custom_edit_url: null
 
 # Introduction to C
 
-This section is under construction. 🚧
+:::caution
+
+🚧 This section is still under construction. 🚧
+
+:::

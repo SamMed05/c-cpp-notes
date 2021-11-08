@@ -10,7 +10,6 @@ slug: /basics
 custom_edit_url: null
 ---
 
-# Basics of programming
 
 A program is made with a sequence of certain phases. The process can vary a lot, but generally it follow this process:
 1. Analysis of the problem
@@ -22,9 +21,9 @@ A program is made with a sequence of certain phases. The process can vary a lot,
 ![Problem solving process diagram](./assets/problem-solving-process.svg) 
 <figcaption>Fig.1. A diagram describing the general process to solve a problem.</figcaption>
 
-This sequence of steps leads the developer to create a functional program that can automate a task. 
+This sequence of steps leads the developer to create a functional program that can automate a task or solve a problem. 
 
-In the testing phese the developer checks if what has been done is working as expected, and if not it start again by thinking and designing a new potential solution.
+In the testing phese the developer checks if what has been done is working as expected, and if not, it starts again by thinking and designing a new potential solution adopting different strategies.
 
 ## Definitions
 
