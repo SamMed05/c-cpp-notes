@@ -11,19 +11,28 @@ custom_edit_url: null
 ---
 
 
-A program is made with a sequence of certain phases. The process can vary a lot, but generally it follow this process:
+A program is made with a sequence of certain phases, and the process through which it 
+is created can vary a lot, but generally it looks like this:
 1. Analysis of the problem
 2. Design/planning
 3. Programming
 4. Testing
 5. Validation
 
-![Problem solving process diagram](./assets/problem-solving-process.svg) 
+![Problem solving process diagram](./assets/problem-solving-process.svg)
 <figcaption>Fig.1. A diagram describing the general process to solve a problem.</figcaption>
 
 This sequence of steps leads the developer to create a functional program that can automate a task or solve a problem. 
 
-In the testing phese the developer checks if what has been done is working as expected, and if not, it starts again by thinking and designing a new potential solution adopting different strategies.
+In the testing phase the developer checks if what has been done is working as expected, and if not, it starts again by thinking and designing a new potential solution adopting different strategies.
+
+:::note
+
+These notes do not cover how to make things like GUI or graphical applications. The main purpose is to 
+teach the *logic* behind the algoritms and the *syntax* used to make a program work. Therefore
+we will be always sticking to console programs.
+
+:::
 
 ## Definitions
 
@@ -55,8 +64,8 @@ While programming (or coding) in general, it's important to keep in mind some re
 - Use meaningful names for variables
 - Code as if another person will have to read it tomorrow, without being in your mind
 - Keep the code well commented
-- Complicated is different from complex, and it's better to avoid the first one: Keep It Simple
-- Give the right importance to indentation
+- Complicated is different from complex, and it's better to avoid the first one: *Keep It Simple*
+- Give the right importance to indentation and readability
 - Think in advance about reusability of the code you are writing now.
 
 Following these steps, along with practice and a strong (strong!) motivation, will trasform you in a good and proud programmer.

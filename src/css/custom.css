@@ -34,7 +34,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 /* https://www.w3schools.com/cssref/css_selectors.asp */
 
-html[data-theme='light'] {
+/*html[data-theme='light'] {
 	.container > svg {
 	-webkit-filter: invert(0%);
 		filter: invert(0%);
@@ -55,7 +55,7 @@ html[data-theme='dark'] {
 	-webkit-filter: invert(.9);
 		filter: invert(.9);
 	}
-}
+}*/
 
 
 .buttons_src-pages-index-module {

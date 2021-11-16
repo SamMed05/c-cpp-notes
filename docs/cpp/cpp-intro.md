@@ -31,6 +31,11 @@ computer program.
 
 :::
 
+If you are curious, there's a much more in-depth explanation [here](https://www.geeksforgeeks.org/history-of-c/), 
+done by GeeksforGeeks.
+
+![Problem solving process diagram](https://media.geeksforgeeks.org/wp-content/uploads/20190716103831/History-of-C.jpg)
+
 
 ## Why use it
 
@@ -91,10 +96,11 @@ comment
 I'm not a comment, too
 ```
 
-Single line comments are considered comments only if the text is typed in the same line 
-of the two slashes `//`.
+**Single line comments** are considered comments only if the text is typed in the same line 
+of the two slashes `//`. In other words, `//` indicates that everything following it 
+until the end of the line is a comment.
 
-A multi-line comment, instead, is considered as a comment if the text is typed *between*
+A **multi-line comment**, instead, is considered as a comment if the text is typed *between*
 `/*` and `*/`.
 
 
@@ -110,7 +116,7 @@ IDE is an acronym which stands for **I**ntegrated **D**evelopment **E**nvironmen
 it's an enviroment, or place, or software that help the programmer in the develompment
 and debugging phases of a program.
 
-It provides to the developer some facilities and tool, like a source code editor, build 
+It provides to the developer some facilities and tools, like a source code editor, build 
 automation tools and a **debugger**.
 
 We are mainly interested in the debugger, which is a computer program that basically runs 
@@ -130,7 +136,8 @@ that for our learning purposes.
 :::
 
 If you prefer to use another IDE, that's perfectly fine, but be sure that it has a compiler
-integrated.
+integrated. Also, you can use [online compilers](https://arnemertz.github.io/online-compilers/) 
+too, but some libraries will not be present, so programs that will use them won't work.
 
 
 
