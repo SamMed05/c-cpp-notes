@@ -199,3 +199,72 @@ html[data-theme=dark] .alert, html[data-theme=light] .alert {
   position: sticky;
   left: var(--ifm-pre-padding);
 }
+
+.hero {
+	color: #fff;
+}
+
+/* From https://pradyunsg.me/furo/kitchen-sink/demo/ */
+kbd {
+	background-color: #f8f9fb;
+    border: 1px solid #878787;
+    border-radius: 0.2rem;
+    box-shadow: 0 0.0625rem 0 rgba(0,0,0,.2),inset 0 0 0 0.125rem #fff;
+    color: #000;
+    display: inline-block;
+    margin: 0 0.2rem;
+    padding: 0 0.2rem;
+    vertical-align: text-bottom;
+}
+
+/* From https://docusaurus.io/docs/markdown-features but implemented differently */
+details {
+    transition: transform 200ms ease;
+    border: 1px solid #4cb3d4;
+    margin: 0 0 1rem;
+	padding: 1rem;
+	border-radius: 0.4rem;
+	background-color: rgb(84 199 236 / 15%);
+}
+details ::marker {
+	/*color: #4cb3d4;*/
+	content: "";
+}
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+summary {
+	cursor: pointer;
+	position: relative;
+	padding-left: 1rem;
+}
+summary:before {
+  content: "";
+  border-width: 0.4rem;
+  border-style: solid;
+  border-color: transparent transparent transparent #4cb3d4;;
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  transform: rotate(0);
+  transform-origin: 0.2rem 50%;
+  transition: 0.25s transform ease;
+}
+details[open] > summary:before {
+  transform: rotate(90deg);
+}
+details > div {
+	padding-top: 1rem;
+	margin-top: 1rem;
+	border-top: 1px solid #4cb3d4;
+}
+
+/* https://stackoverflow.com/questions/38213329/how-to-add-css3-transition-with-html5-details-summary-tag-reveal */
+details[open] summary ~ * { /* Selects everything that is preceded by summary */
+  animation: sweep .5s ease-in-out;
+}
+@keyframes sweep {
+  0%    {opacity: 0; margin-left: -10px}
+  100%  {opacity: 1; margin-left: 0px}
+}

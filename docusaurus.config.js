@@ -84,17 +84,18 @@ const config = {
               {
                 href: 'https://github.com/SamMed05',
 				label: 'GitHub',
-				position: 'right',
               },
               {
                 href: 'https://sammed05.github.io/sm_blog/',
 				label: 'Personal blog',
-				position: 'right',
               },
 			  {
 				href: 'https://twitter.com/MedianiSamuel',
 				label: 'Twitter',
-				position: 'right',
+			  },
+			  {
+				href: 'https://www.learncpp.com/',
+				label: 'LearnCpp.com',
 			  },
               // ... more items
             ],

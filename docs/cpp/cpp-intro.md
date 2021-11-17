@@ -16,11 +16,15 @@ Let's start with a bit of history.
 
 ## Brief history
 
-C++ is a programming language made by Bjarne Stroustrup at Bell Labs in 1983.
+C++ is a programming language made by Bjarne Stroustrup at Bell Labs, starting in 1979.
 
 It was not created from the ground up, but it was rather an **evolution** of the already 
-existing C language (created by Dennis Ritchie), with the main goal of adding OOP support, 
-which was not present in C.
+existing C language (created by Dennis Ritchie), with the main goal of adding OOP (Object
+Oriented Programming) support, which was not present in C.
+
+C++ was standardized in 1998, and since then several updates has been made. C++11 in 
+particular added a huge number of new capabilities, and new upgrades to the language 
+are expected every three or so years.
 
 :::info Curiosity
 
@@ -34,7 +38,9 @@ computer program.
 If you are curious, there's a much more in-depth explanation [here](https://www.geeksforgeeks.org/history-of-c/), 
 done by GeeksforGeeks.
 
-![Problem solving process diagram](https://media.geeksforgeeks.org/wp-content/uploads/20190716103831/History-of-C.jpg)
+![History of C++](https://media.geeksforgeeks.org/wp-content/uploads/20190716103831/History-of-C.jpg)
+<figcaption>Fig.1. The storyline of C and C++. Image courtesy of GeekforGeeks (CCBY-SA license).
+</figcaption>
 
 
 ## Why use it
@@ -48,6 +54,28 @@ reason why it's often choosed over other languages, but it's not the only one.
 
 Another key aspect of C++ is it's [**high level nature**](https://en.wikipedia.org/wiki/High-level_programming_language), 
 making it easier to learn, to read, to understand and, most importantly, to work with.
+
+In addition to being an high performance language, it also give the programmer precise 
+control over memory and other resources of the computer, makikng it a bit harder to 
+learn but also more powerful and capable of doing more things.
+
+
+## Where it's used
+
+- Video games (especially for graphic engines and game develompment, e.g. in [Unreal Engine](https://www.unrealengine.com/))
+- Operating systems (also in C language)
+- Real-time systems (e.g. for transportation, manufacturing, etc…)
+- High-performance financial applications (e.g. high frequency trading)
+- Graphical applications and simulations
+- Embedded software (also in C language)
+- Audio and video processing
+- Artificial intelligence, machine learning and neural networks
+- Scientific research
+- Web browsers (like [Chrome](https://en.wikipedia.org/wiki/Google_Chrome#:~:text=C%2C-,C%2B%2B,-%2C%20Assembly%2C%20HTML%2C%20Java) and [Firefox](https://en.wikipedia.org/wiki/Firefox#:~:text=Written%20in-,C%2B%2B,-%2C%20C%2C%20Rust%2C%5B5))
+- GUI Based Applications
+- Databases
+- Compilers of various high-level programming languages, like C# and Java (also in C language)
+- Productivity software (MS Office, Photoshop, Maya/3ds Max, SolidWorks, Inventor, AutoCAD…)
 
 
 ## Basic information
@@ -102,6 +130,60 @@ until the end of the line is a comment.
 
 A **multi-line comment**, instead, is considered as a comment if the text is typed *between*
 `/*` and `*/`.
+
+:::warning
+
+Do not use multi-line comments inside other multi-line comments.
+
+:::
+
+
+### Indentantion
+
+Indentation is a term that express the action of putting whitespace for formatting purposes.
+
+It means adding some empty space among the code in the right way so that it becomes more readable.
+
+Some languages like Python use indentation as an important part of their syntax, and it 
+influences how the code is interpreted by the interpreter.
+
+This **does not** happens in C and C++, beacuse the compiler generally ignores whitespace, 
+(with a few minor exceptions). For this reason, we say that they are whitespace-independent 
+languages. Instead we use braces to tell the compiler that a peace of code belongs 
+(it's inside) a block of other code or not.
+
+That means that indentation would be optional, but it's important anyway for keeping a 
+good level of readability.
+
+Usually, if you use an IDE with a text editor, when you press <kbd>ENTER/RETURN ⏎</kbd> on 
+the keyboard it automatically adds a **tab-sized whitespace**. In the other cases, you can 
+add it pressing the <kbd>TAB ⇆</kbd> key. It's fine using also four (or three) spaces instead, 
+but I prefer not doing in that way.
+
+Indentation is used like this:
+
+```cpp
+int main() {
+	...
+	...
+> > codeBlock() {
+		...
+		...
+> > > > nestedCodeblock() {
+			...
+			...
+> > > > }
+		...
+		...
+> > }
+	...
+	...
+}
+```
+
+I intentionally used the `>` sign to indicate better the space on the left left blank, but 
+you don't have to use it. It creates a three-like structure that is more beautiful and less 
+difficult to read.
 
 
 ## Execution (IDE)
