@@ -101,6 +101,15 @@ We will see what those words means and what to put instead of the generic three 
 program that you write contains a `main()` function, and in here you will write 
 the instructions needed for the program to work properly.
 
+Every single program must have that special function, called in that way (all lower case 
+letters). When the program is run, the instructions, or statements inside of main are 
+executed in sequential order.
+
+We'll cover what a function is in a future chapter, but for now just know that it is a 
+collection of instructions that can be reused and they have a name which identifies them 
+followed by two parenthesis at the end like this: `function()` and eventually some 
+"things" inside `(...)`, called parameters.
+
 
 ### Comments
 
