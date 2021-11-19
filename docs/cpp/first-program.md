@@ -13,7 +13,7 @@ custom_edit_url: null
 
 Now let's switch to the coding part! 
 
-To keep things simple, at first we print the message "Hello World!" to the console.
+To keep things simple, our first program will just print the message "Hello World!" to the console.
 
 :::info Curiosity
 
