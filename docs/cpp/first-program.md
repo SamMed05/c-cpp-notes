@@ -40,7 +40,7 @@ left button and then "Source File".
 
 ![Creating a new file in Dev-C++](./assets/creating-new-file.png)
 
-Then paste the code above and compile it using the "Compile & Run" button.
+Then paste the code above and compile it using the "Compile & Run" button, or pressing <kbd>F11</kbd>.
 
 ![Compiling and running the code](./assets/compile-run.png)
 
@@ -49,7 +49,7 @@ the "Hello World!" text printed.
 
 ![Command prompt output](./assets/console-output-hello-world.png)
 
-Congratulations, you have made your first program in C++!
+Congratulations, you have made your first C++ program!
 
 
 ## Analysis
@@ -57,10 +57,10 @@ Congratulations, you have made your first program in C++!
 Now let's read the code analyzing in detail line by line to understand *why* they are 
 there and *what* they do.
 
-If we look back to the code of our first program, we notice that it can be divided in 2 parts.
+If we look back to the code of our first program, we notice that it can be divided in **two parts**.
 
 
-### Linking section
+### 1) Linking section
 
 ```cpp {1,2}
 #include <iostream>
@@ -72,7 +72,7 @@ int main() {
 }
 ```
 
-The first one is called **Linking section** and in this case it's made by two instructions:
+The first one is called *linking section* and in this case it's made by two instructions:
 
 1. **`#include <iostream>`** is a special command that tells the compiler to add the content 
 of the `iostream` library,  which is the part of the C++ standard library that allows us 
@@ -84,12 +84,12 @@ the code. The `iostream` library is a header only library, meaning that it only 
 header files (in this case the *iostream* header file). We will discuss more about what a 
 library is in a future chapter.
 2. **`using namespace std;`** means that we tell the compiler to use the namespace called 
-"std" (standard). A namespace is a declarative region that provides a scope to the 
-identifiers (the names of types, functions, variables, and other C++ tokens) inside it 
-under a single name. It's used to organize code into logical groups and to prevent name 
-collisions that can occur especially when a program includes multiple libraries.
-Without this line we should use the scope operator `::` like `std::cout` each time we 
-want to output something with `cout`.
+"std" (standard). A namespace is a declarative region (sort of a directory) that provides 
+a scope to the identifiers (the names of types, functions, variables, and other C++ tokens) 
+inside it under a single name. It's used to organize code into logical groups and to prevent 
+name collisions that can occur especially when a program includes multiple libraries.
+Without this line we should use the *scope resolution operator* `::` like `std::cout` 
+each time we want to output something with `cout`.
 
 :::caution
 
@@ -111,7 +111,7 @@ blank lines are ignored by the compiler, but helps humans to keep the code more 
 and well separated in multiple little sections.
 
 
-### Main section
+### 2) Main section
 
 ```cpp {4-7}
 #include <iostream>

@@ -200,6 +200,11 @@ html[data-theme=dark] .alert, html[data-theme=light] .alert {
   left: var(--ifm-pre-padding);
 }
 
+/* put code more centered vertically */
+code {
+	line-height: 1.8rem;
+}
+
 .hero {
 	color: #fff;
 }
@@ -267,4 +272,74 @@ details[open] summary ~ * { /* Selects everything that is preceded by summary */
 @keyframes sweep {
   0%    {opacity: 0; margin-left: -10px}
   100%  {opacity: 1; margin-left: 0px}
+}
+
+/* CUSTOM ALERTS */
+.alert--warning {
+	color: #000;
+    /* --ifm-alert-background-color: var(--ifm-color-warning); */
+	--ifm-alert-background-color: rgba(255, 204, 69, .25); /*#ffc836*/ /*#ffe49c*/
+	--ifm-alert-border-color: var(--ifm-color-warning);
+	--ra-admonition-icon-color: var(--ifm-color-warning);
+	border: none;
+	border-left: 5px solid var(--ifm-alert-border-color);
+}
+html[data-theme='dark'] .alert--warning {
+	color: #fff;
+	--ra-admonition-icon-color: #fff;
+}
+
+.alert--secondary {
+	color: #000;
+	--ifm-alert-background-color: rgba(200, 202, 204, .25);
+	--ifm-alert-border-color: #9b9c9e;
+	--ra-admonition-icon-color: var(--ifm-alert-border-color);
+	border: none;
+	border-left: 5px solid var(--ifm-alert-border-color);
+}
+html[data-theme='dark'] .alert--secondary {
+	color: #fff;
+	--ra-admonition-icon-color: #fff;
+}
+
+.alert--info {
+	color: #000;
+	--ifm-alert-background-color: rgba(129, 219, 247, .25);
+	--ifm-alert-border-color: #54c7ec;
+	--ra-admonition-icon-color: var(--ifm-alert-border-color);
+	border: none;
+	border-left: 5px solid var(--ifm-alert-border-color);
+}
+html[data-theme='dark'] .alert--info {
+	color: #fff;
+	--ra-admonition-icon-color: #fff;
+}
+html[data-theme='dark'] .alert a {
+	color: #1c8aff;
+}
+
+.alert--success {
+	color: #000;
+	--ifm-alert-background-color: rgba(65, 232, 65, .25);
+	--ifm-alert-border-color: #00a400;
+	--ra-admonition-icon-color: var(--ifm-alert-border-color);
+	border: none;
+	border-left: 5px solid var(--ifm-alert-border-color);
+}
+html[data-theme='dark'] .alert--success {
+	color: #fff;
+	--ra-admonition-icon-color: #fff;
+}
+
+.alert--danger {
+	color: #000;
+	--ifm-alert-background-color: rgba(247, 77, 77, .25);
+	--ifm-alert-border-color: #fa383e;
+	--ra-admonition-icon-color: var(--ifm-alert-border-color);
+	border: none;
+	border-left: 5px solid var(--ifm-alert-border-color);
+}
+html[data-theme='dark'] .alert--danger {
+	color: #fff;
+	--ra-admonition-icon-color: #fff;
 }
