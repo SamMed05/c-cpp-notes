@@ -5,7 +5,7 @@ title: Cout and Cin
 hide_title: false
 hide_table_of_contents: false
 sidebar_label: Cout/Cin
-description: First program and introductory explanations.
+description: Cout and cin explanation.
 slug: /cpp/cout-and-cin
 custom_edit_url: null
 ---
@@ -89,8 +89,7 @@ binary to ASCII code you can watch this [video explanation](https://youtu.be/H4l
 We can also print values or variables, and in this case the double quotation marks `""` mustn't 
 be used.
 
-```cpp {3}
-// ... linking section and main()
+```cpp {2}
 int a = 5;
 cout<<a;
 ```
@@ -100,8 +99,7 @@ We will see what a variable is in a subsequent lesson.
 In addition to that, we can also concatenate more than one thing on the same line using the 
 insertion operator `<<` as many times as we want to print multiple pieces of output.
 
-```cpp {3}
-// ... linking section and main()
+```cpp {2}
 int a = 5;
 cout << "The value stored in a is: " << a;
 ```
@@ -113,6 +111,14 @@ sign `=` one line up. For both of this cases the space is optional, choose wheth
 or not according to your preferences. Remember to be always consistent with you choice, though.
 
 :::
+
+Little calculations can also be done here (keeping in mind the order of operations).
+```cpp {2}
+int a = 5;
+cout<<a+2*(6-3);
+```
+
+However, it's better to do calculations outside of `cout`.
 
 ### Endl
 
@@ -137,7 +143,8 @@ want to print, but be aware that changing the order will result in a different b
 Whereas `cout` prints data to the console using the insertion operator `<<`, `cin` reads 
 input from keyboard using the *extraction operator* `>>`. Cin stands for "character input".
 
-In order to do that, the input inserted by the user must be stored in a variable to be used.
+In order to do that, the input inserted by the user must be stored in a variable to be used. 
+If a value is already stored in that variable, it will be replaced.
 
 Every time you use `cin` and ask for an input, the program will pause and wait for the input 
 and the <kbd>ENTER/RETURN ⏎</kbd> key to confirm.
@@ -149,7 +156,7 @@ using namespace std;
 
 int main()
 {
-	int x; // inizialize an empty variable x to hold user input
+	int x; // declare an empty variable x to hold user input
     cout<<"Enter a number: "; // ask user for a number and go to a new line
     cin>>x; // get number from keyboard and store it in x
 
