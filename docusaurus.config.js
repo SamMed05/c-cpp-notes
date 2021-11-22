@@ -44,6 +44,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+		
+		// https://stackoverflow.com/questions/61254950/docusaurus-v2-activating-google-analytics-hides-navbar-and-footer
+		// https://github.com/facebook/docusaurus/issues/3632
+		// GOOGLE ANALYTICS
+		plugins: ['@docusaurus/plugin-google-analytics'],
+		googleAnalytics: {
+			trackingID: 'G-55WH6NEDF7',
+			anonymizeIP: true,
+		},
+		
 	  announcementBar: {
 		id: 'support_us',
 		content:
@@ -175,14 +185,14 @@ const config = {
       },
     }),
 	
-	plugins: ['@docusaurus/plugin-google-analytics'],
+	/*plugins: ['@docusaurus/plugin-google-analytics'],
 	themeConfig: {
 		googleAnalytics: {
 		trackingID: 'G-55WH6NEDF7',
 		// Optional fields.
 		anonymizeIP: true, // Should IPs be anonymized?
-    },
-  },
+		},
+	},*/
 };
 
 module.exports = config;
