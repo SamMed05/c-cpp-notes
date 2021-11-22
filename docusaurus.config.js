@@ -174,6 +174,15 @@ const config = {
         maxHeadingLevel: 5,
       },
     }),
+	
+	plugins: ['@docusaurus/plugin-google-analytics'],
+	themeConfig: {
+		googleAnalytics: {
+		trackingID: 'G-55WH6NEDF7',
+		// Optional fields.
+		anonymizeIP: true, // Should IPs be anonymized?
+    },
+  },
 };
 
 module.exports = config;
