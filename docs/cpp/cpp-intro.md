@@ -14,13 +14,14 @@ custom_edit_url: null
 Instead of going straight to the coding part, it's better to make some context.
 Let's start with a bit of history.
 
+
 ## Brief history
 
 C++ is a programming language made by Bjarne Stroustrup at Bell Labs, starting in 1979.
 
 It was not created from the ground up, but it was rather an **evolution** of the already 
-existing C language (created by Dennis Ritchie), with the main goal of adding OOP (Object
-Oriented Programming) support, which was not present in C.
+existing C language (created by Dennis Ritchie), with the main goal of adding the new OOP 
+(Object Oriented Programming) *programming paradigm* support, which was not present in C.
 
 C++ was standardized in 1998, and since then several updates has been made. C++11 in 
 particular added a huge number of new capabilities, and new upgrades to the language 
@@ -43,9 +44,27 @@ done by GeeksforGeeks.
 </figcaption>
 
 
+## Characteristics of C++
+
+C++ is an hybrid language, so it contains not only object-oriented language but also 
+the functionality of the C programming language, so traditional procedural programming. 
+This means that you have all the features that are available in C, like:
+- universally usable modular programs
+- efficient, close to the machine programming
+- portable programs for various platforms.
+
+Existing C source code can be used in C++ programs.
+
+Various language elements were added to C++ other than OOP programming paradigm, such as references, templates, 
+exception handling and many more things which are important for an efficient program 
+implementation. 
+
+You don't actually already have to know all those concepts, though, so don't worry.
+
+
 ## Why use it
 
-Both C and C++ are very famous and largely used fot a wide range of software types and 
+Both C and C++ are very famous and largely used for a wide range of software types and 
 platforms.
 
 The advantages and features of  C++ language are many, but une of its strengths is 
@@ -128,7 +147,9 @@ I'm not a comment
 /* 
 This is a 
 multi-line
-comment
+comment that
+spans multiple 
+lines
 */
 I'm not a comment, too
 ```
@@ -195,13 +216,19 @@ you don't have to use it. It creates a three-like structure that is more beautif
 difficult to read.
 
 
-## Execution (IDE)
+## Development phases
 
-To run the programs that we'll make, we need a place to execute the code.
+A computer program is realized passing through different phases. I already discussed the 
+phases of creation of a program in the previous section, but here we are talking more 
+specifically about the programming phase. Let's see how it works.
 
-The IDEs out there will help us.
+![Program development phases](./assets/cpp-program-development-phases.svg)
+<figcaption>Fig.2. A scheme describing the process behind the creation of an executable file from C++ code.</figcaption>
 
 ### What's an IDE
+
+To run the programs that we'll make, we need a place to execute the code. The IDEs out 
+there will help us.
 
 IDE is an acronym which stands for **I**ntegrated **D**evelopment **E**nvironment, and 
 it's an enviroment, or place, or software that help the programmer in the develompment
@@ -230,6 +257,32 @@ If you prefer to use another IDE, that's perfectly fine, but be sure that it has
 integrated. Also, you can use [online compilers](https://arnemertz.github.io/online-compilers/) 
 too, but some libraries will not be present, so programs that will use them won't work.
 
+
+### Compilation (translation)
+
+After having saved the source code into a source file (or several source files that are 
+edited and translated separately in larger projects when doing modular programming) with 
+the **`.cpp` extension**, that source file is put through a compiler for translation. 
+The compiler checks the syntactic correctness of the code in accordance with the rules 
+established by the programming language used. If errors are present, the compiler lists 
+them. 
+
+If everything works as planned, an *object file* made up of machine code is created. 
+The object file is also referred to as a *module* and can be direcly executed by the 
+processor (unlike source code).
+
+### Linking
+
+Finally, in case the construction of the final program requires the union of one or more 
+modules and/or needs to integrate the code contained in the libraries (included at the top), 
+the **linker** combines the object file with other modules to form an executable file `.exe`. 
+These further modules contain functions from standard libraries or parts of the program 
+that have been compiled previously.
+
+### Debugging
+
+Debugging is made by the debugger, which is a program that reads step by step every single 
+line of code to check if there are any errors which cause malfunctions in the program itself.
 
 
 [^1]: [Wikipedia - Comment (computer programming)](https://en.wikipedia.org/wiki/Comment_(computer_programming)#:~:text=a%20comment%20is%20a%20programmer-readable%20explanation%20or%20annotation%20in%20the%20source%20code%20of%20a%20computer%20program)
