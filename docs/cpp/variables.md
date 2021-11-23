@@ -82,9 +82,9 @@ They are:
 | **`wchar_t`**| stores a wide character. It's like char type but greater in size. Also known as UTF or Unicode |
 | **`void`**   | represents a valueless entity. It means "nothing" or "no type"                                 |
 
-I excluded two primitive types (wchar_t and void) because for now they are not important. Also keep in mind that 
-these numbers have a certain range and they doesn't go to infinity. For example `int` type can 
-go from -2147483648 to 2147483647.
+Don't pay too much attention to the last two primitive types (`wchar_t` and `void`) because for 
+now they are not important. Also keep in mind that these numbers have a certain range/size and they 
+don't go to infinity. For example `int` type can go from -2147483648 to 2147483647.
 
 :::info Why?
 
@@ -94,7 +94,7 @@ that can be represented in that size can be matematically calculated:
 
 2<sup>31</sup> = 2,147,483,648
 
-If we consider also the 0, we can then conclude that numbers can go from -2147483648 to (2147483648-1)
+If we consider also the 0, we can then conclude that numbers can go from **-2147483648** to **2147483648 - 1**
 
 :::
 
@@ -142,7 +142,7 @@ float a = 0.5, b = 47.999;
 
 :::warning
 
-You **can't** declare different variable types in that way: 
+You **can't** declare different variable types like in the previous way: 
 
 ```cpp
 int x = 5, float a = 0.5;
