@@ -67,22 +67,49 @@ To declare (or create) a variable we need to specify the type and assign it a va
 
 ### Data types
 
-In C and C++ there are keywords that assign to some data a certain *primitive* data type. 
+In C and C++ there are **keywords** that assign to some data a certain ***primitive built-in data type***. 
 
 They are:
 
 | TYPE         | DESCRIPTION                                                                                    |
 |--------------|------------------------------------------------------------------------------------------------|
 | **`int`**    | stores integers (whole numbers), without decimals, such as 5 or -5                             |
-| **`char`**   | stores single characters, such as 'a' or 'B'. Char values are surrounded by single quotes      |
-| **`string`** | stores text, such as "text". String values are surrounded by double quotes                     |
 | **`bool`**   | true/false or 1/0. It can assume only this two values                                          |
 | **`float`**  | stores a single-precision floating point value, or decimal value                               |
 | **`double`** | stores a double-precision floating point value, or decimal value. It's more precise than float |
+| **`char`**   | stores single characters, such as 'a' or 'B'. Char values are surrounded by single quotes      |
+| **`string`** | stores text, such as "text". String values are surrounded by double quotes                     |
+| **`wchar_t`**| stores a wide character. It's like char type but greater in size. Also known as UTF or Unicode |
+| **`void`**   | represents a valueless entity. It means "nothing" or "no type"                                 |
 
-I excluded two primitive types because for now they are not important. Also keep in mind that 
-these numbers have a certain range and they doesn't go to infinity. For example int type can 
+I excluded two primitive types (wchar_t and void) because for now they are not important. Also keep in mind that 
+these numbers have a certain range and they doesn't go to infinity. For example `int` type can 
 go from -2147483648 to 2147483647.
+
+:::info Why?
+
+Why an `int` type can go *exactly* from -2147483648 to 2147483647? Well, the reason lies 
+into the size of an integer value, which is 4 bytes, or **32** bits. The maximum number 
+that can be represented in that size can be matematically calculated:
+
+2<sup>31</sup> = 2,147,483,648
+
+If we consider also the 0, we can then conclude that numbers can go from -2147483648 to (2147483648-1)
+
+:::
+
+:::note
+
+Attempting to calculate a number that is beyond the range of a variable’s type is known as 
+an *overflow*. The C++ standard generally leaves the results of an overflow undefined. 
+
+A floating-point overflow generates an exception that, if not handled, will cause your 
+program to crash. 
+
+An integer overflow is even worse, because C++ generates an incorrect result without 
+complaint.
+
+:::
 
 ### Syntax
 

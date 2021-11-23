@@ -4,6 +4,9 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const math = require('remark-math');
+const katex = require('rehype-katex');
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'C/C++ Notes',
@@ -15,6 +18,18 @@ const config = {
   favicon: 'img/favicon.ico',
   //organizationName: 'facebook', // Usually your GitHub org/user name.
   //projectName: 'docusaurus', // Usually your repo name.
+  
+  // https://docusaurus.io/docs/markdown-features/math-equations
+  // https://docs.theochu.com/docusaurus/latex/
+  stylesheets: [
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css',
+      type: 'text/css',
+      integrity:
+        'sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X',
+      crossorigin: 'anonymous',
+    },
+  ],
 
   presets: [
     [
@@ -25,6 +40,10 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl: 'https://github.com/SamMed05/c-cpp-notes/',
+		  showLastUpdateTime: true,
+          //showLastUpdateAuthor: true,
+          remarkPlugins: [math],
+		  rehypePlugins: [katex],
         },
         blog: {
           showReadingTime: true,
@@ -110,6 +129,10 @@ const config = {
 			  {
 				href: 'https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-096-introduction-to-c-january-iap-2011/lecture-notes/',
 				label: 'Mit Lecture Notes',
+			  },
+			  {
+				href: 'https://www.geeksforgeeks.org/c-plus-plus/',
+				label: 'GeeksforGeeks',
 			  },
               // ... more items
             ],
