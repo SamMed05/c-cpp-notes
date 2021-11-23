@@ -76,8 +76,8 @@ The first one is called *linking section* and in this case it's made by two inst
 
 1. **`#include <iostream>`** is a special command that tells the compiler to add the content 
 of the `iostream` library,  which is the part of the C++ standard library that allows us 
-to access input and output stream classes and *manipulator functions* (see point 4), so to 
-read and write text from/to the console. We need this line in order to use `cout` on 
+to access input and output stream classes and *manipulator functions* (see point 1 or Main seciton), 
+so to read and write text from/to the console respectively. We need this line in order to use `cout` on 
 line 5. Every line preceded by the `#` symbol is called a *preprocessor directive*. They 
 call the *preprocessor* which *pre*process the source code before compiling the rest of 
 the code. The `iostream` library is a header only library, meaning that it only contains 
@@ -123,10 +123,10 @@ int main() {
 }
 ```
 
-At line 4 we start with the `main()` functon and we oper a curly bracket `{`.
+At line 4 we start with the `main()` function opening a curly bracket `{`.
 Brackets are very important since the compiler use them to create a code block, which is a 
 logically connected group of program statements that is treated as a unit.
-Everything inside the `main()` functon, from `{` to `}` is called the *function body*.
+Everything inside the `main()` function, from `{` to `}` is called the *function body*.
 
 Inside the body we have written two lines:
 
@@ -144,8 +144,9 @@ whether it ran successfully or not. This particular return statement returns the
 write `int` before `main()`. If an error (or "*bug*") is present in the code, the return 
 does not happen and we know that something went wrong. 
 
-If you look back to the [console output](./assets/console-output-hello-world.png), you can see the return value in the line `Process 
-exited after ... seconds with return value 0` after the output.
+If you look back to the [console output](./assets/console-output-hello-world.png), you can 
+see the return value in the line "`Process exited after ... seconds with return value 0`" 
+after the output.
 
 :::info Note
 
@@ -166,10 +167,10 @@ void main() { // void type does not return anything
   return;
 }
 ```
-will all behave in the same way, without giving errors. We can put any value in return, or 
-not putting it completely (the compiler will automatically add a `return 0;`), however 
-it's strongly recommended to follow the standard `return 0;`. In C language return is not 
-optional
+will behave in slightly different way but work anyway, without giving errors. We can put any 
+value in return, or not putting it completely (the compiler will automatically add a `return 0;`), 
+however it's strongly recommended to follow the standard `return 0;`. In C language return is 
+*not* optional.
 
 :::
 
