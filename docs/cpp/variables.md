@@ -126,6 +126,46 @@ int num = 5;
 The name that we give to a variable is called the "***identifier***". In the above examples is 
 `variableName` and `num` respectively.
 
+:::danger
+
+A valid identifier is a sequence of one or more letters, digits and underscore characters 
+`_` (but not used at the start of the identifier). 
+Neither spaces nor punctuation marks or symbols can be part of an identifier. Only letters, 
+digits and single underscore characters are valid. In addition, variable identifiers always 
+have to begin with a letter.[^2]
+
+Also, they cannot match any standard reserved keyword of the C++ language:
+
+```
+asm, auto, bool, break, case, catch, char, class, const, const_cast, 
+continue, default, delete, do, double, dynamic_cast, else, enum, 
+explicit, export, extern, false, float, for, friend, goto, if, 
+inline, int, long, mutable, namespace, new, operator, private, 
+protected, public, register, reinterpret_cast, return, short, signed, 
+sizeof, static, static_cast, struct, switch, template, this, throw, 
+true, try, typedef, typeid, typename, union, unsigned, using, 
+virtual, void, volatile, wchar_t, while
+```
+
+:::
+
+
+:::caution
+
+C++ and C languages are "**case sensitive**". That means that an identifier written 
+in capital letters is completely different from another one with the same name but 
+written in small letters. 
+
+So, for example, the `num` variable is not the same as the `NUM` 
+variable or the `Num` variable. These are three different identifiers identifiying three 
+different variables.
+
+:::
+
+![Variable declaration](./assets/variable-declaration.svg)
+<figcaption>Fig.1. The names of the parts of a variable declaration.</figcaption>
+
+
 #### Assignment
 
 The equal sign `=` is used to assign values to the variable **FROM RIGHT TO LEFT**.
@@ -193,3 +233,4 @@ benefit that it works with older C++ standards.
 :::
 
 [^1]: [LearnCpp.com - Uninitialized variables and undefined behavior](https://www.learncpp.com/cpp-tutorial/uninitialized-variables-and-undefined-behavior/)
+[^2]: [cplusplus.com - Variables and types](https://www.cplusplus.com/doc/tutorial/variables/)

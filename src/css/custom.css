@@ -275,6 +275,10 @@ details[open] summary ~ * { /* Selects everything that is preceded by summary */
 }
 
 /* CUSTOM ALERTS */
+html .alert a {
+	color: #1c8aff;
+}
+
 .alert--warning {
 	color: #000;
     /* --ifm-alert-background-color: var(--ifm-color-warning); */
@@ -314,9 +318,9 @@ html[data-theme='dark'] .alert--info {
 	color: #fff;
 	--ra-admonition-icon-color: #fff;
 }
-html[data-theme='dark'] .alert a {
-	color: #1c8aff;
-}
+/* html[data-theme='dark'] .alert a { */
+	/* color: #1c8aff; */
+/* } */
 
 .alert--success {
 	color: #000;
