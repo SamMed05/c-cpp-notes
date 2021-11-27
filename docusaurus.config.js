@@ -75,6 +75,14 @@ const config = {
 		  anonymizeIP: true, // Should IPs be anonymized?
 		},
 		
+		plugins: ['@docusaurus/plugin-google-gtag'],
+		gtag: {
+		  // You can also use your "G-" Measurement ID here.
+		  trackingID: 'GTM-NWQPJB2',
+		  // Optional fields.
+		  anonymizeIP: true, // Should IPs be anonymized?
+		},
+		
 	  announcementBar: {
 		id: 'support_us',
 		content:
