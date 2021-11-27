@@ -60,17 +60,19 @@ const config = {
   ],
 
   // https://docusaurus.io/docs/api/themes/configuration
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+  themeConfig: 
+  ({
+		sidebarCollapsible: false,
+		// image: "img/...",
 		
 		// https://stackoverflow.com/questions/61254950/docusaurus-v2-activating-google-analytics-hides-navbar-and-footer
 		// https://github.com/facebook/docusaurus/issues/3632
 		// GOOGLE ANALYTICS
 		plugins: ['@docusaurus/plugin-google-analytics'],
 		googleAnalytics: {
-			trackingID: 'G-55WH6NEDF7',
-			anonymizeIP: true,
+		  trackingID: 'G-55WH6NEDF7',
+		  // Optional fields.
+		  anonymizeIP: true, // Should IPs be anonymized?
 		},
 		
 	  announcementBar: {
@@ -81,6 +83,21 @@ const config = {
 		textColor: '#091E42',
 		isCloseable: true,
 	  },
+	  
+	  colorMode: {
+		defaultMode: 'light',
+		switchConfig: {
+		  darkIcon: '🌙',
+		  darkIconStyle: {
+		    marginLeft: '2px',
+		  },
+		  lightIcon: '💡',
+		  lightIconStyle: {
+		    marginLeft: '1px',
+		  },
+		}
+	  },
+
       navbar: {
         title: 'C/C++ Notes',
         logo: {
@@ -208,14 +225,6 @@ const config = {
       },
     }),
 	
-	/*plugins: ['@docusaurus/plugin-google-analytics'],
-	themeConfig: {
-		googleAnalytics: {
-		trackingID: 'G-55WH6NEDF7',
-		// Optional fields.
-		anonymizeIP: true, // Should IPs be anonymized?
-		},
-	},*/
 };
 
 module.exports = config;
