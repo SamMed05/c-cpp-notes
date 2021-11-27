@@ -63,7 +63,7 @@ const config = {
   themeConfig: 
   ({
 		sidebarCollapsible: false,
-		// image: "img/...",
+		image: "img/website-img.png",
 		
 		// https://stackoverflow.com/questions/61254950/docusaurus-v2-activating-google-analytics-hides-navbar-and-footer
 		// https://github.com/facebook/docusaurus/issues/3632
@@ -71,14 +71,6 @@ const config = {
 		plugins: ['@docusaurus/plugin-google-analytics'],
 		googleAnalytics: {
 		  trackingID: 'G-55WH6NEDF7',
-		  // Optional fields.
-		  anonymizeIP: true, // Should IPs be anonymized?
-		},
-		
-		plugins: ['@docusaurus/plugin-google-gtag'],
-		gtag: {
-		  // You can also use your "G-" Measurement ID here.
-		  trackingID: 'GTM-NWQPJB2',
 		  // Optional fields.
 		  anonymizeIP: true, // Should IPs be anonymized?
 		},
