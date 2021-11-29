@@ -151,6 +151,10 @@ const config = {
 				href: 'https://www.geeksforgeeks.org/c-plus-plus/',
 				label: 'GeeksforGeeks',
 			  },
+			  {
+				href: 'https://www.w3schools.com/cpp/default.asp',
+				label: 'W3Schools',
+			  },
               // ... more items
             ],
           },

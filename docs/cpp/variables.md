@@ -1,22 +1,24 @@
 ---
 sidebar_position: 4
-id: variables
-title: Variables
+id: variables-and-types
+title: Variables and types
 hide_title: false
 hide_table_of_contents: false
-sidebar_label: Variables
+sidebar_label: Variables and types
 description: What is a variable and how to use it.
-slug: /cpp/variables
+slug: /cpp/variables-and-types
 custom_edit_url: null
 ---
 
+
+## Definition
 
 Variables in programming are kind of a container with a label that hold information. 
 We use them for storing data values and to refer to them later using their name.
 
 Tecnically a variable is a named location in memory. It is the basic unit of storage in a program.
 
-### Advantages
+## Advantages
 
 The advantages that come when using variables (instead of raw numbers or text) are various:
 - the value stored can be changed during program execution
@@ -94,7 +96,8 @@ that can be represented in that size can be matematically calculated:
 
 2<sup>31</sup> = 2,147,483,648
 
-If we consider also the 0, we can then conclude that numbers can go from **-2147483648** to **2147483648 - 1**
+If we consider also the 0, we can then conclude that numbers can go from **-2147483648** to 
+**2147483648 - 1**
 
 :::
 
@@ -110,6 +113,11 @@ An integer overflow is even worse, because C++ generates an incorrect result wit
 complaint.
 
 :::
+
+With the C++11 standard or later, you can also use the `auto` type. This keyword allows 
+the programmer to leave the type deduction to the compiler itself. All variables declared as 
+`auto` must be inizialized with some value.
+
 
 ### Syntax
 
@@ -159,6 +167,22 @@ written in small letters.
 So, for example, the `num` variable is not the same as the `NUM` 
 variable or the `Num` variable. These are three different identifiers identifiying three 
 different variables.
+
+:::
+
+:::note
+
+To give to a variable (or to an identifier in general) a name that is made of multiple 
+words, programmers usually use the **lowerCamelCase** naming technique, where every new 
+word after the first one starts with capital letter. It's just a convention, so you can 
+also not do that, but it helps separating the words when it's not possible to use spaces. 
+
+In contrapposition to that convention, there is also the *UpperCamelCase*, also known as 
+*Pascal Case*. Also *Snakecase* exists, which uses the underscore `_` to delimitate words 
+and that seems like a snake.
+
+But why camels? The name derives from the "jumps" within a word, which bring to mind the 
+camel's humps.
 
 :::
 
