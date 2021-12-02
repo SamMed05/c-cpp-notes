@@ -37,7 +37,7 @@ necessary.
 
 There are two benefits that comes when using functions:
 
-1. **Riusability**: once some code is written inside a function, it can then be executed 
+1. **Reusability**: once some code is written inside a function, it can then be executed 
 as many times as you want. This avoids repetition, redundancy and duplicate code. 
 The principle is similar to loops, but it works in a bit different way.
 2. **Organization**: as programs start to get longer and longer, putting all the code 
@@ -62,7 +62,7 @@ A function is made up of a signature
 To understand how a function is created let's see the generic form:
 
 ```cpp
-// Don't compile this!
+// do not compile this!
 returnType functionName(type parameter1, type parameter2, ...) {
 	instructions;
 	return ...;
@@ -76,6 +76,14 @@ int add(int a, int b) {
 	return sum;
 }
 ```
+
+:::note
+
+Of course this is not a really useful function, but at least it's simple to understand and 
+it will help you to grasp the concept of how function works in an easier way through the 
+following explanations.
+
+:::
 
 ### Analysis
 
@@ -91,9 +99,13 @@ declared. This name is an identifier and it's also called *header*. It will be u
 every time we'll need to call (refer to) that function, and it identifies it uniquely.
 - **Parameters**: they are local variables that takes *arguments* (values of other 
 variables from outside) in input when the function is called. You work with them inside 
-the body of a function. Parameters can one, more than one but also zero. In the latter 
+the body of a function. Parameters can be one, more than one but also zero. In the latter 
 case we can put the keyword `void` inside the parenthesis or simply open and close round 
-parenthesis (most recommended) like in `main()`.
+parenthesis (most recommended) like in `main()`. It's important to remember that you always 
+have to specify the type of *each* of the ***formal parameters*** (this is how they are called) 
+inside a function, but not when you call it (see [function call](#function-call-invocation)).
+- **Header**: it's the whole first line of a function and it encloses all the three components 
+mentioned above: *return type*, *name* and *parameters*.
 - **Body**: it's the block of statements required to perform a specific task for which 
 that function is built for. The instructions are always enclosed in the function’s curly 
 brackets `{...}`.
@@ -103,7 +115,8 @@ it must be typed at the end. It can be only 1 for each function, and it's used t
 the result of the computation performed in the function itself. What follows the *return* 
 keyword (it can be a value like `0`, a variable like `sum` or an expression like `a+b`) is 
 what the function gives in output when invocated and exectued, and this needs to be stored 
-somewhere if the function is not of type `void` (see *procedures* for further explanation).
+somewhere if the function is not of type `void` (see *procedures* for further explanation). 
+We have already used `return` in the `main()` function.
 
 :::info Difference (Parameter 🆚 Argument)
 
@@ -182,9 +195,9 @@ end of the program, but I don't cover that in this lesson.
 ```cpp {3}
 // inside main function
 int x=5, y=2;
-int result = sum(x,y) // output: 7
+int result = add(x,y) // output: 7
 
-// classic function
+// classic function (outside main)
 int add(int a, int b) { // a and b becomes 5 and 2
 	int sum = a+b;
 	return sum;
@@ -196,9 +209,9 @@ If it's a **procedure**, instead, we don't need to store any value, so it's simp
 ```cpp {3}
 // inside main function
 int x=5, y=2;
-sum(x,y) // output: 7
+add(x,y) // output: 7
 
-// procedure
+// procedure (outside main)
 void add(int a, int b) { // a and b becomes 5 and 2
 	cout<<a+b<<endl;
 	return;
@@ -217,6 +230,10 @@ You have to chose a particular method depending upon the situation and how you w
 a problem.
 
 :::
+
+Note that in neither of these cases a type has been specified inside the function call 
+(`add(x,y)`) for a parameter passed. You don't have to do that because **the type is already 
+specified in the header of the function**.
 
 ### Passage of values
 

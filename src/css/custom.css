@@ -347,3 +347,7 @@ html[data-theme='dark'] .alert--danger {
 	color: #fff;
 	--ra-admonition-icon-color: #fff;
 }
+
+html {
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
