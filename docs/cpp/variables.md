@@ -86,7 +86,13 @@ They are:
 
 Don't pay too much attention to the last two primitive types (`wchar_t` and `void`) because for 
 now they are not important. Also keep in mind that these numbers have a certain range/size and they 
-don't go to infinity. For example `int` type can go from -2147483648 to 2147483647.
+don't go to infinity. For example `int` type can go from -2147483648 to 2147483647. 
+
+These limits are defined into the [`<limits>` header](https://docs.microsoft.com/en-us/cpp/c-language/cpp-integer-limits?view=msvc-170) 
+of the [C++ Standard Library](https://docs.oracle.com/cd/E19957-01/806-3569/Standard.html), 
+included by default in every C++ program. We will learn more about `INT_MIN` and `INT_MAX` in 
+a future explanation.
+
 
 :::info Why?
 
