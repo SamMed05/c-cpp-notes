@@ -351,3 +351,10 @@ html[data-theme='dark'] .alert--danger {
 html {
 	transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.output {
+	display: block;
+	margin-top: 1rem;
+	color: #fff;
+	background-color: #000;
+}
