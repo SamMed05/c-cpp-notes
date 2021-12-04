@@ -126,7 +126,27 @@ parameters.
 
 The values which are defined at the time of the function prototype or definition 
 of the function are called as **parameters**. Parameters are local variables which are 
-assigned value of the arguments when the function is called.
+assigned value of the arguments when the function is called[^1].
+
+We dig deeper into this difference and learn why it's fundamental in 
+[this lesson](https://c-cpp-notes.vercel.app/docs/cpp/passage-of-values).
+
+:::
+
+:::note Terminology
+
+At the top I said that the first line of a function is called "header". If you remember, 
+though, "*[header](https://www.geeksforgeeks.org/header-files-in-c-cpp-and-its-uses/)*"
+is also the term used with the *header files* that are included in a program when we 
+write the *preprocessor directive* `#include <...>`, and it's a file that contains a set 
+of predefined standard library functions.
+
+Therefore, even if among C/C++ developers the first line of a function is often called 
+"header", this is actually a wrong term for the aforementioned reason. A better one could 
+be *signature*, but the best are ***function declaration*** and ***prototype*** (actually 
+this last term is used in a different case that we will cover later in another lesson). 
+See this [Stack Overflow Q&A](https://stackoverflow.com/questions/43177284/c-terminology-header-vs-signature)
+for more info.
 
 :::
 
@@ -245,3 +265,6 @@ works.
 
 Since this is a tricky topic to explain and to understand, but also very important, I'll write 
 a dedicated chapter in one of the following lessons.
+
+
+[^1]: [GeeksforGeeks.org - Difference between Argument and Parameter in C/C++ with Examples](https://www.geeksforgeeks.org/difference-between-argument-and-parameter-in-c-c-with-examples/)
