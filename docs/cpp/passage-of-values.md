@@ -293,6 +293,14 @@ by GeeksforGeeks.
 
 :::
 
+Both pass by reference and by pointer methods will give us the correct output:
+<code class="output">
+	2<br/>
+	5<br/>
+	5<br/>
+	2<br/>
+</code>
+
 #### Performances
 
 Pass-by-references is more efficient than pass-by-value, because it does not copy the 
