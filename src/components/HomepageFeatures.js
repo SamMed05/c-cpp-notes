@@ -22,7 +22,8 @@ const FeatureList = [
       <>
         The informations you'll find here were explained during the third year 
 		of the upper secondary school I'm attending in Italy by experienced ICT professors,
-		and everything is double-checked to provide only true explanations.
+		but I also added external info, curiosities and interesting insights,
+		and everything is double-checked to provide only correct explanations.
       </>
     ),
   },
@@ -33,8 +34,8 @@ const FeatureList = [
       <>
         To really understand the concept in practice, every argument is 
 		followed by one or more code examples, and also many exercises 
-		that challenge you, test your mind and check that the problem has been definitively understood.
-		
+		that challenge you, test your mind and check that the problem has 
+		been definitively understood.
       </>
     ),
   },
