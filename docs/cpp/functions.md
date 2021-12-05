@@ -143,8 +143,8 @@ of predefined standard library functions.
 
 Therefore, even if among C/C++ developers the first line of a function is often called 
 "header", this is actually a wrong term for the aforementioned reason. A better one could 
-be *signature*, but the best are ***function declaration*** and ***prototype*** (actually 
-this last term is used in a different case that we will cover later in another lesson). 
+be *signature*, but the best are ***function declaration*** and ***prototype*** (this last 
+term, though, is used in a different case that we will cover later in another lesson). 
 See this [Stack Overflow Q&A](https://stackoverflow.com/questions/43177284/c-terminology-header-vs-signature)
 for more info.
 
@@ -177,7 +177,7 @@ has to be stored somewhere, like a variable, in order to work with it.
 ### Procedures
 
 Procedures are a particular type of function that perform a task but **do not produce 
-informations** as outputs. In other words, they cannot return any numeric value, but 
+information** as outputs. In other words, they cannot return any numeric value, but 
 they can, for example, print some text on screen or make calculations.
 ```cpp
 void add(int a, int b) {
