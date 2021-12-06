@@ -70,7 +70,7 @@ const config = {
 		// GOOGLE ANALYTICS
 		plugins: ['@docusaurus/plugin-google-analytics'],
 		googleAnalytics: {
-		  trackingID: 'G-FJXC0C92SS', // G-55WH6NEDF7
+		  trackingID: 'G-1VRGG301KZ', // G-55WH6NEDF7
 		  // Optional fields.
 		  anonymizeIP: true, // Should IPs be anonymized?
 		},
