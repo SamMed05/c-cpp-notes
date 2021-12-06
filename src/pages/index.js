@@ -6,28 +6,6 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
 
-import Head from '@docusaurus/Head';
-
-
-function Home() {
-  const context = useDocusaurusContext();
-  const { siteConfig = {} } = context;
-  return (
-    <Layout>
-      <Head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-			<script>
-			  window.dataLayer = window.dataLayer || [];
-			  function gtag(){window.dataLayer.push(arguments);}
-			  gtag('js', new Date());
-
-			  gtag('config', 'G-55WH6NEDF7');
-			</script>
-      </Head>
-    </Layout>
-  );
-}
-
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
