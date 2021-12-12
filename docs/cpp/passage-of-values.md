@@ -198,9 +198,9 @@ But why?
 If you remember, in the previous chapter I mentioned that functions have formal parameters, 
 which are basically variables that have **local scope**. Actually the whole body of a function 
 and the variables inside it are also local scope of the function itself. This means that they 
-all have a visibility and a lifetime *limited* to that function and you can't access the 
-outside of the function body (it's the same principle applied to code blocks, were variables 
-inside of it are not global). 
+all have a visibility and a lifetime *limited* to that function and you can't access them 
+outside of the function body (it's the same principle applied to code blocks, where variables 
+inside of these blocks are not global). 
 
 For instance, in our program you can't use the `temp` variable (created inside the function) 
 in the main scope, because the scope of local variables is limited to the same block level 
@@ -231,9 +231,9 @@ That's why with our actual program we get this output:
 	5<br/>
 </code>
 
-### Pass by reference
+### Pass by reference (or address)
 
-To solve this problem we can pass arguments by reference. When we call and pass by reference, 
+To solve this problem we can pass arguments *by reference*, or *by address*. When we call and pass by reference, 
 actual and formal parameters refers to the **same memory location**, so when changes are made 
 to the formal parameters, also actual parameters will change. In this way we associate these 
 two types of parameters.
