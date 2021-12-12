@@ -359,3 +359,13 @@ html {
 	background-color: #000;
 	margin-bottom: 1em;
 }
+
+table {
+	/*border-radius: 8px;
+	border: 2px solid #00589d;*/
+}
+thead {
+	font-weight: bold;
+	background-color: rgba(0,88,157,.8);
+	color: #fff;
+}
