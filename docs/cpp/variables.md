@@ -54,8 +54,9 @@ cout<<a+b;
 
 Then we can insert every number we want and the program will change result according to the input.
 
-The power of variables is that they are generic and don't represent just one number, so they can 
-be used in various cases with different values/data each time.
+The power of variables is that they are generic and don't represent just one 
+[magic number](https://en.wikipedia.org/wiki/Magic_number_(programming)), so they can be used 
+in various cases with different values/data each time.
 
 So when used in a program, that program acquires the possibility to cover multiple cases 
 instead of just one.
