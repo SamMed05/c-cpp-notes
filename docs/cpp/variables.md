@@ -97,13 +97,19 @@ a future explanation.
 :::info Why?
 
 Why an `int` type can go *exactly* from -2147483648 to 2147483647? Well, the reason lies 
-into the size of an integer value, which is 4 bytes, or **32** bits. The maximum number 
-that can be represented in that size can be matematically calculated:
+into the size of an integer value, which is 4 bytes, or **32** bits. The first bit is used 
+for the sign, so the maximum number that can be represented in that size (separating positive 
+and negative values) can be matematically calculated with the following range formula:
 
 2<sup>31</sup> = 2,147,483,648
 
 If we consider also the 0, we can then conclude that numbers can go from **-2147483648** to 
-**2147483648 - 1**
+**2147483648 - 1**.
+
+If we need greater numbers and we don't use negative values we can also use the keyword 
+`unsigned` befor `int` to expand the range up to 2<sup>32</sup> (4,294,967,296) without using 
+the first bit for the sign. Although using unsigned numbers is generally 
+[not recommended](https://www.learncpp.com/cpp-tutorial/unsigned-integers-and-why-to-avoid-them/).
 
 :::
 
@@ -120,9 +126,56 @@ complaint.
 
 :::
 
-With the C++11 standard or later, you can also use the `auto` type. This keyword allows 
+#### Auto and Decltype
+With the C++11 standard or later, you can also use the **`auto`** type. This keyword allows 
 the programmer to leave the type deduction to the compiler itself. All variables declared as 
 `auto` must be inizialized with some value.
+
+Together with `auto`, we can use the **`decltype`** specifier, which is a keyword that is also 
+used to specify a type, but works differently: you give it a variable inside the round brackets 
+and an expression following that. You can read more [here](https://stackoverflow.com/a/18815367/13122341).
+
+See this program:
+
+```cpp {8,9}
+#include <iostream>
+using namespace std;
+
+int main() {
+	int x=100;
+	float y=199.00;
+	
+	decltype(x) z = y/x; // x is an integer
+	cout<<z<<endl;
+	
+	return 0;
+}
+
+```
+
+What `decltype` does is it recognize the type of a variable inserted and assume that type. In 
+the above case `x` is the name of the variable passed and it's type is `int`, so the whole 
+expression `decltype(x)` becomes the equivalent of `int` and the output is:
+<code class="output">
+1
+</code>
+
+But if we write `decltype(y)`, the output we get is:
+<code class="output">
+1.99
+</code>
+
+because now the type that `decltype` assumes is the the same as `y`, which is `float`.
+
+:::caution
+
+The first thing to say is that `decltype` isn't used a lot, and we'll never do in our 
+programs. Second, this functionality has been added to C++11 and if you want to use it in 
+DevC++ or other old compilers it won't work. However, there's a way to 
+[fix this](https://stackoverflow.com/a/50221058/13122341) in DevC++ since it supports C++11 
+standard, but not by default.
+
+:::
 
 
 ### Syntax
