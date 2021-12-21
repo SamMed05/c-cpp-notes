@@ -63,6 +63,7 @@ While programming (or coding) in general, it's important to keep in mind some re
 - Be very fussy and meticulous
 - Use meaningful names for variables
 - Code as if another person will have to read it tomorrow, without being in your mind
+- Don't learn pieces of code by heart: train your logic to be able to (re)write them later whenever you need them
 - Keep the code well commented
 - Don't use [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming))
 - Complicated is different from complex, and it's better to avoid the first one: *Keep It Simple*
