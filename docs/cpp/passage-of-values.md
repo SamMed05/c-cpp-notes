@@ -231,9 +231,9 @@ That's why with our actual program we get this output:
 	5<br/>
 </code>
 
-### Pass by reference (or address)
+### Pass by reference
 
-To solve this problem we can pass arguments *by reference*, or *by address*. When we call and pass by reference, 
+To solve this problem we can pass arguments *by reference*. When we call and pass by reference, 
 actual and formal parameters refers to the **same memory location**, so when changes are made 
 to the formal parameters, also actual parameters will change. In this way we associate these 
 two types of parameters.
@@ -258,9 +258,9 @@ void swap(int &x, int &y) {
 ![Swapping by reference](./assets/swap-reference.svg)
 <figcaption>Fig.5. Pass by reference. The swapping is successful!</figcaption>
 
-### Pass by pointer
+### Pass by address (or pointer)
 
-There's actually another method, which implies again the ampersand symbol, but in another way. 
+There's also another method, which similarly implies again the ampersand symbol, but in another way. 
 It's used in conjunction with *pointers*, that are special variables that are capable of 
 containing memory addresses of some other variables. To declare a pointer we use the asterisk 
 symbol **`*`** followed by the identifier.
@@ -277,14 +277,17 @@ void swap(int *x, int *y) {
 swap(&a, &b);
 ```
 
-`*x` and `*y` will store not the values but the addresses of `a` and `b`. When you call 
-the function you have to put the `&` symbol before the names of the arguments. 
+`*x` and `*y` will store not the values but copies of the **addresses** of `a` and `b` (arguments) 
+into the formal parameters. Then, the function uses the addresses to access the actual arguments. 
+When you call the function you have to put the `&` symbol before the names of the arguments which 
+indicates the respective address. Call by address is basically call by reference, except that a copy 
+of the reference is passed.
 
 Then, inside the function, `*x = *y` and `*y = temp` lines mean that the compiler has 
 to change the original values (the content stored) of the addresses of `x` and `y` 
 variables, so the changes will remain effective even outside of the function.
 
-:::note Which to use?
+:::note Which one to use?
 
 I honestly prefer passing by reference simply because it's easier, but it's not 
 necessarily the best. You can find more details on how these lasst two methods work in 
@@ -293,7 +296,7 @@ by GeeksforGeeks.
 
 :::
 
-Both pass by reference and by pointer methods will give us the correct output:
+Both pass by reference and by address methods will give us the correct output:
 <code class="output">
 	2<br/>
 	5<br/>
