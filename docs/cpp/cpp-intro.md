@@ -177,10 +177,9 @@ It means adding some empty space among the code in the right way so that it beco
 Some languages like Python use indentation as an important part of their syntax, and it 
 influences how the code is interpreted by the interpreter.
 
-This **does not** happens in C and C++, beacuse the compiler generally ignores whitespace, 
-(with a few minor exceptions). For this reason, we say that they are whitespace-independent 
-languages. Instead we use braces to tell the compiler that a peace of code belongs 
-(it's inside) a block of other code or not.
+This **does not** happens in C and C++, beacuse the compiler ignores whitespace. For this reason, 
+we say that they are **whitespace-independent** languages. Instead we use braces to tell the 
+compiler that a peace of code belongs (it's inside) a block of other code or not.
 
 That means that indentation would be optional, but it's important anyway for keeping a 
 good level of readability.
@@ -214,6 +213,17 @@ int main() {
 I intentionally used the `>` sign to indicate better the space on the left left blank, but 
 you don't have to use it. It creates a three-like structure that is more beautiful and less 
 difficult to read.
+
+The type of indentation styling used above (and the one I personally prefer) is called 
+**K&R style**, or "one true brace style". It's one of the most common together with the
+*Allman style* and you can freely choose the one you prefer. To read the full list of indentation 
+styles, visit the [Wikipedia page](https://en.wikipedia.org/wiki/Indentation_style) and see this 
+nice [GitHub gist](https://gist.github.com/jesseschalken/0f47a2b5a738ced9c845) by Jesse Schalken to 
+learn more about K&R style.
+
+![How K&R indentation style works](https://camo.githubusercontent.com/5f8d4e9df81bc42386b42b5a3a286f724c1e001c441330483fa26b8e30f04d3a/68747470733a2f2f692e696d6775722e636f6d2f567758395876332e706e67)
+<figcaption>Fig.2. A clear representation of how to read nested blocks when using the K&R indentation style (from Jesse Schalken's gist).
+</figcaption>
 
 
 ## Development phases
