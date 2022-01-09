@@ -20,6 +20,11 @@ output after doing some calculations inside to preform a specific task.
 ![Variable declaration](./assets/gears-system.svg)
 <figcaption>Fig.1. Abstract raffiguration of a system.</figcaption>
 
+If you have a mathematical background, you may be led to associate the functioning 
+of mathematical functions to that of programming functions. Although this association is 
+partly correct, it is confusing to consider them the same thing so we will keep them 
+as separate concepts.
+
 We have already used functions: `main()` is a special function that every executable 
 program must have, and it was present in every one of our programs done so far.
 Also writing `<iostream>` means having to deal with functions (inside that library):
@@ -171,8 +176,9 @@ int add(int a, int b) {
 }
 ```
 
-They always start with the return type and when they are invoked they return a value that 
-has to be stored somewhere, like a variable, in order to work with it.
+They always start with the return type (any primitive type: `int`, `bool`, `float`…) and when 
+they are invoked they return a value that has to be stored somewhere, like a variable, in order 
+to work with it.
 
 ### Procedures
 
