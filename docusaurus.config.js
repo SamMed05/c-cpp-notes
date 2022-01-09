@@ -139,22 +139,34 @@ const config = {
 				href: 'https://twitter.com/MedianiSamuel',
 				label: 'Twitter',
 			  },
-			  {
-				href: 'https://www.learncpp.com/',
-				label: 'LearnCpp.com',
-			  },
-			  {
-				href: 'https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-096-introduction-to-c-january-iap-2011/lecture-notes/',
-				label: 'Mit Lecture Notes',
-			  },
-			  {
-				href: 'https://www.geeksforgeeks.org/c-plus-plus/',
-				label: 'GeeksforGeeks',
-			  },
-			  {
-				href: 'https://www.w3schools.com/cpp/default.asp',
-				label: 'W3Schools',
-			  },
+              // ... more items
+            ],
+          },
+
+          {
+            label: 'Other guides',
+            position: 'right',
+            items: [
+              {
+                href: 'https://www.learncpp.com/',
+                label: 'LearnCpp.com',
+              },
+              {
+                href: 'https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-096-introduction-to-c-january-iap-2011/lecture-notes/',
+                label: 'Mit Lecture Notes',
+              },
+              {
+                href: 'https://www.geeksforgeeks.org/c-plus-plus/',
+                label: 'GeeksforGeeks',
+              },
+              {
+                href: 'https://www.w3schools.com/cpp/default.asp',
+                label: 'W3Schools',
+              },
+              {
+                href: 'https://www.tutorialspoint.com/cplusplus/',
+                label: 'Tutorials Point',
+              },
               // ... more items
             ],
           },
