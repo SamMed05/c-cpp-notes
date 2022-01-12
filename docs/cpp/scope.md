@@ -38,7 +38,7 @@ or used outside that block. Local variables are not known to functions outside t
 
 I know that we still haven't talked about functions and constructs, but don't worry if you don't 
 understand this now. You can come back here for reference after reading those parts or when you 
-encounter the error `Error: age was not declared in this scope`. I think, though, it's important to 
+encounter the error `Error: X was not declared in this scope`. I think, though, it's important to 
 introduce and cover also this topic before moving on.
 
 :::
