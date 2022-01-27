@@ -13,7 +13,7 @@ custom_edit_url: null
 
 ## Definition
 
-Sometimes useful to define variables with values that can not be changed, like the value of π 
+Sometimes is useful to define variables with values that can not be changed, like the value of π 
 (3.14159265 and so on) or the gravity of Earth (9.8 m/s<sup>2</sup>). Knowing that it won't 
 change, defining these value as a constants helps ensure that their value will always remain the 
 same.
