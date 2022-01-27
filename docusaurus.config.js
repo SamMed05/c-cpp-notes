@@ -157,15 +157,19 @@ const config = {
               },
               {
                 href: 'https://www.geeksforgeeks.org/c-plus-plus/',
-                label: 'GeeksforGeeks',
+                label: 'GeeksforGeeks - C++',
               },
               {
                 href: 'https://www.w3schools.com/cpp/default.asp',
-                label: 'W3Schools',
+                label: 'W3Schools - C++',
               },
               {
                 href: 'https://www.tutorialspoint.com/cplusplus/',
-                label: 'Tutorials Point',
+                label: 'Tutorials Point - C++',
+              },
+              {
+                href: 'https://www.programiz.com/cpp-programming',
+                label: 'Programiz - C++',
               },
               // ... more items
             ],

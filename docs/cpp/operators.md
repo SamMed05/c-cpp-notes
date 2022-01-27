@@ -41,7 +41,7 @@ also use parentheses to give precedence to some operations or group them togethe
 ## Compound assignment operators
 They assign a new value to a variable or object.
 
-| Syntax | Operator name             | Example  | Corresponds to |
+| Syntax | Operator name             | Example  | Equivalent to  |
 |--------|---------------------------|----------|----------------|
 | `=`    | simple assignment         | `a = b`  | `a = b`        |
 | `+=`   | addition assignment       | `a += b` | `a = a + b`    |
@@ -57,7 +57,7 @@ Remember that the assignment of the value is always from the right to the variab
 ## Unary operators
 They increment or decrement the value of the object.
 
-| Syntax | Operator name  | Corresponds to |
+| Syntax | Operator name  | Equivalent to  |
 |--------|----------------|----------------|
 | `++a`  | pre-increment  | `a = a + 1`    |
 | `--a`  | pre-decrement  | `a = a - 1`    |
