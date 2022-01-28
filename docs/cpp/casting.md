@@ -106,7 +106,7 @@ Casting is the act of telling the compiler the type of the resulting conversion.
 programmer's intervention to manually change data from one type to another explicitly.
 
 To see casting in action, let's first try to take the average between three integer values `a`, 
-`b` and `c` with the simple formula **`average = sumOfValues / numberOfValues`**.
+`b` and `c` with the simple formula: **`average = sumOfValues / numberOfValues`**.
 
 ```cpp title="int-average.cpp" {14}
 #include <iostream>
@@ -114,15 +114,15 @@ using namespace std;
 
 int main() {
 	int a, b, c;
-	int sumOfValues;
+	int sum;
 
 	cout<<"Insert 3 values: "<<endl;
 	cin>>a;
 	cin>>b;
 	cin>>c;
 
-	sumOfValues = a+b+c;
-	float average = sumOfValues/3;
+	sum = a+b+c;
+	float average = sum/3;
 
 	cout<<"The average is: "<<average<<endl;
 
@@ -161,7 +161,7 @@ with the proper type or printed). It sounds complicated but it really isn't. Loo
 
 ```cpp
 //    destinationDataType = (targetDataType)variable-or-expression;
-float average = (float)sumOfValues/3;
+float average = (float)sum/3;
 ```
 
 See that `(float)`? It's the explicit casting. Replace this line of code with line 14 in the 
@@ -179,8 +179,7 @@ fine.
 
 :::note
 
-In this case we could also write `float average = sumOfValues/3.0;` or 
-`float average = (float)sumOfValues/(float)3;`
+In this case we could also write `float average = sum/3.0;` or `float average = (float)sum/(float)3;`
 
 It's sufficient to use a cast on one of the operands, but it doesn't hurt if we cast both.
 
