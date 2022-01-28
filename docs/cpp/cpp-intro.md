@@ -78,6 +78,9 @@ In addition to being an high performance language, it also give the programmer p
 control over memory and other resources of the computer, makikng it a bit harder to 
 learn but also more powerful and capable of doing more things.
 
+There's a nice overview on the advantages of learning C++ in 
+[this website](https://www.programiz.com/cpp-programming/guide) by Programiz.
+
 
 ## Where it's used
 
