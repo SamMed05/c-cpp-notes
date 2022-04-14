@@ -95,7 +95,8 @@ each time we want to output something with `cout`.
 
 The statement `using namespace std;` is generally considered bad practice, but in our 
 programs conflicts will never happen. We are not insterested on taking that precaution
-and so we won't mostly for practical reasons.
+and so we won't mostly for practical reasons. See this [video](https://youtu.be/4NYC-VU-svE) 
+by The Cherno if you are interested.
 
 :::
 

@@ -40,7 +40,7 @@ If you are curious, there's a much more in-depth explanation [here](https://www.
 done by GeeksforGeeks.
 
 ![History of C++](https://media.geeksforgeeks.org/wp-content/uploads/20190716103831/History-of-C.jpg)
-<figcaption>Fig.1. The storyline of C and C++. Image courtesy of GeekforGeeks (CCBY-SA license).
+<figcaption>Fig.1. The storyline of C and C++. Image courtesy of GeekforGeeks (CC BY-SA license).
 </figcaption>
 
 
