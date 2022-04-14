@@ -75,14 +75,14 @@ int main() {
 The first one is called *linking section* and in this case it's made by two instructions:
 
 1. **`#include <iostream>`** is a special command that tells the compiler to add the content 
-of the `iostream` library,  which is the part of the C++ standard library that allows us 
-to access input and output stream classes and *manipulator functions* (see point 1 or Main seciton), 
-so to read and write text from/to the console respectively. We need this line in order to use `cout` on 
-line 5. Every line preceded by the `#` symbol is called a *preprocessor directive*. They 
-call the *preprocessor* which *pre*process the source code before compiling the rest of 
-the code. The `iostream` library is a header only library, meaning that it only contains 
-header files (in this case the *iostream* header file). We will discuss more about what a 
-library is in a future chapter.
+of the `iostream` header file, which includes some function declarations of the C++ standard 
+library that allows us to access input and output stream classes and *manipulator functions* 
+(see point 1 or Main section), so to read and write text from/to the console respectively. 
+We need this line in order to use `cout` on line 5. Every line preceded by the `#` symbol is 
+called a *preprocessor directive*. They call the *preprocessor* which *pre*process the source 
+code before compiling the rest of the code. The `iostream` library is a header only library, 
+meaning that it only contains header files (in this case the *iostream* header file). We will 
+discuss more about what a library is in a future chapter.
 2. **`using namespace std;`** means that we tell the compiler to use the namespace called 
 "std" (standard). A namespace is a declarative region (sort of a directory) that provides 
 a scope to the identifiers (the names of types, functions, variables, and other C++ tokens) 
@@ -134,7 +134,7 @@ Inside the body we have written two lines:
 Every time we want to print a value we use the `cout` object (which stands for "character 
 output"), followed by two angle brackets (or less-than sign) `<<` and than the value or the 
 message we want to output. At the end of this line is also present `endl`. What is it? It's 
-called manipulator and as the name suggests it modifies the input and output stream. In this 
+called manipulator and as the name suggests it modifies the output stream. In this 
 case it adds a line break (endl = *end line*). Of course this instruction is optional.
 2. **`return 0;`** is the return statement. Every function, including `main()` has to finish 
 with a return statement as the last instruction. Why `return 0;`? When a program finishes 

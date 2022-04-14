@@ -20,10 +20,10 @@ const FeatureList = [
     Svg: require('../../static/img/reliable.svg').default,
     description: (
       <>
-        The informations you'll find here were explained during the third year 
+        Some of the information you'll find here were explained during the third year 
 		of the upper secondary school I'm attending in Italy by experienced ICT professors,
 		but I also added external info, curiosities and interesting insights,
-		and everything is double-checked to provide only correct explanations.
+		and everything is double-checked to provide only reliable explanations.
       </>
     ),
   },
@@ -33,9 +33,9 @@ const FeatureList = [
     description: (
       <>
         To really understand the concept in practice, every argument is 
-		followed by one or more code examples, and also many exercises 
-		that challenge you, test your mind and check that the problem has 
-		been definitively understood.
+		followed by one or more code examples. At the end of each topic group are 
+        also included many exercises that challenge you, test your mind and check 
+        that the problem has been definitively understood.
       </>
     ),
   },

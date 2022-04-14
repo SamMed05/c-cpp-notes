@@ -125,9 +125,13 @@ However, it's better to do calculations outside of `cout`.
 If we want to print two or more outputs to the console into separate lines, we need the `endl` 
 command. As the case of the world "cout", the world itself stands for “end line”.
 
-To put a line break we can also use `\n`. When it is used by itself to move the cursor to the 
-next line, the single quotes are needed, but when embedded into text that is already 
-double-quoted, the single quotes aren’t needed.
+```cpp {3}
+cout<<"new line"<<endl;
+```
+
+Alternatively, to put a line break we can also use the *escape sequence* `\n`. When it is used 
+by itself to move the cursor to the next line, the single quotes are needed, but when embedded 
+into text that is already double-quoted, the single quotes aren't needed.
 
 ```cpp {3}
 cout<<"new line\n";
@@ -136,6 +140,27 @@ cout<<"new line"<<'\n';
 
 You can put freely both `endl` and `\n` *before* and/or *after* the text or variable that you 
 want to print, but be aware that changing the order will result in a different behavior.
+
+### Escape sequences
+
+As I said, `\n` is an escape sequence, but it's not the only. The other ones are listed in the 
+table[^1] below:
+
+| Escape sequence   | Character represented                   |
+|-------------------|-----------------------------------------|
+| `\a`              | Alert (Beep, Bell) (added in C89)       |
+| `\b`              | Backspace                               |
+| `\e`              | Escape character                        |
+| `\f`              | Formfeed Page Break                     |
+| `\n`              | Newline (Line Feed)                     |
+| `\r`              | Carriage Return                         |
+| `\t`              | Horizontal Tab                          |
+| `\v`              | Vertical Tab                            |
+| `\\`              | Backslash                               |
+| `\'`              | Apostrophe or single quotation mark     |
+| `\"`              | Double quotation mark                   |
+| `\?`              | Question mark (used to avoid trigraphs) |
+| `\0`              | Null character, with value zero         |
 
 
 ## Cin
@@ -154,8 +179,7 @@ Try this program yourself:
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
 	int x; // declare an empty variable x to hold user input
     cout<<"Enter a number: "; // ask user for a number and go to a new line
     cin>>x; // get number from keyboard and store it in x
@@ -172,3 +196,27 @@ Finally, on line 10, the program will print “You entered ” followed by the n
 
 Of course this program it's not very useful, but it shows how `cin` works and how it can be 
 combined with `cout` to interact with the user.
+
+Multiple `cin` can also be concatenated one after the other just like we do with `cout`:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+	int a, b, c;
+	int sumOfValues;
+
+	cout<<"Insert 3 values: "<<endl;
+	cin>>a>>b>>c; // the order must be respected
+
+	sumOfValues = a+b+c;
+	float average = float(sumOfValues/3);
+
+	cout<<"The average is: "<<average<<endl;
+
+	return 0;
+}
+```
+
+[^1]: [Wikipedia - Escape sequences in C](https://en.wikipedia.org/wiki/Escape_sequences_in_C#Table_of_escape_sequences)

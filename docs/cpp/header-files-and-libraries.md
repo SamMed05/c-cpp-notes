@@ -36,7 +36,7 @@ to objects like `cin` and `cout` used for manipulating I/O streams, as we saw in
 :::caution
 
 The following part is about an advanced topic. If you don't already know functions and classes 
-feel free to skip this part.
+feel free to skip these paragraphs.
 
 :::
 
@@ -51,9 +51,12 @@ Libraries are a compiled set of function definitions (the actual implementations
 instructions) of the declarations in the header files consisting in many 0 and 1, not source code 
 like header files do. The library is included in your `.exe` file at link time.
 
-The reasons why function definitions should not be written inside header files is explained 
+The reasons why function definitions should not be written inside header files are explained 
 [here](https://softwareengineering.stackexchange.com/a/56230), 
 [here](https://docs.microsoft.com/en-us/cpp/cpp/header-files-cpp?view=msvc-170#what-to-put-in-a-header-file) 
 and [here](https://www.quora.com/What-do-headers-in-C-programming-actually-do/answer/Abhay-Bhave). 
 If you are confusing header files with libraries, see this GeeksforGeeks 
 [comparison article](https://www.geeksforgeeks.org/difference-header-file-library/).
+
+Lastly, I also suggest a great in-deep [lesson](https://www.learncpp.com/cpp-tutorial/header-files/) 
+by Learn C++ all about header files.
