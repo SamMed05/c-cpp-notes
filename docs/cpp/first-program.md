@@ -149,6 +149,26 @@ If you look back to the [console output](./assets/console-output-hello-world.png
 see the return value in the line "`Process exited after ... seconds with return value 0`" 
 after the output.
 
+:::note Pausing the console
+
+In some cases the console window will close immediately after the program execution is finished. 
+This happens because the console is temporary, and this can be a problem if we want to continue 
+seeing the last part of our program as long as we want. The solution is usually to put 
+just before `return 0;` one of these three lines of code:
+```cpp
+system("pause"); // only works on Windows
+// or
+cin.get();
+// or
+getchar();
+```
+
+Remember that `system("pause");`, like all Windows-specific command-lines and instructions 
+coming from the `windows.h` header (containing the function declarations for the functions 
+of the Windows API), only works on Windows OS.
+
+:::
+
 :::info Note
 
 ```cpp
