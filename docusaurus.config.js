@@ -55,6 +55,18 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+
+        // https://stackoverflow.com/questions/61254950/docusaurus-v2-activating-google-analytics-hides-navbar-and-footer
+        // https://github.com/facebook/docusaurus/issues/3632
+        // https://github.com/facebook/docusaurus/pull/5832
+        // GOOGLE ANALYTICS
+        //plugins: ['@docusaurus/plugin-google-analytics'],
+
+        googleAnalytics: {
+          trackingID: 'G-1VRGG301KZ',
+          // Optional fields.
+          anonymizeIP: true, // Should IPs be anonymized?
+        },
       }),
     ],
   ],
@@ -62,18 +74,8 @@ const config = {
   // https://docusaurus.io/docs/api/themes/configuration
   themeConfig: 
   ({
-		sidebarCollapsible: false,
+		//sidebarCollapsible: false,
 		image: "img/website-img.png",
-		
-		// https://stackoverflow.com/questions/61254950/docusaurus-v2-activating-google-analytics-hides-navbar-and-footer
-		// https://github.com/facebook/docusaurus/issues/3632
-		// GOOGLE ANALYTICS
-		plugins: ['@docusaurus/plugin-google-analytics'],
-		googleAnalytics: {
-		  trackingID: 'G-1VRGG301KZ',
-		  // Optional fields.
-		  anonymizeIP: true, // Should IPs be anonymized?
-		},
 		
 	  announcementBar: {
 		id: 'support_us',
@@ -86,7 +88,8 @@ const config = {
 	  
 	  colorMode: {
 		defaultMode: 'light',
-		switchConfig: {
+		/* colorMode.switchConfig is deprecated
+        switchConfig: {
 		  darkIcon: '🌙',
 		  darkIconStyle: {
 		    marginLeft: '2px',
@@ -95,7 +98,7 @@ const config = {
 		  lightIconStyle: {
 		    marginLeft: '1px',
 		  },
-		}
+		}*/
 	  },
 
       navbar: {
