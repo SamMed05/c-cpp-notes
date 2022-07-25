@@ -80,7 +80,7 @@ const config = {
 	  announcementBar: {
 		id: 'support_us',
 		content:
-		  'This website is under construction. 🚧 Please be patient for more advanced topics.',
+		  'This website is under construction. 🚧 Please be patient to see more content.',
 		backgroundColor: '#fafbfc',
 		textColor: '#091E42',
 		isCloseable: true,
