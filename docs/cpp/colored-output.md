@@ -20,7 +20,7 @@ A nice little feature that we have in Windows with C++ is the ability to change 
 
 There are mainly two ways of doing that.
 
-### `system(color XX)`
+### `system("color XX")`
 
 The `iostream` header file allows us to use the command `system("color XX");` to change the entire colors of the console window. After the world `color` there are two characters: the first controls the color of the background while the second controls the color of the text.
 
