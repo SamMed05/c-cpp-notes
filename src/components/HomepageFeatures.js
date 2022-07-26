@@ -10,8 +10,9 @@ const FeatureList = [
       <>
         These notes aim to provide a simple and easily readable 
 		guide to C and C++, to learn or revise these two languages 
-		quickly and without excessive in-depth concepts, as well as 
-		many code examples for algorithms, techniques, formulas, tips and tricks.
+		quickly and without excessive in-depth concepts. 
+        This website is highly recommended for beginners, since the 
+        learning process is guided starting from the basics of programming.
       </>
     ),
   },
@@ -20,10 +21,10 @@ const FeatureList = [
     Svg: require('../../static/img/reliable.svg').default,
     description: (
       <>
-        Some of the information you'll find here were explained during the third year 
-		of the upper secondary school I'm attending in Italy by experienced ICT professors,
-		but I also added external info, curiosities and interesting insights,
-		and everything is double-checked to provide only reliable explanations.
+        The information you'll find here is double-checked to provide only reliable 
+        explanations. I've put an extra effort to make sure not to share 
+        incorrect, doubtful or incomplete content. For non-beginner developers, techniques
+        external info, curiosities and interesting insights are available.
       </>
     ),
   },
@@ -33,9 +34,9 @@ const FeatureList = [
     description: (
       <>
         To really understand the concept in practice, every argument is 
-		followed by one or more code examples. At the end of each topic group are 
-        also included many exercises that challenge you, test your mind and check 
-        that the problem has been definitively understood.
+		followed by one or more code examples for algorithms, techniques, formulas, 
+        tips and tricks. After theory, many exercises are also included to 
+        challenge you and check that the concept has been definitively understood.
       </>
     ),
   },
