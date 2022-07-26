@@ -83,7 +83,7 @@ Inside the function `area()`, the `return area;` instruction finalizes the funct
 returns the control back to the function that called it in the first place (so `main()` 
 in our example).
 
-At this moment the program follows it regular course from the same point at which it was 
+At this moment the program follows its regular course from the same point at which it was 
 interrupted by the call to `area()`. But additionally, because the return statement in our
 function `area()` specified a value, this value becomes the value of the function call.
 
@@ -139,8 +139,8 @@ invocation, which are `base` and `height`.
 ## Passing by value 🆚 by reference
 
 Let's now take another program. Imagine you want to write a function of type `void` that 
-swaps two variables (the algorithm for swapping is explained in a previous lesson) `a` and 
-`b`:
+swaps two variables (the algorithm for swapping is explained in a 
+[previous lesson](https://c-cpp-notes.vercel.app/docs/cpp/swapping)) called `a` and `b`:
 
 ```cpp {4-8,16} title="swapping.cpp"
 #include <iostream>
@@ -200,7 +200,7 @@ which are basically variables that have **local scope**. Actually the whole body
 and the variables inside it are also local scope of the function itself. This means that they 
 all have a visibility and a lifetime *limited* to that function and you can't access them 
 outside of the function body (it's the same principle applied to code blocks, where variables 
-inside of these blocks are not global). 
+inside of these blocks are not global).
 
 For instance, in our program you can't use the `temp` variable (created inside the function) 
 in the main scope, because the scope of local variables is limited to the same block level 
@@ -260,8 +260,8 @@ void swap(int &x, int &y) {
 
 ### Pass by address (or pointer)
 
-There's also another method, which similarly implies again the ampersand symbol, but in another way. 
-It's used in conjunction with *pointers*, that are special variables that are capable of 
+There's also another method, which similarly implies again the ampersand symbol, but in another 
+way. It's used in conjunction with *pointers*, that are special variables that are capable of 
 containing memory addresses of some other variables. To declare a pointer we use the asterisk 
 symbol **`*`** followed by the identifier.
 
@@ -280,8 +280,8 @@ swap(&a, &b);
 `*x` and `*y` will store not the values but copies of the **addresses** of `a` and `b` (arguments) 
 into the formal parameters. Then, the function uses the addresses to access the actual arguments. 
 When you call the function you have to put the `&` symbol before the names of the arguments which 
-indicates the respective address. Call by address is basically call by reference, except that a copy 
-of the reference is passed.
+indicates the respective address. Call by address is basically call by reference, except that a 
+copy of the reference is passed.
 
 Then, inside the function, `*x = *y` and `*y = temp` lines mean that the compiler has 
 to change the original values (the content stored) of the addresses of `x` and `y` 

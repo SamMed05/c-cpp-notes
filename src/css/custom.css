@@ -210,7 +210,7 @@ kbd {
 }
 
 /* From https://docusaurus.io/docs/markdown-features but implemented differently */
-details {
+/*details {
     transition: transform 200ms ease;
     border: 1px solid #4cb3d4;
     margin: 0 0 1rem;
@@ -219,14 +219,13 @@ details {
 	background-color: rgb(84 199 236 / 15%);
 }
 details ::marker {
-	/*color: #4cb3d4;*/
 	content: "";
 }
 details summary::-webkit-details-marker {
   display: none;
-}
+}*/
 
-summary {
+/*summary {
 	cursor: pointer;
 	position: relative;
 	padding-left: 1rem;
@@ -250,16 +249,16 @@ details > div {
 	padding-top: 1rem;
 	margin-top: 1rem;
 	border-top: 1px solid #4cb3d4;
-}
+}*/
 
 /* https://stackoverflow.com/questions/38213329/how-to-add-css3-transition-with-html5-details-summary-tag-reveal */
-details[open] summary ~ * { /* Selects everything that is preceded by summary */
+/*details[open] summary ~ * {
   animation: sweep .5s ease-in-out;
 }
 @keyframes sweep {
   0%    {opacity: 0; margin-left: -10px}
   100%  {opacity: 1; margin-left: 0px}
-}
+}*/
 
 /* CUSTOM ALERTS */
 html .alert a {
@@ -337,18 +336,19 @@ html {
 	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.output {
-	display: block;
-	margin-top: 1rem;
-	color: #fff;
-	background-color: #000;
-	margin-bottom: 1em;
+/*details pre code .output {
+	color: #fff !important;
+	background-color: #000 !important;
+}*/
+details pre code {
+  color: #fff !important;
+  background-color: #000 !important;
 }
 
-table {
-	/*border-radius: 8px;
-	border: 2px solid #00589d;*/
-}
+/*table {
+	border-radius: 8px;
+	border: 2px solid #00589d;
+}*/
 table th {
 	font-weight: bold;
 	background-color: rgba(0,88,157,.8);
