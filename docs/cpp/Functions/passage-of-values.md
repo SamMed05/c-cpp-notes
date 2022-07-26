@@ -94,7 +94,7 @@ is literally replaced by the value it returns, and then this value is stored in 
 
 Just as shown in this figure:
 
-![Returned value](./assets/function-return-value.svg)
+![Returned value](../assets/function-return-value.svg)
 <figcaption>Fig.1. How the returned value of a function is stored.</figcaption>
 
 In this general example, a `fName()` function is invoked, and when it's executed its result 
@@ -121,7 +121,7 @@ program.
 
 This scheme will probably convey better how these two different type of parameters are used:
 
-![Passing values scheme](./assets/function-passing-values.svg)
+![Passing values scheme](../assets/function-passing-values.svg)
 <figcaption>Fig.2. How arguments are passed to a function (example).</figcaption>
 
 ### Formal parameter
@@ -132,7 +132,7 @@ invocation, which are `base` and `height`.
 
 ### General scheme
 
-![Passing values scheme general](./assets/function-passing-values-general.svg)
+![Passing values scheme general](../assets/function-passing-values-general.svg)
 <figcaption>Fig.3. How arguments are passed to a function (in general).</figcaption>
 
 
@@ -220,7 +220,7 @@ Therefore, when passing by value, changes that we apply to formal parameters, li
 them, will work inside the funtion but nothing will happen outside of the it (like in 
 main). If we change the parameters, we lose all the modications outside of the function.
 
-![Swapping by value](./assets/swap-value.svg)
+![Swapping by value](../assets/swap-value.svg)
 <figcaption>Fig.4. Pass by value (or copy). The swapping doesn't happen in main.</figcaption>
 
 That's why with our actual program we get this output:
@@ -255,7 +255,7 @@ void swap(int &x, int &y) {
 }
 ```
 
-![Swapping by reference](./assets/swap-reference.svg)
+![Swapping by reference](../assets/swap-reference.svg)
 <figcaption>Fig.5. Pass by reference. The swapping is successful!</figcaption>
 
 ### Pass by address (or pointer)

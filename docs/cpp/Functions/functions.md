@@ -6,18 +6,19 @@ hide_title: false
 hide_table_of_contents: false
 sidebar_label: Functions
 description: What are functions and how to use them.
-slug: /cpp/functions
+slug: /cpp/functions/
 custom_edit_url: null
 ---
 
 
 ## Definition
+
 A function is a reusable sequence of statements designed to do a particular job.
 
 In more general terms, a function is a system which takes an input and returns it as an 
 output after doing some calculations inside to preform a specific task.
 
-![Variable declaration](./assets/gears-system.svg)
+![Variable declaration](../assets/gears-system.svg)
 <figcaption>Fig.1. Abstract raffiguration of a system.</figcaption>
 
 If you have a mathematical background, you may be led to associate the functioning 
@@ -94,7 +95,7 @@ following explanations.
 
 Now let's analyze every part that makes up a function like the one above:
 
-![Parts of a function](./assets/function-parts.svg)
+![Parts of a function](../assets/function-parts.svg)
 <figcaption>Fig.2. The various components of a function.</figcaption>
 
 - **Return type**: this is the primitive type of the output value that the function will 

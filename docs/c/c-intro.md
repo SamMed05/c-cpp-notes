@@ -10,8 +10,6 @@ slug: /c/c-intro
 custom_edit_url: null
 ---
 
-# Introduction to C
-
 :::caution
 
 🚧 This section is still under construction. 🚧
