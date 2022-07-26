@@ -9,7 +9,7 @@ const katex = require('rehype-katex');
 
 const config = {
   title: 'C/C++ Notes',
-  tagline: 'A collection of school notes about coding in C++ and C programming languages.',
+  tagline: 'A collection of notes about coding in C++ and C programming languages.',
   url: 'https://c-cpp-notes.vercel.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -33,6 +33,21 @@ const config = {
       '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
+        // GOOGLE ANALYTICS
+        // https://stackoverflow.com/questions/61254950/docusaurus-v2-activating-google-analytics-hides-navbar-and-footer
+        // https://github.com/facebook/docusaurus/issues/3632
+        // https://github.com/facebook/docusaurus/pull/5832
+        //plugins: ['@docusaurus/plugin-google-analytics'],
+        googleAnalytics: {
+          trackingID: 'G-1VRGG301KZ',
+          // Optional fields.
+          anonymizeIP: true, // Should IPs be anonymized?
+        },
+        gtag: {
+          trackingID: 'G-1VRGG301KZ',
+          anonymizeIP: true,
+        },
+
         docs: {
           path: 'docs',
           breadcrumbs: true,
@@ -54,17 +69,6 @@ const config = {
 
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
-        },
-
-        // https://stackoverflow.com/questions/61254950/docusaurus-v2-activating-google-analytics-hides-navbar-and-footer
-        // https://github.com/facebook/docusaurus/issues/3632
-        // https://github.com/facebook/docusaurus/pull/5832
-        // GOOGLE ANALYTICS
-        //plugins: ['@docusaurus/plugin-google-analytics'],
-        googleAnalytics: {
-          trackingID: 'G-1VRGG301KZ',
-          // Optional fields.
-          anonymizeIP: true, // Should IPs be anonymized?
         },
       }),
     ],
