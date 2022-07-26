@@ -7,7 +7,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const math = require('remark-math');
 const katex = require('rehype-katex');
 
-/** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'C/C++ Notes',
   tagline: 'A collection of school notes about coding in C++ and C programming languages.',
@@ -17,16 +16,14 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   //organizationName: 'facebook', // Usually your GitHub org/user name.
-  //projectName: 'docusaurus', // Usually your repo name.
+  projectName: 'c-cpp-notes', // Usually your repo name.
   
   // https://docusaurus.io/docs/markdown-features/math-equations
-  // https://docs.theochu.com/docusaurus/latex/
   stylesheets: [
     {
-      href: 'https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css',
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
       type: 'text/css',
-      integrity:
-        'sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X',
+      integrity: 'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
       crossorigin: 'anonymous',
     },
   ],
@@ -37,21 +34,24 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          path: 'docs',
+          breadcrumbs: true,
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl: 'https://github.com/SamMed05/c-cpp-notes/',
-		  showLastUpdateTime: true,
-          //showLastUpdateAuthor: true,
+		      showLastUpdateTime: true,
+          showLastUpdateAuthor: false,
+
           remarkPlugins: [math],
-		  rehypePlugins: [katex],
+		      rehypePlugins: [katex],
         },
+
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl:
-			// 'https://github.com/facebook/docusaurus/edit/main/website/blog/',
-			'https://github.com/SamMed05/c-cpp-notes',
+          editUrl: 'https://github.com/SamMed05/c-cpp-notes',
         },
+
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -61,7 +61,6 @@ const config = {
         // https://github.com/facebook/docusaurus/pull/5832
         // GOOGLE ANALYTICS
         //plugins: ['@docusaurus/plugin-google-analytics'],
-
         googleAnalytics: {
           trackingID: 'G-1VRGG301KZ',
           // Optional fields.
@@ -74,39 +73,30 @@ const config = {
   // https://docusaurus.io/docs/api/themes/configuration
   themeConfig: 
   ({
-		//sidebarCollapsible: false,
-		image: "img/website-img.png",
-		
-	  announcementBar: {
-		id: 'support_us',
-		content:
-		  'This website is under construction. 🚧 Please be patient to see more content.',
-		backgroundColor: '#fafbfc',
-		textColor: '#091E42',
-		isCloseable: true,
-	  },
-	  
-	  colorMode: {
-		defaultMode: 'light',
-		/* colorMode.switchConfig is deprecated
-        switchConfig: {
-		  darkIcon: '🌙',
-		  darkIconStyle: {
-		    marginLeft: '2px',
-		  },
-		  lightIcon: '💡',
-		  lightIconStyle: {
-		    marginLeft: '1px',
-		  },
-		}*/
-	  },
+  		//sidebarCollapsible: false,
+  		image: "img/website-img.png",
+  		
+  	  announcementBar: {
+    		id: 'support_us',
+    		content:
+    		  'This website is under construction. 🚧 Please be patient to see more content.',
+    		backgroundColor: '#fafbfc',
+    		textColor: '#091E42',
+    		isCloseable: true,
+  	  },
+  	  
+  	  colorMode: {
+  	    defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
+  	  },
 
       navbar: {
         title: 'C/C++ Notes',
         logo: {
           alt: 'Logo',
           src: 'img/logo.svg',
-		  // srcDark: 'img/logo_dark.svg',
+		      // srcDark: 'img/logo_dark.svg',
           // href: 'https://docusaurus.io/',
           // target: '_self',
         },
@@ -117,7 +107,7 @@ const config = {
             position: 'left',
             label: 'C++',
           },
-		  {
+		      {
             type: 'doc',
             docId: 'c/c-intro',
             position: 'left',
@@ -126,22 +116,22 @@ const config = {
           //{to: '/blog', label: 'Blog', position: 'left'},
 		  
 		  
-		    {
+		      {
             label: 'Links',
             position: 'right',
             items: [
               {
                 href: 'https://github.com/SamMed05',
-				label: 'GitHub',
+				        label: 'GitHub',
               },
               {
                 href: 'https://sammed05.github.io/sm_blog/',
-				label: 'Personal blog',
+				        label: 'Personal blog',
               },
-			  {
-				href: 'https://twitter.com/MedianiSamuel',
-				label: 'Twitter',
-			  },
+      			  {
+      				href: 'https://twitter.com/MedianiSamuel',
+      				label: 'Twitter',
+      			  },
               // ... more items
             ],
           },
@@ -239,7 +229,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-		defaultLanguage: 'cpp', // https://prismjs.com/#supported-languages
+		    defaultLanguage: 'cpp', // https://prismjs.com/#supported-languages
       },
 	  
 	  tableOfContents: {
@@ -247,7 +237,7 @@ const config = {
         maxHeadingLevel: 5,
       },
     }),
-	
+
 };
 
 module.exports = config;
