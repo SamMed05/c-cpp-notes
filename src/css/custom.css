@@ -336,14 +336,14 @@ html {
 	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/*details pre code .output {
+.output code {
 	color: #fff !important;
 	background-color: #000 !important;
-}*/
-details pre code {
+}
+/*details pre code {
   color: #fff !important;
   background-color: #000 !important;
-}
+}*/
 
 /*table {
 	border-radius: 8px;

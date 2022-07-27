@@ -177,6 +177,7 @@ in a previous tutorial), and after all the instructions we don't need to return 
 
 Now try run this program. What will be the output?
 
+<div class="output">
 <details>
   <summary>Answer</summary>
 	<code class="output">
@@ -186,6 +187,7 @@ Now try run this program. What will be the output?
 		5<br/>
 	</code>
 </details>
+</div>
 
 It turns out that **the values 2 and 5 haven't swapped**!
 
@@ -207,7 +209,7 @@ in the main scope, because the scope of local variables is limited to the same b
 in which they are declared.
 
 When we invoke a function (as we have done so far), the arguments that we pass to the function 
-are passed *by value*, or *by copy*. This terms comes from the fact that **the values of the 
+are passed *by value*, or *by copy*. These terms comes from the fact that **the values of the 
 actual parameters written in the function call are** ***copied*** **inside the formal 
 parameters**, and then the function works on those copies ***locally***.
 
@@ -216,20 +218,25 @@ function assume those two values, but they are different variables with **differ
 in memory**.
 
 For each variable, we are just passing copies of it's value and not the variable itself. 
-Therefore, when passing by value, changes that we apply to formal parameters, like swapping 
-them, will work inside the funtion but nothing will happen outside of the it (like in 
-main). If we change the parameters, we lose all the modications outside of the function.
+Therefore, when passing by value, as long as the formal parameters has not been declared 
+as constant, changes that we apply to them (e.g. swapping) will only be performed within the 
+function scope; nothing will happen outside of it, for example in main. 
+
+In short, with pass by value if we change the parameters **we lose all the modifications 
+outside of the function**.
 
 ![Swapping by value](../assets/swap-value.svg)
 <figcaption>Fig.4. Pass by value (or copy). The swapping doesn't happen in main.</figcaption>
 
 That's why with our actual program we get this output:
+<div class="output">
 <code class="output">
 	2<br/>
 	5<br/>
 	2<br/>
 	5<br/>
 </code>
+</div>
 
 ### Pass by reference
 
@@ -255,15 +262,20 @@ void swap(int &x, int &y) {
 }
 ```
 
+Sometimes, you may see function parameters written in this way too: `void swap(int& x, int& y)`. 
+Here the `&` symbol is put immediately after thy type of each parameter (`int`) and after that 
+there's a space. Both writings are completely equivalent (just like with pointers[^1]), so use 
+the one you prefer.
+
 ![Swapping by reference](../assets/swap-reference.svg)
 <figcaption>Fig.5. Pass by reference. The swapping is successful!</figcaption>
 
 ### Pass by address (or pointer)
 
-There's also another method, which similarly implies again the ampersand symbol, but in another 
+There's also another method, which similarly implies the ampersand symbol, but in another 
 way. It's used in conjunction with *pointers*, that are special variables that are capable of 
-containing memory addresses of some other variables. To declare a pointer we use the asterisk 
-symbol **`*`** followed by the identifier.
+containing memory addresses of some other variables. To declare a pointer parameter, we write 
+the asterisk symbol **`*`** followed by the identifier inside the function's round brackets.
 
 When we write:
 
@@ -278,37 +290,62 @@ swap(&a, &b);
 ```
 
 `*x` and `*y` will store not the values but copies of the **addresses** of `a` and `b` (arguments) 
-into the formal parameters. Then, the function uses the addresses to access the actual arguments. 
-When you call the function you have to put the `&` symbol before the names of the arguments which 
-indicates the respective address. Call by address is basically call by reference, except that a 
-copy of the reference is passed.
+into the formal parameters. Then, the function uses the addresses to access the arguments/actual 
+parameters. When you call the function you have to put the `&` symbol before the names of the 
+arguments, which indicates the respective address. Call by address is basically call by reference, 
+except that a copy *of the reference/address* is passed to the function.
 
-Then, inside the function, `*x = *y` and `*y = temp` lines mean that the compiler has 
-to change the original values (the content stored) of the addresses of `x` and `y` 
-variables, so the changes will remain effective even outside of the function.
+Then, inside the function, `*x = *y` and `*y = temp` lines mean that the compiler has to change 
+the original values (the content stored) of the addresses of `x` and `y` variables, so the 
+changes will remain effective even outside of the function. The act of accessing the value from 
+a certain memory location through the pointer against which it's pointing is called *dereferencing*.
 
 :::note Which one to use?
 
 I honestly prefer passing by reference simply because it's easier, but it's not 
-necessarily the best. You can find more details on how these lasst two methods work in 
+necessarily the best. You can find more details on how these last two methods work in 
 [this article](https://www.geeksforgeeks.org/passing-by-pointer-vs-passing-by-reference-in-c/) 
 by GeeksforGeeks.
 
 :::
 
 Both pass by reference and by address methods will give us the correct output:
+
+<div class="output">
 <code class="output">
 	2<br/>
 	5<br/>
 	5<br/>
 	2<br/>
 </code>
+</div>
 
 #### Performances
 
-Pass-by-references is more efficient than pass-by-value, because it does not copy the 
+Pass-by-reference is more efficient than pass-by-value, because it does not copy the 
 arguments. The formal parameter is an alias for the argument. When the called function 
-read or write the formal parameter, it is actually read or write the argument itself[^1].
+reads or writes the formal parameter, it is actually reading or writing the argument itself[^2], 
+not a copy of it.
+
+### Structured data types
+
+We said that when we pass argument by value, the function parameter receives a copy of the argument.
+For fundamental types, making a copy of the argument into the function parameter is cheap, so this 
+is fine to do. However, copying is typically costly and relatively slow for structured (*non-primitive*) 
+data types (like arrays, `string` objects, structs and others), so it's generally discouraged to do for 
+efficiency reasons. We can avoid making an expensive copy by passing **by reference** instead, even 
+if you aren't going to change the parameter(s).
+
+:::note
+
+Non-primitive types can still be passed by value in C and C++: if you try to do this, the compiler 
+will use a special function called the copy constructor (or in some cases in C++11, the move 
+constructor) to initialize the parameter as a copy of the argument[^3].
+
+:::
 
 
-[^1]: [ibm.com - Pass by reference (C++ only)](https://www.ibm.com/docs/en/zos/2.4.0?topic=calls-pass-by-reference-c-only#:~:text=Pass%2Dby%2Dreferences%20is%20more%20efficient%20than%20pass%2Dby%2Dvalue%2C%20because%20it%20does%20not%20copy%20the%20arguments.%20The%20formal%20parameter%20is%20an%20alias%20for%20the%20argument.%20When%20the%20called%20function%20read%20or%20write%20the%20formal%20parameter%2C%20it%20is%20actually%20read%20or%20write%20the%20argument%20itself.)
+
+[^1]: [stackoverflow.com - Why is the asterisk before the variable name, rather than after the type?](https://stackoverflow.com/questions/398395/why-is-the-asterisk-before-the-variable-name-rather-than-after-the-type)
+[^2]: [ibm.com - Pass by reference (C++ only)](https://www.ibm.com/docs/en/zos/2.4.0?topic=calls-pass-by-reference-c-only#:~:text=Pass%2Dby%2Dreferences%20is%20more%20efficient%20than%20pass%2Dby%2Dvalue%2C%20because%20it%20does%20not%20copy%20the%20arguments.%20The%20formal%20parameter%20is%20an%20alias%20for%20the%20argument.%20When%20the%20called%20function%20read%20or%20write%20the%20formal%20parameter%2C%20it%20is%20actually%20read%20or%20write%20the%20argument%20itself.)
+[^3]: [stackoverflow.com - C++ pass-by-value with non-primitive types?](https://stackoverflow.com/questions/18347109/c-pass-by-value-with-non-primitive-types)
