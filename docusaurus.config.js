@@ -168,6 +168,10 @@ const config = {
                 href: 'https://www.programiz.com/cpp-programming',
                 label: 'Programiz - C++',
               },
+              {
+                href: 'https://www.ibm.com/docs/en/i/7.2?topic=c-ile-cc-language-reference',
+                label: 'IBM - ILE C/C++ Language Reference',
+              },
               // ... more items
             ],
           },
