@@ -10,21 +10,22 @@ slug: /cpp/operators
 custom_edit_url: null
 ---
 
+
 To make operations and calculations with numbers and variables in C++, we use (like in math) a 
-bunch of different operators, each one with it's own unique role. There exist operators that 
+bunch of different operators, each one with its own unique role. There exist operators that 
 we can use for logic, too.
 
 There are different types of operators. Let's see them.
 
 :::warning
 
-Bitwise operators are intentionally left out, because we we'll never need them.
+Bitwise operators are intentionally left out because in our programs we'll never need them.
 
 :::
 
 
 ## Arithmetic operators
-They compute the result of specific arithmetic operation and return its result.
+They compute the result of a specific arithmetic operation and return its result.
 
 | Syntax | Operator name  | Example |
 |--------|----------------|---------|
@@ -66,7 +67,7 @@ They increment or decrement the value of the object.
 
 ### Difference
 
-The difference between *pre* and *post* increment expressions is a bit confusing, but the names 
+The difference between *pre* and *post*-increment expressions is a bit confusing, but the names 
 help. 
 
 **Pre-incrementation** means the variable is incremented before the expression is set or evaluated. 

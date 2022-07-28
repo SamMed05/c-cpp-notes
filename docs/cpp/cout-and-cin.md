@@ -21,7 +21,7 @@ To do that we use the Command Prompt with the help of two predefined variables l
 ## Cout
 
 The `cout` is used when we want to **print** some text or a value to the console as an output. 
-The world itself stants for "**c**haracter **out**put".
+The world itself stands for "**c**haracter **out**put".
 
 We already encountered this command in the previous chapter, when talking about printing "Hello 
 Wolrd!". This command will be used a lot in our programs.
@@ -62,16 +62,16 @@ int main() {
 }
 ```
 
-The output will be: `1952807028`. Why on the earth this number turns up?
+The output will be `1952807028`. Why on the earth does this number turn up?
 
-That decimal number is a *multi-character literal*. It corresponds to the exadecimal 
+That decimal number is a *multi-character literal*. It corresponds to the hexadecimal 
 `0x74657874` or the binary `01110100011001010111100001110100`. You can easily convert it 
 too [here](https://www.rapidtables.com/convert/number/decimal-to-binary.html) if you want to 
 check. 
 
-If we separate this long binary number in groups of **8 bits** (1 byte) excluding the 
-first "0" on the left for each group (so 7 bits), and then search for 
-the corresponding number by comparing with the 
+If we separate this long binary number into groups of **8 bits** (1 byte) excluding the 
+first "0" on the left for each group (so 7 bits) and then search for 
+the corresponding number by comparing it with the 
 [ASCII table](https://en.wikipedia.org/wiki/ASCII#:~:text=110%200001,z),
 we find <mark>**[t](https://en.wikipedia.org/wiki/ASCII#:~:text=111%200100,t)** (<del>`0`</del>`1110100`), 
 **[e](https://en.wikipedia.org/wiki/ASCII#:~:text=110%200101,e)** (<del>`0`</del>`1100101`), 
@@ -107,8 +107,8 @@ cout << "The value stored in a is: " << a;
 :::note
 
 I've inserted a space before and after the insertion operator `<<`, and the same for the equal 
-sign `=` one line up. For both of this cases the space is optional, choose whether to put it 
-or not according to your preferences. Remember to be always consistent with you choice, though.
+sign `=` one line up. For both of these cases the space is optional, choose whether to put it 
+or not according to your preferences. Remember to be always consistent with your choice, though.
 
 :::
 
@@ -123,7 +123,7 @@ However, it's better to do calculations outside of `cout`.
 ### Endl
 
 If we want to print two or more outputs to the console into separate lines, we need the `endl` 
-command. As the case of the world "cout", the world itself stands for “end line”.
+command. As in the case of the world "cout", the world itself stands for “end line”.
 
 ```cpp {3}
 cout<<"new line"<<endl;
@@ -143,7 +143,7 @@ want to print, but be aware that changing the order will result in a different b
 
 ### Escape sequences
 
-As I said, `\n` is an escape sequence, but it's not the only. The other ones are listed in the 
+As I said, `\n` is an escape sequence, but it's not the only one. The other ones are listed in the 
 table[^1] below:
 
 | Escape sequence   | Character represented                   |
@@ -166,9 +166,9 @@ table[^1] below:
 ## Cin
 
 Whereas `cout` prints data to the console using the insertion operator `<<`, `cin` reads 
-input from keyboard using the *extraction operator* `>>`. Cin stands for "character input".
+input from the keyboard using the *extraction operator* `>>`. Cin stands for "character input".
 
-In order to do that, the input inserted by the user must be stored in a variable to be used. 
+To do that, the input inserted by the user must be stored in a variable to be used. 
 If a value is already stored in that variable, it will be replaced.
 
 Every time you use `cin` and ask for an input, the program will pause and wait for the input 
@@ -181,7 +181,7 @@ using namespace std;
 
 int main() {
 	int x; // declare an empty variable x to hold user input
-    cout<<"Enter a number: "; // ask user for a number and go to a new line
+    cout<<"Enter a number: "; // ask the user for a number and go to a new line
     cin>>x; // get number from keyboard and store it in x
 
     cout<<"You entered "<<x<<endl;

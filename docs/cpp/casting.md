@@ -28,7 +28,7 @@ Implicit type conversion (also called *automatic type conversion* or *coercion*)
 performed by the compiler and we don't need to write anything in particular to make that happen. 
 Implicit type conversion is often associated with **narrowing conversion**, a case where the 
 destination data type is smaller (meaning that it is capable of storing less information) than 
-the source data type and some data is loss in the process of value transfer. In other words, 
+the source data type and some data is lost in the process of value transfer. In other words, 
 narrowing conversion happens when data of a larger type is converted to data of a smaller type[^1].
 
 Let's see an example of implicit and narrowing type conversion:
@@ -58,7 +58,7 @@ integerVar = 2
 
 In the above program we try to put the value of a `float` type variable with decimal digits in a 
 variable of type `int`. This doesn't cause an error in the compilation and we are allowed to do 
-it, but doing so we are losing information. Also note that C++ doesn't round to 3 but removes 
+it, but by doing so we are losing information. Also note that C++ doesn't round to 3 but removes 
 completely all the decimal digits. 
 
 We don't explicitly express to the compiler how to behave and the final result stored in 
@@ -69,7 +69,7 @@ digits. That's why this conversion is implicit and narrowing (information-losing
 
 Some type conversions are always safe to make (such as int to double), whereas others may result 
 in the value being changed during conversion (such as double to int). Unsafe implicit conversions 
-will typically either generate a compiler warning, or (in the case of brace initialization) an 
+will typically either generate a compiler warning or (in the case of brace initialization) an 
 error[^2].
 
 To be sure not to make involuntary narrowing errors, we can use brace (or list) initialization. 
@@ -135,17 +135,17 @@ int main() {
 3
 </code>
 
-Supposing to insert 2, 4 and 5, the average we expect to see in output should be somewhere around 
-`3.6666`. However, the output we get is just **`3`**.
+Supposing to insert 2, 4 and 5, the average we expect to see in the output should be somewhere 
+around `3.6666`. However, the output we get is just **`3`**.
 
-The reason of that unexpected behavior is that we are doing a division where the resulting 
-quotient is a value with decimal digits (`3.6666`). We are storing that quotient in a `float` 
-variable, so those digits should be preserved, *however* since the division happens between two 
-`int` values, the returned value keeps that `int` type, truncating any decimal place (integral 
-values can't hold fractions and only the non-fractional component is retained).
-In standard C++, no run-time type check is made to help ensure the safety of the conversion[^3], 
-therefore if we try to divide two or more `int` variables or numbers we can't get a `float` value 
-as a result.
+The reason for that unexpected behavior has to do with data types.
+We are doing a division where the resulting quotient is a value with decimal digits (`3.6666`). 
+We are storing that quotient in a `float` variable, so those digits should be preserved, *however* 
+since the division happens between two `int` values, the returned value keeps that `int` type, 
+truncating any decimal place (integral values can't hold fractions and only the non-fractional 
+component is retained).In standard C++, no run-time type check is made to help ensure the safety 
+of the conversion[^3], therefore if we try to divide two or more `int` variables or numbers we 
+can't get a `float` value as a result.
 
 The only way to obtain a different type as output is by doing casting.
 
@@ -155,16 +155,17 @@ There are many ways to do casting conversion, but the most common (and the one t
 for our programs) is the **C-style type casting** (also known as cast notation).
 
 That method consists in putting the data type we want in return by the conversion before the 
-identifier of the original data or a calculation, and surround that type by a pair of 
-round brackets `(` `)` (of course the resulting conversion has to be stored in another variable 
-with the proper type or printed). It sounds complicated but it really isn't. Look at this example:
+identifier of the original data or a calculation and surrounding that type by a pair of 
+round brackets `(` `)`. Of course the resulting conversion has to be stored in another variable 
+with the proper type or printed. It sounds complicated but it really isn't. Look at this example:
 
 ```cpp
-//    destinationDataType = (targetDataType)variable-or-expression;
-float average = (float)sum/3;
+// destinationDataType identifier = (targetDataType) variableOrExpression;
+float average = (float) sum/3;
 ```
 
-See that `(float)`? It's the explicit casting. Replace this line of code with line 14 in the 
+See that `(float)`? It's the **explicit casting**. It explicitly tells the compiler that we want the 
+result of the expression to be of type `float`. Replace this line of code with line 14 in the 
 previous program and run it again. 
 
 :::success
@@ -195,7 +196,7 @@ parentheses `(` `)`, like so: `dataType(variable);`.
 
 `static_cast` is one of the four *named casts* available in C++ and it's a type casting operator.
 It forces one data type to be converted into another data type. The `static_cast` operator 
-takes an expression as input, and returns the evaluated value converted to the type specified 
+takes an expression as input and returns the evaluated value converted to the type specified 
 inside the angled brackets[^4]. The syntax is: `static_cast<dataType>(variable);`.
 
 

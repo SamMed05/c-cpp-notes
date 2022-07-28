@@ -23,7 +23,7 @@ It was not created from the ground up, but it was rather an **evolution** of the
 existing C language (created by Dennis Ritchie), with the main goal of adding the new OOP 
 (Object Oriented Programming) *programming paradigm* support, which was not present in C.
 
-C++ was standardized in 1998, and since then several updates has been made. C++11 in 
+C++ was standardized in 1998, and since then several updates have been made. C++11 in 
 particular added a huge number of new capabilities, and new upgrades to the language 
 are expected every three or so years.
 
@@ -46,7 +46,7 @@ done by GeeksforGeeks.
 
 ## Characteristics of C++
 
-C++ is an hybrid language, so it contains not only object-oriented language but also 
+C++ is a hybrid language, so it contains not only object-oriented language but also 
 the functionality of the C programming language, so traditional procedural programming. 
 This means that you have all the features that are available in C, like:
 - universally usable modular programs
@@ -55,11 +55,11 @@ This means that you have all the features that are available in C, like:
 
 Existing C source code can be used in C++ programs.
 
-Various language elements were added to C++ other than OOP programming paradigm, such as references, templates, 
-exception handling and many more things which are important for an efficient program 
-implementation. 
+Various language elements were added to C++ other than OOP programming paradigm, such as 
+references, templates, exception handling and many more things which are important for 
+an efficient program implementation.
 
-You don't actually already have to know all those concepts, though, so don't worry.
+Don't worry, though! You don't have to already know all those concepts to start coding.
 
 
 ## Why use it
@@ -67,27 +67,27 @@ You don't actually already have to know all those concepts, though, so don't wor
 Both C and C++ are very famous and largely used for a wide range of software types and 
 platforms.
 
-The advantages and features of  C++ language are many, but une of its strengths is 
+The advantages and features of the C++ language are many, but one of its strengths is 
 that the compilation and execution time is **really fast**. That's probably the main 
-reason why it's often choosed over other languages, but it's not the only one.
+reason why it's often chosen over other languages, but it's not the only one.
 
-Another key aspect of C++ is it's [**high level nature**](https://en.wikipedia.org/wiki/High-level_programming_language), 
-making it easier to learn, to read, to understand and, most importantly, to work with.
+Another key aspect of C++ is its [**high-level nature**](https://en.wikipedia.org/wiki/High-level_programming_language), 
+making it easier to learn, read, understand and, most importantly, to work with.
 
-In addition to being an high performance language, it also give the programmer precise 
-control over memory and other resources of the computer, makikng it a bit harder to 
+In addition to being a high-performance language, it also gives the programmer precise 
+control over memory and other resources of the computer, making it a bit harder to 
 learn but also more powerful and capable of doing more things.
 
-There's a nice overview on the advantages of learning C++ in 
+There's a nice overview of the advantages of learning C++ on 
 [this website](https://www.programiz.com/cpp-programming/guide) by Programiz.
 
 
 ## Where it's used
 
-- Video games (especially for graphic engines and game develompment, e.g. in [Unreal Engine](https://www.unrealengine.com/))
+- Video games (especially for graphic engines and game development, e.g. in [Unreal Engine](https://www.unrealengine.com/))
 - Operating systems (also in C language)
 - Real-time systems (e.g. for transportation, manufacturing, etc…)
-- High-performance financial applications (e.g. high frequency trading)
+- High-performance financial applications (e.g. high-frequency trading)
 - Graphical applications and simulations
 - Embedded software (also in C language)
 - Audio and video processing
@@ -118,18 +118,18 @@ int main()
 }
 ```
 
-We will see what those words means and what to put instead of the generic three dots 
+We will see what those words mean and what to put instead of the generic three dots 
 `...`, but for what matters in this section, it's just important to remember that each 
 program that you write contains a `main()` function, and in here you will write 
 the instructions needed for the program to work properly.
 
 Every single program must have that special function, called in that way (all lower case 
-letters). When the program is run, the instructions, or statements inside of main are 
+letters). When the program is run, the instructions or statements inside of main are 
 executed in sequential order.
 
 We'll cover what a function is in a future chapter, but for now just know that it is a 
 collection of instructions that can be reused and they have a name which identifies them 
-followed by two parenthesis at the end like this: `function()` and eventually some 
+followed by two parentheses at the end like this: `function()` and eventually some 
 "things" inside `(...)`, called parameters.
 
 
@@ -139,13 +139,13 @@ A comment in computer programming is a programmer-readable explanation or annota
 the source code of a computer program[^1]. This text is inserted in the code by the 
 programmer, and it's not processed by the compiler (or interpreter), meaning that it's 
 completely ignored in the execution phase. 
-Comments purpose is just making the source code easier for humans to understand.
+Comments' purpose is just to make the source code easier for humans to understand.
 
 A comment in C++ can be added in two ways, like below:
 
 ```cpp
 // this is a single-line comment
-I'm not a comment
+Not a comment
 
 /* 
 This is a 
@@ -154,14 +154,14 @@ comment that
 spans multiple 
 lines
 */
-I'm not a comment, too
+Not a comment, too
 ```
 
 **Single line comments** are considered comments only if the text is typed in the same line 
 of the two slashes `//`. In other words, `//` indicates that everything following it 
 until the end of the line is a comment.
 
-A **multi-line comment**, instead, is considered as a comment if the text is typed *between*
+A **multi-line comment**, instead, is considered a comment if the text is typed *between*
 `/*` and `*/`.
 
 :::warning
@@ -171,26 +171,26 @@ Do not use multi-line comments inside other multi-line comments.
 :::
 
 
-### Indentantion
+### Indentation
 
-Indentation is a term that express the action of putting whitespace for formatting purposes.
+Indentation is a term that expresses the action of putting whitespace for formatting purposes.
 
 It means adding some empty space among the code in the right way so that it becomes more readable.
 
 Some languages like Python use indentation as an important part of their syntax, and it 
 influences how the code is interpreted by the interpreter.
 
-This **does not** happens in C and C++, beacuse the compiler ignores whitespace. For this reason, 
+This **does not** happen in C and C++, because the compiler ignores whitespace. For this reason, 
 we say that they are **whitespace-independent** languages. Instead we use braces to tell the 
-compiler that a peace of code belongs (it's inside) a block of other code or not.
+compiler that a piece of code belongs (it's inside) a block of other code or not.
 
 That means that indentation would be optional, but it's important anyway for keeping a 
 good level of readability.
 
 Usually, if you use an IDE with a text editor, when you press <kbd>ENTER/RETURN ⏎</kbd> on 
-the keyboard it automatically adds a **tab-sized whitespace**. In the other cases, you can 
-add it pressing the <kbd>TAB ⇆</kbd> key. It's fine using also four (or three) spaces instead, 
-but I prefer not doing in that way.
+the keyboard it automatically adds one **tab-sized whitespace**. In the other cases, you can 
+add it by pressing the <kbd>TAB ⇆</kbd> key. It's fine using also four (or sometimes three or 
+two) spaces instead, but I wouldn't recommend that.
 
 Indentation is used like this:
 
@@ -213,16 +213,16 @@ int main() {
 }
 ```
 
-I intentionally used the `>` sign to indicate better the space on the left left blank, but 
-you don't have to use it. It creates a three-like structure that is more beautiful and less 
-difficult to read.
+The `>` signs are there only to indicate more clearly the whitespace added for indentation, 
+but they are not actually used in real code. As you can see, the indentation creates a 
+tree-like structure that makes code more beautiful and less difficult to read.
 
 The type of indentation styling used above (and the one I personally prefer) is called 
 **K&R style**, or "one true brace style". It's one of the most common together with the
 *Allman style* and you can freely choose the one you prefer. To read the full list of indentation 
 styles, visit the [Wikipedia page](https://en.wikipedia.org/wiki/Indentation_style) and see this 
-nice [GitHub gist](https://gist.github.com/jesseschalken/0f47a2b5a738ced9c845) by Jesse Schalken to 
-learn more about K&R style.
+nice [GitHub gist](https://gist.github.com/jesseschalken/0f47a2b5a738ced9c845) by Jesse Schalken 
+to learn more about K&R style.
 
 ![How K&R indentation style works](https://camo.githubusercontent.com/5f8d4e9df81bc42386b42b5a3a286f724c1e001c441330483fa26b8e30f04d3a/68747470733a2f2f692e696d6775722e636f6d2f567758395876332e706e67)
 <figcaption>Fig.2. A clear representation of how to read nested blocks when using the K&R indentation style (from Jesse Schalken's gist).
@@ -231,8 +231,8 @@ learn more about K&R style.
 
 ## Development phases
 
-A computer program is realized passing through different phases. I already discussed the 
-phases of creation of a program in the previous section, but here we are talking more 
+A computer program is realized by passing through different phases. I already discussed the 
+phases of the creation of a program in the previous section, but here we are talking more 
 specifically about the programming phase. Let's see how it works.
 
 ![Program development phases](./assets/cpp-program-development-phases.svg)
@@ -244,10 +244,10 @@ To run the programs that we'll make, we need a place to execute the code. The ID
 there will help us.
 
 IDE is an acronym which stands for **I**ntegrated **D**evelopment **E**nvironment, and 
-it's an enviroment, or place, or software that help the programmer in the develompment
-and debugging phases of a program.
+it's an environment, or place, or piece of software that help the programmer in the 
+development and debugging phases of a program.
 
-It provides to the developer some facilities and tools, like a source code editor, build 
+It provides the developer with some facilities and tools, like a source code editor, build 
 automation tools and a **debugger**.
 
 We are mainly interested in the debugger, which is a computer program that basically runs 
@@ -260,7 +260,7 @@ which compiles also C language. You can download it **[here](https://sourceforge
 :::note
 
 This IDE has long since been abandoned and it's not used in professional fields, but Orwell 
-(an indipendent programmer) has taken it up and updated it. At the moment of writing, it 
+(an independent programmer) has taken it up and updated it. At the moment of writing, it 
 supports the C++11 standard, and although the modern standard is C++14, we don't care about 
 that for our learning purposes.
 
@@ -281,7 +281,7 @@ established by the programming language used. If errors are present, the compile
 them. 
 
 If everything works as planned, an *object file* made up of machine code is created. 
-The object file is also referred to as a *module* and can be direcly executed by the 
+The object file is also referred to as a *module* and can be directly executed by the 
 processor (unlike source code).
 
 ### Linking

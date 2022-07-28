@@ -12,7 +12,7 @@ custom_edit_url: null
 
 :::caution
 
-This sections is about a feature of C++ that is **only present on Windows** platform. If you are using another operating system, feel free to skip this part without any problem.
+This section is about a feature of C++ that is **only present on the Windows platform**. If you are using another operating system, feel free to skip this part without any problem.
 
 :::
 
@@ -37,7 +37,7 @@ int main() {
 }
 ```
 
-Try to run this program and experiment changing `0A` with other numbers or letters. These are the different colors you can use, each with his own ID.
+Try to run this program and experiment by changing `0A` with other numbers or letters. These are the different colors you can use, each with its corresponding ID.
 
 | Color ID | Color  | Color ID | Color        |
 |----------|--------|----------|--------------|
@@ -89,6 +89,6 @@ int main() {
 
 :::note
 
-There's a for loop in the code above. Don't worry if you don't know what it is or what it does. We'll discuss about loops in a future chapter.
+There's a for loop in the code above. Don't worry if you don't know what it is or what it does. We'll discuss what loops are and how they work in a future chapter.
 
 :::

@@ -51,8 +51,8 @@ after the linking section. They are visible and accessible **everywhere** in the
 local variables, meaning that they are available for use throughout your entire program after their 
 declaration.
 
-For now we don't need to know how to declare global variables, just know the difference between 
-these two scope types.
+For now, we don't need to know how to declare global variables. Just make sure to know the 
+difference between these two scope types.
 
 ## Naming conflicts
 
@@ -61,9 +61,9 @@ generate conflicts.
 
 What if we have two variables with the same name but different scopes?
 
-Usually when two variable with same name are defined then the compiler produces a compile time 
+Usually when two variables with the same name are defined then the compiler produces a compile-time 
 error. But if the variables are defined in different scopes then the compiler allows it.
-Whenever there is a local variable defined with same name as that of a global variable then the 
+Whenever there is a local variable defined with the same name as that of a global variable then the 
 compiler will give **precedence to the local variable**[^1].
 
 

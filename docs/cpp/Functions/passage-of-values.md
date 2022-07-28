@@ -14,8 +14,8 @@ custom_edit_url: null
 In C and C++ there are two ways to pass some data to a function: *by value* and *by 
 reference*.
 
-They are strictly related to *actual parameter* (or arguments) and *formal parameters*, though, 
-so it's better to understand and distinguish them before going forward.
+Both of them are strictly related to the *actual parameters* (or arguments) and *formal 
+parameters*, though, so it's better to understand and distinguish them before going forward.
 
 
 ## Parameter types
@@ -69,13 +69,13 @@ return it.
 In the main function we create two new variables, `base` and `height`, and we ask to the user 
 to insert the values that we'll then assign to each variable.
 
-At line **17** we create another variable, `a`, and here we call the function previously 
+In line **17** we create another variable, `a`, and here we call the function previously 
 created passing as arguments `base` and `height` (not `b` and `h`!), without specifying any 
 type. When the compiler compiles the function that has just been called, it calculates a value 
 `area` and then returns it. We store that value in `a`.
 
-The `float` type has being used with the variables and the function to cover also cases of 
-inputs with decimal numbers, but also `int` and `double` are perfectly fine.
+The `float` type of the variables and the function have been used to cover the cases when 
+inputs have decimal digits, but other types like `int` or `double` can be used too.
 
 #### Return (in details)
 
@@ -113,13 +113,13 @@ return value.
 
 ### Actual parameter (argument)
 
-The actual parameters, or arguments, are the actual values (or values of variables) that gets 
+The actual parameters, or arguments, are the actual values (or values of variables) that get 
 **passed** to a function. In our previous example, we invoke the function `area()` that has two 
 parameters, `b` and `h`, and we pass those arguments as `base` and `height`. We could have 
 passed also some values directly, like 3 and 4, as arguments. Try yourself with our example 
 program.
 
-This scheme will probably convey better how these two different type of parameters are used:
+This scheme will probably convey better how these two different types of parameters are used:
 
 ![Passing values scheme](../assets/function-passing-values.svg)
 <figcaption>Fig.2. How arguments are passed to a function (example).</figcaption>
@@ -127,7 +127,7 @@ This scheme will probably convey better how these two different type of paramete
 ### Formal parameter
 
 The formal parameters are the local variables of the function that **receive** the arguments.
-In our example, they are `b` and `h` and they receive the value specified during the 
+In our example, they are `b` and `h` and they receive the values specified during the 
 invocation, which are `base` and `height`.
 
 ### General scheme
@@ -175,7 +175,7 @@ in a previous tutorial), and after all the instructions we don't need to return 
 
 #### Troubleshooting
 
-Now try run this program. What will be the output?
+Now try to run this program. What will be the output?
 
 <div class="output">
 <details>
@@ -198,9 +198,9 @@ But why?
 #### Local scope
 
 If you remember, in the previous chapter I mentioned that functions have formal parameters, 
-which are basically variables that have **local scope**. Actually the whole body of a function 
-and the variables inside it are also local scope of the function itself. This means that they 
-all have a visibility and a lifetime *limited* to that function and you can't access them 
+which are basically variables that have **local scope**. Actually, the whole body of a function 
+with all the code inside it is also the local scope of the function itself. This means that 
+they all have a lifetime and visibility *limited* only to that function and you can't access them 
 outside of the function body (it's the same principle applied to code blocks, where variables 
 inside of these blocks are not global).
 
@@ -209,20 +209,20 @@ in the main scope, because the scope of local variables is limited to the same b
 in which they are declared.
 
 When we invoke a function (as we have done so far), the arguments that we pass to the function 
-are passed *by value*, or *by copy*. These terms comes from the fact that **the values of the 
+are passed *by value*, or *by copy*. These terms come from the fact that **the values of the 
 actual parameters written in the function call are** ***copied*** **inside the formal 
 parameters**, and then the function works on those copies ***locally***.
 
-In our code example we pass `a` and `b`, 2 and 5 respectively, so `x` and `y` in the 
+In our code example, we pass `a` and `b`, 2 and 5 respectively, so `x` and `y` in the 
 function assume those two values, but they are different variables with **different locations 
 in memory**.
 
-For each variable, we are just passing copies of it's value and not the variable itself. 
-Therefore, when passing by value, as long as the formal parameters has not been declared 
+For each variable, we are just passing copies of its value and not the variable itself. 
+Therefore, when passing by value, as long as the formal parameters have not been declared 
 as constant, changes that we apply to them (e.g. swapping) will only be performed within the 
 function scope; nothing will happen outside of it, for example in main. 
 
-In short, with pass by value if we change the parameters **we lose all the modifications 
+In short, with pass-by-value if we change the parameters **we lose all the modifications 
 outside of the function**.
 
 ![Swapping by value](../assets/swap-value.svg)
@@ -241,17 +241,17 @@ That's why with our actual program we get this output:
 ### Pass by reference
 
 To solve this problem we can pass arguments *by reference*. When we call and pass by reference, 
-actual and formal parameters refers to the **same memory location**, so when changes are made 
+actual and formal parameters refer to the **same memory location**, so when changes are made 
 to the formal parameters, also actual parameters will change. In this way we associate these 
-two types of parameters.
+two types of parameters as a singular entity.
 
-In practice, the *invoked* function and the *invoking* function the same variables and the 
-eventual changes get  reflected on both parameters.
+In practice, the *invoked* function and the *invoking* function have the same parameters and 
+the eventual changes get reflected on both sides.
 
 There are two ways to do this.
 
-To pass by reference is by prefixing each formal parameter with an ampersand 
-symbol **`&`** in the signature of the function.
+To pass by reference is by prefixing each formal parameter with an ampersand symbol **`&`** in 
+the signature of the function.
 
 In our case the solution will be:
 ```cpp {1}
@@ -263,7 +263,7 @@ void swap(int &x, int &y) {
 ```
 
 Sometimes, you may see function parameters written in this way too: `void swap(int& x, int& y)`. 
-Here the `&` symbol is put immediately after thy type of each parameter (`int`) and after that 
+Here the `&` symbol is put immediately after thy type of each parameter (`int`) and after that, 
 there's a space. Both writings are completely equivalent (just like with pointers[^1]), so use 
 the one you prefer.
 
@@ -273,7 +273,7 @@ the one you prefer.
 ### Pass by address (or pointer)
 
 There's also another method, which similarly implies the ampersand symbol, but in another 
-way. It's used in conjunction with *pointers*, that are special variables that are capable of 
+way. It's used in conjunction with *pointers*, which are special variables that are capable of 
 containing memory addresses of some other variables. To declare a pointer parameter, we write 
 the asterisk symbol **`*`** followed by the identifier inside the function's round brackets.
 
@@ -309,7 +309,7 @@ by GeeksforGeeks.
 
 :::
 
-Both pass by reference and by address methods will give us the correct output:
+Both pass-by-reference and pass-by-address methods will give us the correct output:
 
 <div class="output">
 <code class="output">
@@ -322,25 +322,25 @@ Both pass by reference and by address methods will give us the correct output:
 
 #### Performances
 
-Pass-by-reference is more efficient than pass-by-value, because it does not copy the 
+Pass-by-reference is more efficient than pass-by-value because it does not copy the 
 arguments. The formal parameter is an alias for the argument. When the called function 
 reads or writes the formal parameter, it is actually reading or writing the argument itself[^2], 
 not a copy of it.
 
 ### Structured data types
 
-We said that when we pass argument by value, the function parameter receives a copy of the argument.
-For fundamental types, making a copy of the argument into the function parameter is cheap, so this 
-is fine to do. However, copying is typically costly and relatively slow for structured (*non-primitive*) 
-data types (like arrays, `string` objects, structs and others), so it's generally discouraged to do for 
-efficiency reasons. We can avoid making an expensive copy by passing **by reference** instead, even 
-if you aren't going to change the parameter(s).
+We said that when we pass an argument by value, the function parameter receives a copy of that 
+argument. For fundamental types, making a copy of the argument into the function parameter is 
+cheap, so this is fine to do. However, copying is typically costly and relatively slow for 
+structured (*non-primitive*) data types (like arrays, `string` objects, structs and others), so 
+it's generally discouraged to do for efficiency reasons. We can avoid making an expensive copy 
+by passing **by reference** instead, even if you aren't going to change the parameter(s).
 
 :::note
 
-Non-primitive types can still be passed by value in C and C++: if you try to do this, the compiler 
-will use a special function called the copy constructor (or in some cases in C++11, the move 
-constructor) to initialize the parameter as a copy of the argument[^3].
+Non-primitive types can still be passed by value in C and C++: if you try to do this, the 
+compiler will use a special function called the copy constructor (or in some cases in C++11, 
+the move constructor) to initialize the parameter as a copy of the argument[^3].
 
 :::
 

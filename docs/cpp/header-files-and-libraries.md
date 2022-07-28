@@ -22,11 +22,11 @@ extension that can be included in the source code of a program with the preproce
 #include "filename.h"
 ```
 
-There are two types of header file:
+There are two types of header files:
 1. Pre-existing header files
 2. User-defined header files
 
-An example of header file is the built-in `iostream` standard library header 
+An example of a header file is the built-in `iostream` standard library header 
 ([full list](https://en.cppreference.com/w/cpp/header)), which contains the declarations related 
 to objects like `cin` and `cout` used for manipulating I/O streams, as we saw in the 
 [Cout/Cin lesson](https://c-cpp-notes.vercel.app/docs/cpp/cout-and-cin).
@@ -48,7 +48,7 @@ which are compiled in object code `.o` and then packed into a library `.lib`, ev
 composed by multiple `.o` files).
 
 Libraries are a compiled set of function definitions (the actual implementations of 
-instructions) of the declarations in the header files consisting in many 0 and 1, not source code 
+instructions) of the declarations in the header files consisting of many 0 and 1, not source code 
 like header files do. The library is included in your `.exe` file at link time.
 
 The reasons why function definitions should not be written inside header files are explained 
