@@ -180,6 +180,10 @@ const config = {
                 href: 'https://computer.howstuffworks.com/c.htm',
                 label: 'HowStuffWorks - The Basics of C Programming',
               },
+              {
+                href: 'https://youtu.be/e9Eds2Rc_x8?list=PLhQjrBD2T381L3iZyDTxRwOBuUt6m1FnW',
+                label: 'CS50 2019 - C',
+              },
               // ... more items
             ],
           },

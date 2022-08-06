@@ -26,3 +26,11 @@ html[data-theme='dark'] main svg {
   -webkit-filter: invert(100%); /* safari 6.0 - 9.0 */
           filter: invert(100%);
 }
+html[data-theme='dark'] a svg { /* fix breadcrumbs home icon color */
+  -webkit-filter: invert(0%);
+          filter: invert(0%);
+}
+html[data-theme='dark'] span svg { /* fix note icon colors */
+  -webkit-filter: invert(0%);
+          filter: invert(0%);
+}
