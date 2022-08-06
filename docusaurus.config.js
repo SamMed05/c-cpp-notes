@@ -157,8 +157,8 @@ const config = {
                 label: 'GeeksforGeeks - C++',
               },
               {
-                href: 'https://www.w3schools.com/cpp/default.asp',
-                label: 'W3Schools - C++',
+                href: 'https://en.cppreference.com/w/',
+                label: 'cppreference.com',
               },
               {
                 href: 'https://www.tutorialspoint.com/cplusplus/',
@@ -169,8 +169,16 @@ const config = {
                 label: 'Programiz - C++',
               },
               {
+                href: 'https://www.w3schools.com/cpp/default.asp',
+                label: 'W3Schools - C++',
+              },
+              {
                 href: 'https://www.ibm.com/docs/en/i/7.2?topic=c-ile-cc-language-reference',
                 label: 'IBM - ILE C/C++ Language Reference',
+              },
+              {
+                href: 'https://computer.howstuffworks.com/c.htm',
+                label: 'HowStuffWorks - The Basics of C Programming',
               },
               // ... more items
             ],
