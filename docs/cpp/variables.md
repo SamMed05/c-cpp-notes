@@ -31,11 +31,11 @@ Imagine that you want to write a program that sums two numbers.
 
 Those numbers can be 3 and 2, so you write:
 ```cpp
-cout<<3+2; // Output: 5
+cout << 3+2; // Output: 5
 ```
 or 13 and 56:
 ```cpp
-cout<<13+57; // Output: 70
+cout << 13+57; // Output: 70
 ```
 
 But if we want to cover all possible cases of numbers, we can't do it in that way. We use variables 
@@ -46,10 +46,10 @@ instead:
 int a;
 int b;
 
-cin>>a;
-cin>>b;
+cin >> a;
+cin >> b;
 
-cout<<a+b;
+cout << a+b;
 ```
 
 Then we can insert every number we want and the program will change the result according to the input.
@@ -150,11 +150,11 @@ See this program:
 using namespace std;
 
 int main() {
-	int x=100;
-	float y=199.00;
+	int x = 100;
+	float y = 199.00;
 	
 	decltype(x) z = y/x; // x is an integer
-	cout<<z<<endl;
+	cout << z << endl;
 	
 	return 0;
 }

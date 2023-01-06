@@ -31,7 +31,7 @@ using namespace std;
 int main() {
     system("color 0A");
 
-    cout<<"green!"<<endl;
+    cout << "green!" << endl;
 
     return 0;
 }
@@ -78,7 +78,7 @@ int main() {
     for(int k = 1; k < 255; k++) {
         // pick the colorattribute k you want
         SetConsoleTextAttribute(hConsole, k);
-        cout<<k<<" some text"<<endl;
+        cout << k << " some text" << endl;
     }
 
     cin.get(); // wait

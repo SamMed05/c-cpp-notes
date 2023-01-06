@@ -190,7 +190,7 @@ they can, for example, print some text on the screen or make calculations.
 ```cpp
 void add(int a, int b) {
 	int sum = a+b;
-	cout<<"The sum is: "<<sum<<endl;
+	cout << "The sum is: " << sum << endl;
 	return; // this line is optional
 }
 ```
@@ -241,7 +241,7 @@ add(x,y) // output: 7
 
 // procedure (outside main)
 void add(int a, int b) { // a and b becomes 5 and 2
-	cout<<a+b<<endl;
+	cout << a+b << endl;
 	return;
 }
 ```

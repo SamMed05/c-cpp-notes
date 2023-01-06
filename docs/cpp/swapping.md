@@ -71,15 +71,15 @@ int main() {
 		b = 2, 
 		temp;
 
-    cout<<"before swapping:"<<endl;
-    cout<<"a = "<< a<<", b = "<<b<<endl;
+    cout << "before swapping:" << endl;
+    cout << "a = " << a << ", b = " << b << endl;
 
     temp = a;
     a = b;
     b = temp;
 
-    cout<<"\nafter swapping:"<<endl;
-    cout<<"a = "<<a<<", b = "<<b<<endl;
+    cout << "\nafter swapping:" << endl;
+    cout << "a = " << a << ", b = " << b << endl;
 
     return 0;
 }

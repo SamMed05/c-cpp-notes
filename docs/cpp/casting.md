@@ -43,8 +43,8 @@ int main() {
 	// implicit and narrowing type conversion
 	int integerVar = decimalVar;
 
-	cout<<"decimalVar = "<<decimalVar<<endl;
-	cout<<"integerVar = "<<integerVar<<endl;
+	cout << "decimalVar = " << decimalVar << endl;
+	cout << "integerVar = " << integerVar << endl;
 
 	return 0;
 }
@@ -116,15 +116,15 @@ int main() {
 	int a, b, c;
 	int sum;
 
-	cout<<"Insert 3 values: "<<endl;
-	cin>>a;
-	cin>>b;
-	cin>>c;
+	cout << "Insert 3 values: " << endl;
+	cin >> a;
+	cin >> b;
+	cin >> c;
 
 	sum = a+b+c;
 	float average = sum/3;
 
-	cout<<"The average is: "<<average<<endl;
+	cout << "The average is: " << average << endl;
 
 	return 0;
 }

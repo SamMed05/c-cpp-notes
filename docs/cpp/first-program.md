@@ -30,7 +30,7 @@ To do that, this piece of code has to be written into the `.cpp` file like this:
 using namespace std;
 
 int main() {
-	cout<<"Hello World!"<<endl;
+	cout << "Hello World!" << endl;
 	return 0;
 }
 ```
@@ -68,7 +68,7 @@ If we look back at the code of our first program, we notice that it can be divid
 using namespace std;
 
 int main() {
-	cout<<"Hello World!"<<endl;
+	cout << "Hello World!" << endl;
 	return 0;
 }
 ```
@@ -120,7 +120,7 @@ and well separated into multiple little sections.
 using namespace std;
 
 int main() {
-	cout<<"Hello World!"<<endl;
+	cout << "Hello World!" << endl;
 	return 0;
 }
 ```
@@ -132,7 +132,7 @@ function, from `{` to `}` is called the *function body*.
 
 Inside the body we have written two lines:
 
-1. **`cout<<"Hello World!"<<endl;`** is the command that prints "Hello World" to the console. 
+1. **`cout << "Hello World!" << endl;`** is the command that prints "Hello World" to the console. 
 Every time we want to print a value we use the `cout` object (which stands for "character 
 output"), followed by two angle brackets (or less-than sign) `<<` and then the value or the 
 message we want to output. At the end of this line is also present `endl`. What is it? It's 

@@ -37,13 +37,13 @@ float area(float b, float h) {
 int main() {
 	float base, height;
 	
-	cout<<"enter the base: "<<endl;
-	cin>>base;
-	cout<<"enter the height: "<<endl;
-	cin>>height;
+	cout << "enter the base: " << endl;
+	cin >> base;
+	cout << "enter the height: " << endl;
+	cin >> height;
 	
 	float a = area(base, height);
-	cout<<"the area is: "<<a<<endl;
+	cout << "the area is: " << a << endl;
 	
 	return 0;
 }
@@ -155,13 +155,13 @@ void swap(int x, int y) {
 int main() {
 	int a=2, b=5;
 	
-	cout<<a<<endl;
-	cout<<b<<endl;
+	cout << a << endl;
+	cout << b << endl;
 	
 	swap(a, b);
 	
-	cout<<a<<endl;
-	cout<<b<<endl;
+	cout << a << endl;
+	cout << b << endl;
 	
 	return 0;
 }

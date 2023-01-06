@@ -33,7 +33,7 @@ after that command, and the text between double quotation marks/quotes `""`, lik
 
 ```cpp
 // ... linking section and main()
-cout<<"some text";
+cout << "some text";
 ```
 
 :::caution
@@ -57,7 +57,7 @@ Try to print a string with single quotes, like here:
 using namespace std;
 
 int main() {
-	cout<<'text'<<endl;
+	cout << 'text' << endl;
 	return 0;
 }
 ```
@@ -91,7 +91,7 @@ be used.
 
 ```cpp {2}
 int a = 5;
-cout<<a;
+cout << a;
 ```
 
 We will see what a variable is in a subsequent lesson.
@@ -115,7 +115,7 @@ or not according to your preferences. Remember to be always consistent with your
 Little calculations can also be done here (keeping in mind the order of operations).
 ```cpp {2}
 int a = 5;
-cout<<a+2*(6-3);
+cout << a+2*(6-3);
 ```
 
 However, it's better to do calculations outside of `cout`.
@@ -126,7 +126,7 @@ If we want to print two or more outputs to the console into separate lines, we n
 command. As in the case of the world "cout", the world itself stands for “end line”.
 
 ```cpp {3}
-cout<<"new line"<<endl;
+cout << "new line" << endl;
 ```
 
 Alternatively, to put a line break we can also use the *escape sequence* `\n`. When it is used 
@@ -134,8 +134,8 @@ by itself to move the cursor to the next line, the single quotes are needed, but
 into text that is already double-quoted, the single quotes aren't needed.
 
 ```cpp {3}
-cout<<"new line\n";
-cout<<"new line"<<'\n';
+cout << "new line\n";
+cout << "new line" << '\n';
 ```
 
 You can put freely both `endl` and `\n` *before* and/or *after* the text or variable that you 
@@ -181,10 +181,10 @@ using namespace std;
 
 int main() {
 	int x; // declare an empty variable x to hold user input
-    cout<<"Enter a number: "; // ask the user for a number and go to a new line
-    cin>>x; // get number from keyboard and store it in x
+    cout << "Enter a number: "; // ask the user for a number and go to a new line
+    cin >>x ; // get number from keyboard and store it in x
 
-    cout<<"You entered "<<x<<endl;
+    cout << "You entered " << x << endl;
 	
     return 0;
 }
@@ -207,13 +207,13 @@ int main() {
 	int a, b, c;
 	int sumOfValues;
 
-	cout<<"Insert 3 values: "<<endl;
-	cin>>a>>b>>c; // the order must be respected
+	cout << "Insert 3 values: " << endl;
+	cin >> a >> b >> c; // the order must be respected
 
 	sumOfValues = a+b+c;
 	float average = float(sumOfValues/3);
 
-	cout<<"The average is: "<<average<<endl;
+	cout << "The average is: " << average << endl;
 
 	return 0;
 }
