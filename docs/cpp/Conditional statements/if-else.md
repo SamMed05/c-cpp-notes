@@ -5,7 +5,7 @@ title: If/else
 hide_title: false
 hide_table_of_contents: false
 sidebar_label: If/else
-description: A technique to change to color of the output text in the Windows console.
+description: How if and else conditionals work.
 slug: /cpp/if-else
 custom_edit_url: null
 ---
@@ -14,7 +14,7 @@ So far, everything that is written in the `main()` function is executed directly
 
 Oftentimes, though, programmers want to modify the [control flow](https://en.wikipedia.org/wiki/Control_flow) of the program, for example to **execute some code** ***only*** **when a certain condition is met**. 
 
-C and C++ (as it is in almost all the other programming languages) provide us with some syntactic constructs for making conditional statements, the most basic and fundamental of which is the "`if` statement".
+C and C++ (as it is in almost all the other programming languages) provide us with some syntactic constructs for making conditionals[^1], the most basic and fundamental of which is the "`if` statement".
 
 The syntax is as follows:
 ```cpp
@@ -170,3 +170,6 @@ if (val < n1 || val > n2) {
 	// code that executes if val is outside the interval n1-n2
 }
 ```
+
+
+[^1]: [Wikipedia - Conditional (computer programming)](https://en.wikipedia.org/wiki/Conditional_(computer_programming))
