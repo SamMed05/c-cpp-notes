@@ -14,6 +14,8 @@ Switch statements function somewhat similarly to the if statement we used before
 
 The switch statement is based on a variable that is tested for equality against a list of values, each one called a "case" of that variable.
 
+### Syntax
+
 It's more complicated to explain than to see, so here's the generic syntax:
 ```cpp
 switch (variable) {
