@@ -177,17 +177,17 @@ in a previous tutorial), and after all the instructions we don't need to return 
 
 Now try to run this program. What will be the output?
 
-<div class="output">
 <details>
   <summary>Answer</summary>
-	<code class="output">
-		2<br/>
-		5<br/>
-		2<br/>
-		5<br/>
-	</code>
+	<div class="output">
+		<code class="output">
+			2<br/>
+			5<br/>
+			2<br/>
+			5<br/>
+		</code>
+	</div>
 </details>
-</div>
 
 It turns out that **the values 2 and 5 haven't swapped**!
 

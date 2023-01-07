@@ -336,13 +336,17 @@ html {
 	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.output {
+.output code {
 	color: #fff !important;
 	background-color: #000 !important;
   display: block;
   margin-bottom: 1rem;
   margin-top: 1rem;
   padding: 1rem;
+}
+details .output code {
+  margin-bottom: 0rem;
+  margin-top: 0rem;
 }
 /*details pre code {
   color: #fff !important;

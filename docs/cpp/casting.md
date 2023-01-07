@@ -51,10 +51,12 @@ int main() {
 ```
 
 #### Output:
-<code class="output">
-decimalVar = 2.99<br/>
-integerVar = 2
-</code>
+<div class="output">
+	<code class="output">
+	decimalVar = 2.99<br/>
+	integerVar = 2
+	</code>
+</div>
 
 In the above program we try to put the value of a `float` type variable with decimal digits in a 
 variable of type `int`. This doesn't cause an error in the compilation and we are allowed to do 
