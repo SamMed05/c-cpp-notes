@@ -184,6 +184,10 @@ const config = {
                 href: 'https://youtu.be/e9Eds2Rc_x8?list=PLhQjrBD2T381L3iZyDTxRwOBuUt6m1FnW',
                 label: 'CS50 2019 - C',
               },
+              {
+                href: 'https://www.stroustrup.com/C++.html',
+                label: 'stroustrup.com - C++',
+              },
               // ... more items
             ],
           },
