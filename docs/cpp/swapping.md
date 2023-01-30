@@ -86,13 +86,15 @@ int main() {
 ```
 
 #### Output
-<code class="output">
-	before swapping:<br/>
-	a = 5, b = 2<br/>
-<br/>
-	after swapping:<br/>
-	a = 2, b = 5<br/>
-</code>
+<div class="output">
+    <code class="output">
+    	before swapping:<br/>
+    	a = 5, b = 2<br/>
+    <br/>
+    	after swapping:<br/>
+    	a = 2, b = 5<br/>
+    </code>
+</div>
 
 The process can also be illustrated more abstractly like in this diagram:
 

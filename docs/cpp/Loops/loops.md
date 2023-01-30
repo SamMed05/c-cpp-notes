@@ -14,7 +14,7 @@ Oftentimes, programmers need to repeat a certain block of code multiple times.
 
 Since code repetition is impractical and also a bad practice, most programming languages provide a concept called ***loop***, which helps in executing one or more statements up to a desired number of times until a certain condition is reached.
 
-An early form of loop (available both in C and C++ but not in other languages like Java and Python) was the `goto` statement, which transfers the program's flow to another line of code using labels. Although used a lot in the past, `goto` statements are rarely useful and not recommended since they don't fit with the structured programming paradigm we now use.[^1] 
+An early form of loop (available both in C and C++ but not in other languages like Java and Python) was the `goto` statement, which transfers the program's flow to another line of code using labels. Although used a lot in the past, `goto` statements are rarely useful and not recommended since they lead to **[spaghetti code](https://en.wikipedia.org/wiki/Spaghetti_code)** (unreadable code with a path of execution similar to a bowl of spaghetti, all tangled and twisted) and don't fit with the structured programming paradigm we now use.[^1] 
 
 > "The fact that 'goto' can do anything is exactly why we don't use it" —Bjarne Stroustrup (creator of C/C++)
 

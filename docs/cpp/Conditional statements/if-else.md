@@ -149,7 +149,7 @@ int main() {
 
 :::info Note
 
-When the block inside the statements is only one code expression (the line of code that ends with `;`) like in all the cases above except for the `main()` function, curly brackets are optional. However, I recommend using them always because they make the block less error-prone to future modifications by you but especially by other programmers. Block of more than one line of code, in fact, always require the use of curly brackets. There's also a problem of ambiguity  in nested if-else statements called "[dandling else](https://en.wikipedia.org/wiki/Dangling_else)" and by braces you'll most likely never encounter it.
+When the block inside the statements is only one code expression (the line of code that ends with `;`) like in all the cases above except for the `main()` function, curly brackets are optional. However, I recommend using them always because they make the block less error-prone to future modifications by you but especially by other programmers. Block of more than one line of code, in fact, always require the use of curly brackets. There's also a problem of ambiguity  in nested if-else statements called "[dandling else](https://en.wikipedia.org/wiki/Dangling_else)" and by using braces you'll most likely never encounter it.
 
 :::
 
