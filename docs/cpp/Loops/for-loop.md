@@ -18,7 +18,7 @@ First, let's see its syntax:
 
 ```cpp
 for (initialization; condition; update) {
-    // code to be repeated
+    // code to be repeatedly executed
 }
 ```
 
@@ -28,11 +28,11 @@ for (initialization; condition; update) {
 - Before every iteration, including the first one, the **condition** of the for loop is checked and the iterations continue until the condition is evaluated to false. In that case, the loop terminates
 - At every iteration, after successful execution of statements inside the body of the loop, the counter is **updated** with a specified increment (or decrement).
 
-For example, this is a **loop that iterates 10 times with a counter starting from 0 and an increment of 1 for each iteration**:
+For example, this is a **loop that iterates 10 times with a counter starting from 0 and an increment of 1 for each iteration** (the value of `i` is printed to console):
 
 ```cpp
 for (int i=0; i<10; i++) { // ++i is fine too
-    // ...
+    cout << i << endl; // executed 10 times
 }
 ```
 
@@ -60,13 +60,13 @@ The letter `i` (and the subsequent `j`, `k` and so on if needed) is conventional
 
 :::
 
-For loops are used to repeat a section of code *known* number of times, so they are especially useful when the number of iterations is known ahead of time. They let us clearly define and change the values of loop variables and integrate a counter directly, unlike the other kinds of loops (while and do-while).
+For loops are used to repeat a section of code a *known* number of times, so they are especially **useful when the number of iterations is known ahead of time**. They let us clearly define and change the values of loop variables and integrate a counter directly, unlike the other kinds of loops (while and do-while).
 
 The incrementation can also be bigger than one or negative. If you decrease the counter, you must be cautious about the condition for exiting the loop. See this example:
 
 ```cpp
 for (int i=20; i>0; i-=2) { // or i=i-2
-    // code repeated 10 times
+    cout << i << endl; // executed 10 times
 }
 ```
 
@@ -97,4 +97,19 @@ A frequently occurring logic error for programmers is the "off-by-one error", in
 for (int i=1; i<n; i++) { ... } // ❌ n-1 times
 for (int i=0; i<=n; i++) { ... } // ❌ n+1 times
 for (int i=0; i<n; i++) { ... } // ✔️ n times
+```
+
+### Nested loops
+
+C and C++ allow to use one loop inside another loop. This is known as "nesting" and is more often done with for loops, but while and do-while loops can also be used (you can mix different types of loops too).
+
+You nest a loop inside another in this way:
+
+```cpp
+for (int i=x; i<n; i++) {
+	for (int j=y; j<m; j++) {
+		// code executed n*m times
+	}
+	// code executed n times
+}
 ```
