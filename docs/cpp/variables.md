@@ -98,12 +98,11 @@ a future explanation.
 :::info Why?
 
 Why an `int` type can go *exactly* from -2147483648 to 2147483647? Well, the reason lies 
-in the size of an integer value, which is 4 bytes, or **32** bits. The first bit is used 
-for the sign and can't be used, so the maximum number that can be represented in that size 
-(separating positive and negative values) can be mathematically calculated by multiplying 
-the possible states that a bit can assume (0 or 1, so 2 states in total) by the number of 
-digits available (32 - 1). Therefore the formula **`range = possibleStates ^ numberOfBits`** 
-and so:
+in the size of an integer value, which is 4 bytes, or **32** bits. The **first bit is used 
+for the sign** and can't be used, so the maximum number that can be represented in that size 
+(separating positive and negative values) can be mathematically calculated by elevating 
+the possible states that a bit can assume (0 or 1, so 2 states in total) to the number of 
+digits available (32 - 1). Therefore the formula **`range = possibleStates ^ numberOfBits`**:
 
 $$
 
@@ -112,12 +111,16 @@ $$
 $$
 
 If we consider also the 0, we can then conclude that numbers can go from **-2147483648** to 
-**2147483648 - 1** (all the possible combinations/configurations with .
+**2147483648 - 1** (all the possible combinations/configurations with 31 bits available + 1 
+for the sign). This means that you can't store values above or below that range in a regular 
+integer type.
 
 If we need greater numbers and we don't use negative values we can also use the keyword 
 `unsigned` before `int` to expand the range up to 2<sup>32</sup> (4,294,967,296) without using 
 the first bit for the sign. Although using unsigned numbers is generally 
 [not recommended](https://www.learncpp.com/cpp-tutorial/unsigned-integers-and-why-to-avoid-them/).
+
+A better way is to use the `long` keyword.[^1]
 
 :::
 
@@ -302,7 +305,7 @@ int x = 0; // preferred way
 value (such as zero) automatically. Thus when a variable is assigned a memory location by the 
 compiler, the default value of that variable is whatever (garbage) value happens to already 
 be in that memory location. A variable that has not been given a known value (usually through 
-initialization or assignment) is called an uninitialized variable.[^1]
+initialization or assignment) is called an uninitialized variable.[^3]
 
 Let's say for example that you want to create a counter called `x` that starts at 0. If you 
 declare that variable without specifying its value it will get a random number and not 0.
@@ -323,5 +326,6 @@ benefit that it works with older C++ standards.
 
 :::
 
-[^1]: [LearnCpp.com - Uninitialized variables and undefined behavior](https://www.learncpp.com/cpp-tutorial/uninitialized-variables-and-undefined-behavior/)
+[^1]: [cppreference.com - Fundamental types (Properties table)](https://en.cppreference.com/w/cpp/language/types#Properties)
 [^2]: [cplusplus.com - Variables and types](https://www.cplusplus.com/doc/tutorial/variables/)
+[^3]: [LearnCpp.com - Uninitialized variables and undefined behavior](https://www.learncpp.com/cpp-tutorial/uninitialized-variables-and-undefined-behavior/)
