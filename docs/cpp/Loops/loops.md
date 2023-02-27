@@ -10,6 +10,9 @@ slug: /cpp/loops
 custom_edit_url: null
 ---
 
+![While loop flowchart](../assets/loops.svg)
+<figcaption>Fig.1. Abstract representation of a loop.</figcaption>
+
 Oftentimes, programmers need to repeat a certain block of code multiple times.
 
 Since code repetition is impractical and also a bad practice, most programming languages provide a concept called ***loop***, which helps in executing one or more statements up to a desired number of times until a certain condition is reached.
