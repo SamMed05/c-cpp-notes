@@ -97,7 +97,7 @@ a future explanation.
 
 :::info Why?
 
-Why an `int` type can go *exactly* from -2147483648 to 2147483647? Well, the reason lies 
+Why can an `int` type go *specifically* from -2147483648 to 2147483647? Well, the reason lies 
 in the size of an integer value, which is 4 bytes, or **32** bits. The **first bit is used 
 for the sign** and can't be used, so the maximum number that can be represented in that size 
 (separating positive and negative values) can be mathematically calculated by elevating 
@@ -110,14 +110,14 @@ $$
 
 $$
 
-If we consider also the 0, we can then conclude that numbers can go from **-2147483648** to 
-**2147483648 - 1** (all the possible combinations/configurations with 31 bits available + 1 
-for the sign). This means that you can't store values above or below that range in a regular 
-integer type.
+If we also consider 0, we can conclude that numbers can go from **-2147483648** to 
+**2147483648 - 1**. These are all the possible combinations/configurations with 31 bits available plus 
+one for the sign, using `0` to represent positive numbers and `1` for negative ones. This means 
+that you can't store values above or below that range in a regular (`signed`) integer type.
 
 If we need greater numbers and we don't use negative values we can also use the keyword 
 `unsigned` before `int` to expand the range up to 2<sup>32</sup> (4,294,967,296) without using 
-the first bit for the sign. Although using unsigned numbers is generally 
+the first bit for the sign, although using unsigned numbers is generally 
 [not recommended](https://www.learncpp.com/cpp-tutorial/unsigned-integers-and-why-to-avoid-them/).
 
 A better way is to use the `long` keyword.[^1]

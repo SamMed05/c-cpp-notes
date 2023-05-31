@@ -56,7 +56,7 @@ an operation with the assignment of the resulting value.
 Remember that the assignment of the value is always from the right to the variable of the left.
 
 ## Unary operators
-They increment or decrement the value of the object.
+They increment or decrement the value of the object by 1.
 
 | Syntax | Operator name  | Equivalent to  |
 |--------|----------------|----------------|
@@ -70,7 +70,7 @@ They increment or decrement the value of the object.
 The difference between *pre* and *post*-increment expressions is a bit confusing, but the names 
 help. 
 
-**Pre-incrementation** means the variable is incremented before the expression is set or evaluated. 
+**Pre-increment** means that the variable is incremented *before* the expression is set or evaluated. 
 If we write `y = ++x;` it's doing:
 ```cpp
 x++;
@@ -79,7 +79,7 @@ y = x;
 // so x is incremented and also y gets the incremented value
 ```
 
-**Post-incrementation** means the expression is set or evaluated, and then the variable is altered. 
+**Post-increment** means that first the expression is set or evaluated, and *then* the variable is altered. 
 If we write `y = x++;` it's doing:
 ```cpp
 y = x;
@@ -93,6 +93,42 @@ x++;
 In loops this difference is not relevant and does not influence the number of iterations or the 
 starting/ending point of the incrementing variable (usually called `i`). We haven't explained 
 loops, yet, so leave this info as is until we'll get to that topic in a later lesson.
+
+:::
+
+:::caution y = x++ 🆚 y = x + 1
+
+Let's analyze this program to understand why `x++` and `x+1` are fundamentally different things: 
+
+```cpp {8}
+#include <iostream>
+using namespace std;
+
+int main() {
+  int x = 10;
+  int y = 10;
+
+  y = x++; // y = x + 1?
+
+  cout << "x: " << x << endl;
+  cout << "y: " << y << endl;
+
+  return 0;
+}
+```
+
+If you are thinking that `x++` could be replaced with `x + 1`, you may be tempted to also think that, in this case, `x` evaluates to 10 in the end as well, since it's on the right of the assignment and its value is not modified outside of the expression. That's actually not the case, since the output of this program is:
+
+<div class="output">
+<code class="output">
+ x: 11<br/>
+ y: 10
+</code>
+</div>
+
+Incrementing and decrementing using `++` and `--`, whether that happens before or after the assignment, affects the variable directly by changing its value without the explicit need for a reassignment as is usually done with `x = x + 1`.
+
+So, `x + 1` is just an **expression** that represents the value of x + 1 without modifying the value of x, while `x++` is an **increment** that affects the variable's value making it 1 unit bigger.
 
 :::
 
