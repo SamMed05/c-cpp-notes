@@ -344,6 +344,9 @@ html {
   margin-top: 1rem;
   padding: 1rem;
 }
+.output p {
+  margin-bottom: 0;
+}
 details .output code {
   margin-bottom: 0rem;
   margin-top: 0rem;

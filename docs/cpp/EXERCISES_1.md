@@ -70,9 +70,9 @@ Write a program to multiplicate a number entered by the user 10 times and print 
 <summary>Show solution(s)</summary>
 
 <CodeBlock 
-language="cpp" 
-title="compare-two-numbers_2.cpp">
-{compare_two_numbers_2}
+	language="cpp" 
+	title="compare-two-numbers_2.cpp">
+	{compare_two_numbers_2}
 </CodeBlock>
 
 </details>
@@ -89,9 +89,9 @@ Write a program that repeatedly asks for integers and adds them together until 0
 <summary>Show solution(s)</summary>
 
 <CodeBlock 
-language="cpp" 
-title="repeated-sum.cpp">
-{repeated_sum}
+	language="cpp" 
+	title="repeated-sum.cpp">
+	{repeated_sum}
 </CodeBlock>
 
 </details>
@@ -108,9 +108,9 @@ Write a program that asks for the lower and upper limit of a numerical range, th
 <summary>Show solution(s)</summary>
 
 <CodeBlock 
-language="cpp" 
-title="numbers-in-range.cpp">
-{numbers_in_range}
+	language="cpp" 
+	title="numbers-in-range.cpp">
+	{numbers_in_range}
 </CodeBlock>
 
 </details>
@@ -142,9 +142,28 @@ Criteria for a valid triangle:
 <summary>Show solution(s)</summary>
 
 <CodeBlock 
-language="cpp" 
-title="triangle-categorizer.cpp">
-{triangle_categorizer}
+	language="cpp" 
+	title="triangle-categorizer.cpp">
+	{triangle_categorizer}
+</CodeBlock>
+
+</details>
+
+
+### Even or odd? (★☆☆)
+
+import even_or_odd from '!!raw-loader!./code-snippets/even-or-odd.cpp';
+
+Write a program that, given a number *num*, determines if it's even or odd.
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="even-or-odd.cpp">
+	{even_or_odd}
 </CodeBlock>
 
 </details>
@@ -156,7 +175,7 @@ import prime_numbers from '!!raw-loader!./code-snippets/prime-numbers.cpp';
 import prime_numbers_2 from '!!raw-loader!./code-snippets/prime-numbers-2.cpp';
 import prime_numbers_3 from '!!raw-loader!./code-snippets/prime-numbers-3.cpp';
 
-Write a program that checks whether a number entered by the user is prime or not (partial solution).
+Write a program that checks whether a number entered by the user is prime or not.
 
 <details>
 
@@ -198,25 +217,42 @@ Full explanation with code: [Programiz.com](https://www.programiz.com/cpp-progra
 </details>
 
 
-### Maximum and minimum number (★★☆)
+### Maximum number (non-negative) (★☆☆)
 
-import max_min_number from '!!raw-loader!./code-snippets/max-min-number.cpp';
+import max_number from '!!raw-loader!./code-snippets/max-number.cpp';
 
-Write a program that asks the user for *n* numbers and saves which one is the biggest and the smallest of them. Print max and min to the console.
+Write a program that asks for 10 numbers and finds the maximum. Use a while loop with a counter.
 
 <details>
 
 <summary>Show solution(s)</summary>
 
 <CodeBlock 
-language="cpp" 
-title="max-min-number.cpp">
-{max_min_number}
+	language="cpp" 
+	title="max-number.cpp">
+	{max_number}
 </CodeBlock>
 
 </details>
 
 
+### Maximum and minimum number (★★☆)
+
+import max_min_number from '!!raw-loader!./code-snippets/max-min-number.cpp';
+
+Write a program that asks the user for *n* numbers (either positive, negative or null) and saves which one is the biggest and the smallest of them. Print max and min to the console.
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="max-min-number.cpp">
+	{max_min_number}
+</CodeBlock>
+
+</details>
 
 
 ### Quadratic equation solver (★★☆)
@@ -231,9 +267,189 @@ x = \frac{-b \pm \sqrt{b^2 + 4ac}}{2a}$, where $\sqrt{b^2 + 4ac}$ is the delta $
 <summary>Show solution(s)</summary>
 
 <CodeBlock 
-language="cpp" 
-title="quadratic-equation-solver.cpp">
-{quadratic_equation_solver}
+	language="cpp" 
+	title="quadratic-equation-solver.cpp">
+	{quadratic_equation_solver}
 </CodeBlock>
+
+</details>
+
+
+### Month duration & leap year (★★☆)
+
+import month_duration_leap_year from '!!raw-loader!./code-snippets/month-duration-leap-year.cpp';
+
+Write a program that, given a month as a number between 1 and 12, informs the user of how many days that month consists of. It's suggested to use a switch-case statement. Handle the leap year case, knowing that a year is a year is "leap" when it is divisible by 4 and not by 100 or it is divisible by 400 ([explanation with code](https://www.programiz.com/cpp-programming/examples/leap-year)).
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="month-duration-leap-year.cpp">
+	{month_duration_leap_year}
+</CodeBlock>
+
+</details>
+
+
+### Basic calculator (★☆☆)
+
+import basic_calculator from '!!raw-loader!./code-snippets/basic-calculator.cpp';
+
+Write a program that simulates a simple calculator with the operators +, -, * and /. The user enter two numbers and an operator. Use a `char` for storing the operator.
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="basic-calculator.cpp">
+	{basic_calculator}
+</CodeBlock>
+
+</details>
+
+
+### Factorial (★★☆)
+
+import factorial from '!!raw-loader!./code-snippets/factorial.cpp';
+
+Write a program that calculates the factorial of a number *n* entered by the user (*n!*).
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="factorial.cpp">
+	{factorial}
+</CodeBlock>
+
+</details>
+
+
+### Pythagorean table (★★☆)
+
+import pythagorean_table from '!!raw-loader!./code-snippets/pythagorean-table.cpp';
+
+Write a program that prints on the console the pythagorean table.
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="pythagorean-table.cpp">
+	{pythagorean_table}
+</CodeBlock>
+
+<div class="output">
+<code class="output">
+
+1	2	3	4	5	6	7	8	9	10	
+2	4	6	8	10	12	14	16	18	20	
+3	6	9	12	15	18	21	24	27	30	
+4	8	12	16	20	24	28	32	36	40	
+5	10	15	20	25	30	35	40	45	50	
+6	12	18	24	30	36	42	48	54	60	
+7	14	21	28	35	42	49	56	63	70	
+8	16	24	32	40	48	56	64	72	80	
+9	18	27	36	45	54	63	72	81	90	
+10	20	30	40	50	60	70	80	90	100
+
+</code>
+</div>
+
+</details>
+
+
+### Sum till 50 (★☆☆)
+
+import sum_till_50 from '!!raw-loader!./code-snippets/sum-till-50.cpp';
+
+Write a program that, given a number *num* between 1 and 10, adds its first 10 successors to the number, interrupting the sum prematurely the first time it exceeds the value 50. Use `break` to interrupt the loop.
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="sum-till-50.cpp">
+	{sum_till_50}
+</CodeBlock>
+
+</details>
+
+
+### Pyramid pattern (★★☆)
+
+import pyramid_pattern from '!!raw-loader!./code-snippets/pyramid-pattern.cpp';
+import pyramid_pattern_2 from '!!raw-loader!./code-snippets/pyramid-pattern-2.cpp';
+import pyramid_pattern_3 from '!!raw-loader!./code-snippets/pyramid-pattern-3.cpp';
+
+Write three programs that print these patterns to the console:
+```
+
+    *
+   ***
+  *****
+ *******
+*********
+
+    * 
+   * * 
+  * * * 
+ * * * * 
+* * * * * 
+
+        *
+      * * *
+    * * * * *
+  * * * * * * *
+* * * * * * * * *
+```
+
+Each pyramid has 5 rows, but for the last pattern, ask the user how many rows are going to be generated.
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<Tabs>
+<TabItem value="s1" label="Solution 1">
+<p>First pattern:</p>
+<CodeBlock 
+	language="cpp" 
+	title="pyramid-pattern.cpp">
+	{pyramid_pattern}
+</CodeBlock>
+
+</TabItem>
+<TabItem value="s2" label="Solution 2">
+<p>Second pattern:</p>
+<CodeBlock 
+	language="cpp" 
+	title="pyramid-pattern-2.cpp">
+	{pyramid_pattern_2}
+</CodeBlock>
+
+</TabItem>
+<TabItem value="s3" label="Solution 3">
+<p>Third pattern:</p>
+<CodeBlock 
+	language="cpp" 
+	title="pyramid-pattern-3.cpp">
+	{pyramid_pattern_3}
+</CodeBlock>
+
+</TabItem>
+
+</Tabs>
 
 </details>
