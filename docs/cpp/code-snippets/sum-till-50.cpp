@@ -13,7 +13,7 @@ int main() {
     for (int i = num; i <= num + 10; i++) {
         sum += i;
 
-        cout << "Iterations: " << i << endl;
+        cout << "Iteration " << i - sum + 1 << endl;
         cout << "Sum: " << sum << endl;
 
         if (sum > 50)

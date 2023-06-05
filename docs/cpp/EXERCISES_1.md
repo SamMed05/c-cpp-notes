@@ -372,7 +372,7 @@ Write a program that prints on the console the pythagorean table.
 
 import sum_till_50 from '!!raw-loader!./code-snippets/sum-till-50.cpp';
 
-Write a program that, given a number *num* between 1 and 10, adds its first 10 successors to the number, interrupting the sum prematurely the first time it exceeds the value 50. Use `break` to interrupt the loop.
+Write a program that, given a number *num* between 1 and 10, adds its first 10 successors to the number, interrupting the sum prematurely the first time it exceeds the value 50. Print the sum and the index for each iteration and use `break` to interrupt the loop.
 
 <details>
 
@@ -382,6 +382,58 @@ Write a program that, given a number *num* between 1 and 10, adds its first 10 s
 	language="cpp" 
 	title="sum-till-50.cpp">
 	{sum_till_50}
+</CodeBlock>
+
+</details>
+
+
+### Rectangle pattern (★☆☆)
+
+import rectangle_pattern from '!!raw-loader!./code-snippets/rectangle-pattern.cpp';
+
+Write a program that asks for two integers, a base *b* and an height *h*, and prints the pattern of a rectangle using asterisks/stars ("* ") with *b* stars for the base and h stars for the height (check that both *b* and *h* are numbers between 1 and 10). For example, if b = 5 and h = 3 the output is:
+
+```
+* * * * * 
+* * * * * 
+* * * * * 
+```
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="rectangle-pattern.cpp">
+	{rectangle_pattern}
+</CodeBlock>
+
+</details>
+
+
+### Right triangle pattern (★☆☆)
+
+import right_triangle_pattern from '!!raw-loader!./code-snippets/right-triangle-pattern.cpp';
+
+Write a program that asks for the number of rows (integer) and prints the pattern of a right triangle (with the right angle on the bottom left) using numbers (use the number if the loop index). For example, if rows = 5 the output is:
+
+```
+1 
+1 2 
+1 2 3 
+1 2 3 4 
+1 2 3 4 5 
+```
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="right-triangle-pattern.cpp">
+	{right_triangle_pattern}
 </CodeBlock>
 
 </details>
@@ -451,5 +503,106 @@ Each pyramid has 5 rows, but for the last pattern, ask the user how many rows ar
 </TabItem>
 
 </Tabs>
+
+</details>
+
+
+### Painting value predictor (★☆☆)
+
+import painting_value_predictor from '!!raw-loader!./code-snippets/painting-value-predictor.cpp';
+
+Write a program that prompts the user to enter the amount they paid for a painting and the number of years until they plan to resell it. Assuming that its value increases by 5% each year, the program estimates the painting's value for each year and displays the result for every year.
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="painting-value-predictor.cpp">
+	{painting_value_predictor}
+</CodeBlock>
+
+</details>
+
+
+### Pendulum oscillation (★☆☆)
+
+import pendulum_oscillation from '!!raw-loader!./code-snippets/pendulum-oscillation.cpp';
+
+A pendulum oscillates with a period *p* expressed in seconds which is a function of the length *l* in meters of the suspension thread according to the following formula: p = 2* 3.1416 * sqrt (l/g) where the constant *g* is the acceleration of gravity, which on Earth is 9.81 m/s^2. Write a C++ program that determines the oscillation period of the pendulum, given its length *l* in centimeters.
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="pendulum-oscillation.cpp">
+	{pendulum_oscillation}
+</CodeBlock>
+
+</details>
+
+
+### BMI calculator (★☆☆)
+
+import bmi_calculator from '!!raw-loader!./code-snippets/bmi-calculator.cpp';
+
+Write a program that calculates the BMI given a height and a weight. The BMI formula is the following:
+
+$$
+
+BMI = \frac{weight}{height^2}
+
+$$
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="bmi-calculator.cpp">
+	{bmi_calculator}
+</CodeBlock>
+
+</details>
+
+
+### Time in seconds (★☆☆)
+
+import time_in_seconds from '!!raw-loader!./code-snippets/time-in-seconds.cpp';
+
+Write a program that converts a time expressed in hours, minutes and seconds in only seconds.
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="time-in-seconds.cpp">
+	{time_in_seconds}
+</CodeBlock>
+
+</details>
+
+
+### Fraction simplifier (★★☆)
+
+import fraction_simplifier from '!!raw-loader!./code-snippets/fraction-simplifier.cpp';
+
+Write a program that prompts the user to enter a fraction as a numerator and denominator. It checks if the denominator is not equal to zero and displays the fraction, then simplifies the fraction and displays the result. Indicate whether the fraction was simplified or not.
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="fraction-simplifier.cpp">
+	{fraction_simplifier}
+</CodeBlock>
 
 </details>
