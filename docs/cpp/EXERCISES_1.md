@@ -530,7 +530,7 @@ Write a program that prompts the user to enter the amount they paid for a painti
 
 import pendulum_oscillation from '!!raw-loader!./code-snippets/pendulum-oscillation.cpp';
 
-A pendulum oscillates with a period *p* expressed in seconds which is a function of the length *l* in meters of the suspension thread according to the following formula: p = 2* 3.1416 * sqrt (l/g) where the constant *g* is the acceleration of gravity, which on Earth is 9.81 m/s^2. Write a C++ program that determines the oscillation period of the pendulum, given its length *l* in centimeters.
+A pendulum oscillates with a period *p* expressed in seconds which is a function of the length *l* in meters of the suspension thread according to the following formula: $p = 2 * \pi * \sqrt{l/g}$ where the constant *g* is the acceleration of gravity, which on Earth is 9.81 m/s^2. Write a C++ program that determines the oscillation period of the pendulum, given its length *l* in centimeters.
 
 <details>
 
