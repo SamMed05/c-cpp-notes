@@ -5,6 +5,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
+import CookieConsent from "react-cookie-consent";
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -35,6 +36,7 @@ export default function Home() {
       <main>
         <HomepageFeatures />
       </main>
+      <CookieConsent>This website uses cookies to enhance the user experience.</CookieConsent>
     </Layout>
   );
 }
