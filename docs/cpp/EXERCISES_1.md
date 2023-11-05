@@ -332,6 +332,25 @@ Write a program that calculates the factorial of a number *n* entered by the use
 </details>
 
 
+### Fibonacci sequence (★★★)
+
+import fibonacci from '!!raw-loader!./code-snippets/fibonacci.cpp';
+
+Write a program that calculates the Fibonacci sequence up to *n* number of number of terms.
+
+<details>
+
+<summary>Show solution(s)</summary>
+
+<CodeBlock 
+	language="cpp" 
+	title="fibonacci.cpp">
+	{fibonacci}
+</CodeBlock>
+
+</details>
+
+
 ### Pythagorean table (★★☆)
 
 import pythagorean_table from '!!raw-loader!./code-snippets/pythagorean-table.cpp';
