@@ -57,7 +57,7 @@ Congratulations, you have made your first C++ program!
 Now let's read the code analyzing it line by line to understand *why* they are there and 
 *what* they do.
 
-If we look back at the code of our first program, we notice that it can be divided in to
+If we look back at the code of our first program, we notice that it can be divided into
 **two parts**.
 
 
@@ -109,7 +109,7 @@ compiler know that it reached the end of a command.
 #### Blank lines
 
 Before the second part of the code, we encounter line 3 which is a blank line. All 
-blank lines are ignored by the compiler but they helps humans to keep the code more readable 
+blank lines are ignored by the compiler but they help humans to keep the code more readable 
 and well separated into multiple little sections.
 
 
@@ -152,7 +152,7 @@ after the output.
 
 :::note Pausing the console
 
-In some cases the console window will close immediately after the program execution is finished. 
+In some cases, the console window will close immediately after the program execution is finished. 
 This happens because the console is temporary, and this can be a problem if we want to continue 
 seeing the last part of our program as long as we want. The solution is usually to put 
 just before `return 0;` one of these three lines of code:
@@ -191,7 +191,7 @@ void main() { // void type does not return anything
 ```
 will behave in a slightly different way but work anyway, without giving errors. We can put any 
 value in return, or not put it completely (the compiler will automatically add a `return 0;`), 
-however it's strongly recommended to follow the standard `return 0;`. In C language return is 
+however, it's strongly recommended to follow the standard `return 0;`. In C language return is 
 *not* optional.
 
 :::

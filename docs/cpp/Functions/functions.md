@@ -15,7 +15,7 @@ custom_edit_url: null
 
 A function is a reusable sequence of statements designed to do a particular job.
 
-In more general terms, a function is a system which takes an input and returns it as output 
+In more general terms, a function is a system that takes an input and returns it as output 
 after doing some calculations inside to perform a specific task.
 
 ![Variable declaration](../assets/gears-system.svg)
@@ -23,11 +23,11 @@ after doing some calculations inside to perform a specific task.
 
 If you have a mathematical background, you may be led to associate the functioning 
 of mathematical functions with that of programming functions. Although this association is 
-partly correct (inputs → calculations → output), it is confusing to consider them the same thing so we will keep them 
-as separate concepts.
+partly correct (inputs → calculations → output), it is confusing to consider them the same 
+thing so we will keep them as separate concepts.
 
 We have already used functions: `main()` is a special function that every executable 
-program must have, and it was present in every one of our programs done so far.
+program must have, and it is present in every one of our programs done so far.
 Also writing `<iostream>` means having to deal with functions (inside that library):
 although it doesn't look like it, every time you `<<` or `>>` operator to do 
 input or output, you're using a function provided by the standard library.
@@ -47,7 +47,7 @@ There are two benefits that come when using functions:
 as many times as you want. This avoids repetition, redundancy and duplicate code. 
 The principle is similar to loops, but it works in a bit different way.
 2. **Organization**: as programs start to get longer and longer, putting all the code 
-inside the main function becomes increasingly hard to manage: with functions we can 
+inside the main function becomes increasingly hard to manage: with functions, we can 
 split our programs into small, modular chunks that are easier to organize, test, use and 
 reuse.
 
@@ -58,7 +58,7 @@ usually stay at the top of the program, before `main()` and after all the *inclu
 *namespaces*.
 
 Remember that since `main()` is also a function, every other function has to be written 
-**outside** of it, because unlike some other programming languages **C/C++ does not support 
+**outside** of it, because, unlike some other programming languages, **C/C++ does not support 
 nested functions** (functions inside functions).
 
 ## Parts of a function
@@ -86,7 +86,7 @@ int add(int a, int b) {
 :::note
 
 Of course, this is not a useful function, but at least it's simple to understand and 
-it will help you to grasp the concept of how a function works more easily way through the 
+it will help you to grasp the concept of how a function works more easily through the 
 following explanations.
 
 :::
@@ -100,9 +100,9 @@ Now let's analyze every part that makes up a function like the one above:
 
 - **Return type**: this is the primitive type of the output value that the function will 
 return.
-- **Function name**: as variables, also functions require a name in order to be 
-declared. This name is an identifier and it's also called *header*. It will be used 
-every time we'll need to call (refer to) that function, and it identifies it uniquely.
+- **Function name**: as variables, functions require a name in order to be 
+declared, too. This name is an identifier and it's also called *header*. It will be used every 
+time we need to call (refer to) that function, and it identifies it uniquely.
 - **Parameters**: they are local variables that take *arguments* (values of other 
 variables from outside) in input when the function is called. You work with them inside 
 the body of a function. Parameters can be one, more than one but also zero. In the latter 
@@ -130,9 +130,9 @@ When a function is called, the *actual* values that are passed during the call a
 **arguments**. So the arguments are the data you externally pass into the function's 
 parameters.
 
-The values which are defined at the time of the function prototype or definition 
+The values that defined at the time of the function prototype or definition 
 of the function are called **parameters**, more precisely *formal parameters*. Formal 
-parameters are local variables to which the values of the arguments are are assigned 
+parameters are local variables to which the values of the arguments are assigned 
 when the function is called[^1].
 
 We dig deeper into this difference and learn why it's fundamental in 
@@ -142,7 +142,7 @@ We dig deeper into this difference and learn why it's fundamental in
 
 :::note Terminology
 
-At the top I said that the first line of a function is called "header". If you remember, 
+At the top, I said that the first line of a function is called "header". If you remember, 
 though, "*[header](https://www.geeksforgeeks.org/header-files-in-c-cpp-and-its-uses/)*"
 is also the term used with the *header files* that are included in a program when we 
 write the *preprocessor directive* `#include <...>`, and it's a file that contains a set 
@@ -201,7 +201,7 @@ a procedure, the compiler will throw out an error.
 
 ## Function call (invocation)
 
-Invoking a function means telling the compiler to execute that function. The CPU do 
+Invoking a function means telling the compiler to execute that function. The CPU does 
 that and then, when the function ends, it returns to the place where it has been invoked to 
 resume execution. You put the function call whenever you need it, but needless to say, you 
 can also never invoke it.
@@ -254,7 +254,7 @@ by GeeksForGeeks.
 Which method is better between classic function and procedure? Well, there is no hard and 
 strict rule on which method should be chosen. Technically they are both true.
 
-You have to choose a particular method depending upon the situation and how you want to solve 
+You have to choose a particular method depending on the situation and how you want to solve 
 a problem.
 
 :::

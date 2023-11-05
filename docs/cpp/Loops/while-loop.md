@@ -54,7 +54,7 @@ If a while loop evaluates to `false` already in the first check, the statements 
 
 ### Infinite loops
 
-While loop is the most used type of loop when programmers want to make and infinite loop. This is generally considered a bug but sometimes it is intentional and useful.
+While loop is the most used type of loop when programmers want to make an infinite loop. This is generally considered a bug but sometimes it is intentional and useful.
 
 It's made by putting a condition that will always evaluate to `true` no matter the number of iterations or the statements inside. Using the `true` keyword is the easiest and most common way:
 

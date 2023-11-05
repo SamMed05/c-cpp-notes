@@ -53,7 +53,7 @@ They assign a new value to a variable or object.
 
 These operators are only shorthand or their corresponding, so they are optional. they combine 
 an operation with the assignment of the resulting value.
-Remember that the assignment of the value is always from the right to the variable of the left.
+Remember that the assignment of the value is always from the right to the variable on the left.
 
 ## Unary operators
 They increment or decrement the value of the object by 1.
@@ -90,7 +90,7 @@ x++;
 
 :::info Loops
 
-In loops this difference is not relevant and does not influence the number of iterations or the 
+In loops, this difference is not relevant and does not influence the number of iterations or the 
 starting/ending point of the incrementing variable (usually called `i`). We haven't explained 
 loops, yet, so leave this info as is until we'll get to that topic in a later lesson.
 

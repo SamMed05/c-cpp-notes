@@ -11,8 +11,8 @@ custom_edit_url: null
 ---
 
 C++ is a **statically-typed language**. This means that the programmer has to explicitly declare 
-the data type when they create a piece of data (variables, parameters, return values…); in this 
-way the type of some data is known at *compile-time* instead of at *run-time*. Usually, these 
+the data type when they create a piece of data (variables, parameters, return values…); in this way, 
+the type of some data is known at *compile-time* instead of at *run-time*. Usually, these 
 types are also fixed: an `int` variable, for example, will keep that type for the lifetime of 
 the program and it won't change its type once assigned.
 
@@ -58,13 +58,13 @@ int main() {
 	</code>
 </div>
 
-In the above program we try to put the value of a `float` type variable with decimal digits in a 
+In the above program, we try to put the value of a `float` type variable with decimal digits in a 
 variable of type `int`. This doesn't cause an error in the compilation and we are allowed to do 
-it, but by doing so we are losing information. Also note that C++ doesn't round to 3 but removes 
+it, but by doing so we are losing information. Also, note that C++ doesn't round to 3 but removes 
 completely all the decimal digits. 
 
 We don't explicitly express to the compiler how to behave and the final result stored in 
-`integerVar` will contain only a narrower amount of information, because it can't handle decimal 
+`integerVar` will contain only a narrower amount of information because it can't handle decimal 
 digits. That's why this conversion is implicit and narrowing (information-losing).
 
 :::note Advanced
@@ -156,7 +156,7 @@ The only way to obtain a different type as output is by doing casting.
 There are many ways to do casting conversion, but the most common (and the one that we will use 
 for our programs) is the **C-style type casting** (also known as cast notation).
 
-That method consists in putting the data type we want in return by the conversion before the 
+That method consists of putting the data type we want in return by the conversion before the 
 identifier of the original data or a calculation and surrounding that type by a pair of 
 round brackets `(` `)`. Of course the resulting conversion has to be stored in another variable 
 with the proper type or printed. It sounds complicated but it really isn't. Look at this example:

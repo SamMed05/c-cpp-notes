@@ -24,7 +24,7 @@ The advantages that come when using variables (instead of raw numbers or text) a
 - the value stored can be changed during program execution
 - they provide a way of labeling data with a descriptive name, giving it a meaning
 - all the operations done on the variable affect that memory location
-- the value can change but the name not, so we know that we can always refer to it without 
+- the value can change but the name does not, so we know that we can always refer to it without 
 worrying about its value.
 
 Imagine that you want to write a program that sums two numbers.
@@ -38,7 +38,7 @@ or 13 and 56:
 cout << 13+57; // Output: 70
 ```
 
-But if we want to cover all possible cases of numbers, we can't do it in that way. We use variables 
+But if we want to cover all possible cases of numbers, we can't do it that way. We use variables 
 instead:
 ```cpp
 // ... linking section and main()
@@ -242,7 +242,7 @@ different variables.
 
 :::note
 
-To give to a variable (or to an identifier in general) a name that is made of multiple 
+To give a variable (or to an identifier in general) a name that is made of multiple 
 words, programmers usually use the **lowerCamelCase** naming technique, where every new 
 word after the first one starts with a capital letter. It's just a convention, so you can 
 also not do that, but it helps separate the words when it's not possible to use spaces. 
@@ -318,7 +318,7 @@ Since C++11 there is also another method to avoid that problem and create an emp
 
 `int x{};`
 
-`int x{};` is a kind of default-initialization, called value initialization (you can read 
+`int x{};` is a kind of default initialization, called value initialization (you can read 
 more about this [here](https://en.cppreference.com/w/cpp/language/initialization), but
 `int x{};` (copy initialization) is only supported from C++11, while `int x = 0;` has 
 no such restriction. That said, the latter solution is probably clearer and it has the 

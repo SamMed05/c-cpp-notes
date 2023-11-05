@@ -15,7 +15,7 @@ custom_edit_url: null
 
 Sometimes is useful to define variables with values that can not be changed, like the value of π 
 (3.14159265 and so on) or the gravity of Earth (9.8 m/s<sup>2</sup>). Knowing that it won't 
-change, defining these values as constants help ensure that their value will always remain the 
+change, defining these values as constants helps ensure that their value will always remain the 
 same.
 
 A constant, as the name suggests, is a value that doesn't change. You use constants in programming 
@@ -111,7 +111,7 @@ int const x = 5; // ✔, but not preferred
 
 ## Uses
 
-A good way to use constants is when dealing with **magic numbers**. A magic numbers is a value 
+A good way to use constants is when dealing with **magic numbers**. A magic number is a value 
 that either has an unclear meaning or is used multiple times. Magic numbers are difficult to update 
 and they seemingly have no meaning, but if we give a name to those fixed values using a constant 
 we can disambiguate them and updating the value becomes much easier.

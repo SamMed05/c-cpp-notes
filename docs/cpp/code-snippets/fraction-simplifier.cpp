@@ -38,9 +38,9 @@ int main() {
         cout << "Simplified fraction: " << n << " / " << d << endl;
 
     if (r)
-        cout << "Fraction simplifyed" << endl;
+        cout << "Fraction simplified" << endl;
     else
-        cout << "The fraction is not simplifyable" << endl;
+        cout << "The fraction is not simplifiable" << endl;
 
     return 0;
 }

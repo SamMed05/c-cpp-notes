@@ -32,14 +32,14 @@ There are mainly two types of variable scopes:
 Local variables are variables declared **inside a code block** (so anything between `{` and `}`, 
 like in [functions](https://c-cpp-notes.vercel.app/docs/cpp/functions), if statements, loops etc.) 
 and they do not exist outside the block in which they are declared, i.e. they **can not be accessed** 
-or used outside that block. Local variables are not known to functions outside their own.
+or used outside that block. Local variables are not known to the functions outside their own.
 
 :::note
 
 I know that we still haven't talked about functions and constructs, but don't worry if you don't 
 understand this now. You can come back here for reference after reading those parts or when you 
 encounter the error `Error: X was not declared in this scope`. I think, though, it's important to 
-introduce and cover also this topic before moving on.
+introduce and cover this topic before moving on.
 
 :::
 
@@ -56,7 +56,7 @@ difference between these two scope types.
 
 ## Naming conflicts
 
-It's usually best practice to avoid global variables when unnecessary, because it's easy to 
+It's usually best practice to avoid global variables when unnecessary because it's easy to 
 generate conflicts. 
 
 What if we have two variables with the same name but different scopes?

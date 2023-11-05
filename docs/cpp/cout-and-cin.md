@@ -24,7 +24,7 @@ The `cout` is used when we want to **print** some text or a value to the console
 The world itself stands for "**c**haracter **out**put".
 
 We already encountered this command in the previous chapter, when talking about printing "Hello 
-Wolrd!". This command will be used a lot in our programs.
+World!". This command will be used a lot in our programs.
 
 #### Syntax
 
@@ -38,7 +38,7 @@ cout << "some text";
 
 :::caution
 
-In C and in C++ double quotes `""` are used for strings variables (objects that represent 
+In C and in C++ double quotes `""` are used for string variables (objects that represent 
 sequences of characters). Technically a **string** is a one-dimensional array of characters, 
 called *string literal*. Don't use single quotes `''` for more than one **character**, since single 
 quotes can only represent 1 single character (**char** data type), which is called *character literal*.
@@ -62,11 +62,11 @@ int main() {
 }
 ```
 
-The output will be `1952807028`. Why on the earth does this number turn up?
+The output will be `1952807028`. Why on earth does this number turn up?
 
 That decimal number is a *multi-character literal*. It corresponds to the hexadecimal 
 `0x74657874` or the binary `01110100011001010111100001110100`. You can easily convert it 
-too [here](https://www.rapidtables.com/convert/number/decimal-to-binary.html) if you want to 
+[here](https://www.rapidtables.com/convert/number/decimal-to-binary.html) if you want to 
 check. 
 
 If we separate this long binary number into groups of **8 bits** (1 byte) excluding the 
@@ -123,7 +123,7 @@ However, it's better to do calculations outside of `cout`.
 ### Endl
 
 If we want to print two or more outputs to the console into separate lines, we need the `endl` 
-command. As in the case of the world "cout", the world itself stands for “end line”.
+command. As in the case of the word "cout", the word itself stands for “end line”.
 
 ```cpp {3}
 cout << "new line" << endl;

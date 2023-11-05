@@ -26,7 +26,7 @@ for (initialization; condition; update) {
 
 - The **initialization** statement sets an initial value for the counter variable. This happens only at the beginning of the loop.
 - Before every iteration, including the first one, the **condition** of the for loop is checked and the iterations continue until the condition is evaluated to false. In that case, the loop terminates
-- At every iteration, after successful execution of statements inside the body of the loop, the counter is **updated** with a specified increment (or decrement).
+- At every iteration, after the successful execution of statements inside the body of the loop, the counter is **updated** with a specified increment (or decrement).
 
 For example, this is a **loop that iterates 10 times with a counter starting from 0 and an increment of 1 for each iteration** (the value of `i` is printed to console):
 
@@ -56,7 +56,7 @@ for (int i=0; i<10; i++) { // ++i is fine too
 
 :::info Note
 
-The letter `i` (and the subsequent `j`, `k` and so on if needed) is conventionally used as the identifier (name) of the loop counter. It typically stands for "index" or "iterator" (or maybe integer, since it's the obvious choice for a loop counter), but you can use any letter you want.
+The letter `i` (and the subsequent `j`, `k` and so on if needed) is conventionally used as the identifier (name) of the loop counter. It typically stands for "index" or "iterator" (or maybe "integer", since it's the obvious choice for a loop counter), but you can use any letter you want.
 
 :::
 

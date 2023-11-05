@@ -84,7 +84,7 @@ returns the control back to the function that called it in the first place (so `
 in our example).
 
 At this moment the program follows its regular course from the same point at which it was 
-interrupted by the call to `area()`. But additionally, because the return statement in our
+interrupted by the call to `area()`. Additionally, because the return statement in our
 function `area()` specified a value, this value becomes the value of the function call.
 
 The variable `a` will be set to the value returned by the multiplication performed inside 
@@ -242,18 +242,18 @@ That's why with our actual program we get this output:
 
 To solve this problem we can pass arguments *by reference*. When we call and pass by reference, 
 actual and formal parameters refer to the **same memory location**, so when changes are made 
-to the formal parameters, also actual parameters will change. In this way we associate these 
+to the formal parameters, actual parameters will also change. In this way, we associate these 
 two types of parameters as a singular entity.
 
 In practice, the *invoked* function and the *invoking* function have the same parameters and 
-the eventual changes get reflected on both sides.
+the eventual changes are reflected on both sides.
 
 There are two ways to do this.
 
 To pass by reference is by prefixing each formal parameter with an ampersand symbol **`&`** in 
 the signature of the function.
 
-In our case the solution will be:
+In our case, the solution will be:
 ```cpp {1}
 void swap(int &x, int &y) {
 	int temp = x;
@@ -263,7 +263,7 @@ void swap(int &x, int &y) {
 ```
 
 Sometimes, you may see function parameters written in this way too: `void swap(int& x, int& y)`. 
-Here the `&` symbol is put immediately after thy type of each parameter (`int`) and after that, 
+Here the `&` symbol is put immediately after the type of each parameter (`int`) and after that, 
 there's a space. Both writings are completely equivalent (just like with pointers[^1]), so use 
 the one you prefer.
 
@@ -333,7 +333,7 @@ We said that when we pass an argument by value, the function parameter receives 
 argument. For fundamental types, making a copy of the argument into the function parameter is 
 cheap, so this is fine to do. However, copying is typically costly and relatively slow for 
 structured (*non-primitive*) data types (like arrays, `string` objects, structs and others), so 
-it's generally discouraged to do for efficiency reasons. We can avoid making an expensive copy 
+it's generally discouraged for efficiency reasons. We can avoid making an expensive copy 
 by passing **by reference** instead, even if you aren't going to change the parameter(s).
 
 :::note

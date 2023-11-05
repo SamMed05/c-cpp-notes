@@ -63,7 +63,7 @@ Compare two numbers entered by the user and print which one is bigger and lower.
 
 import multiplication_loop from '!!raw-loader!./code-snippets/multiplication-loop.cpp';
 
-Write a program to multiplicate a number entered by the user 10 times and print each multiplication to the console.
+Write a program to multiply a number entered by the user 10 times and print each multiplication to the console.
 
 <details>
 
@@ -101,7 +101,7 @@ Write a program that repeatedly asks for integers and adds them together until 0
 
 import numbers_in_range from '!!raw-loader!./code-snippets/numbers-in-range.cpp';
 
-Write a program that asks for the lower and upper limit of a numerical range, then accepts *n* numbers and checks if they are between that range or outside of it, printing the information on screen. The program keeps track of how many numbers arer inside the range with a counter.
+Write a program that asks for the lower and upper limit of a numerical range, then accepts *n* numbers and checks if they are between that range or outside of it, printing the information on screen. The program keeps track of how many numbers are inside the range with a counter.
 
 <details>
 
@@ -336,7 +336,7 @@ Write a program that calculates the factorial of a number *n* entered by the use
 
 import pythagorean_table from '!!raw-loader!./code-snippets/pythagorean-table.cpp';
 
-Write a program that prints on the console the pythagorean table.
+Write a program that prints on the console the Pythagorean table.
 
 <details>
 
@@ -391,7 +391,7 @@ Write a program that, given a number *num* between 1 and 10, adds its first 10 s
 
 import rectangle_pattern from '!!raw-loader!./code-snippets/rectangle-pattern.cpp';
 
-Write a program that asks for two integers, a base *b* and an height *h*, and prints the pattern of a rectangle using asterisks/stars ("* ") with *b* stars for the base and h stars for the height (check that both *b* and *h* are numbers between 1 and 10). For example, if b = 5 and h = 3 the output is:
+Write a program that asks for two integers, a base *b* and a height *h*, and prints the pattern of a rectangle using asterisks/stars ("* ") with *b* stars for the base and h stars for the height (check that both *b* and *h* are numbers between 1 and 10). For example, if b = 5 and h = 3 the output is:
 
 ```
 * * * * * 
@@ -549,7 +549,7 @@ A pendulum oscillates with a period *p* expressed in seconds which is a function
 
 import bmi_calculator from '!!raw-loader!./code-snippets/bmi-calculator.cpp';
 
-Write a program that calculates the BMI given a height and a weight. The BMI formula is the following:
+Write a program that calculates the BMI given a height and weight. The BMI formula is the following:
 
 $$
 

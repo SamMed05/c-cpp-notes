@@ -30,7 +30,7 @@ are expected every three or so years.
 :::info Curiosity
 
 Originally, the language was called "*C with classes*", but then C++ became the final name 
-because `++` is an operator which increments the value of a variable and using the "+" 
+because `++` is an operator that increments the value of a variable, and using the "+" 
 sign is a common naming convention among software developers to indicate an enhanced 
 computer program.
 
@@ -55,8 +55,8 @@ This means that you have all the features that are available in C, like:
 
 Existing C source code can be used in C++ programs.
 
-Various language elements were added to C++ other than OOP programming paradigm, such as 
-references, templates, exception handling and many more things which are important for 
+Various language elements were added to C++ other than the OOP programming paradigm, such as 
+references, templates, exception handling and many more things that are important for 
 an efficient program implementation.
 
 Don't worry, though! You don't have to already know all those concepts to start coding.
@@ -72,7 +72,7 @@ that the compilation and execution time is **really fast**. That's probably the 
 reason why it's often chosen over other languages, but it's not the only one.
 
 Another key aspect of C++ is its [**high-level nature**](https://en.wikipedia.org/wiki/High-level_programming_language), 
-making it easier to learn, read, understand and, most importantly, to work with.
+making it easier to learn, read, understand, and, most importantly, to work with.
 
 In addition to being a high-performance language, it also gives the programmer precise 
 control over memory and other resources of the computer, making it a bit harder to 
@@ -120,15 +120,15 @@ int main()
 
 We will see what those words mean and what to put instead of the generic three dots 
 `...`, but for what matters in this section, it's just important to remember that each 
-program that you write contains a `main()` function, and in here you will write 
+program that you write contains a `main()` function, and here you will write 
 the instructions needed for the program to work properly.
 
-Every single program must have that special function, called in that way (all lower case 
+Every single program must have that special function, called in that way (all lowercase 
 letters). When the program is run, the instructions or statements inside of main are 
 executed in sequential order.
 
-We'll cover what a function is in a future chapter, but for now just know that it is a 
-collection of instructions that can be reused and they have a name which identifies them 
+We'll cover what a function is in a future chapter, but for now, just know that it is a 
+collection of instructions that can be reused and they have a name that identifies them 
 followed by two parentheses at the end like this: `function()` and eventually some 
 "things" inside `(...)`, called parameters.
 
@@ -181,7 +181,7 @@ Some languages like Python use indentation as an important part of their syntax,
 influences how the code is interpreted by the interpreter.
 
 This **does not** happen in C and C++, because the compiler ignores whitespace. For this reason, 
-we say that they are **whitespace-independent** languages. Instead we use braces to tell the 
+we say that they are **whitespace-independent** languages. Instead, we use braces to tell the 
 compiler that a piece of code belongs (it's inside) a block of other code or not.
 
 That means that indentation would be optional, but it's important anyway for keeping a 
@@ -189,7 +189,7 @@ good level of readability.
 
 Usually, if you use an IDE with a text editor, when you press <kbd>ENTER/RETURN ⏎</kbd> on 
 the keyboard it automatically adds one **tab-sized whitespace**. In the other cases, you can 
-add it by pressing the <kbd>TAB ⇆</kbd> key. It's fine using also four (or sometimes three or 
+add it by pressing the <kbd>TAB ⇆</kbd> key. It's also fine using four (or sometimes three or 
 two) spaces instead, but I wouldn't recommend that.
 
 Indentation is used like this:
@@ -243,8 +243,8 @@ specifically about the programming phase. Let's see how it works.
 To run the programs that we'll make, we need a place to execute the code. The IDEs out 
 there will help us.
 
-IDE is an acronym which stands for **I**ntegrated **D**evelopment **E**nvironment, and 
-it's an environment, or place, or piece of software that help the programmer in the 
+IDE is an acronym that stands for **I**ntegrated **D**evelopment **E**nvironment, and 
+it's an environment, place, or piece of software that helps the programmer in the 
 development and debugging phases of a program.
 
 It provides the developer with some facilities and tools, like a source code editor, build 
@@ -295,7 +295,7 @@ that have been compiled previously.
 ### Debugging
 
 Debugging is made by the debugger, which is a program that reads step by step every single 
-line of code to check if there are any errors which cause malfunctions in the program itself.
+line of code to check if there are any errors that are causing malfunctions in the program itself.
 
 
 [^1]: [Wikipedia - Comment (computer programming)](https://en.wikipedia.org/wiki/Comment_(computer_programming)#:~:text=a%20comment%20is%20a%20programmer-readable%20explanation%20or%20annotation%20in%20the%20source%20code%20of%20a%20computer%20program)

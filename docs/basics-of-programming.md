@@ -5,7 +5,7 @@ title: Basics of programming
 hide_title: false
 hide_table_of_contents: false
 sidebar_label: Basics
-description: Introduction to the basic principles in programming and problem solving.
+description: Introduction to the basic principles in programming and problem-solving.
 slug: /basics
 custom_edit_url: null
 ---
@@ -18,7 +18,7 @@ A program is made with a sequence of certain phases, and the process through whi
 4. Testing
 5. Validation
 
-![Problem solving process diagram](./assets/problem-solving-process.svg)
+![Problem-solving process diagram](./assets/problem-solving-process.svg)
 <figcaption>Fig.1. A diagram describing the general process to solve a problem.</figcaption>
 
 This sequence of steps leads the developer to create a functional program that can automate a task or solve a problem. 
@@ -57,7 +57,7 @@ While programming (or coding) in general, it's important to keep in mind some re
 - Use meaningful names for variables
 - Code as if another person will have to read it tomorrow, without being in your mind
 - Don't learn pieces of code by heart: train your logic to be able to (re)write them later whenever you need them
-- Keep the code well commented
+- Keep the code well-commented
 - Don't use [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)) (hard-coded values that are difficult to update and to reason about)
 - Complicated is different from complex, and it's better to avoid the first one: *Keep It Simple*
 - Give the right importance to indentation and readability

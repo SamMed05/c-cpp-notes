@@ -12,7 +12,7 @@ custom_edit_url: null
 
 The do-while loop is very similar to the while loop but with one important difference: whilst the while latter evaluates first and then executes the statements, using a condition specified at the beginning of the loop, the do-while loop evaluates after the first execution and the condition isn't specified until after its body.
 
-This means that the body of a do-while looop is always **executed at least once**, regardless of whether the condition is met.
+This means that the body of a do-while loop is always **executed at least once**, regardless of whether the condition is met.
 
 ![While loop flowchart](../assets/do-while-loop-flowchart.svg)
 <figcaption>Fig.1. Flowchart of the do-while loop.</figcaption>
@@ -28,7 +28,7 @@ do {
 ### Example
 
 
-Let's take the previous lesson's example and convert is to a program that uses a do-while loop:
+Let's take the previous lesson's example and convert it to a program that uses a do-while loop:
 
 ```cpp
 int count = 1; // initialize the counter
@@ -47,7 +47,7 @@ do {
 
 ### Use
 
-Do-while loops are usually used for checking that the input of the user is correct. In particular, the input is prompted to the user repeatedly until it inserts a valid input. For example:
+Do-while loops are usually used to check that the input of the user is correct. In particular, the input is prompted to the user repeatedly until it inserts a valid input. For example:
 
 ```cpp title="positive-number-input.cpp" {7-10}
 #include <iostream>

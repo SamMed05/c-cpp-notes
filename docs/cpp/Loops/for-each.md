@@ -10,15 +10,15 @@ slug: /cpp/for-each
 custom_edit_url: null
 ---
 
-A more recent and less known type of loop is the for-each loop. It was introduced with the C++11 (2011) and it is useful for iterating over the elements of an array (or other iterable data structures) quickly.
+A more recent and less known type of loop is the for-each loop. It was introduced with C++11 (2011) and it is useful for iterating over the elements of an array (or other iterable data structures) quickly.
 
 :::caution
 
-We haven't talked about arrays and other structured data types yet. If you don't know what they are tou can safely skip this page and go to the next session. You can come back later when we'll talk about arrays in a future lesson.
+We haven't talked about arrays and other structured data types yet. If you don't know what they are you can safely skip this page and go to the next session. You can come back later when we'll talk about arrays in a future lesson.
 
 :::
 
-It is a more convenient way to traverse the elements because it eliminates the the need for explicit index manipulation, making the code cleaner and less error-prone. The key aspect of this type of loop is that it **executes whatever is defined inside it's body for every element** rather than doing something n times like a simple for loop would.
+It is a more convenient way to traverse the elements because it eliminates the need for explicit index manipulation, making the code cleaner and less error-prone. The key aspect of this type of loop is that it **executes whatever is **defined inside **its** body for** every element** rather than doing something n times like a simple for loop would.
 
 The syntax of the for-each loop in C++ is the following:
 
@@ -30,7 +30,7 @@ for (type var_name : array_name) {
 
 ### Explanation
 
-- `type` represents the data type of the elements in the array or collection you want to iterate over. For example, if you have an array of integers, int would be the type.
+- `type` represents the data type of the elements in the array or collection you want to iterate over. For example, if you have an array of integers, `int` would be the type.
 - `var_name` is the name you give to a new variable that will hold the value of each element in the collection during each iteration of the loop. At every new iteration, `var_name` will hold the value of the next element in the container.
 - `array_name` is the name of the array or collection you want to traverse. It can be any iterable data set (array, vector, list, etc).
 
