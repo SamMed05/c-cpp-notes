@@ -12,6 +12,7 @@ custom_edit_url: null
 
 
 A program is made with a sequence of certain phases, and the process through which it is created can vary a lot, but generally it looks like this:
+
 1. Analysis of the problem
 2. Design/planning
 3. Programming
@@ -19,9 +20,9 @@ A program is made with a sequence of certain phases, and the process through whi
 5. Validation
 
 ![Problem-solving process diagram](./assets/problem-solving-process.svg)
-<figcaption>Fig.1. A diagram describing the general process to solve a problem.</figcaption>
+<figcaption>Fig.1. A diagram describing the general process of solving a problem.</figcaption>
 
-This sequence of steps leads the developer to create a functional program that can automate a task or solve a problem. 
+This sequence of steps leads the developer to create a functional program that can automate a task or solve a problem.
 
 In the testing phase the developer checks if what has been done is working as expected, and if not, it starts again by thinking and designing a new potential solution by adopting different strategies.
 
@@ -58,9 +59,9 @@ While programming (or coding) in general, it's important to keep in mind some re
 - Code as if another person will have to read it tomorrow, without being in your mind
 - Don't learn pieces of code by heart: train your logic to be able to (re)write them later whenever you need them
 - Keep the code well-commented
-- Don't use [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)) (hard-coded values that are difficult to update and to reason about)
+- Don't use [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)) (hard-coded values that are often unclear and difficult to update)
 - Complicated is different from complex, and it's better to avoid the first one: *Keep It Simple*
 - Give the right importance to indentation and readability
 - Think in advance about the reusability of the code you are writing now.
 
-Following these steps, along with practice and a strong (strong!) motivation, will transform you in a good and proud programmer.
+Following these steps, along with a lot of practice and strong motivation, will transform you into an excellent programmer.

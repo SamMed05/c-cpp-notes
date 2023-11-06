@@ -81,14 +81,18 @@ const char NEWLINE = '\n';
 The syntax is very strict and you can't omit any of the parts of the constant declaration:
 
 ```cpp
+// This will error
 const int x; // ❌
 
+// This will error
 const int x; x = 5; // ❌
 
-const int x = 5; // ✔
+// This is correct
+const int x = 5; // ✔️
 
 int num = 2;
-const int x = num; // ✔
+// This is correct
+const int x = num; // ✔️
 ```
 
 As you can see the constants must be initialized with a value (it's fine also to initialize with 
@@ -104,7 +108,7 @@ Actually, C++ will accept `const` either before or after the type, but it's reco
 the standard where the type comes before the identifier[^1].
 
 ```cpp
-int const x = 5; // ✔, but not preferred
+int const x = 5; // ok, but not preferred
 ```
 
 :::

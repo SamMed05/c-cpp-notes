@@ -20,12 +20,15 @@ the numbers using just two variables because when a value is passed from one var
 other you replace the old number with a new one and you lose it forever. Read this example 
 line by line:
 
-```cpp {5,6}
+```cpp
 a = 5;
 b = 2;
 
+// highlight-next-line
 // doesn't work
+// This will error
 a = b; // now a = 2
+// This will error
 b = a; // ❌ no!
 ```
 

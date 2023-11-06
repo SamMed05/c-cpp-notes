@@ -270,6 +270,10 @@ const config = {
           className: 'code-block-error-line',
           line: 'This will error',
         },
+        {
+          className: 'code-block-correct-line',
+          line: 'This is correct',
+        },
       ],
       },
 	  

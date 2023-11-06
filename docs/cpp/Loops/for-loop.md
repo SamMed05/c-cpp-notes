@@ -94,8 +94,11 @@ A frequently occurring logic error for programmers is the "off-by-one error", in
 
 ```cpp
 // loop n times
+// This will error
 for (int i=1; i<n; i++) { ... } // ❌ n-1 times
+// This will error
 for (int i=0; i<=n; i++) { ... } // ❌ n+1 times
+// This is correct
 for (int i=0; i<n; i++) { ... } // ✔️ n times
 ```
 
