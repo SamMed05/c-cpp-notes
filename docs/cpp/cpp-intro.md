@@ -220,12 +220,10 @@ tree-like structure that makes code more beautiful and less difficult to read.
 The type of indentation styling used above (and the one I personally prefer) is called 
 **K&R style**, or "one true brace style". It's one of the most common together with the
 *Allman style* and you can freely choose the one you prefer. To read the full list of indentation 
-styles, visit the [Wikipedia page](https://en.wikipedia.org/wiki/Indentation_style) and see this 
-nice [GitHub gist](https://gist.github.com/jesseschalken/0f47a2b5a738ced9c845) by Jesse Schalken 
-to learn more about K&R style.
+styles, visit the [Wikipedia page](https://en.wikipedia.org/wiki/Indentation_style).
 
-![How K&R indentation style works](https://camo.githubusercontent.com/5f8d4e9df81bc42386b42b5a3a286f724c1e001c441330483fa26b8e30f04d3a/68747470733a2f2f692e696d6775722e636f6d2f567758395876332e706e67)
-<figcaption>Fig.2. A clear representation of how to read nested blocks when using the K&R indentation style (from Jesse Schalken's gist).
+![How K&R indentation style works](assets/KR-indentation-style.png)
+<figcaption>Fig.2. A clear representation of how to read nested blocks when using the K&R indentation style (from <a href="https://gist.github.com/jesseschalken/0f47a2b5a738ced9c845">Jesse Schalken's GitHub gist</a>).
 </figcaption>
 
 
