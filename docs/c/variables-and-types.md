@@ -79,7 +79,7 @@ extern float func(int, float); // same as above
 
 :::
 
-### Declaration Syntax
+### Declaration syntax
 
 The general syntax for declaring a variable is:
 
@@ -89,7 +89,7 @@ type identifier;
 type identifier_1, identifier_2, ...;
 ```
 
-#### Valid Identifiers
+#### Valid identifiers
 
 A valid identifer must follow some rules:
 
@@ -115,7 +115,7 @@ char for;         // 'for' is a keyword
 
 Go [here](/docs/cpp/variables-and-types#syntax) to see the the full list of reserved keywords.
 
-### Variable Initialization
+### Variable initialization
 
 ![Variable declaration](../assets/variable-declaration.svg)
 <figcaption>Fig.1. The names of the parts of a variable declaration and initialization.</figcaption>
@@ -178,7 +178,7 @@ For a very clear and well made explanation of this, I recommend this video by Th
 
 ---
 
-## Data Types
+## Data types
 
 C provides several built-in (primitive) data types. These types determine the size and layout of the variable's memory, the range of values it can store, and the operations that can be performed on it.
 
@@ -287,7 +287,7 @@ You can also add suffixes to specify the type of an integer literal:
 
 :::
 
-### Floating-Point types
+### Floating-point types
 
 Floating-point types store real numbers (with fractional parts).
 
@@ -297,7 +297,7 @@ Floating-point types store real numbers (with fractional parts).
 | `double`  |          8            | Double-precision floating-point. More precise, but uses more memory. Generally preferred for most cases. |
 | `long double` |         16           | Extended precision floating-point. Offers the highest precision, but not all platforms support it.   |
 
-#### Floating-Point Literals
+#### Floating-Point literals
 
 Floating-point literals can be written in decimal notation (e.g., `3.14`, `-0.5`, `2.0`) or scientific notation (e.g., `1.23e4` which is 1.23 * 10<sup>4</sup>, `2.0e-3` which is 2.0 * 10<sup>-3</sup>).
 
