@@ -12,9 +12,9 @@ custom_edit_url: null
 
 :::note
 
-These C notes are from the Computer Science programming course I attended at university, so they will cover more advanced topics.
+These C notes are from the Computer Science programming course I attended at university, so they will cover more broad and advanced topics.
 
-Instead, I wrote the C++ mini-guide when I was in high school, so they are probably more beginner friendly and I'd suggest to start from those first.
+Instead, I wrote the C++ mini-guide in earlier chapters during high school, while attending a simpler programming course, so it is likely more beginner-friendly. Consider starting with that guide first if you are new to programming.
 
 :::
 
