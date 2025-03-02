@@ -30,7 +30,7 @@ There are mainly two types of variable scopes:
 ### Local (block scope)
 
 Local variables are variables declared **inside a code block** (so anything between `{` and `}`, 
-like in [functions](https://c-cpp-notes.vercel.app/docs/cpp/functions), if statements, loops etc.) 
+like in [functions](/docs/cpp/functions), if statements, loops etc.) 
 and they do not exist outside the block in which they are declared, i.e. they **can not be accessed** 
 or used outside that block. Local variables are not known to the functions outside their own.
 

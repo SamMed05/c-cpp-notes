@@ -29,7 +29,7 @@ There are two types of header files:
 An example of a header file is the built-in `iostream` standard library header 
 ([full list](https://en.cppreference.com/w/cpp/header)), which contains the declarations related 
 to objects like `cin` and `cout` used for manipulating I/O streams, as we saw in the 
-[Cout/Cin lesson](https://c-cpp-notes.vercel.app/docs/cpp/cout-and-cin).
+[Cout/Cin lesson](/docs/cpp/cout-and-cin).
 
 ### Content and differences
 

@@ -96,8 +96,7 @@ const int x = num; // ✔️
 ```
 
 As you can see the constants must be initialized with a value (it's fine also to initialize with 
-other variables). `const` can also be used with 
-[function parameters](https://c-cpp-notes.vercel.app/docs/cpp/passage-of-values) ensuring that 
+other variables). `const` can also be used with [function parameters](/docs/cpp/passage-of-values) ensuring that 
 the parameter’s value is not changed inside the function, but when arguments are passed by value 
 this is unnecessary. Again, don't worry if you don't understand this part: we will see that in a 
 future section.
