@@ -117,7 +117,7 @@ Go [here](/docs/cpp/variables-and-types#syntax) to see the the full list of rese
 
 ### Variable initialization
 
-![Variable declaration](../assets/variable-declaration.svg)
+![Variable declaration](../c/assets/variable-declaration.svg)
 <figcaption>Fig.1. The names of the parts of a variable declaration and initialization.</figcaption>
 
 You can initialize a variable (assign it an initial value) at the time of declaration:
