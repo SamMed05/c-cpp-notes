@@ -119,9 +119,19 @@ const config = {
           },
           //{to: '/blog', label: 'Blog', position: 'left'},
 		  
-		  
+          {
+            label: 'Exercism (practice)',
+            position: 'right',
+            href: 'https://exercism.org/tracks/cpp/exercises',
+          },
+          {
+            label: 'C++ Shell (web compiler)',
+            href: 'https://cpp.sh/',
+            position: 'right',
+          },
+
 		      {
-            label: 'Links',
+            label: 'Personal links',
             position: 'right',
             items: [
               {
