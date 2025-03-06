@@ -18,6 +18,12 @@ const config = {
   //organizationName: 'facebook', // Usually your GitHub org/user name.
   projectName: 'c-cpp-notes', // Usually your repo name.
   
+  // Enable Mermaid in Markdown (npm install --save @docusaurus/theme-mermaid)
+  // markdown: {
+  //   mermaid: true,
+  // },
+  // themes: ['@docusaurus/theme-mermaid'],
+
   // https://docusaurus.io/docs/markdown-features/math-equations
   stylesheets: [
     {
