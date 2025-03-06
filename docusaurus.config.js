@@ -149,6 +149,14 @@ const config = {
             position: 'right',
             items: [
               {
+                href: 'https://www.learn-cpp.org/',
+                label: 'learn-cpp.org',
+              },
+              {
+                href: 'https://www.edx.org/learn/computer-science/harvard-university-cs50-s-introduction-to-computer-science',
+                label: 'HarvardX: CS50\'s Introduction to Computer Science',
+              },
+              {
                 href: 'https://www.learncpp.com/',
                 label: 'LearnCpp.com',
               },

@@ -337,6 +337,7 @@ html {
 .output code {
   color: #fff !important;
   background-color: #000 !important;
+  border-radius: 10px;
   display: block;
   margin-bottom: 1rem;
   margin-top: 1rem;

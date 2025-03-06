@@ -21,6 +21,12 @@ int main() {
 }
 ```
 
+<div class="output">
+    <code class="output">
+    Hello, World!<br/>
+    </code>
+</div>
+
 Here's a graphical breakdown of the code:
 
 ![hello world visual description](../c/assets/hello-world-c.svg)
