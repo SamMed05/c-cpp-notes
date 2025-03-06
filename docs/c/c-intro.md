@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 id: c-intro
 title: Introduction to C
 hide_title: false

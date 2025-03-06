@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 4
 id: variables-and-types
 title: Variables and types
 hide_title: false
