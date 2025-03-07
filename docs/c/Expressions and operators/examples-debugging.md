@@ -1,12 +1,12 @@
 ---
-sidebar_position: 6
-id: exercises_c_1
-title: Exercises (Part 1)
+sidebar_position: 2
+id: examples-debugging
+title: Examples and debugging
 hide_title: false
 hide_table_of_contents: false
-sidebar_label: EXERCISES
-description: Exercises.
-slug: /c/exercises_1
+sidebar_label: Examples and debugging
+description: Examples and debugging.
+slug: /c/examples-debugging
 custom_edit_url: null
 ---
 
@@ -259,7 +259,7 @@ int main() {
 2. Click in the margin to the left of a line number to set a breakpoint (a red dot will appear)
 3. Start debugging by pressing F5 or clicking the "Run and Debug" button
 
-![Breakpoint](../c/assets/breakpoint.png)
+![Breakpoint](../assets/breakpoint.png)
 <figcaption>Screenshot of Visual Studio Code with a C program open. To add a breakpoint, click in the margin to the left of the line number where you want to pause execution. A red dot will appear, indicating the breakpoint.</figcaption>
 
 ### Watching variables change
@@ -268,7 +268,7 @@ int main() {
 2. Use the "Step Over" button (F10) to execute the next line
 3. Watch how variable values change after each operation
 
-![Stepping through code](../c/assets/variable-change.png)
+![Stepping through code](../assets/variable-change.png)
 <figcaption>Screenshot of Visual Studio Code with a C program open. The debugger is active, showing variable values in the "Variables" panel. To step through the code, use the "Step Over" button (press F10).</figcaption>
 
 This technique allows you to visualize how expressions are evaluated step-by-step and helps identify any issues in your code, a very important job of software development.

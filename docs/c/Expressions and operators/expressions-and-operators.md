@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 1
 id: expressions-and-operators
 title: Expressions and operators
 hide_title: false
@@ -143,7 +143,7 @@ An expression is:
 
 In heterogeneous expressions, C promotes/converts primitive data types *implicitly* following this hierarchy:
 
-![C implicit type conversion hierarchy](../c/assets/c-implicit-casting.svg)
+![C implicit type conversion hierarchy](../assets/c-implicit-casting.svg)
 
 #### Examples of automatic type promotion
 
