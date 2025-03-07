@@ -10,7 +10,7 @@ slug: /c/examples-debugging
 custom_edit_url: null
 ---
 
-Let's now explore some practical examples to better understand the concepts we've covered in the last chapter. Open VS Code or go to [C/C++ Shell](https://cpp.sh/) in your browser to execute the following programs. To debug, see [below](/docs/c/exercises_1#debugging-expressions-in-c).
+Let's now explore some practical examples to better understand the concepts we've covered in the last chapter. Open VS Code or go to [C/C++ Shell](https://cpp.sh/) in your browser to execute the following programs. To debug, see [below](/docs/c/examples-debugging#debugging-expressions-in-c).
 
 <!-- import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
