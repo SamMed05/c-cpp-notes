@@ -379,7 +379,7 @@ This would run forever since `b` never changes.
 The do-while loop is similar to the while loop, but the condition is evaluated after each iteration. This ensures that the loop body is executed at least once.
 
 ![Do-while loop flowchart](../c/assets/do-while-loop-flowchart.svg)
-<figcaption>Fig.2. Flowchart of the while loop.</figcaption>
+<figcaption>Fig.2. Flowchart of the do-while loop.</figcaption>
 
 Syntax:
 ```c
