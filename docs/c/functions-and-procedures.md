@@ -200,3 +200,99 @@ For procedures:
 - The return type is specified as `void`
 - The `return` statement isn't required (though you can use `return;` to exit early)
 - They're used for their effects (like displaying output) rather than computing a value
+
+---
+
+## Examples and important considerations
+
+### Functions calling other functions
+
+Functions can call other functions, creating a hierarchy of function calls:
+
+```c
+#include <math.h>
+
+float distance(float x1, float y1, float x2, float y2) {
+    float dx = x2 - x1;
+    float dy = y2 - y1;
+    return sqrt(dx*dx + dy*dy);  // Calls the sqrt function
+}
+
+int main() {
+    float result = distance(1.0, 2.0, 4.0, 6.0);  // Calls the distance function
+    printf("Distance: %f\n", result);
+    return 0;
+}
+```
+
+In this example, `main` calls `distance`, which calls `sqrt`. This demonstrates how **functions can be nested within each other's calls**.
+
+:::info Function Call Stack
+When a function calls another function, the calling function's execution is paused until the called function completes. The system keeps track of these paused functions in a structure called the "call stack." When the innermost function finishes, control returns to the function that called it, and so on.
+:::
+
+### Function declaration order
+
+Generally, a function must be declared before it can be called:
+
+```c
+int main() {
+    int result = add(5, 3);  // Error if add is not declared yet
+    printf("Result: %d\n", result);
+    return 0;
+}
+
+int add(int a, int b) {  // This definition comes too late
+    return a + b;
+}
+```
+
+:::tip Forward Declarations
+You can use function prototypes to declare a function before its full definition:
+
+```c
+// Forward declaration (prototype)
+int add(int a, int b);
+
+int main() {
+    int result = add(5, 3);  // Now this works!
+    printf("Result: %d\n", result);
+    return 0;
+}
+
+int add(int a, int b) {  // Full definition can come later
+    return a + b;
+}
+```
+
+This is particularly useful in larger programs where functions might be defined in different files or when functions call each other.
+:::
+
+### The special case of main()
+
+The `main` function is special in C programs:
+
+1. It serves as the entry point - execution always begins here
+2. It's automatically called when the program starts
+3. Its return value is passed to the operating system as an exit code
+   - Return `0` indicates successful execution
+   - Non-zero values typically indicate errors
+
+```c
+int main() {
+    printf("Hello, World!\n");
+    // No explicit return statement
+}
+```
+
+:::caution Implicit return
+In general, the return statement is never mandatory at the end of a function, even if the function return type is not void. No diagnostic is required and it is not undefined behavior. However, **reading** the return value of those function with missing return statement an **undefined behavior**.
+
+The `main` function is the only function where a `return 0;` is implied if you reach the end without a return statement. This is a [special exception made by the C standard](https://www.open-std.org/jtc1/sc22/WG14/www/docs/n1256.pdf#25), and it probably exists because:
+
+- Most programs should return 0 on success
+- It reduces boilerplate code in simple programs
+- It ensures programs always provide a valid exit code to the operating system
+
+However, for clarity and to follow good programming practices, it's still recommended to explicitly include `return 0;` in your `main` function.
+:::
