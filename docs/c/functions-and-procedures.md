@@ -201,6 +201,78 @@ For procedures:
 - The `return` statement isn't required (though you can use `return;` to exit early)
 - They're used for their effects (like displaying output) rather than computing a value
 
+## Global variables
+
+Variables can also be defined outside of any function. These are called **global variables** and have different scope and lifetime characteristics:
+
+- They're accessible from any function in the same file (after their declaration)
+- They exist for the entire duration of the program
+- They're automatically initialized to zero if not explicitly initialized
+
+```c
+#include <stdio.h>
+
+int global_counter = 0;  // Global variable
+
+void increment_counter() {
+    global_counter++;  // Modifies the global variable
+}
+
+int main() {
+    printf("Counter: %d\n", global_counter);  // 0
+    
+    increment_counter();
+    printf("Counter: %d\n", global_counter);  // 1
+    
+    increment_counter();
+    printf("Counter: %d\n", global_counter);  // 2
+    
+    return 0;
+}
+```
+
+:::caution
+While global variables can be convenient, they're generally considered bad practice for several reasons:
+- They make it difficult to track which functions modify them
+- They create hidden dependencies between functions
+- They can lead to unexpected side effects
+- They make code harder to test and debug
+
+Use global variables sparingly and only when truly necessary, such as for configuration values or truly global state that many functions need to access.
+:::
+
+## Static local variables
+
+C allows you to create **static local variables** using the `static` keyword. These variables:
+
+- Are only accessible within their defining function (like regular local variables)
+- Retain their value between function calls (unlike regular local variables)
+- Are initialized only once when program execution first reaches their definition
+- Are automatically initialized to zero if not explicitly initialized
+
+```c
+#include <stdio.h>
+
+void count_calls() {
+    static int counter = 0;  // Static local variable
+    counter++;
+    printf("This function has been called %d time(s)\n", counter);
+}
+
+int main() {
+    count_calls();  // "This function has been called 1 time(s)"
+    count_calls();  // "This function has been called 2 time(s)"
+    count_calls();  // "This function has been called 3 time(s)"
+    return 0;
+}
+```
+
+Static local variables are useful when a function needs to maintain state between calls without exposing that state to other functions.
+
+:::warning
+Static local variables should be used with caution in multithreaded programs, as they can cause [race conditions](https://en.wikipedia.org/wiki/Race_condition#In_software) when multiple threads call the same function simultaneously.
+:::
+
 ---
 
 ## Examples and important considerations
