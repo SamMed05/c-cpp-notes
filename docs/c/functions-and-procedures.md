@@ -1,0 +1,202 @@
+---
+sidebar_position: 8
+id: functions-and-procedures
+title: Functions and Procedures
+hide_title: false
+hide_table_of_contents: false
+sidebar_label: Functions and Procedures
+description: Functions and procedures in C
+slug: /c/functions-and-procedures
+custom_edit_url: null
+---
+
+Functions are one of the most critical concepts in programming (not only for C), allowing developers to organize your code into reusable, structured blocks.
+
+## Introduction to Functions
+
+A function is a **self-contained block of code that performs a specific task**.
+
+Functions help divide a program into smaller, manageable pieces, promoting code reuse and organization.
+
+In programming, just as in mathematics, functions:
+
+- Take input values (parameters)
+- Process them using an algorithm
+- Return results
+
+We've already used functions like `printf()`, `sqrt()`, and `pow()`, so it's not a completely new concept.
+
+Let's see how to make our own!
+
+## Function definition
+
+The syntax for defining a function in C is:
+
+```c
+return_type function_name(parameter_list) {
+    // function body statements
+    return value; // optional depending on return_type
+}
+```
+
+- `return_type` specifies the data type of the value returned by the function
+- `function_name` is the identifier used to call the function
+- `parameter_list` specifies the type and name of each parameter (can be empty)
+- The function body contains the statements to be executed when the function is called
+
+### Example of a function definition
+
+```c
+int max(int a, int b) {
+    if (a >= b) return a;
+    else return b;
+}
+```
+
+In this basic example:
+
+- The function name is `max`
+- It takes two integer parameters (`a` and `b`)
+- It returns an integer
+- It compares two values and returns the larger one
+
+## Function declaration (Prototype)
+
+Before using a function, you must declare it. A function declaration (or prototype) informs the compiler about:
+
+- The function name
+- The return type
+- The number and types of parameters
+
+Syntax:
+
+```c
+return_type function_name(parameter_type_list);
+```
+
+Examples:
+
+```c
+int factorial(int);  // Or int factorial(int n);
+double convert_currency(double amount, double rate);
+```
+
+## Function calls
+
+Once defined, you can call a function using its name followed by a list of arguments in parentheses:
+
+```c
+int x = 3, y = 5, z;
+z = max(x, y);  // Function call
+```
+
+Function calls involve these steps:
+
+1. Evaluating the arguments
+2. Setting up memory for the function parameters
+3. Copying the arguments to the parameters
+4. Transferring control to the function
+5. Executing the function code
+6. Evaluating the return value
+7. Transferring control and result back to the caller
+
+## Parameters and Arguments
+
+When working with functions, we use two terms:
+
+- **Formal parameters**: The variables declared in the function definition
+- **Actual arguments**: The values provided when calling the function
+
+Parameter passing in C is positional - the first argument is assigned to the first parameter, and so on.
+
+### Function call dynamics
+
+Consider this example:
+
+```c
+int main() {
+    int a = 3, b = 5;
+    int result = max(2*a, b);
+    return 0;
+}
+
+int max(int a, int b) {
+    if (a >= b) return a;
+    else return b;
+}
+```
+
+When `max(2*a, b)` is called:
+
+1. The expressions `2*a` (which is 6) and `b` (which is 5) are evaluated
+2. Memory is allocated for the function's local variables
+3. The values 6 and 5 are copied to the formal parameters `a` and `b` in the function
+4. The function executes and determines that 6 is greater than 5
+5. The value 6 is returned to the calling function
+6. Control returns to `main()` and 6 is assigned to `result`
+
+## Special cases
+
+#### Functions without parameters
+
+A function may have no parameters:
+
+```c
+float pi() {
+    return 3.14159;
+}
+```
+
+#### Functions without return values
+
+In some cases, you might want a function that performs actions but doesn't need to return a value. Use the `void` return type:
+
+```c
+void display_greeting(void) {
+    printf("Hello, World!\n");
+}
+```
+
+The `void` keyword indicates:
+
+- As a return type: the function doesn't return a value
+- As a parameter list: the function doesn't accept any parameters
+
+## Local variables and scope
+
+Variables defined inside a function are called local variables:
+
+- They exist only during the function's execution
+- They are only accessible from within the function
+- They're destroyed when the function completes
+
+```c
+int calculate_sum(int a, int b) {
+    int result = a + b;  // 'result' is a local variable
+    return result;
+}  // 'result' is destroyed here
+```
+
+### Activation records
+
+When a function is called, memory is allocated for all its local variables. This memory area is called the activation record or stack frame. When the function completes, this memory is deallocated.
+
+Therefore, the lifetime of variables defined inside a function is the same as the activation record (i.e. the call).
+
+## Procedures (void functions)
+
+Functions that don't return a value are often called procedures in programming terminology. In C, they're implemented as functions with a `void` return type:
+
+```c
+void print_square(int x) {
+    printf("%d", x*x);
+    // No return statement needed, but you can still write:
+    return;
+}
+```
+
+For procedures:
+
+- The return type is specified as `void`
+- The `return` statement isn't required (though you can use `return;` to exit early)
+- They're used for their effects (like displaying output) rather than computing a value
