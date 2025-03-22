@@ -464,32 +464,33 @@ Sum of numbers 1 to 10: 55
 </code>
 </div>
 
-### Infinite Loops with For
+### Infinite Loops with For and While
 
-The for loop can create an infinite loop by omitting the condition part:
+The for loop can create an infinite loop by omitting the index, condition and increment part (oftentimes the first part is omitted if the index already exists outside the loop):
 
 ```c {title="infinite_for.c"}
 for (;;) {
     printf("This is an infinite loop\n");
     // This loop runs forever
 }
+
+int i = 0;
+for (; i < n; i++) { // no initialization expression
+    // ...
+}
 ```
 
-Comparing infinite loops with for and while:
+Infinite loops can also be done with while loops, and both of these forms achieve the same result:
 
 ```c
-// Infinite loop with while
-while (1) {
+while (true) {
     // Loop body
 }
 
-// Equivalent infinite loop with for
 for (;;) {
     // Loop body
 }
 ```
-
-Both achieve the same result, but the `for (;;)` version is slightly more concise and is recognized by experienced C programmers as an intentional infinite loop.
 
 #### Evolution of a For Loop
 

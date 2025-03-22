@@ -107,7 +107,7 @@ int main() {
     float f = 1 <= 3 && 2 <= 4;
     
     // Some examples to avoid
-    float g = 2 <= 3 <= 4;    // Not what you might expect!
+    float g = 2 <= 3 <= 4;    // Confusing chain of comparisons
     float h = (2 != 3) * 4;   // Mixing comparison and multiplication
     float i = 1 < 3 == 2 < 4; // Confusing chain of comparisons
     
@@ -117,9 +117,9 @@ int main() {
     printf("d = %.1f\n", d);
     printf("e = %.1f\n", e);
     printf("f = %.1f\n", f);
-    printf("g = %.1f\n", g);  // Results might be unexpected
+    printf("g = %.1f\n", g);
     printf("h = %.1f\n", h);
-    printf("i = %.1f\n", i);  // Results might be unexpected
+    printf("i = %.1f\n", i);
     return 0;
 }
 ```
@@ -152,21 +152,18 @@ int main() {
     // Increment and decrement have two notations
     int b = a++;  // Postfix notation (denotes the value before increment)
     printf("b = %d, a = %d\n", b, a);  // Output: b = 12, a = 13
-    
     int c = ++a;  // Prefix notation (denotes the value after increment)
     printf("c = %d, a = %d\n", c, a);  // Output: c = 14, a = 14
     
     // Some operators have a compact notation when combined with assignment
     a += 2;  // Equivalent to: a = a + 2
     printf("a += 2: %d\n", a);  // Output: 16
-    
     a -= 2;  // Equivalent to: a = a - 2
     printf("a -= 2: %d\n", a);  // Output: 14
     
     // The assignment operator is itself an expression
     int d = (a = 2 * a);
     printf("d = (a = 2 * a): d = %d, a = %d\n", d, a);  // Output: d = 28, a = 28
-    
     int e = a /= 2; 
     printf("e = a /= 2: e = %d, a = %d\n", e, a);  // Output: e = 14, a = 14
     

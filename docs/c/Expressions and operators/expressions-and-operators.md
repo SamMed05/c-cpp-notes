@@ -356,6 +356,8 @@ if (x == 5) { // ✔️ CORRECT: compares x with 5
 }
 ```
 
+This error can be particularly subtle because the program still compiles (the syntax is valid), but the logic is incorrect.
+
 :::
 
 ### Compound assignment operators
@@ -411,14 +413,15 @@ Avoid using multiple increment or decrement operators in the same expression, or
 
 ### 🎲 Increments Alignment Chart
 
-<table>
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px', marginBottom: '20px' }}>
+<table style={{textAlign: 'center'}}>
     <tbody>
         <tr>
             <td><strong>Legal Good 😇</strong><br /><code>i = i + 1</code></td>
             <td><strong>Neutral Good 🙂</strong><br /><code>i++</code></td>
             <td><strong>Chaotic Good 😜</strong><br /><code>++i</code></td>
         </tr>
-        <tr>
+        <tr style={{backgroundColor: 'transparent'}}>
             <td><strong>Legal Neutral 🤔</strong><br /><code>i = ((i)+(1))</code></td>
             <td><strong>True Neutral 😌</strong><br /><code>i += 1</code></td>
             <td><strong>Chaotic Neutral 😵</strong><br /><code>i -= -1</code></td>
@@ -430,3 +433,4 @@ Avoid using multiple increment or decrement operators in the same expression, or
         </tr>
     </tbody>
 </table>
+</div>
