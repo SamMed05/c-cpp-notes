@@ -77,7 +77,7 @@ void find_max(int *rmax, int *values, unsigned size) {
 Implement a function similar to the previous one, but finding both the minimum and maximum values. The function should follow this prototype:
 
 ```c
-void trova_minmax(int *rmin, int *rmax, int *values, unsigned size);
+void find_minmax(int *rmin, int *rmax, int *values, unsigned size);
 ```
 
 Where:
@@ -90,7 +90,7 @@ Where:
 <summary>Show solution</summary>
 
 ```c
-void trova_minmax(int *rmin, int *rmax, int *values, unsigned size) {
+void find_minmax(int *rmin, int *rmax, int *values, unsigned size) {
     // Initialize rmin and rmax to the first element
     *rmin = values[0];
     *rmax = values[0];
@@ -110,7 +110,7 @@ void trova_minmax(int *rmin, int *rmax, int *values, unsigned size) {
 Alternative solution returning pointers to the min and max elements:
 
 ```c
-void trova_minmax(int **rmin, int **rmax, int *values, unsigned size) {
+void find_minmax(int **rmin, int **rmax, int *values, unsigned size) {
     // Initialize rmin and rmax to point to the first element
     *rmin = values;
     *rmax = values;
