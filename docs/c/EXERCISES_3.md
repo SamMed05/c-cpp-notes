@@ -46,10 +46,49 @@ Remember that `rmax` is a pointer - you need to store the actual maximum value a
 <details>
 <summary>Show solution</summary>
 
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
+
 ```c
+#include <stdio.h>
+#include <stdlib.h>
+#define SIZE 100  // Array test size
+
 void find_max(int *rmax, int *values, unsigned size) {
-    // Initialize rmax to point to the first element
-    *rmax = values[0];
+    for (unsigned int i = 0; i < size; i++) {
+        if (*rmax < *(values + i)) {
+            *rmax = *(values + i);
+        }
+    }
+}
+
+int main() {
+    int a[SIZE];
+    for (int i = 0; i < SIZE; i++) {
+        a[i] = i;
+    }
+    int max_a = a[0];  // max_a contains the value of the 1st element
+
+    find_max(&max_a, a, SIZE);  // Pass address, array and size
+    printf("Max: %d\nAddress: %p\n", max_a, &max_a);
+
+    return 0;
+}
+```
+
+This solution uses pointer arithmetic and assumes `*rmax` is pre-initialized and uses pointer arithmetic (`*(values + i)`).
+
+</TabItem>
+
+<TabItem value="solution2" label="Solution 2">
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#define SIZE 100  // Array test size
+
+void find_max(int *rmax, int *values, unsigned size) {
+    *rmax = values[0];  // Initialize rmax to point to the first element
     
     // Iterate through the array to find the maximum
     for (unsigned i = 1; i < size; i++) {
@@ -58,23 +97,50 @@ void find_max(int *rmax, int *values, unsigned size) {
         }
     }
 }
-```
 
-Another solution that returns a pointer to the maximum element:
-
-```c
-void find_max(int *rmax, int *values, unsigned size) {
-    // Initialize rmax to point to the first element
-    rmax = values;
-    
-    // Iterate through the array to find the maximum
-    for (unsigned i = 1; i < size; i++) {
-        if (values[i] > *rmax) {
-            rmax = &values[i];
-        }
+int main() {
+    int a[SIZE];
+    for (int i = 0; i < SIZE; i++) {
+        a[i] = i;
     }
+    int max_a;  // No initialization
+
+    find_max(&max_a, a, SIZE);  // Pass address, array and size
+    printf("Max: %d\nAddress: %p\n", max_a, &max_a);
+
+    return 0;
 }
 ```
+
+In this solution, we initialize `*rmax` (`rmax` pointer dereference, meaning it accesses the memory location that rmax points to) with the first element's value (`values[0]`).
+
+The line `*rmax = values[0];` assigns the value of `values[0]` to the memory location pointed to by `rmax`.
+
+This solution explicitly initializes `*rmax` with the first element and uses array indexing (`values[i]`) without relying on an external initialization.
+
+</TabItem>
+</Tabs>
+
+:::note Note
+##### Why use a constant size with `SIZE`?
+
+We use a constant size defined by the macro `SIZE` because array declarations in C require a compile-time constant size. Without this, the compiler would throw an error like "*expression must have a constant value*".
+
+##### Why pass `&max_a` and `a` to `find_max()`?
+
+In the `find_max()` function:
+
+- We pass `&max_a` (address of `max_a`) because we want the function to modify the original variable in the calling function.
+- For the array `a`, we pass it directly because arrays in C automatically decay to **pointers to their first element when passed to functions**, so `a` is equivalent to `&a[0]`.
+
+###### What happens if you pass `&a` instead of the array `a`?  
+
+If you pass `&a` instead of `a`, the function would receive a pointer to the entire array (`int (*)[SIZE]`), not a pointer to its first element (`int *`). This wouldn't match the function's parameter type, as the function expects a pointer to an `int`, not a pointer to an array.
+
+##### Why populate the array with index values?
+
+We populate the array with index values for simplicity. This approach ensures the array is predictable and easy to test, but the solutions will work with any array values.
+:::
 
 </details>
 
