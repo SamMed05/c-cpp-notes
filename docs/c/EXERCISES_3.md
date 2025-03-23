@@ -15,6 +15,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Spoiler from '@site/src/components/Spoiler';
 
+:::info
+
+For exercises on topics before pointers, refer to C++ exercises [Part 1](/docs/cpp/exercises_1) and [Part 2](/docs/cpp/exercises_2) (the solutions will be pretty similar to the relative C implementation).
+
+:::
+
 Now that you know about pointers and memory allocation, let's practice with some exercises!
 
 In this section, you'll find exercises ranging from basic pointer usage to more complex memory allocation scenarios. For each exercise, one or multiple solutions are provided, but try to solve them yourself first.
@@ -378,6 +384,437 @@ void reverse_array(int *arr, unsigned size) {
 
 </details>
 
+### Reversing an array to a new location (★☆☆)
+
+Write a function that reverses an array of integers into another array (without modifying the original array), using the following prototype:
+
+```c
+void reversei(int *r, const int *values, unsigned size);
+```
+
+Where:
+
+- `r` is a pointer to the destination array where the reversed values will be stored
+- `values` is a pointer to the source array
+- `size` is the size of both arrays
+
+<details>
+<summary>Show solution</summary>
+
+```c
+void reversei(int *r, const int *values, unsigned size) {
+    for (unsigned i = 0; i < size; i++) {
+        r[i] = values[size - 1 - i];
+    }
+}
+
+// Example usage:
+int main() {
+    int original[] = {1, 2, 3, 4, 5};
+    int reversed[5];
+    unsigned size = 5;
+    
+    reversei(reversed, original, size);
+    
+    printf("Original array: ");
+    for (unsigned i = 0; i < size; i++) {
+        printf("%d ", original[i]);
+    }
+    
+    printf("\nReversed array: ");
+    for (unsigned i = 0; i < size; i++) {
+        printf("%d ", reversed[i]);
+    }
+    
+    return 0;
+}
+```
+
+</details>
+
+### Reversing a string (★☆☆)
+
+Write a function that reverses a C string into another string, using the following prototype:
+
+```c
+void reverses(char *r, const char *s);
+```
+
+Where:
+
+- `r` is a pointer to the destination string where the reversed string will be stored
+- `s` is a pointer to the source string
+
+<Spoiler>
+Remember that strings in C are null-terminated, so you need to find the length of the string first, then copy the characters in reverse order, and finally add the null terminator.
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+void reverses(char *r, const char *s) {
+    // Find the length of the string
+    unsigned len = 0;
+    while (s[len] != '\0') {
+        len++;
+    }
+    
+    // Reverse the string
+    for (unsigned i = 0; i < len; i++) {
+        r[i] = s[len - 1 - i];
+    }
+    
+    // Add null terminator
+    r[len] = '\0';
+}
+
+// Example usage:
+int main() {
+    const char *original = "Hello, World!";
+    char reversed[20];  // Make sure it's big enough
+    
+    reverses(reversed, original);
+    printf("Original: %s\nReversed: %s\n", original, reversed);
+    
+    return 0;
+}
+```
+
+</details>
+
+### ROT13 cipher (★★☆)
+
+Write a function that implements the ROT13 cipher, which shifts each letter in a string by 13 positions in the alphabet (wrapping around if necessary). Non-alphabetic characters should remain unchanged. Use the following prototype:
+
+```c
+void rot13(char *r, const char *s);
+```
+
+Where:
+
+- `r` is a pointer to the destination string where the encrypted string will be stored
+- `s` is a pointer to the source string
+
+<Spoiler>
+The ROT13 cipher is its own inverse - applying it twice returns the original text. You'll need to handle both uppercase and lowercase letters separately.
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+void rot13(char *r, const char *s) {
+    int i = 0;
+    while (s[i] != '\0') {
+        char c = s[i];
+        if ('a' <= c && c <= 'z') {
+            r[i] = 'a' + ((c - 'a' + 13) % 26);
+        } else if ('A' <= c && c <= 'Z') {
+            r[i] = 'A' + ((c - 'A' + 13) % 26);
+        } else {
+            r[i] = c; // Not a letter, copy as is
+        }
+        i++;
+    }
+    r[i] = '\0'; // Add null terminator
+}
+
+// Example usage:
+int main() {
+    const char *original = "Hello, World!";
+    char encrypted[20];
+    char decrypted[20];
+    
+    rot13(encrypted, original);
+    rot13(decrypted, encrypted);  // Applying ROT13 twice gets the original text
+    
+    printf("Original: %s\nEncrypted: %s\nDecrypted: %s\n", 
+           original, encrypted, decrypted);
+    
+    return 0;
+}
+```
+
+</details>
+
+### Finding a value in an array (★☆☆)
+
+Write a function that finds the position of a specific value in an integer array, using the following prototype:
+
+```c
+long findi(int t, const int *values, unsigned size);
+```
+
+Where:
+
+- `t` is the value to search for
+- `values` is a pointer to the array
+- `size` is the size of the array
+- The function should return the index of the first occurrence of the value, or -1 if not found
+
+<details>
+<summary>Show solution</summary>
+
+```c
+long findi(int t, const int *values, unsigned size) {
+    for (unsigned i = 0; i < size; i++) {
+        if (values[i] == t) {
+            return i;
+        }
+    }
+    return -1; // Not found
+}
+
+// Example usage:
+int main() {
+    int array[] = {10, 20, 30, 40, 50, 30, 60};
+    unsigned size = 7;
+    
+    printf("Position of 30: %ld\n", findi(30, array, size));  // Should print 2
+    printf("Position of 35: %ld\n", findi(35, array, size));  // Should print -1
+    
+    return 0;
+}
+```
+
+</details>
+
+### Capitalizing words in a string (★★☆)
+
+Write a function that converts a string so that the first letter of each word is capitalized and all other letters are lowercase. Use the following prototype:
+
+```c
+void capitalize(char *r, const char *s);
+```
+
+Where:
+
+- `r` is a pointer to the destination string where the capitalized string will be stored
+- `s` is a pointer to the source string
+
+<Spoiler>
+You'll need to keep track of whether the next character should be capitalized (i.e., after a space or at the beginning of the string).
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+void capitalize(char *r, const char *s) {
+    int i = 0;
+    int capitalize_next = 1; // Start with capitalizing the first letter
+    
+    while (s[i] != '\0') {
+        if (s[i] == ' ') {
+            r[i] = ' ';
+            capitalize_next = 1;
+        } else if (capitalize_next && 'a' <= s[i] && s[i] <= 'z') {
+            // Convert lowercase to uppercase if it comes after a space
+            r[i] = s[i] - 'a' + 'A';
+            capitalize_next = 0;
+        } else if (!capitalize_next && 'A' <= s[i] && s[i] <= 'Z') {
+            // Convert uppercase to lowercase otherwise
+            r[i] = s[i] - 'A' + 'a';
+            capitalize_next = 0;
+        } else {
+            // Keep as is for non-alphabetic characters
+            r[i] = s[i];
+            capitalize_next = 0;
+        }
+        i++;
+    }
+    r[i] = '\0'; // Add null terminator
+}
+
+// Example usage:
+int main() {
+    const char *original = "hello WORLD how ARE you";
+    char capitalized[50];
+    
+    capitalize(capitalized, original);
+    printf("Original: %s\nCapitalized: %s\n", original, capitalized);
+    
+    return 0;
+}
+```
+
+</details>
+
+### Counting letter frequencies (★★☆)
+
+Write a function that counts the frequency of each letter (case-insensitive) in a string and stores the results in an array. Use the following prototype:
+
+```c
+void freqs(unsigned *r, const char *s);
+```
+
+Where:
+
+- `r` is a pointer to an array of size 26, where each element will store the count of a letter (r[0] for 'a'/'A', r[1] for 'b'/'B', etc.)
+- `s` is a pointer to the source string
+
+<details>
+<summary>Show solution</summary>
+
+```c
+void freqs(unsigned *r, const char *s) {
+    // Initialize frequency array to 0
+    for (int i = 0; i < 26; i++) {
+        r[i] = 0;
+    }
+    
+    // Count frequencies
+    int i = 0;
+    while (s[i] != '\0') {
+        if ('a' <= s[i] && s[i] <= 'z') {
+            r[s[i] - 'a']++;
+        } else if ('A' <= s[i] && s[i] <= 'Z') {
+            r[s[i] - 'A']++;
+        }
+        i++;
+    }
+}
+
+// Example usage:
+int main() {
+    const char *text = "Hello, World!";
+    unsigned frequencies[26] = {0}; // All initialized to 0
+    
+    freqs(frequencies, text);
+    
+    printf("Letter frequencies in '%s':\n", text);
+    for (int i = 0; i < 26; i++) {
+        if (frequencies[i] > 0) {
+            printf("%c: %u\n", 'a' + i, frequencies[i]);
+        }
+    }
+    
+    return 0;
+}
+```
+
+</details>
+
+### Merging sorted arrays (★★☆)
+
+Write a function that merges two sorted integer arrays into a single sorted array. Use the following prototype:
+
+```c
+void merge(int *r, const int *a1, unsigned s1, const int *a2, unsigned s2);
+```
+
+Where:
+
+- `r` is a pointer to the destination array where the merged result will be stored
+- `a1` is a pointer to the first sorted array
+- `s1` is the size of the first array
+- `a2` is a pointer to the second sorted array
+- `s2` is the size of the second array
+
+<Spoiler>
+This is similar to the "merge" part of the merge sort algorithm. Keep track of the position in each array and always choose the smaller element.
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+void merge(int *r, const int *a1, unsigned s1, const int *a2, unsigned s2) {
+    unsigned i = 0, j = 0, k = 0;
+    
+    // Merge arrays
+    while (i < s1 && j < s2) {
+        if (a1[i] <= a2[j]) {
+            r[k++] = a1[i++];
+        } else {
+            r[k++] = a2[j++];
+        }
+    }
+    
+    // Copy remaining elements of a1
+    while (i < s1) {
+        r[k++] = a1[i++];
+    }
+    
+    // Copy remaining elements of a2
+    while (j < s2) {
+        r[k++] = a2[j++];
+    }
+}
+
+// Example usage:
+int main() {
+    int array1[] = {1, 3, 5, 7, 9};
+    int array2[] = {2, 4, 6, 8, 10};
+    unsigned size1 = 5, size2 = 5;
+    int merged[10];
+    
+    merge(merged, array1, size1, array2, size2);
+    
+    printf("Merged array: ");
+    for (unsigned i = 0; i < size1 + size2; i++) {
+        printf("%d ", merged[i]);
+    }
+    
+    return 0;
+}
+```
+
+</details>
+
+### Generating Fibonacci sequence (★☆☆)
+
+Write a function that generates the first n numbers in the Fibonacci sequence. Use the following prototype:
+
+```c
+void fibonacci(unsigned *r, unsigned n);
+```
+
+Where:
+
+- `r` is a pointer to the destination array where the sequence will be stored
+- `n` is the number of elements to generate
+
+<Spoiler>
+Remember that the Fibonacci sequence starts with 0, 1, and each subsequent number is the sum of the two preceding ones.
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+void fibonacci(unsigned *r, unsigned n) {
+    if (n >= 1) {
+        r[0] = 0;
+    }
+    if (n >= 2) {
+        r[1] = 1;
+    }
+    
+    for (unsigned i = 2; i < n; i++) {
+        r[i] = r[i-1] + r[i-2];
+    }
+}
+
+// Example usage:
+int main() {
+    unsigned fib[10];
+    unsigned n = 10;
+    
+    fibonacci(fib, n);
+    
+    printf("First %u Fibonacci numbers: ", n);
+    for (unsigned i = 0; i < n; i++) {
+        printf("%u ", fib[i]);
+    }
+    
+    return 0;
+}
+```
+
+</details>
+
 ## String Manipulation with Pointers
 
 ### String length (★☆☆)
@@ -497,6 +934,336 @@ char *my_strcat(char *dest, const char *src) {
 </details>
 
 ## Memory Allocation Exercises
+
+Let's revisit some of our previous exercises with a different approach - now we'll dynamically allocate memory for the results inside the functions instead of using pre-allocated arrays.
+
+### Dynamic Array Reversal (★★☆)
+
+Implement a function that reverses an array of integers but dynamically allocates memory for the result. The function should have this prototype:
+
+```c
+int* reversei(const int *values, unsigned size);
+```
+
+Where:
+
+- `values` is a pointer to the input array
+- `size` is the size of the array
+- The function returns a pointer to the dynamically allocated reversed array (or NULL if allocation fails)
+
+<Spoiler>
+Remember to handle memory allocation failures by returning NULL, and the caller will be responsible for freeing the memory.
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int* reversei(const int *values, unsigned size) {
+    // Allocate memory for reversed array
+    int *result = (int *)malloc(size * sizeof(int));
+    if (result == NULL) {
+        return NULL; // Memory allocation failed
+    }
+    
+    // Reverse the array
+    for (unsigned i = 0; i < size; i++) {
+        result[i] = values[size - 1 - i];
+    }
+    
+    return result;
+}
+
+// Example usage:
+int main() {
+    int original[] = {1, 2, 3, 4, 5};
+    unsigned size = 5;
+    
+    int *reversed = reversei(original, size);
+    if (reversed == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+    
+    printf("Original array: ");
+    for (unsigned i = 0; i < size; i++) {
+        printf("%d ", original[i]);
+    }
+    
+    printf("\nReversed array: ");
+    for (unsigned i = 0; i < size; i++) {
+        printf("%d ", reversed[i]);
+    }
+    printf("\n");
+    
+    // Don't forget to free the dynamically allocated memory
+    free(reversed);
+    
+    return 0;
+}
+```
+
+</details>
+
+### Dynamic String Reversal (★★☆)
+
+Implement a function that reverses a C string and dynamically allocates memory for the result. The function should use a double pointer to return the result. Use this prototype:
+
+```c
+void reverses(char **r, const char *s);
+```
+
+Where:
+
+- `r` is a pointer to a pointer where the reversed string will be stored (set to NULL in case of allocation failure)
+- `s` is a pointer to the input string
+
+<Spoiler>
+First calculate the length of the input string to allocate the correct amount of memory. Make sure to set `*r = NULL` if allocation fails.
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void reverses(char **r, const char *s) {
+    if (s == NULL || r == NULL) {
+        if (r != NULL) {
+            *r = NULL; // Set to NULL in case of invalid input
+        }
+        return;
+    }
+    
+    // Find the length of the string
+    size_t len = strlen(s);
+    
+    // Allocate memory for reversed string (including null terminator)
+    *r = (char *)malloc((len + 1) * sizeof(char));
+    if (*r == NULL) {
+        return; // Memory allocation failed
+    }
+    
+    // Reverse the string
+    for (size_t i = 0; i < len; i++) {
+        (*r)[i] = s[len - 1 - i];
+    }
+    
+    // Add null terminator
+    (*r)[len] = '\0';
+}
+
+// Example usage:
+int main() {
+    const char *original = "Hello, World!";
+    char *reversed = NULL;
+    
+    reverses(&reversed, original);
+    if (reversed == NULL) {
+        printf("Memory allocation failed or invalid input!\n");
+        return 1;
+    }
+    
+    printf("Original: %s\n", original);
+    printf("Reversed: %s\n", reversed);
+    
+    // Free dynamically allocated memory
+    free(reversed);
+    
+    return 0;
+}
+```
+
+</details>
+
+### Dynamic Array Merging (★★★)
+
+Implement a function that merges two sorted integer arrays into a single dynamically allocated sorted array. The function should handle duplicates and use a double pointer to return the result. Use this prototype:
+
+```c
+void merge(int **r, const int *a1, unsigned s1, const int *a2, unsigned s2);
+```
+
+Where:
+
+- `r` is a pointer to a pointer where the merged array will be stored (set to NULL in case of allocation failure)
+- `a1` is a pointer to the first sorted array
+- `s1` is the size of the first array
+- `a2` is a pointer to the second sorted array
+- `s2` is the size of the second array
+
+<Spoiler>
+Since the arrays may contain duplicates, the result may have up to `s1 + s2` elements. Start by allocating memory of this size, then perform the merge operation as in the earlier exercise.
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+void merge(int **r, const int *a1, unsigned s1, const int *a2, unsigned s2) {
+    // Check input validity
+    if (r == NULL) {
+        return;
+    }
+    
+    // Handle empty input cases
+    if (a1 == NULL && a2 == NULL) {
+        *r = NULL;
+        return;
+    }
+    
+    // Allocate memory for merged array (maximum possible size)
+    *r = (int *)malloc((s1 + s2) * sizeof(int));
+    if (*r == NULL) {
+        return; // Memory allocation failed
+    }
+    
+    unsigned i = 0, j = 0, k = 0;
+    
+    // Merge arrays
+    while (i < s1 && j < s2) {
+        if (a1[i] <= a2[j]) {
+            (*r)[k++] = a1[i++];
+        } else {
+            (*r)[k++] = a2[j++];
+        }
+    }
+    
+    // Copy remaining elements of a1
+    while (i < s1) {
+        (*r)[k++] = a1[i++];
+    }
+    
+    // Copy remaining elements of a2
+    while (j < s2) {
+        (*r)[k++] = a2[j++];
+    }
+    
+    // Note: k now contains the actual size of the merged array
+    // We could resize the array to save memory if needed:
+    // *r = realloc(*r, k * sizeof(int));
+    // But this is optional and might fail, so we're keeping it simple.
+}
+
+// Example usage:
+int main() {
+    int array1[] = {1, 3, 5, 7, 9};
+    int array2[] = {2, 4, 6, 8, 10};
+    unsigned size1 = 5, size2 = 5;
+    int *merged = NULL;
+    
+    merge(&merged, array1, size1, array2, size2);
+    if (merged == NULL) {
+        printf("Memory allocation failed or invalid input!\n");
+        return 1;
+    }
+    
+    printf("First array: ");
+    for (unsigned i = 0; i < size1; i++) {
+        printf("%d ", array1[i]);
+    }
+    
+    printf("\nSecond array: ");
+    for (unsigned i = 0; i < size2; i++) {
+        printf("%d ", array2[i]);
+    }
+    
+    printf("\nMerged array: ");
+    for (unsigned i = 0; i < size1 + size2; i++) {
+        printf("%d ", merged[i]);
+    }
+    printf("\n");
+    
+    // Free dynamically allocated memory
+    free(merged);
+    
+    return 0;
+}
+```
+
+</details>
+
+### Dynamic String Concatenation (★★☆)
+
+Write a function that concatenates two strings and returns the result in dynamically allocated memory. Use this prototype:
+
+```c
+char* concat_strings(const char *s1, const char *s2);
+```
+
+Where:
+
+- `s1` and `s2` are the input strings to concatenate
+- The function returns a pointer to the dynamically allocated concatenated string, or NULL if allocation fails
+
+<Spoiler>
+Calculate the total length needed (length of s1 + length of s2 + 1 for null terminator), then allocate memory and copy both strings in sequence.
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* concat_strings(const char *s1, const char *s2) {
+    // Handle NULL inputs
+    if (s1 == NULL) s1 = "";
+    if (s2 == NULL) s2 = "";
+    
+    // Calculate required length
+    size_t len1 = strlen(s1);
+    size_t len2 = strlen(s2);
+    
+    // Allocate memory for concatenated string (including null terminator)
+    char *result = (char *)malloc((len1 + len2 + 1) * sizeof(char));
+    if (result == NULL) {
+        return NULL; // Memory allocation failed
+    }
+    
+    // Copy first string
+    strcpy(result, s1);
+    
+    // Append second string
+    strcat(result, s2);
+    
+    return result;
+}
+
+// Example usage:
+int main() {
+    const char *str1 = "Hello, ";
+    const char *str2 = "World!";
+    
+    char *concatenated = concat_strings(str1, str2);
+    if (concatenated == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+    
+    printf("String 1: \"%s\"\n", str1);
+    printf("String 2: \"%s\"\n", str2);
+    printf("Concatenated: \"%s\"\n", concatenated);
+    
+    // Free dynamically allocated memory
+    free(concatenated);
+    
+    return 0;
+}
+```
+
+</details>
 
 ### Dynamic array (★★☆)
 
@@ -815,343 +1582,6 @@ int main() {
 
 </details>
 
-## Challenge Exercises
-
-### Memory Efficient String Array (★★★)
-
-Create a program that:
-
-1. Asks the user for `n` strings
-2. Stores them efficiently in memory (hint: only allocate as much memory as needed for each string)
-3. Sorts the strings alphabetically using pointers
-4. Prints the sorted strings
-5. Properly frees all allocated memory
-
-<Spoiler>
-For each string, measure its length first, then allocate only the memory needed (length + 1 for the null terminator). For sorting, consider using the `qsort()` function with a custom comparison function.
-</Spoiler>
-
-<details>
-<summary>Show solution</summary>
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-// Function to compare strings for qsort
-int compare_strings(const void *a, const void *b) {
-    return strcmp(*(const char **)a, *(const char **)b);
-}
-
-int main() {
-    int n;
-    char **strings;
-    char buffer[100];  // Temporary buffer for reading strings
-    
-    // Get number of strings
-    printf("How many strings? ");
-    scanf("%d", &n);
-    
-    // Consume newline
-    getchar();
-    
-    // Allocate array of string pointers
-    strings = (char **)malloc(n * sizeof(char *));
-    if (strings == NULL) {
-        printf("Memory allocation failed!\n");
-        return 1;
-    }
-    
-    // Read each string and allocate just enough memory
-    for (int i = 0; i < n; i++) {
-        printf("Enter string %d: ", i + 1);
-        fgets(buffer, sizeof(buffer), stdin);
-        
-        // Remove trailing newline if present
-        size_t len = strlen(buffer);
-        if (len > 0 && buffer[len-1] == '\n') {
-            buffer[len-1] = '\0';
-            len--;
-        }
-        
-        // Allocate memory for this string (+1 for null terminator)
-        strings[i] = (char *)malloc((len + 1) * sizeof(char));
-        if (strings[i] == NULL) {
-            printf("Memory allocation failed!\n");
-            
-            // Free previously allocated strings
-            for (int j = 0; j < i; j++) {
-                free(strings[j]);
-            }
-            free(strings);
-            return 1;
-        }
-        
-        // Copy string to allocated memory
-        strcpy(strings[i], buffer);
-    }
-    
-    // Sort strings
-    qsort(strings, n, sizeof(char *), compare_strings);
-    
-    // Print sorted strings
-    printf("\nSorted strings:\n");
-    for (int i = 0; i < n; i++) {
-        printf("%d: %s\n", i + 1, strings[i]);
-    }
-    
-    // Free all allocated memory
-    for (int i = 0; i < n; i++) {
-        free(strings[i]);
-    }
-    free(strings);
-    
-    return 0;
-}
-```
-
-</details>
-
-### Custom Memory Allocator (★★★)
-
-Implement a simple memory pool allocator that pre-allocates a large chunk of memory and then handles smaller allocation requests from this pool. The allocator should have functions similar to `malloc()` and `free()`.
-
-<Spoiler>
-A simple approach is to use a char array as your memory pool and a separate array to track which bytes are used. For allocation, search for a contiguous block of free bytes equal to the requested size.
-</Spoiler>
-
-<details>
-<summary>Show solution</summary>
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#define POOL_SIZE 1024  // Size of memory pool in bytes
-
-typedef struct {
-    char memory[POOL_SIZE];  // The actual memory pool
-    char used[POOL_SIZE];    // Tracks which bytes are used (1) or free (0)
-} MemoryPool;
-
-// Initialize memory pool
-void init_pool(MemoryPool *pool) {
-    memset(pool->memory, 0, POOL_SIZE);
-    memset(pool->used, 0, POOL_SIZE);
-}
-
-// Allocate from pool
-void *pool_alloc(MemoryPool *pool, size_t size) {
-    if (size == 0 || size > POOL_SIZE) {
-        return NULL;
-    }
-    
-    // Find a free block of sufficient size
-    int start = -1;
-    int count = 0;
-    
-    for (int i = 0; i < POOL_SIZE; i++) {
-        if (pool->used[i] == 0) {
-            if (start == -1) {
-                start = i;  // Mark start of a free block
-            }
-            count++;
-            
-            if (count == size) {
-                // Found a sufficiently large block
-                // Mark as used
-                for (int j = start; j < start + size; j++) {
-                    pool->used[j] = 1;
-                }
-                return &pool->memory[start];
-            }
-        } else {
-            // Reset on encountering a used byte
-            start = -1;
-            count = 0;
-        }
-    }
-    
-    return NULL;  // No suitable free block found
-}
-
-// Free memory in pool
-void pool_free(MemoryPool *pool, void *ptr) {
-    if (ptr == NULL) {
-        return;
-    }
-    
-    // Check if ptr is within pool
-    char *cptr = (char *)ptr;
-    if (cptr < pool->memory || cptr >= pool->memory + POOL_SIZE) {
-        return;  // Not from our pool
-    }
-    
-    // Calculate offset in pool
-    int offset = cptr - pool->memory;
-    
-    // Find end of allocated block
-    int end = offset;
-    while (end < POOL_SIZE && pool->used[end] == 1) {
-        pool->used[end] = 0;  // Mark as free
-        end++;
-    }
-}
-
-int main() {
-    MemoryPool pool;
-    init_pool(&pool);
-    
-    // Allocate some memory
-    int *a = (int *)pool_alloc(&pool, sizeof(int));
-    char *str = (char *)pool_alloc(&pool, 20);
-    
-    if (a != NULL && str != NULL) {
-        *a = 42;
-        strcpy(str, "Hello, World!");
-        
-        printf("Integer: %d\n", *a);
-        printf("String: %s\n", str);
-        
-        // Free memory
-        pool_free(&pool, a);
-        pool_free(&pool, str);
-        
-        // Try re-allocating
-        int *b = (int *)pool_alloc(&pool, sizeof(int));
-        *b = 100;
-        printf("New integer: %d\n", *b);
-    } else {
-        printf("Allocation failed!\n");
-    }
-    
-    return 0;
-}
-```
-
-Note: This is a simple implementation for educational purposes. A real memory allocator would need to handle alignment, fragmentation, and many other issues.
-
-</details>
-
-### Generic Sorting with Function Pointers (★★★)
-
-Create a generic sorting function that can sort arrays of any data type by using function pointers for comparison and element swapping.
-
-<details>
-<summary>Show solution</summary>
-
-```c
-#include <stdio.h>
-#include <string.h>
-
-// Type for comparison function pointer
-typedef int (*CmpFunc)(const void *, const void *);
-
-// Type for swap function pointer
-typedef void (*SwapFunc)(void *, void *, size_t);
-
-// Generic swap function
-void swap_elements(void *a, void *b, size_t size) {
-    // Create a temporary buffer
-    char temp[size];
-    
-    // a -> temp
-    memcpy(temp, a, size);
-    
-    // b -> a
-    memcpy(a, b, size);
-    
-    // temp -> b
-    memcpy(b, temp, size);
-}
-
-// Generic bubble sort implementation
-void generic_sort(void *array, size_t num_elements, size_t element_size, 
-                 CmpFunc compare, SwapFunc swap) {
-    char *base_ptr = (char *)array;
-    
-    for (size_t i = 0; i < num_elements - 1; i++) {
-        for (size_t j = 0; j < num_elements - i - 1; j++) {
-            // Calculate pointers to the elements to compare
-            char *elem1 = base_ptr + j * element_size;
-            char *elem2 = base_ptr + (j + 1) * element_size;
-            
-            // Compare and swap if necessary
-            if (compare(elem1, elem2) > 0) {
-                swap(elem1, elem2, element_size);
-            }
-        }
-    }
-}
-
-// Comparison function for integers
-int compare_ints(const void *a, const void *b) {
-    int int_a = *((const int *)a);
-    int int_b = *((const int *)b);
-    
-    if (int_a < int_b) return -1;
-    if (int_a > int_b) return 1;
-    return 0;
-}
-
-// Comparison function for floats
-int compare_floats(const void *a, const void *b) {
-    float float_a = *((const float *)a);
-    float float_b = *((const float *)b);
-    
-    if (float_a < float_b) return -1;
-    if (float_a > float_b) return 1;
-    return 0;
-}
-
-// Comparison function for strings
-int compare_strings(const void *a, const void *b) {
-    return strcmp(*(const char **)a, *(const char **)b);
-}
-
-int main() {
-    // Sort integers
-    int numbers[] = {64, 25, 12, 22, 11};
-    int n_numbers = sizeof(numbers) / sizeof(numbers[0]);
-    
-    generic_sort(numbers, n_numbers, sizeof(int), compare_ints, swap_elements);
-    
-    printf("Sorted integers: ");
-    for (int i = 0; i < n_numbers; i++) {
-        printf("%d ", numbers[i]);
-    }
-    printf("\n");
-    
-    // Sort floats
-    float floats[] = {3.14, 1.41, 2.72, 1.62};
-    int n_floats = sizeof(floats) / sizeof(floats[0]);
-    
-    generic_sort(floats, n_floats, sizeof(float), compare_floats, swap_elements);
-    
-    printf("Sorted floats: ");
-    for (int i = 0; i < n_floats; i++) {
-        printf("%.2f ", floats[i]);
-    }
-    printf("\n");
-    
-    // Sort strings
-    char *strings[] = {"apple", "zebra", "banana", "orange"};
-    int n_strings = sizeof(strings) / sizeof(strings[0]);
-    
-    generic_sort(strings, n_strings, sizeof(char *), compare_strings, swap_elements);
-    
-    printf("Sorted strings: ");
-    for (int i = 0; i < n_strings; i++) {
-        printf("%s ", strings[i]);
-    }
-    printf("\n");
-    
-    return 0;
-}
-```
-
-</details>
+---
 
 These exercises will help you master pointers and memory allocation in C, from basic concepts to advanced applications. Try to solve them on your own before looking at the solutions, and don't hesitate to experiment with variations.
