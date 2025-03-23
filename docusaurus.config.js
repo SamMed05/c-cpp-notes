@@ -141,10 +141,6 @@ const config = {
             position: 'right',
             items: [
               {
-                href: 'https://cpp.sh/',
-                label: 'C++ Shell',
-              },
-              {
                 href: 'https://github.com/SamMed05',
 				        label: 'GitHub',
               },
