@@ -112,7 +112,7 @@ int main() {
 }
 ```
 
-In this solution, we initialize `*rmax` (`rmax` pointer dereference, meaning it accesses the memory location that rmax points to) with the first element's value (`values[0]`).
+In this solution, we initialize `*rmax` (`rmax` pointer dereference, meaning it accesses the memory location that `rmax` points to) with the first element's value (`values[0]`).
 
 The line `*rmax = values[0];` assigns the value of `values[0]` to the memory location pointed to by `rmax`.
 
@@ -165,40 +165,22 @@ Where:
 ```c
 void find_minmax(int *rmin, int *rmax, int *values, unsigned size) {
     // Initialize rmin and rmax to the first element
-    *rmin = values[0];
-    *rmax = values[0];
+    *rmin = values[0];  // With array indexing OR
+    *rmax = *values;    // With pointer arithmetic
     
     // Iterate through the array to find min and max
     for (unsigned i = 1; i < size; i++) {
         if (values[i] < *rmin) {
-            *rmin = values[i];
+            *rmin = values[i];     // With array indexing OR
         }
-        if (values[i] > *rmax) {
-            *rmax = values[i];
+        if (*(values + i) > *rmax) {
+            *rmax = *(values + i); // With pointer arithmetic
         }
     }
 }
 ```
 
-Alternative solution returning pointers to the min and max elements:
-
-```c
-void find_minmax(int **rmin, int **rmax, int *values, unsigned size) {
-    // Initialize rmin and rmax to point to the first element
-    *rmin = values;
-    *rmax = values;
-    
-    // Iterate through the array to find min and max
-    for (unsigned i = 1; i < size; i++) {
-        if (values[i] < **rmin) {
-            *rmin = &values[i];
-        }
-        if (values[i] > **rmax) {
-            *rmax = &values[i];
-        }
-    }
-}
-```
+Array indexing (`values[i]`) and pointer arithmetic (`*(values + i)`) are interchangeable in C, as both access the same memory location (the first element plus an offset).
 
 </details>
 
@@ -232,24 +214,87 @@ For computing variance efficiently, you should first calculate the mean, then in
 <details>
 <summary>Show solution</summary>
 
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
+
 ```c
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 void compute_mean_variance(float *rmean, float *rvariance, float *values, unsigned size) {
-    // Calculate the mean
-    float sum = 0.0f;
-    for (unsigned i = 0; i < size; i++) {
-        sum += values[i];
+    // Calculate mean (make sure it's already initialized at 0)
+    for (int i = 0; i < size; i++) {
+        *rmean += values[i];
     }
-    *rmean = sum / size;
-    
-    // Calculate the variance
-    float variance_sum = 0.0f;
-    for (unsigned i = 0; i < size; i++) {
-        float diff = values[i] - *rmean;
-        variance_sum += diff * diff;
+    *rmean /= (float)size;
+
+    // Calculate variance
+    for (int i = 1; i <= size; i++) { // Or start at 0 and < size
+        *rvariance += pow(values[i - 1] - *rmean, 2);
     }
-    *rvariance = variance_sum / size;
+    *rvariance /= (float)size;
+}
+
+int main() {
+    float a[100];
+    for (unsigned i = 0; i < 100; i++) {
+        a[i] = i;
+    }
+    float mean = .0f, variance = .0f;
+
+    // Pass 'a' directly (equivalent to &a[0]) because arrays decay to pointers when used in an expression
+    compute_mean_variance(&mean, &variance, a, 100);
+    printf("Mean: %f\nVariance: %f", mean, variance);
+
+    return 0;
 }
 ```
+
+</TabItem>
+
+<TabItem value="solution2" label="Solution 2">
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+void compute_mean_variance(float *rmean, float *rvariance, float *values, unsigned size) {
+    // Calculate mean
+    for (unsigned i = 0; i < size; i++) {
+        *rmean += values[i];
+    }
+    *rmean /= size;
+
+    // Calculate variance
+    for (unsigned i = 0; i < size; i++) {
+        *rvariance += (values[i] - *rmean) * (values[i] - *rmean); // No need to use math.h library
+    }
+    *rvariance /= size;
+}
+
+int main() {
+    float a[100];
+    for (unsigned i = 0; i < 100; i++) {
+        a[i] = i;
+    }
+    float mean = 0.0f, variance = 0.0f;
+
+    compute_mean_variance(&mean, &variance, a, 100);
+    printf("Mean: %f\nVariance: %f\n", mean, variance);
+
+    return 0;
+}
+```
+
+</TabItem>
+</Tabs>
+
+In `.0f`, using 'f' explicitly tells the compiler the numerical literal should be taken as a float number, instead of as a double (which is what C default to when dealing with decimal numbers).
+
+If we don't initialize mean and variance at 0 before passing them, we must do it inside `compute_mean_variance`, since we are summing values to them.
+
+In the second loop for calculating variance, the first solution starts at 1 and ends at n (including extremes) to reflect the mathematical formula, but it can also start one step ahead and adjust the index accordingly (remembering that indexes represent offsets, therefore they start from 0, not 1).
 
 </details>
 
