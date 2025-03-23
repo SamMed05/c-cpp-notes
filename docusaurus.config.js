@@ -47,7 +47,7 @@ const config = {
         googleAnalytics: {
           trackingID: 'G-1VRGG301KZ',
           // Optional fields.
-          anonymizeIP: true, // Should IPs be anonymized?
+          anonymizeIP: true,
         },
         gtag: {
           trackingID: 'G-1VRGG301KZ',
@@ -58,13 +58,14 @@ const config = {
           path: 'docs',
           breadcrumbs: true,
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
           editUrl: 'https://github.com/SamMed05/c-cpp-notes/',
 		      showLastUpdateTime: true,
           showLastUpdateAuthor: false,
 
           remarkPlugins: [math],
 		      rehypePlugins: [katex],
+          
+          sidebarCollapsible: true, // Doesn't work (?)
         },
 
         blog: {
@@ -83,7 +84,6 @@ const config = {
   // https://docusaurus.io/docs/api/themes/configuration
   themeConfig: 
   ({
-  		//sidebarCollapsible: false,
   		image: "img/website-img.png",
   		
   	  announcementBar: {
@@ -215,23 +215,6 @@ const config = {
               // ... more items
             ],
           },
-		  
-		  
-          // {
-            // href: 'https://github.com/SamMed05',
-            // label: 'GitHub',
-            // position: 'right',
-          // },
-		  // {
-            // href: 'https://sammed05.github.io/sm_blog/',
-            // label: 'Personal blog',
-            // position: 'right',
-          // },
-		  // {
-            // href: 'https://twitter.com/MedianiSamuel',
-            // label: 'Twitter',
-            // position: 'right',
-          // },
         ],
       },
       footer: {
@@ -253,10 +236,6 @@ const config = {
           {
             title: 'Links',
             items: [
-              // {
-                // label: 'Blog',
-                // to: '/blog',
-              // },
               {
                 label: 'GitHub',
                 href: 'https://github.com/SamMed05',
