@@ -13,6 +13,7 @@ custom_edit_url: null
 import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Spoiler from '@site/src/components/Spoiler';
 
 Now that you know about pointers and memory allocation, let's practice with some exercises!
 
@@ -31,11 +32,16 @@ void find_max(int *rmax, int *values, unsigned size);
 ```
 
 Where:
+
 - `values` is a pointer to the array
 - `size` is the size of the array
 - `rmax` is a pointer to the element in the array that represents the maximum value
 
 You can assume that the array pointer is valid, the size is greater than 0, and is consistent with the actual values in the array.
+
+<Spoiler>
+Remember that `rmax` is a pointer - you need to store the actual maximum value at the memory location it points to using the dereference operator (*).
+</Spoiler>
 
 <details>
 <summary>Show solution</summary>
@@ -81,6 +87,7 @@ void find_minmax(int *rmin, int *rmax, int *values, unsigned size);
 ```
 
 Where:
+
 - `values` is a pointer to the array
 - `size` is the size of the array
 - `rmin` is a pointer to the element representing the minimum value
@@ -138,14 +145,23 @@ void compute_mean_variance(float *rmean, float *rvariance, float *values, unsign
 ```
 
 Where:
+
 - `values` is a pointer to the array
 - `size` is the size of the array
 - `rmean` is a pointer to store the mean value
 - `rvariance` is a pointer to store the variance value
 
 Remember that the variance is calculated as:  
-$\sigma^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i - \mu)^2$  
+
+$$
+\sigma^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i - \mu)^2
+$$
+  
 where $\mu$ is the mean and $n$ is the number of values.
+
+<Spoiler>
+For computing variance efficiently, you should first calculate the mean, then in a second pass calculate the sum of squared differences from that mean.
+</Spoiler>
 
 <details>
 <summary>Show solution</summary>
@@ -224,6 +240,10 @@ Write a function that reverses the elements of an array in place (without using 
 void reverse_array(int *arr, unsigned size);
 ```
 
+<Spoiler>
+Consider using two pointers - one starting from the beginning and one from the end of the array. Swap their values and move them toward each other until they meet in the middle.
+</Spoiler>
+
 <details>
 <summary>Show solution</summary>
 
@@ -257,6 +277,10 @@ Implement your own version of the `strlen` function that calculates the length o
 unsigned my_strlen(const char *str);
 ```
 
+<Spoiler>
+`\0` is the character that terminates strings.
+</Spoiler>
+
 <details>
 <summary>Show solution</summary>
 
@@ -283,6 +307,10 @@ Implement your own version of the `strcpy` function that copies a string to anot
 ```c
 char *my_strcpy(char *dest, const char *src);
 ```
+
+<Spoiler>
+Remember to save the original destination pointer before modifying it, as you need to return this pointer at the end of the function.
+</Spoiler>
 
 <details>
 <summary>Show solution</summary>
@@ -362,6 +390,7 @@ char *my_strcat(char *dest, const char *src) {
 ### Dynamic array (★★☆)
 
 Write a program that:
+
 1. Asks the user for the size of an array
 2. Dynamically allocates an array of integers of that size
 3. Fills the array with values entered by the user
@@ -418,6 +447,10 @@ Write a function that creates a dynamic 2D array (matrix) with the specified num
 int **create_matrix(int rows, int cols);
 void free_matrix(int **matrix, int rows);
 ```
+
+<Spoiler>
+For a 2D array, you need to allocate memory twice: first for the array of row pointers, then for each individual row. Make sure to handle memory allocation failures properly.
+</Spoiler>
 
 <details>
 <summary>Show solution</summary>
@@ -496,12 +529,17 @@ int main() {
 ### Resizing arrays with realloc (★★★)
 
 Write a program that:
+
 1. Allocates memory for an array of 5 integers
 2. Fills the array with values
 3. Uses `realloc()` to expand the array to hold 10 integers
 4. Fills the additional elements
 5. Prints all elements
 6. Frees the memory
+
+<Spoiler>
+When using `realloc()`, remember that it might return a new pointer. Always assign the result to a temporary variable first to avoid losing the original pointer if allocation fails.
+</Spoiler>
 
 <details>
 <summary>Show solution</summary>
@@ -565,6 +603,10 @@ int main() {
 ### Function pointers (★★★)
 
 Write a program that uses function pointers to perform different operations (add, subtract, multiply, divide) on two numbers. The user should be able to choose which operation to perform.
+
+<Spoiler>
+A function pointer has the syntax: `return_type (*pointer_name)(parameter_types)`. You can create an array of function pointers to easily select different operations.
+</Spoiler>
 
 <details>
 <summary>Show solution</summary>
@@ -662,107 +704,21 @@ int main() {
 
 </details>
 
-### Linked list implementation (★★★)
-
-Implement a simple singly linked list with functions to add nodes, print the list, and free all nodes. Use these prototypes:
-
-```c
-// Node definition
-typedef struct Node {
-    int data;
-    struct Node *next;
-} Node;
-
-// Function prototypes
-Node *add_node(Node *head, int value);
-void print_list(Node *head);
-void free_list(Node *head);
-```
-
-<details>
-<summary>Show solution</summary>
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-
-// Node definition
-typedef struct Node {
-    int data;
-    struct Node *next;
-} Node;
-
-// Function to add a new node at the beginning of the list
-Node *add_node(Node *head, int value) {
-    // Allocate memory for new node
-    Node *new_node = (Node *)malloc(sizeof(Node));
-    if (new_node == NULL) {
-        printf("Memory allocation failed!\n");
-        return head;
-    }
-    
-    // Set the data and next pointer
-    new_node->data = value;
-    new_node->next = head;
-    
-    // Return new head
-    return new_node;
-}
-
-// Function to print the linked list
-void print_list(Node *head) {
-    Node *current = head;
-    
-    printf("List: ");
-    while (current != NULL) {
-        printf("%d -> ", current->data);
-        current = current->next;
-    }
-    printf("NULL\n");
-}
-
-// Function to free all nodes in the list
-void free_list(Node *head) {
-    Node *current = head;
-    Node *next;
-    
-    while (current != NULL) {
-        next = current->next;  // Save the next pointer
-        free(current);         // Free current node
-        current = next;        // Move to the next node
-    }
-}
-
-int main() {
-    Node *head = NULL;
-    
-    // Add some nodes
-    head = add_node(head, 3);
-    head = add_node(head, 2);
-    head = add_node(head, 1);
-    
-    // Print the list
-    print_list(head);
-    
-    // Free the list
-    free_list(head);
-    
-    return 0;
-}
-```
-
-</details>
-
 ## Challenge Exercises
 
 ### Memory Efficient String Array (★★★)
 
 Create a program that:
+
 1. Asks the user for `n` strings
 2. Stores them efficiently in memory (hint: only allocate as much memory as needed for each string)
 3. Sorts the strings alphabetically using pointers
 4. Prints the sorted strings
 5. Properly frees all allocated memory
+
+<Spoiler>
+For each string, measure its length first, then allocate only the memory needed (length + 1 for the null terminator). For sorting, consider using the `qsort()` function with a custom comparison function.
+</Spoiler>
 
 <details>
 <summary>Show solution</summary>
@@ -849,6 +805,10 @@ int main() {
 ### Custom Memory Allocator (★★★)
 
 Implement a simple memory pool allocator that pre-allocates a large chunk of memory and then handles smaller allocation requests from this pool. The allocator should have functions similar to `malloc()` and `free()`.
+
+<Spoiler>
+A simple approach is to use a char array as your memory pool and a separate array to track which bytes are used. For allocation, search for a contiguous block of free bytes equal to the requested size.
+</Spoiler>
 
 <details>
 <summary>Show solution</summary>

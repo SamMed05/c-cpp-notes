@@ -1,0 +1,51 @@
+.spoiler {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 1rem 0;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.spoiler:not(.revealed) {
+  color: transparent;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  user-select: none;
+}
+
+.spoiler:hover:not(.revealed) {
+  background-color: #e0e0e0;
+}
+
+.revealed {
+  background-color: #e8f4fe;
+  cursor: default;
+}
+
+.hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #666;
+  font-size: 0.9rem;
+  text-shadow: none;
+}
+
+/* Dark mode support */
+[data-theme='dark'] .spoiler {
+  background-color: #2d333b;
+}
+
+[data-theme='dark'] .spoiler:hover:not(.revealed) {
+  background-color: #363e49;
+}
+
+[data-theme='dark'] .revealed {
+  background-color: #1e2a3a;
+}
+
+[data-theme='dark'] .hint {
+  color: #a0a0a0;
+}
