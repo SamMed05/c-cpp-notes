@@ -452,3 +452,5 @@ Dereferencing a NULL pointer (using `*p` when `p` is NULL) causes a runtime erro
 5. Pointers enable pass-by-reference in C
 6. Pointers and arrays are closely related
 7. Check for NULL before dereferencing pointers
+
+For further reading and to avoid common mistakes when working with pointers, check out this concise and useful [Programiz guide to pointers](https://www.programiz.com/c-programming/c-pointers#common-mistakes) (and in particular the section on **common mistakes**).
