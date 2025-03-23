@@ -38,7 +38,9 @@ There are several ways to install `make` on Windows, but I would recommend one o
 
     * An alternative is to install the Chocolatey package manager for Windows from [https://chocolatey.org/install](https://chocolatey.org/install) using PowerShell (follow their instructions carefully), then open an *administrator* command prompt and run: `choco install make`.
 
-## Basic Makefile Structure
+## Basic Makefile structure
+
+### General syntax
 
 A basic rule looks like this:
 
@@ -77,6 +79,47 @@ This rule states:
 * **Command:** `gcc -Wall -g -o helloworld helloworld.c` (the compilation command)
 
 If `helloworld.c` is modified, running `make` will recompile it.  If `helloworld` is already up-to-date, `make` will do nothing.
+
+:::tip Automatically compile all files
+
+You can use the following `Makefile` to automatically compile all `.c` files in the current directory without explicitly listing them:
+
+```makefile
+# Compiler and flags
+CC = gcc
+CFLAGS = -Wall -g
+
+# Source files
+# The 'wildcard' function expands to all files in 
+# the current directory that match the pattern *.c
+SRCS = $(wildcard *.c)
+
+# Executable files
+# Replace the .c extension with nothing to get the executable names
+EXES = $(SRCS:.c=)
+
+# Default target
+all: $(EXES)
+
+# Compile each source file into its corresponding executable
+%: %.c
+    $(CC) $(CFLAGS) -o $@ $<
+
+# Clean up build files
+clean:
+    rm -f $(EXES)
+```
+
+### Explanation:
+
+1. **`wildcard` Function:** Automatically finds all `.c` files in the directory.
+2. **`$(SRCS:.c=)`:** Converts source file names (e.g., `file.c`) into executable names (e.g., `file`).
+3. **Pattern Rule (`%: %.c`):** Matches any `.c` file and compiles it into an executable with the same name.
+4. **`clean` Target:** Deletes all executables when you run `make clean`.
+
+This approach is especially useful for projects with many source files, as it eliminates the need to manually update the `Makefile` when adding or removing files.
+
+:::
 
 ## More advanced Makefile features
 
