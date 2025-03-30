@@ -10,6 +10,11 @@ slug: /c/flow-and-structured-programming
 custom_edit_url: null
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Spoiler from '@site/src/components/Spoiler';
+
 This chapter covers flow control and structured programming in C, which are essential concepts for writing well-organized code.
 
 ## Introduction to Structured Programming
@@ -695,3 +700,106 @@ for (j = 10; j >= 0; j--) {
     // which is still >= 0, so the loop continues forever
 }
 ```
+
+---
+
+## 📝 Exercise: Lifeguard Rescue Optimization
+
+### Problem description
+
+A lifeguard needs to rescue a swimmer in distress. The lifeguard starts at position (0, d1) on the beach and needs to reach the swimmer at position (wmax, d2) in the water. The lifeguard can run on sand at speed v1 and swim in water at speed v2, where v1 > v2 (running is faster than swimming).
+
+The beach line runs along the x-axis. The lifeguard must determine the optimal point w along the beach (0 ≤ w ≤ wmax) where they should enter the water to minimize the total rescue time.
+
+![Lifeguard Rescue Diagram](./assets/life-guard.svg)
+
+#### Mathematical formulation
+
+The total time for the rescue is the sum of:
+
+1. Time to run along the beach to point w
+2. Time to swim from point w to the swimmer
+
+Mathematically:
+
+- The time for running on sand (first segment) is:
+    $$
+    t_1(w) = \frac{1}{v_1} \cdot \sqrt{d_1^2 + w^2}
+    $$
+
+- The time for swimming in water (second segment) is:
+    $$
+    t_2(w) = \frac{1}{v_2} \cdot \sqrt{d_2^2 + (w_{\text{max}} - w)^2}
+    $$
+
+- The total time is:
+    $$
+    t(w) = t_1(w) + t_2(w)
+    $$
+
+The goal is to find the value of w that minimizes the total time t(w).
+
+<Spoiler>
+Since this is a minimization problem, we could find the analytical solution by taking the derivative of the total time function with respect to w and setting it to zero. However, a numerical approach is often more practical, where we sample different values of w and find the one that gives the minimum time.
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+<Tabs>
+<TabItem value="solution1" label="Solution">
+
+```c
+#include <stdio.h>
+#include <math.h>
+
+// s = vt ➡️ t = s/v
+
+int main() {
+    double v1 = 4;         // Runner's speed on sand
+    double v2 = 3;         // Swimmer's speed in water
+    double w;              // Current running distance along the beach
+    double wmax = 100;     // Total horizontal distance along the beach
+    double d1 = 100;       // Vertical distance from starting point to coast
+    double d2 = 100;       // Vertical distance from entry point to the swimmer
+
+    int samples = 1000;    // Number of sample points to consider
+
+    double min_total_time = INFINITY;
+    
+    // Find the value of w that minimizes the total rescue time
+    for (int i = 0; i < samples; i++) {
+        w = (wmax / samples) * i;
+
+        double t1 = sqrt(pow(w, 2) + pow(d1, 2)) / v1;
+        double t2 = sqrt(pow(wmax - w, 2) + pow(d2, 2)) / v2;
+    
+        double total_time = t1 + t2;
+
+        if (total_time < min_total_time) {
+            min_total_time = total_time;
+        }
+
+        printf("Total time: %f\n", total_time);
+    }
+    // Display the minimum total rescue time
+    printf("Minimum total time: %f\n", min_total_time);
+    
+    return 0;
+}
+```
+
+<div class="output">
+<code class="output">
+Total time: 72.140452<br />
+Total time: 71.906592<br />
+...<br />
+Total time: 68.514006<br />
+Minimum total time: 65.053152
+</code>
+</div>
+
+</TabItem>
+</Tabs>
+
+</details>
