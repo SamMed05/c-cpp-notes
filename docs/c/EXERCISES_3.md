@@ -595,12 +595,72 @@ Where:
 - `r` is a pointer to the destination string where the encrypted string will be stored
 - `s` is a pointer to the source string
 
+It can be helpful to refer to the ASCII table for `char` operations:
+
+![pointer operators](../c/assets/ASCII-Table-wide.svg)
+<figcaption>Table of ASCII values - By <a href="//commons.wikimedia.org/wiki/File:ASCII-Table.svg" title="File:ASCII-Table.svg">ASCII-Table.svg</a>: ZZT32derivative work: Usha - <a href="//commons.wikimedia.org/wiki/File:ASCII-Table.svg" title="File:ASCII-Table.svg">ASCII-Table.svg</a>, Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=10388973">Link</a></figcaption>
+
 <Spoiler>
 The ROT13 cipher is its own inverse - applying it twice returns the original text. You'll need to handle both uppercase and lowercase letters separately.
 </Spoiler>
 
 <details>
 <summary>Show solution</summary>
+
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+void rot13(char *r, const char *s) {
+    for (int i = 0; s[i] != '\0'; i++) {
+        if (isalpha(s[i])) {
+            // Handle both uppercase and lowercase letters
+            if (islower(s[i])) {
+                // For lowercase: subtract 'a', add 13, take modulo 26, add 'a' back
+                r[i] = (char)((s[i] - 'a' + 13) % 26 + 'a');
+            } else if (isupper(s[i])) {
+                // For uppercase: subtract 'A', add 13, take modulo 26, add 'A' back
+                r[i] = (char)((s[i] - 'A' + 13) % 26 + 'A');
+            }
+        } else {
+            // Copy non-alphabetic characters as is
+            r[i] = s[i];
+        }
+    }
+    
+    // Add null terminator at the end
+    r[strlen(s)] = '\0';
+}
+
+int main() {
+    char s[] = "example String 1!";
+    printf("Original: %s\n", s);
+
+    // Dynamically allocate memory for the result
+    char *r = (char *)malloc((strlen(s) + 1) * sizeof(char));
+    if (r == NULL) {
+        fprintf(stderr, "Memory allocation failed\n");
+        return 1;
+    }
+
+    rot13(r, s);
+    printf("Encrypted: %s\n", r);
+    
+    // Free allocated memory
+    free(r);
+
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="solution2" label="Solution 2">
 
 ```c
 void rot13(char *r, const char *s) {
@@ -634,6 +694,9 @@ int main() {
     return 0;
 }
 ```
+
+</TabItem>
+</Tabs>
 
 </details>
 
