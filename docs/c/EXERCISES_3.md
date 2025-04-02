@@ -445,12 +445,108 @@ Where:
 - `r` is a pointer to the destination string where the reversed string will be stored
 - `s` is a pointer to the source string
 
+Try both with and without using the `string.h` library.
+
 <Spoiler>
 Remember that strings in C are null-terminated, so you need to find the length of the string first, then copy the characters in reverse order, and finally add the null terminator.
 </Spoiler>
 
 <details>
 <summary>Show solution</summary>
+
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void reverses(char *r, const char *s) {
+    // This will error
+    // int length = sizeof(s) / sizeof(s[0]); // ❌ Do not do this here
+    int length = strlen(s); // Calculate the length of the string
+
+    // Reverse the string
+    for (int i = length; i > 0; i--) {
+        r[length - i] = s[i - 1];
+    }
+    // ↕️ or
+    // for (int i = 0; i < length; i++) {
+    //     r[i] = s[length - 1 - i];
+    // }
+
+    r[length] = '\0'; // Null-terminate the reversed string
+}
+
+int main() {
+    char s[] = "Hello, World!";
+    int length = strlen(s); // Calculate the length of the string
+
+    printf("Original: %s\n", s);
+
+    // Allocate memory for the reversed string
+    char *r = (char *)malloc((length + 1) * sizeof(char)); // Include space for null terminator
+    if (r == NULL) {
+        fprintf(stderr, "Memory allocation failed\n");
+        return 1;
+    }
+    
+    reverses(r, s);
+    printf("Reversed: %s\n", r); // Print the reversed string
+
+    free(r); // Free allocated memory
+    
+    return 0;
+}
+```
+
+Using `string.h` library.
+
+:::info Note
+When an array is passed to a function in C, it "decays" into a pointer to its first element. This means operations like `sizeof(array)` inside the function will only return the size of the pointer itself (typically 4 or 8 bytes), not the size of the entire array.
+
+This is why we can't calculate the array length inside the function using the `sizeof(array)/sizeof(array[0])` approach that works in the calling context. Instead, we need to pass the array length as a separate parameter to the function or use `strlen` for strings.
+
+#### Why does this happen?
+
+The issue lies in how the two methods calculate the length of the array or string, and it depends on the type of `s`.
+
+##### 1. **Using `sizeof(s) / sizeof(s[0])`**
+
+This method works only if `s` is a **statically allocated array** (e.g., `char s[100]`). The `sizeof` operator calculates the total size of the array in bytes (`sizeof(s)`) and divides it by the size of one element (`sizeof(s[0])`). This gives the number of elements in the array.
+
+However, if `s` is a **pointer** (e.g., `char *s`), `sizeof(s)` will return the size of the pointer itself, not the size of the memory it points to. This makes the calculation incorrect.
+
+##### 2. **Using `strlen(s)`**
+
+The `strlen` function works for **null-terminated strings**. It calculates the length of the string by iterating through the characters in `s` until it finds the null terminator (`'\0'`). This works regardless of whether `s` is a statically allocated array or a dynamically allocated pointer, as long as it points to a valid null-terminated string.
+
+See this example:
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char s1[] = "Hello";  // Statically allocated array
+    char *s2 = "World";   // Pointer to a string literal
+
+    printf("Using sizeof on s1: %zu\n", sizeof(s1)); // Works, gives 6 (5 chars + '\0')
+    printf("Using sizeof on s2: %zu\n", sizeof(s2)); // Gives size of pointer, not the string
+
+    printf("Using strlen on s1: %zu\n", strlen(s1)); // Works, gives 5
+    printf("Using strlen on s2: %zu\n", strlen(s2)); // Works, gives 5
+
+    return 0;
+}
+```
+
+:::
+
+</TabItem>
+
+<TabItem value="solution2" label="Solution 2">
 
 ```c
 void reverses(char *r, const char *s) {
@@ -480,6 +576,9 @@ int main() {
     return 0;
 }
 ```
+
+</TabItem>
+</Tabs>
 
 </details>
 
