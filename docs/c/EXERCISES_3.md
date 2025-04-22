@@ -756,11 +756,52 @@ Where:
 - `s` is a pointer to the source string
 
 <Spoiler>
-You'll need to keep track of whether the next character should be capitalized (i.e., after a space or at the beginning of the string).
+A good approach is to use the C standard library functions toupper, tolower, and isspace from ctype.h library. Track whether the current character is at the start of a word (either the first character or following a space), and convert it to uppercase; otherwise, convert it to lowercase.
+Another possible solution: iterate through the input string while keeping track of when a new word begins. Use toupper() for the first alphabetic character following a space (or at the start) and tolower() for all subsequent characters. Don’t forget to add a null terminator at the end.
 </Spoiler>
 
 <details>
 <summary>Show solution</summary>
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
+
+```c
+#include <ctype.h>  // For toupper, tolower, isspace, isalpha
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h> // For strlen
+
+// r: output string
+// s: input string (const, not modified)
+void capitalize(char *r, const char *s) {
+    // Capitalizes the first letter of each word, lowercases the rest
+    for (int i = 0; i < strlen(s); i++) {
+        if ((i == 0 || isspace(s[i - 1])) && isalpha(s[i])) {
+            r[i] = toupper(s[i]);
+        } else {
+            r[i] = tolower(s[i]);
+        }
+    }
+    // Null-terminate string (no need for -1, strlen doesn't count \0 already)
+    r[strlen(s)] = '\0';
+}
+
+// Example usage:
+int main() {
+    char original[] = "aD #  fAA";
+    printf("Original: %s\n", original);
+    char newString[sizeof(original)];
+    capitalize(newString, original);
+    printf("Capitalized: %s\n", newString);
+    return 0;
+}
+```
+
+This solution uses standard library functions (`toupper`, `tolower`, `isspace`, `isalpha`) to check for word boundaries and convert characters as needed. It capitalizes the first letter of each word and lowercases the rest by examining each character and its context.
+
+</TabItem>
+
+<TabItem value="solution2" label="Solution 2">
 
 ```c
 void capitalize(char *r, const char *s) {
@@ -773,7 +814,7 @@ void capitalize(char *r, const char *s) {
             capitalize_next = 1;
         } else if (capitalize_next && 'a' <= s[i] && s[i] <= 'z') {
             // Convert lowercase to uppercase if it comes after a space
-            r[i] = s[i] - 'a' + 'A';
+            r[i] = s[i] - 'a' + 'A'; // 'a' has a code of 97, 'A' is 65
             capitalize_next = 0;
         } else if (!capitalize_next && 'A' <= s[i] && s[i] <= 'Z') {
             // Convert uppercase to lowercase otherwise
@@ -795,11 +836,20 @@ int main() {
     char capitalized[50];
     
     capitalize(capitalized, original);
-    printf("Original: %s\nCapitalized: %s\n", original, capitalized);
+    printf("Original:    %s\nCapitalized: %s\n", original, capitalized);
     
     return 0;
 }
 ```
+
+This solution uses a flag (`capitalize_next`) to track when a new word begins. If the current character is a space, the flag is set so the next letter will be capitalized. When the flag is set and a lowercase letter is found, it is converted to uppercase using ASCII arithmetic (`r[i] = s[i] - 'a' + 'A'`). For example, if `s[i] = 'c'` (99), then `r[i] = 'c' - 'a' + 'A' = 99 - 97 + 65 = 67 = 'C'`.
+
+Similarly, if the flag is not set and an uppercase letter is found, it is converted to lowercase (`r[i] = s[i] - 'A' + 'a'`). Non-alphabetic characters are copied as-is.
+
+This approach avoids using standard library functions and demonstrates how ASCII values can be manipulated directly for case conversion.
+
+</TabItem>
+</Tabs>
 
 </details>
 
