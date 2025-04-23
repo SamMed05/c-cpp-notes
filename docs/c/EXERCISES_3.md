@@ -27,7 +27,10 @@ In this section, you'll find exercises ranging from basic pointer usage to more 
 
 A difficulty is assigned to each exercise using a 3-star rating. Keep in mind that this is a subjective rating and might not accurately reflect your personal experience.
 
-## Basic Pointer Exercises
+## Basic pointer (arrays & strings) exercises
+
+> **Note:**  
+> The following exercises are designed for the use of automatically allocated arrays and strings, **without** using dynamic allocation with `malloc`. Therefore, assume that all pointers used already refer to valid memory areas of appropriate size.
 
 ### Finding the maximum value (★☆☆)
 
@@ -394,8 +397,8 @@ void reversei(int *r, const int *values, unsigned size);
 
 Where:
 
-- `r` is a pointer to the destination array where the reversed values will be stored
-- `values` is a pointer to the source array
+- `r` is a pointer to the **destination** array where the reversed values will be stored
+- `values` is a pointer to the **source** array
 - `size` is the size of both arrays
 
 <details>
@@ -612,7 +615,6 @@ The ROT13 cipher is its own inverse - applying it twice returns the original tex
 
 ```c
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
@@ -756,7 +758,7 @@ Where:
 - `s` is a pointer to the source string
 
 <Spoiler>
-A good approach is to use the C standard library functions toupper, tolower, and isspace from ctype.h library. Track whether the current character is at the start of a word (either the first character or following a space), and convert it to uppercase; otherwise, convert it to lowercase.
+A good approach is to use the C standard library functions toupper, tolower, and isspace from ctype.h library. Track whether the current character is at the start of a word (either the first character or following a space), and convert it to uppercase; otherwise, convert it to lowercase.<br/>
 Another possible solution: iterate through the input string while keeping track of when a new word begins. Use toupper() for the first alphabetic character following a space (or at the start) and tolower() for all subsequent characters. Don’t forget to add a null terminator at the end.
 </Spoiler>
 
@@ -768,7 +770,6 @@ Another possible solution: iterate through the input string while keeping track 
 ```c
 #include <ctype.h>  // For toupper, tolower, isspace, isalpha
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h> // For strlen
 
 // r: output string
@@ -863,35 +864,95 @@ void freqs(unsigned *r, const char *s);
 
 Where:
 
-- `r` is a pointer to an array of size 26, where each element will store the count of a letter (r[0] for 'a'/'A', r[1] for 'b'/'B', etc.)
+- `r` is a pointer to an array of size 26, where each element will store the count of a letter (`r[0]` for `'a'/'A'`, `r[1]` for `'b'/'B'`, etc.)
 - `s` is a pointer to the source string
+
+<Spoiler>
+A good approach is to convert each character to lowercase (or uppercase) using tolower() or toupper() from ctype.h, then check if it's an alphabetic character with isalpha(). If it is, increment the corresponding index in the result array by subtracting 'a' from the character value (e.g., r[s[i] - 'a']++). Make sure to initialize the frequency array to zero before counting.
+</Spoiler>
 
 <details>
 <summary>Show solution</summary>
 
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
+
 ```c
+#include <ctype.h>   // for tolower, isalpha
+#include <stdio.h>
+#define SIZE 10
+
 void freqs(unsigned *r, const char *s) {
-    // Initialize frequency array to 0
-    for (int i = 0; i < 26; i++) {
-        r[i] = 0;
+    // ASCII value of 'a' for reference
+    printf("\na = %d in ASCII", (int)'a');  // a = 97
+
+    char s_low[SIZE];
+    // Convert input string to lowercase in a new array
+    for (int i = 0; i < SIZE; i++) {
+        s_low[i] = tolower(s[i]);
     }
-    
-    // Count frequencies
-    int i = 0;
-    while (s[i] != '\0') {
-        if ('a' <= s[i] && s[i] <= 'z') {
-            r[s[i] - 'a']++;
-        } else if ('A' <= s[i] && s[i] <= 'Z') {
-            r[s[i] - 'A']++;
+
+    // Count frequencies of alphabetic characters
+    for (int i = 0; i < SIZE; i++) { 
+        if (isalpha(s_low[i])) {
+            // Subtract 'a' to get index (0 for 'a', 1 for 'b', ...)
+            r[(int)s_low[i] - 'a']++;
         }
-        i++;
     }
+}
+
+int main() {
+    char s[SIZE] = "abbct#tou";
+    unsigned r[26] = {0};  // Initialize all elements to 0
+
+    printf("String s: %s\n", s);
+
+    printf("Array r:  ");
+    for (int i = 0; i < 26; i++) {
+        printf("%d", r[i]);
+    }
+
+    freqs(r, s);
+
+    printf("\nr freqs:  ");
+    for (int i = 0; i < 26; i++) {
+        printf("%d", r[i]);
+    }
+
+    return 0;
+}
+```
+
+This solution first converts the input string to lowercase using `tolower()` so that letter counting is case-insensitive. It then checks each character with `isalpha()` and increments the corresponding frequency in the result array by subtracting `'a'` from the character's ASCII value.
+
+</TabItem>
+
+<TabItem value="solution2" label="Solution 2">
+
+```c {2-7}
+void freqs(unsigned *r, const char *s) {
+    for (int i = 0; i < SIZE; i++) {
+        char c = tolower(s[i]);
+        if (c >= 'a' && c <= 'z') {
+            r[c - 'a']++;
+        }
+    }
+    // OR
+    // int i = 0;
+    // while (s[i] != '\0') {
+    //     if ('a' <= s[i] && s[i] <= 'z') {
+    //         r[s[i] - 'a']++;
+    //     } else if ('A' <= s[i] && s[i] <= 'Z') {
+    //         r[s[i] - 'A']++;
+    //     }
+    //     i++;
+    // }
 }
 
 // Example usage:
 int main() {
     const char *text = "Hello, World!";
-    unsigned frequencies[26] = {0}; // All initialized to 0
+    unsigned frequencies[26] = {0};
     
     freqs(frequencies, text);
     
@@ -906,11 +967,14 @@ int main() {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 </details>
 
 ### Merging sorted arrays (★★☆)
 
-Write a function that merges two sorted integer arrays into a single sorted array. Use the following prototype:
+Write a function that merges two already sorted integer arrays into a single sorted array. Use the following prototype:
 
 ```c
 void merge(int *r, const int *a1, unsigned s1, const int *a2, unsigned s2);
@@ -925,11 +989,68 @@ Where:
 - `s2` is the size of the second array
 
 <Spoiler>
-This is similar to the "merge" part of the merge sort algorithm. Keep track of the position in each array and always choose the smaller element.
+Use three indices (one for each input array and one for the result). At each step, compare the current elements of both arrays and copy the smaller one to the result, incrementing the index of the array from which that element was taken. Continue until one array is exhausted, then copy any remaining elements from the other array (since they can be of different sizes, so one might terminate before the other). This approach ensures the merged array remains sorted and is efficient (O(s1 + s2) time).
 </Spoiler>
 
 <details>
 <summary>Show solution</summary>
+
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
+
+```c
+#include <stdio.h>
+#define SIZE1 10
+#define SIZE2 5
+
+// Merges two sorted arrays a1 and a2 into result array r.
+// s1: size of a1, s2: size of a2
+void merge(int *r, const int *a1, unsigned s1, const int *a2, unsigned s2) {
+    int i = 0, j = 0, k = 0;
+    // Merge both arrays until one is exhausted
+    while (i < s1 && j < s2) {
+        if (a1[i] <= a2[j]) {
+            r[k] = a1[i];
+            i++;
+            k++; // or r[k++] = a1[i++];
+        } else {
+            r[k] = a2[j];
+            j++;
+            k++;
+        }
+    }
+    // Copy any remaining elements from a1
+    while (i < s1) {
+        r[k] = a1[i];
+        i++;
+        k++;
+    }
+    // Copy any remaining elements from a2
+    while (j < s2) {
+        r[k] = a2[j];
+        j++;
+        k++;
+    }
+}
+
+int main() {
+    int a1[SIZE1] = {1, 2, 4, 5, 5, 6, 7, 9, 10, 20};
+    int a2[SIZE2] = {0, 4, 5, 6, 6};
+    int result[SIZE1 + SIZE2] = {0};
+
+    merge(result, a1, SIZE1, a2, SIZE2);
+    for (int i = 0; i < SIZE1 + SIZE2; i++) {
+        printf("%d ", result[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="solution2" label="Solution 2">
 
 ```c
 void merge(int *r, const int *a1, unsigned s1, const int *a2, unsigned s2) {
@@ -973,6 +1094,9 @@ int main() {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 </details>
 
 ### Generating Fibonacci sequence (★☆☆)
@@ -988,12 +1112,58 @@ Where:
 - `r` is a pointer to the destination array where the sequence will be stored
 - `n` is the number of elements to generate
 
-<Spoiler>
-Remember that the Fibonacci sequence starts with 0, 1, and each subsequent number is the sum of the two preceding ones.
-</Spoiler>
+Remember that the Fibonacci sequence starts with 0, 1, and each subsequent number is the sum of the two preceding ones.:
+
+$$
+F_n = 
+\begin{cases}
+0 & \text{if } n = 0 \\
+1 & \text{if } n = 1 \\
+\boxed{F_{n-1} + F_{n-2}} & \text{if } n \geq 2
+\end{cases}
+$$
+
+where $F_n$ is the $n$-th Fibonacci number.
 
 <details>
 <summary>Show solution</summary>
+
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
+
+```c
+#include <stdio.h>
+#define N 10
+
+// Fills the array r with the first n Fibonacci numbers.
+// Assumes r[0] and r[1] are already initialized to 0 and 1.
+void fibonacci(unsigned *r, unsigned n) {
+    // Start from the third element and compute each Fibonacci number
+    for (int i = 2; i < n; i++) {
+        r[i] = r[i-1] + r[i-2];
+    }
+}
+
+int main() {
+    // Initialize the first two terms of the Fibonacci sequence
+    int a[N] = {0, 1}; // Remaining elements are set to 0 by default
+
+    fibonacci(a, N);
+
+    printf("First %u Fibonacci numbers: ", N);
+    for (int i = 0; i < N; i++) {
+        printf("%u ", a[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+```
+
+This solution assumes the first two elements of the array are initialized to 0 and 1, and then fills the rest using the Fibonacci recurrence relation.
+
+</TabItem>
+<TabItem value="solution2" label="Solution 2">
 
 ```c
 void fibonacci(unsigned *r, unsigned n) {
@@ -1024,6 +1194,11 @@ int main() {
     return 0;
 }
 ```
+
+This solution initializes the first two Fibonacci numbers inside the function, making it safer and more self-contained. It checks if the array is large enough before assigning the initial values, then fills the rest using the standard recurrence relation.
+
+</TabItem>
+</Tabs>
 
 </details>
 
