@@ -104,6 +104,41 @@ else
 ```
 :::
 
+#### Reading array input with basic error handling
+
+When reading input into an array, it's good practice to check if the input is valid. Here is a way to do that:
+
+```c
+#define SIZE 5
+// and in main()...
+int a[SIZE];
+
+for (int i = 0; i < SIZE; i++) {
+    printf("Enter value %d: ", i);
+    // scanf needs the address of the variable to store the input
+    // The condition checks if scanf successfully read an integer
+    if (scanf("%d", &a[i]) != 1) {
+        printf("Invalid input\n");
+        break;
+    }
+}
+```
+
+If the user enters something that is not an integer, the program prints an error message and stops reading further input. This helps prevent undefined behavior from invalid or unexpected input.
+
+:::note
+Notice that the `scanf` function is called directly inside the `if` condition:
+
+```c
+if (scanf("%d", &a[i]) != 1) {
+    printf("Invalid input\n");
+    break;
+}
+```
+
+This means `scanf` is executed once, and its return value is immediately checked. There is no need to call `scanf` again in an `else` block, because the input has already been read (or attempted to be read) at this point.
+:::
+
 ## Multidimensional arrays
 
 C supports multidimensional arrays, which are essentially arrays of arrays:
