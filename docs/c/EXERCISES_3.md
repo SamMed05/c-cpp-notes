@@ -19,6 +19,18 @@ import Spoiler from '@site/src/components/Spoiler';
 
 For exercises on topics before pointers, refer to C++ exercises [Part 1](/docs/cpp/exercises_1) and [Part 2](/docs/cpp/exercises_2) (the solutions will be pretty similar to the relative C implementation).
 
+If you come from C++, this table will help you quickly check the main differences and similarities between the two languages:
+
+| **Aspect**             | **C**                                              | **C++**                                             |
+|------------------------|----------------------------------------------------|-----------------------------------------------------|
+| Input/Output           | printf, scanf, puts, gets                          | std::cout, std::cin, std::getline, std::endl        |
+| Type casting           | (int)x                                             | static_cast&lt;int&gt;(x), etc.                      |
+| struct and typedef     | typedef struct {...} Name; struct Name var         | struct Name { ... }; Name var                       |
+| Standard Libraries     | &lt;stdio.h&gt;, &lt;stdlib.h&gt;, &lt;string.h&gt; | &lt;iostream&gt;, &lt;vector&gt;, &lt;string&gt;, &lt;algorithm&gt; |
+| Dynamic allocation     | malloc, calloc, realloc, free                      | new, delete                                         |
+| Namespaces             | Not supported                                      | using namespace std                                 |
+| Error handling         | Errno, return -1, perror()                         | Try-catch                                           |
+
 :::
 
 Now that you know about pointers and memory allocation, let's practice with some exercises!
@@ -1322,7 +1334,7 @@ char *my_strcat(char *dest, const char *src) {
 
 ## Memory Allocation Exercises
 
-Let's revisit some of our previous exercises with a different approach - now we'll dynamically allocate memory for the results inside the functions instead of using pre-allocated arrays.
+Let's revisit some of our previous exercises with a different approach - **now we'll dynamically allocate memory** for the results inside the functions instead of using pre-allocated arrays.
 
 ### Dynamic Array Reversal (★★☆)
 
@@ -1393,7 +1405,7 @@ int main() {
 }
 ```
 
-#### Why isn't there a `free()` inside `reversei`?
+**Why isn't there a `free()` inside `reversei`?**
 
 When a function like `reversei` allocates memory with `malloc` and returns a pointer to that memory, it is essential that the memory remains valid after the function returns. If you were to call `free()` on the allocated memory (e.g., `free(result)`) before returning, the pointer you return would point to memory that has already been freed. Using such a pointer results in undefined behavior, as it refers to invalid (dangling) memory.
 
@@ -1474,6 +1486,12 @@ int main() {
     return 0;
 }
 ```
+
+**Why `size_t`?**
+
+- `size_t` is the standard unsigned integer type for sizes and counts in C: it’s what `sizeof` returns and what memory/​I/O APIs (e.g. `malloc`, `strlen`, `memcpy`, `fread`, `fwrite`) expect.
+- It's in `<stddef.h>` (and also available via `<stdio.h>`), and its width matches the target architecture (32 or 64‑bit), ensuring the code is portable.
+- In this exercise, both the string length and the loop index are always non-negative and could potentially reach the maximum size supported by the system. The `size_t` type is specifically intended for such cases, as it is guaranteed to be large enough to represent the size of any object in memory and is the standard type for array indices and sizes in C.
 
 </details>
 
