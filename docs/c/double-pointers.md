@@ -57,6 +57,11 @@ And so on. Note that `*` and `&` are like opposites, and `*&p == p == &*p`. From
 
 :::
 
+Another representation:
+
+![pointer operators](../c/assets/double-pointers.svg)
+<figcaption>Fig.2. Visual representation of a double pointer (<code>int **ptr</code>). On the left, the pointer <code>*ptr</code> is <code>NULL</code>, so dereferencing it would be invalid. On the right, <code>*ptr</code> has been set to <code>1000</code>, so <code>*ptr</code> points to address <code>1000</code>. In both cases, <code>ptr</code> itself is stored at address <code>4096</code>, and <code>**ptr</code> dereferences to the value at the address pointed to by <code>*ptr</code>. This illustrates how a double pointer can be used to modify or access the address stored in another pointer.</figcaption>
+
 ## Dereferencing double pointers
 With double pointers, you can dereference once or twice:
 
@@ -167,9 +172,16 @@ printf("%s\n", *(ptr+1));  // Prints "Bob"
 
 3. **Building data structures** like linked lists where you need to modify head pointers
 
-4. **Creating 2D arrays dynamically**
+4. **Creating 2D and multi-dimensional arrays dynamically**
 
-:::tip
+![Graphical representation of double pointers for dynamic matrices](../c/assets/matrices-pointers.svg)
+<figcaption>
+Fig.3. Graphical representation of how double pointers are used to implement dynamic matrices in C.  
+The vertical gray rectangle on the left represents an array of pointers, with each pointer (<code>*</code>) corresponding to a row of the matrix. Each pointer points to a dynamically allocated array of integers (the green rows on the right). The double asterisk (<code>**</code>) at the top represents the double pointer variable, which points to the array of row pointers.  
+On the right, the matrix is shown as a collection of rows (<b>array of arrays</b>). Each row is a separate (dynamically allocated) array of integers. This structure allows for flexible, non-contiguous memory allocation for each row, which is typical when creating 2D arrays (dynamically) using double pointers in C.
+</figcaption>
+
+:::info
 Many standard C library functions that need to modify string pointers use double pointers. For example, sorting an array of strings might use this pattern.
 :::
 

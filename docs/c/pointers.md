@@ -73,12 +73,15 @@ the system allocates memory for this `x` variable and stores the value 10 in tha
 
 To work with these memory addresses, C provides pointers. A pointer is simply a variable that holds a memory address, allowing us to **indirectly access or modify the data at that location**.
 
+![pointer memory scheme](../c/assets/Pointers.svg)
+<figcaption>Fig.1. A pointer <strong>a</strong> pointing to the memory address associated with a variable <strong>b</strong>, i.e., <strong>a</strong> contains the memory address 1008 of the variable <strong>b</strong>. In this diagram, the computing architecture uses the same address space and data primitive for both pointers and non-pointers; this need not be the case. <br/ > By <a href="//commons.wikimedia.org/wiki/User:Sven" title="User:Sven">User:Sven</a><a href="//commons.wikimedia.org/wiki/File:Nuvola_apps_locale.svg" class="mw-file-description"></a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=8861432">Link</a></figcaption>
+
 This powerful feature brings us to the important concepts of referencing and dereferencing.
 
 ## Referencing and Dereferencing
 
 ![pointer operators](../c/assets/Puntatore.svg)
-<figcaption>Fig.1. Pointers usage diagram. <br/ > By <a href="//commons.wikimedia.org/wiki/User:Scienze_of_Alex" title="User:Scienze of Alex">Scienze of Alex</a> - <span class="int-own-work" lang="it">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=10749606">Link</a></figcaption>
+<figcaption>Fig.2. Pointers usage diagram. <br/ > By <a href="//commons.wikimedia.org/wiki/User:Scienze_of_Alex" title="User:Scienze of Alex">Scienze of Alex</a> - <span class="int-own-work" lang="it">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=10749606">Link</a></figcaption>
 
 C provides two key operators for working with pointers:
 
@@ -108,7 +111,7 @@ printf("Value of x: %d\n", *px);  // Prints 10 - the value stored at the address
 
 From this illustration, it's clear that `&x` allows you to obtain `x`'s address, while `*px` provides the value at the address `px` holds:
 ![pointer operators](../c/assets/pointer-operators.svg)
-<figcaption>Fig.2. Pointer operators: address vs. dereference.</figcaption>
+<figcaption>Fig.3. Pointer operators: address vs. dereference.</figcaption>
 
 In even simpler words, `&` finds a variable's address, while `*` takes an address and retrieves the value at that address. Therefore, we can think of them as opposites, in the sense that `&` moves from a value to its address, while `*` moves from an address to its value.
 
