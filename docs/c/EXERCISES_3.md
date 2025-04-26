@@ -1393,6 +1393,14 @@ int main() {
 }
 ```
 
+#### Why isn't there a `free()` inside `reversei`?
+
+When a function like `reversei` allocates memory with `malloc` and returns a pointer to that memory, it is essential that the memory remains valid after the function returns. If you were to call `free()` on the allocated memory (e.g., `free(result)`) before returning, the pointer you return would point to memory that has already been freed. Using such a pointer results in undefined behavior, as it refers to invalid (dangling) memory.
+
+Therefore, `reversei` should not call `free()` on the memory it allocates. Instead, it returns the pointer to the caller, transferring ownership of the memory. It is then the caller's responsibility to call `free()` when the memory is no longer needed. This is a common and important pattern in C: functions that allocate memory with `malloc` and return a pointer expect the caller to manage (and eventually free) that memory.
+
+In the example, `free(reversed);` is called in `main` after the reversed array is used, ensuring proper memory management.
+
 </details>
 
 ### Dynamic String Reversal (★★☆)
