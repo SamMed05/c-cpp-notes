@@ -291,62 +291,6 @@ However, VLAs have limitations:
 For larger or longer-lived dynamic arrays, `malloc()` is generally preferred.
 :::
 
-## Exercise: Analyze Weekly Temperatures
-
-Let's try coding a C program that:
-
-- Stores the temperatures for 7 days in an array.
-- Calculates the average temperature.
-- Prints the days (1-indexed) where the temperature was above average.
-- Displays the average temperature and the number of days above average.
-
-Solve this on your own before checking the solution!
-
-<details>
-<summary>Show solution</summary>
-
-```c
-#include <stdio.h>
-
-int main() {
-    // Declare and initialize an array
-    int temperatures[7] = {24, 22, 25, 23, 26, 25, 24};
-    
-    // Calculate average temperature
-    int sum = 0;
-    for (int i = 0; i < 7; i++) {
-        sum += temperatures[i];
-    }
-    float average = (float)sum / 7;
-    
-    // Find days above average
-    int above_average_count = 0;
-    printf("Days with above average temperature: ");
-    for (int i = 0; i < 7; i++) {
-        if (temperatures[i] > average) {
-            printf("%d ", i + 1);  // Day number (1-indexed)
-            above_average_count++;
-        }
-    }
-    printf("\n");
-    
-    printf("Average temperature: %.2f°C\n", average);
-    printf("Number of days above average: %d\n", above_average_count);
-    
-    return 0;
-}
-```
-
-<div class="output">
-<code class="output">
-Days with above average temperature: 3 5 6 <br/>
-Average temperature: 24.14°C<br/>
-Number of days above average: 3<br/>
-</code>
-</div>
-
-</details>
-
 ## Common pitfalls with arrays
 
 1. **Bounds checking**: C does not automatically check if an array index is valid. Accessing an element beyond the array bounds leads to undefined behavior.
@@ -403,3 +347,59 @@ for (int i = 0; i < 5; i++) {
 ```
 
 Arrays are fundamental to C programming and serve as the foundation for many more complex data structures like strings, matrices, and tables.
+
+## 📝 Exercise: Analyze weekly temperatures
+
+Let's try coding a C program that:
+
+- Stores the temperatures for 7 days in an array.
+- Calculates the average temperature.
+- Prints the days (1-indexed) where the temperature was above average.
+- Displays the average temperature and the number of days above average.
+
+Solve this on your own before checking the solution!
+
+<details>
+<summary>Show solution</summary>
+
+```c
+#include <stdio.h>
+
+int main() {
+    // Declare and initialize an array
+    int temperatures[7] = {24, 22, 25, 23, 26, 25, 24};
+    
+    // Calculate average temperature
+    int sum = 0;
+    for (int i = 0; i < 7; i++) {
+        sum += temperatures[i];
+    }
+    float average = (float)sum / 7;
+    
+    // Find days above average
+    int above_average_count = 0;
+    printf("Days with above average temperature: ");
+    for (int i = 0; i < 7; i++) {
+        if (temperatures[i] > average) {
+            printf("%d ", i + 1);  // Day number (1-indexed)
+            above_average_count++;
+        }
+    }
+    printf("\n");
+    
+    printf("Average temperature: %.2f°C\n", average);
+    printf("Number of days above average: %d\n", above_average_count);
+    
+    return 0;
+}
+```
+
+<div class="output">
+<code class="output">
+Days with above average temperature: 3 5 6 <br/>
+Average temperature: 24.14°C<br/>
+Number of days above average: 3<br/>
+</code>
+</div>
+
+</details>
