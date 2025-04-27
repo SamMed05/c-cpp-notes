@@ -111,9 +111,9 @@ struct date {
 
 struct date today;
 
-today.day = 25;
-today.month = 7;
-today.year = 2024;
+today.day = 27;
+today.month = 4;
+today.year = 2025;
 
 // In main()
 printf("Today's date is: %d/%d/%d\n", today.day, today.month, today.year);
@@ -127,13 +127,13 @@ When working with pointers to structures, you can access members in two ways:
 
 ```c
 struct date *date_ptr = &today;
-date_ptr->day = 26;  // equivalent to (*date_ptr).day = 26
+date_ptr->day = 27;  // equivalent to (*date_ptr).day = 27
 ```
 
 #### Dereference operator (`*`) and dot operator (`.`)
 
 ```c
-(*date_ptr).month = 8;  // equivalent to date_ptr->month = 8
+(*date_ptr).month = 7;  // equivalent to date_ptr->month = 7
 ```
 
 :::tip
@@ -207,7 +207,7 @@ void print_date(struct date d) {
 }
 
 int main() {
-    struct date today = {25, 7, 2024};
+    struct date today = {27, 4, 2025};
     print_date(today);  // Entire structure is copied
     return 0;
 }
@@ -223,9 +223,9 @@ void modify_date(struct date *d) {
 }
 
 int main() {
-    struct date today = {25, 7, 2024};
+    struct date today = {27, 4, 2025};
     modify_date(&today);
-    printf("%d/%d/%d\n", today.day, today.month, today.year);  // Prints 26/7/2024
+    printf("%d/%d/%d\n", today.day, today.month, today.year);  // Prints 27/4/2025
     return 0;
 }
 ```
