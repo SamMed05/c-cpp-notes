@@ -141,16 +141,24 @@ const config = {
             position: 'right',
             items: [
               {
+                href: 'https://samdev.netlify.app/',
+				        label: 'Main website',
+              },
+              {
                 href: 'https://github.com/SamMed05',
 				        label: 'GitHub',
               },
               {
                 href: 'https://sammed05.github.io/sm_blog/',
-				        label: 'Personal blog',
+				        label: 'Blog',
               },
       			  {
       				href: 'https://twitter.com/MedianiSamuel',
       				label: 'Twitter',
+      			  },
+      			  {
+      				href: 'https://bsky.app/profile/sam-med.bsky.social',
+      				label: 'Bluesky',
       			  },
               // ... more items
             ],
