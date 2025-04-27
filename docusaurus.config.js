@@ -220,6 +220,18 @@ const config = {
                 href: 'https://www.stroustrup.com/C++.html',
                 label: 'stroustrup.com - C++',
               },
+              {
+                href: 'https://isocpp.org/faq',
+                label: 'C++ Super-FAQ',
+              },
+              {
+                href: 'https://beej.us/guide/bgc/html/split/index.html',
+                label: 'Beej\'s Guide to C Programming',
+              },
+              {
+                href: 'https://beej.us/guide/bgclr/html/split/index.html',
+                label: 'Beej\'s Guide to C Programming - Library Reference',
+              },
               // ... more items
             ],
           },
