@@ -1,0 +1,66 @@
+.exercise {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.circle {
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 3px solid #cadaf081;
+  background: #5aa9e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+  margin-top: -0.15rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  will-change: transform, background, box-shadow;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+.circle.done {
+  background: #6bd490;
+  animation: pulse 0.2s ease-in forwards;
+}
+
+/* Dark mode support */
+[data-theme="dark"] .circle {
+  border: 3px solid #55555579; /* darker border */
+  background: #3a7ca5; /* adjusted blue for dark mode */
+}
+[data-theme="dark"] .circle.done {
+  background: #4CAF50; /* vivid green for dark mode */
+}
+
+.title {
+  flex: 1;
+}
+
+/* mobile */
+@media (max-width: 400px) {
+  .exercise {
+    flex-direction: column;
+  }
+  .circle {
+    margin-bottom: 0.25rem;
+  }
+}
+
+/* New keyframes for pulse animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
