@@ -155,6 +155,44 @@ int matrix[3][4] = {
 int value = matrix[1][2];  // Gets 23
 ```
 
+
+
+<div style={{ display: 'flex', justifyContent: 'center', margin: '1em 0' }}>
+    <table style={{ borderCollapse: 'collapse', fontFamily: 'Consolas, monospace' }}>
+<tbody>
+    <tr style={{ borderTop: "none" }}>
+        <th style={{ background: "transparent", color: "#fff", borderRight: "1px solid #bbb", borderBottom: "1px solid #bbb", borderTop: "none", borderLeft: "none", width: "90px", height: "90px" }}></th>
+        <th style={{ background: "#1377CFFF", color: "#fff", border: "1px solid #bbb", width: "90px", height: "90px" }}>Col 0</th>
+        <th style={{ background: "#1377CFFF", color: "#fff", border: "1px solid #bbb", width: "90px", height: "90px" }}>Col 1</th>
+        <th style={{ background: "#1377CFFF", color: "#fff", border: "1px solid #bbb", width: "90px", height: "90px" }}>Col 2</th>
+        <th style={{ background: "#1377CFFF", color: "#fff", border: "1px solid #bbb", width: "90px", height: "90px" }}>Col 3</th>
+    </tr>
+    <tr>
+        <th style={{ background: "#DB443CFF", color: "#fff", border: "1px solid #bbb", width: "90px", height: "90px" }}>Row 0</th>
+        <td style={{ background: "rgba(0, 116, 217, 0.04)", border: "1px solid #bbb", textAlign: "center", width: "90px", height: "90px" }}>11</td>
+        <td style={{ background: "rgba(0, 116, 217, 0.04)", border: "1px solid #bbb", textAlign: "center", width: "90px", height: "90px" }}>12</td>
+        <td style={{ background: "rgba(0, 116, 217, 0.04)", border: "1px solid #bbb", textAlign: "center", width: "90px", height: "90px" }}>13</td>
+        <td style={{ background: "rgba(0, 116, 217, 0.04)", border: "1px solid #bbb", textAlign: "center", width: "90px", height: "90px" }}>14</td>
+    </tr>
+    <tr>
+        <th style={{ background: "#DB443CFF", color: "#fff", border: "1px solid #bbb", width: "90px", height: "90px" }}>Row 1</th>
+        <td style={{ background: "rgba(255, 65, 54, 0.04)", border: "1px solid #bbb", textAlign: "center", width: "90px", height: "90px" }}>21</td>
+        <td style={{ background: "rgba(255, 65, 54, 0.04)", border: "1px solid #bbb", textAlign: "center", width: "90px", height: "90px" }}>22</td>
+        <td style={{ background: "rgba(255, 65, 54, 0.04)", border: "1px solid #bbb", textAlign: "center", width: "90px", height: "90px" }}>23</td>
+        <td style={{ background: "rgba(255, 65, 54, 0.04)", border: "1px solid #bbb", textAlign: "center", width: "90px", height: "90px" }}>24</td>
+    </tr>
+    <tr>
+        <th style={{ background: "#DB443CFF", color: "#fff", border: "1px solid #bbb", width: "90px", height: "90px" }}>Row 2</th>
+        <td style={{ background: "rgba(46, 204, 64, 0.04)", border: "1px solid #bbb", textAlign: "center", width: "90px", height: "90px" }}>31</td>
+        <td style={{ background: "rgba(46, 204, 64, 0.04)", border: "1px solid #bbb", textAlign: "center", width: "90px", height: "90px" }}>32</td>
+        <td style={{ background: "rgba(46, 204, 64, 0.04)", border: "1px solid #bbb", textAlign: "center", width: "90px", height: "90px" }}>33</td>
+        <td style={{ background: "rgba(46, 204, 64, 0.04)", border: "1px solid #bbb", textAlign: "center", width: "90px", height: "90px" }}>34</td>
+    </tr>
+</tbody>
+</table>
+</div>
+
+
 You can create arrays with any number of dimensions:
 
 ```c
