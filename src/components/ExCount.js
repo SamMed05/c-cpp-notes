@@ -11,6 +11,13 @@ export default function ExCount({children}) {
       setDone(true);
   }, [index]);
 
+  useEffect(() => {
+    // decrement counter when this ExCount unmounts
+    return () => {
+      counter = Math.max(0, counter - 1);
+    };
+  }, []);
+
   const toggle = () => {
     const newDone = !done;
     setDone(newDone);
