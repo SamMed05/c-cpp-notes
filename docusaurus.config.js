@@ -257,17 +257,26 @@ const config = {
             title: 'Links',
             items: [
               {
-                label: 'GitHub',
-                href: 'https://github.com/SamMed05',
-              },
-			  {
-                label: 'Personal blog',
-                href: 'https://sammed05.github.io/sm_blog/',
+                href: 'https://samdev.netlify.app/',
+				        label: 'Main website',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/MedianiSamuel',
+                href: 'https://github.com/SamMed05',
+				        label: 'GitHub',
               },
+              {
+                href: 'https://sammed05.github.io/sm_blog/',
+				        label: 'Blog',
+              },
+      			  {
+      				href: 'https://twitter.com/MedianiSamuel',
+      				label: 'Twitter',
+      			  },
+      			  {
+      				href: 'https://bsky.app/profile/sam-med.bsky.social',
+      				label: 'Bluesky',
+      			  },
+              // ... more items
             ],
           },
         ],

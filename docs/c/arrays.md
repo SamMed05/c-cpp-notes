@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 9
 id: arrays
 title: Arrays
 hide_title: false
