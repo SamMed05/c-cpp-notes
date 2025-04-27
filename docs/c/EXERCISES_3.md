@@ -4,7 +4,7 @@ id: exercises_3
 title: Exercises (Part 3)
 hide_title: false
 hide_table_of_contents: false
-sidebar_label: EXERCISES
+sidebar_label: EXERCISES 1
 description: Exercises on pointers and memory allocation.
 slug: /c/exercises_3
 custom_edit_url: null
