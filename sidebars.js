@@ -20,7 +20,7 @@ const sidebars = {
     },
     {
       type: 'link',
-      label: 'C Programming Quiz',
+      label: '📋 C Programming Quiz',
       href: '/c/quiz',
     },
   ],
