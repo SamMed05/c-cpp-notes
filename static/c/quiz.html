@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>C Programming Quiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f8f9fa;
+        margin: 0;
+        padding: 0;
+        color: #222;
+        transition: background 0.2s, color 0.2s;
+      }
+      .container {
+        max-width: 900px;
+        margin: 30px auto;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px #0001;
+        padding: 32px 24px 24px 24px;
+        transition: background 0.2s, color 0.2s;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #2c3e50;
+        transition: color 0.2s;
+      }
+      .category {
+        margin-top: 32px;
+        margin-bottom: 16px;
+        border-bottom: 2px solid #e1e1e1;
+        padding-bottom: 4px;
+      }
+      .question {
+        margin: 24px 0 16px 0;
+        padding: 16px;
+        background: #f3f6fa;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px #0001;
+        transition: background 0.2s, color 0.2s;
+      }
+      .question-text {
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+      .options {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .option-btn {
+        background: #e9ecef;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 14px;
+        font-size: 1rem;
+        cursor: pointer;
+        text-align: left;
+        transition: background 0.2s;
+        word-break: break-word;
+      }
+      .option-btn:hover:not([disabled]) {
+        background: #d0e3fa;
+      }
+      .option-btn.correct {
+        background: #b6f2c8;
+        color: #176c2b;
+        font-weight: bold;
+      }
+      .option-btn.incorrect {
+        background: #f8caca;
+        color: #a12a2a;
+        font-weight: bold;
+      }
+      .explanation {
+        display: none;
+        margin-top: 10px;
+        padding: 10px;
+        background: #f7f7e7;
+        border-left: 4px solid #f1c40f;
+        border-radius: 4px;
+        color: #444;
+        font-size: 0.98em;
+      }
+      .explanation.show {
+        display: block;
+        animation: fadein 0.3s;
+      }
+      @keyframes fadein {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .note {
+        background: #eaf6ff;
+        border-left: 4px solid #3498db;
+        padding: 12px 16px;
+        margin-bottom: 24px;
+        border-radius: 4px;
+        color: #2c3e50;
+      }
+      /* Code highlighting */
+      pre.code,
+      .code {
+        background: #23272e;
+        color: #e3eaf2;
+        border-radius: 4px;
+        padding: 5px;
+        font-family: "Fira Mono", "Consolas", monospace;
+        font-size: 0.97em;
+        margin: 8px 0;
+        overflow-x: auto;
+        line-height: 1.5;
+        white-space: pre;
+      }
+      /* Simple syntax highlight for C/C++ keywords */
+      .code .kw {
+        color: #7fd6ff;
+      }
+      .code .type {
+        color: #f7c873;
+      }
+      .code .num {
+        color: #b5e853;
+      }
+      .code .str {
+        color: #e6db74;
+      }
+      .code .com {
+        color: #7e8c8d;
+        font-style: italic;
+      }
+      /* Dark mode styles */
+      body.dark-mode {
+        background: #181a1b;
+        color: #e3eaf2;
+      }
+      body.dark-mode .container {
+        background: #23272e;
+        color: #e3eaf2;
+        box-shadow: 0 2px 8px #0008;
+      }
+      body.dark-mode h1,
+      body.dark-mode h2,
+      body.dark-mode h3 {
+        color: #e3eaf2;
+      }
+      body.dark-mode .question {
+        background: #23272e;
+        color: #e3eaf2;
+        box-shadow: 0 1px 3px #0008;
+      }
+      body.dark-mode .note {
+        background: #1e2a36;
+        border-left: 4px solid #3498db;
+        color: #e3eaf2;
+      }
+      body.dark-mode .option-btn {
+        background: #23272e;
+        color: #e3eaf2;
+        border: 1px solid #333;
+      }
+      body.dark-mode .option-btn:hover:not([disabled]) {
+        background: #2c3e50;
+      }
+      body.dark-mode .option-btn.correct {
+        background: #1e5631;
+        color: #b6f2c8;
+      }
+      body.dark-mode .option-btn.incorrect {
+        background: #6e2323;
+        color: #f8caca;
+      }
+      body.dark-mode .explanation {
+        background: #2c2c1e;
+        border-left: 4px solid #f1c40f;
+        color: #ffe;
+      }
+      body.dark-mode pre.code,
+      body.dark-mode .code {
+        background: #181a1b;
+        color: #e3eaf2;
+      }
+      @media (max-width: 600px) {
+        .container {
+          padding: 12px 2vw 18px 2vw;
+          max-width: 100vw;
+          margin: 0;
+          border-radius: 0;
+          box-shadow: none;
+        }
+        .question {
+          padding: 10px 4px;
+        }
+        .note {
+          padding: 8px 6px;
+          font-size: 0.98em;
+        }
+        .category h2 {
+          font-size: 1.15em;
+        }
+        .option-btn {
+          font-size: 0.98em;
+          padding: 7px 8px;
+        }
+        pre.code,
+        .code {
+          font-size: 0.9em;
+        }
+      }
+      /* Dark mode toggle button */
+      .dark-toggle-btn {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        z-index: 100;
+        background: #e9ecef;
+        color: #222;
+        border: none;
+        border-radius: 22px;
+        padding: 8px 18px;
+        font-size: 1.05em;
+        cursor: pointer;
+        box-shadow: 0 2px 8px #0002;
+        transition: background 0.2s, color 0.2s;
+      }
+      .dark-toggle-btn:hover {
+        background: #d0e3fa;
+      }
+      body.dark-mode .dark-toggle-btn {
+        background: #23272e;
+        color: #e3eaf2;
+        box-shadow: 0 2px 8px #0008;
+      }
+      body.dark-mode .dark-toggle-btn:hover {
+        background: #2c3e50;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="dark-toggle-btn" id="darkToggleBtn" type="button" aria-label="Toggle dark mode">🌙 Dark mode</button>
+    <button id="resetQuizBtn" type="button" style="position:fixed;top:18px;left:18px;z-index:101;background:#e9ecef;color:#222;border:none;border-radius:22px;padding:8px 18px;font-size:1.05em;cursor:pointer;box-shadow:0 2px 8px #0002;transition:background 0.2s,color 0.2s;">🔄 Reset answers</button>
+    <div class="container">
+      <h1>C Programming Quiz</h1>
+      <div class="note">
+        <strong>Instructions:</strong> For each question, choose the answer you think is correct. After selecting an answer, the solution and explanation will be shown.
+      </div>
+      <div id="quiz"></div>
+    </div>
+    <script>
+      // Dark mode toggle
+      const darkBtn = document.getElementById("darkToggleBtn");
+      function setDarkMode(on) {
+        if (on) {
+          document.body.classList.add("dark-mode");
+          darkBtn.innerHTML = "☀️ Light mode";
+        } else {
+          document.body.classList.remove("dark-mode");
+          darkBtn.innerHTML = "🌙 Dark mode";
+        }
+      }
+      // Preference persistence
+      function getDarkPref() {
+        if (localStorage.getItem("dark-mode") !== null)
+          return localStorage.getItem("dark-mode") === "true";
+        // System preference
+        return window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+      }
+      setDarkMode(getDarkPref());
+      darkBtn.onclick = function () {
+        const isDark = document.body.classList.toggle("dark-mode");
+        localStorage.setItem("dark-mode", isDark);
+        setDarkMode(isDark);
+      };
+
+      const quizData = [
+        {
+          questions: [
+            {
+              text:
+                "What does the following code print?\n<pre class='code'>#include &lt;stdio.h&gt;\n#include &lt;stdlib.h&gt;\n\nint main() {\n    int *p = malloc(sizeof(int));\n    *p = 42;\n    free(p);\n    printf(\"%d\\n\", *p);\n    return 0;\n}</pre>",
+              options: [
+                { text: "42", correct: false },
+                { text: "0", correct: false },
+                { text: "Undefined behavior", correct: true },
+                { text: "Compilation error", correct: false },
+              ],
+              explanation:
+                "After <code>free(p)</code>, accessing <code>*p</code> is undefined behavior according to the C standard.",
+            },
+            {
+              text:
+                "Which of the following options is syntactically correct and safe to dynamically allocate an array of 100 integers?",
+              options: [
+                { text: "int *a = malloc(sizeof(int[100]));", correct: true },
+                {
+                  text: "int a = malloc(100 * sizeof(int));",
+                  correct: false,
+                },
+                { text: "int a = malloc(sizeof(int) 100);", correct: false },
+                { text: "Both A and C", correct: false },
+              ],
+              explanation:
+                "The correct answer is <code>int *a = malloc(sizeof(int[100]));</code> or <code>int *a = malloc(100 * sizeof(int));</code> (not present among the options).",
+            },
+            {
+              text:
+                "What happens if you call free() on a pointer that was not returned by malloc/calloc/realloc?",
+              options: [
+                {
+                  text: "The memory is correctly freed",
+                  correct: false,
+                },
+                {
+                  text: "Runtime error or undefined behavior",
+                  correct: true,
+                },
+                {
+                  text: "The program ends with a warning",
+                  correct: false,
+                },
+                { text: "The compiler signals an error", correct: false },
+              ],
+              explanation:
+                "Calling <code>free()</code> on a pointer not dynamically allocated causes undefined behavior.",
+            },
+            {
+              text:
+                "What is the problem in the following snippet?\n<pre class='code'>int *arr = malloc(10 * sizeof(int));\narr[10] = 5;</pre>",
+              options: [
+                {
+                  text: "No problem, the code works",
+                  correct: false,
+                },
+                {
+                  text: "Buffer overflow. Undefined behavior",
+                  correct: true,
+                },
+                { text: "The allocation is not correct", correct: false },
+                { text: "arr[10] is not supported in C", correct: false },
+              ],
+              explanation:
+                "The maximum valid index is 9, <code>arr[10]</code> is out of bounds (buffer overflow).",
+            },
+            {
+              text:
+                "What happens if you call free(p); twice on the same pointer p, without resetting it to NULL?",
+              options: [
+                {
+                  text: "The system ignores the second call",
+                  correct: false,
+                },
+                {
+                  text: "Memory is freed twice, correctly",
+                  correct: false,
+                },
+                {
+                  text: "Undefined behavior occurs",
+                  correct: true,
+                },
+                {
+                  text: "The compiler prevents compilation",
+                  correct: false,
+                },
+              ],
+              explanation:
+                "Calling <code>free</code> twice on the same pointer causes undefined behavior.",
+            },
+            {
+              text:
+                "What does the following code print?\n<pre class='code'>#include &lt;stdio.h&gt;\n\nint main() {\n    int a[] = {10, 20, 30};\n    int *p = a;\n    printf(\"%d\\n\", *(p + 2));\n    return 0;\n}</pre>",
+              options: [
+                { text: "10", correct: false },
+                { text: "20", correct: false },
+                { text: "30", correct: true },
+                { text: "Undefined behavior", correct: false },
+              ],
+              explanation:
+                "*(p + 2) accesses the third element of the array, so it prints 30.",
+            },
+            {
+              text:
+                "What happens in the following snippet?\n<pre class='code'>#include &lt;stdio.h&gt;\n\nint main() {\n    int arr[3] = {1, 2, 3};\n    int *ptr = arr;\n    *(ptr + 1) = *(ptr + 1) + 5;\n    printf(\"%d\\n\", arr[1]);\n    return 0;\n}</pre>",
+              options: [
+                { text: "Prints 2", correct: false },
+                { text: "Prints 5", correct: false },
+                { text: "Prints 7", correct: true },
+                { text: "Undefined behavior", correct: false },
+              ],
+              explanation:
+                "arr[1] is 2, it is incremented by 5 and becomes 7.",
+            },
+            {
+              text:
+                'What does the following code print?\n<pre class=\'code\'>#include &lt;stdio.h&gt;\n\nint main() {\n    char str[] = "Hello";\n    char *p = str;\n    printf("%c\\n", *(p + 4));\n    return 0;\n}</pre>',
+              options: [
+                { text: "'o'", correct: true },
+                { text: "'l'", correct: false },
+                { text: "'\\0'", correct: false },
+                { text: "Undefined behavior", correct: false },
+              ],
+              explanation:
+                "Index 4 corresponds to the character 'o'.",
+            },
+            {
+              text:
+                "What does the following code print?\n<pre class='code'>#include &lt;stdio.h&gt;\n\nint main() {\n    int a[3] = {10, 20, 30};\n    int *p = a + 1;\n    printf(\"%d\\n\", *(p - 1));\n    return 0;\n}</pre>",
+              options: [
+                { text: "10", correct: true },
+                { text: "20", correct: false },
+                { text: "30", correct: false },
+                { text: "Undefined behavior", correct: false },
+              ],
+              explanation:
+                "p points to a[1], so *(p-1) accesses a[0], which is 10.",
+            },
+            {
+              text:
+                "Consider the following code snippet:\n<pre class='code'>int i = 5;\nfloat f = 2.5;\ndouble result = i / f;</pre>\nWhat type of conversion occurred in the expression i / f and what is the value of result?",
+              options: [
+                {
+                  text:
+                    "Implicit conversion: i is converted to float, result is 2.0",
+                  correct: true,
+                },
+                {
+                  text:
+                    "Implicit conversion: f is converted to int, result is 2.0",
+                  correct: false,
+                },
+                {
+                  text:
+                    "Implicit conversion: i is converted to float, result is 2.0f",
+                  correct: false,
+                },
+                {
+                  text: "No conversion, compilation error",
+                  correct: false,
+                },
+              ],
+              explanation:
+                "i is converted to float, 5/2.5 = 2.0, which is then converted to double.",
+            },
+            {
+              text:
+                "Given the following expression:\n<pre class='code'>char c = 255;\nint i = c;</pre>\nAssuming char is signed by default, what value will i have and what conversion occurred?",
+              options: [
+                { text: "i is 255, implicit conversion from char to int", correct: false },
+                { text: "i is -1, implicit sign-extended conversion", correct: true },
+                { text: "i is 255, explicit cast with implicit conversion", correct: false },
+                { text: "Undefined behavior according to the standard", correct: false },
+              ],
+              explanation:
+                "255 as a signed char becomes -1, which is promoted to int keeping the sign.",
+            },
+            {
+              text:
+                "Which of the following lines produces undefined behavior due to implicit conversions?",
+              options: [
+                { text: "int i = 2147483647 + 1;", correct: true },
+                { text: "unsigned int u = -1;", correct: false },
+                { text: "float f = (int)3.9;", correct: false },
+                { text: "char c = (char)1000;", correct: false },
+              ],
+              explanation:
+                "2147483647 + 1 causes int overflow, which is undefined behavior.",
+            },
+            {
+              text:
+                'What does the following code print?\n<pre class=\'code\'>#include &lt;stdio.h&gt;\n\nint main() {\n    unsigned int x = 10;\n    int y = -1;\n    if (y > x)\n        printf("y > x\\n");\n    else\n        printf("y <= x\\n");\n    return 0;\n}</pre>',
+              options: [
+                { text: 'Prints “y > x” due to implicit promotion', correct: false },
+                { text: 'Prints “y <= x” due to correct signed comparison', correct: false },
+                { text: 'Prints “y > x” because y is converted to unsigned', correct: true },
+                { text: "Undefined behavior", correct: false },
+              ],
+              explanation:
+                "y is converted to unsigned, so -1 becomes UINT_MAX, which is greater than 10.",
+            },
+            {
+              text:
+                "Given this snippet:\n<pre class='code'>short s = -1;\nunsigned int u = s;</pre>\nWhat value does u have on a system where short is 16 bits and unsigned int is 32 bits?",
+              options: [
+                { text: "u is -1", correct: false },
+                { text: "u is 65535", correct: true },
+                { text: "u is 0xFFFFFFFF", correct: false },
+                { text: "u is -65536", correct: false },
+              ],
+              explanation:
+                "s = -1 as unsigned short is 65535, promoted to unsigned int remains 65535.",
+            },
+            {
+              text: "What is the correct syntax to declare a structure in C?",
+              options: [
+                { text: "struct structure_name { type variable; };", correct: true },
+                { text: "struct { type variable; } structure_name;", correct: false },
+                { text: "struct structure_name { type variable; }", correct: false },
+                { text: "struct structure_name { type variable; } structure_name;", correct: false },
+              ],
+              explanation:
+                "The correct declaration is <code>struct structure_name { type variable; };</code>",
+            },
+            {
+              text: "How do you access the members of a structure in C?",
+              options: [
+                { text: "structure.member", correct: true },
+                { text: "structure->member", correct: false },
+                { text: "structure[member]", correct: false },
+                { text: "structure.member()", correct: false },
+              ],
+              explanation:
+                "Use the dot to access structure members.",
+            },
+            {
+              text: "Which of the following statements is true about structures in C?",
+              options: [
+                { text: "Structures can only contain int variables.", correct: false },
+                { text: "Structures can contain variables of any type.", correct: true },
+                { text: "Structures cannot contain arrays.", correct: false },
+                { text: "Structures must be declared inside a function.", correct: false },
+              ],
+              explanation:
+                "Structures can contain variables of any type, including arrays and other structures.",
+            },
+            {
+              text: "How do you initialize a structure in C?",
+              options: [
+                { text: "struct structure_name = { value1, value2 };", correct: false },
+                { text: "struct structure_name { value1, value2 };", correct: false },
+                { text: "struct structure_name var = { .member1 = value1, .member2 = value2 };", correct: true },
+                { text: "struct structure_name { .member1 = value1, .member2 = value2 };", correct: false },
+              ],
+              explanation:
+                "The correct initialization is <code>struct structure_name var = { .member1 = value1, ... };</code>",
+            },
+            {
+              text: "What is the difference between a structure and a union in C?",
+              options: [
+                { text: "Structures can only contain int variables, unions can contain any type.", correct: false },
+                { text: "Structures allocate memory for all members, unions allocate memory only for the largest member.", correct: true },
+                { text: "Structures are only used for arrays, unions for single variables.", correct: false },
+                { text: "Structures must be declared inside a function, unions can be declared anywhere.", correct: false },
+              ],
+              explanation:
+                "Structures allocate memory for all members, unions only for the largest member.",
+            },
+            {
+              text:
+                "What happens when a function parameter is passed by value in C?\n<pre class='code'>void function(int x) {\n    x = 10;\n}\n\nint main() {\n    int x = 5;\n    function(x);\n    printf(\"%d\\n\", x);\n    return 0;\n}</pre>",
+              options: [
+                { text: "The formal parameter receives a copy of the actual parameter's value", correct: true },
+                { text: "The formal parameter refers directly to the actual parameter", correct: false },
+                { text: "The function can modify the actual parameter", correct: false },
+                { text: "The function does not receive the value of the actual parameter", correct: false },
+              ],
+              explanation:
+                "In C, parameters are passed by value, so the function works on a copy.",
+            },
+            {
+              text:
+                "When using pass by address, which statement is correct regarding the relationship between formal and actual parameters?\n<pre class='code'>void function(int *x) {\n    *x = 20;\n}\n\nint main() {\n    int x = 5;\n    function(&x);\n    printf(\"%d\\n\", x);\n    return 0;\n}</pre>",
+              options: [
+                { text: "The formal parameter is a copy of the actual parameter", correct: false },
+                { text: "The formal parameter contains the address of the original variable, so the function can modify its value", correct: true },
+                { text: "The actual parameter has no influence on the formal parameter", correct: false },
+                { text: "The formal parameter is a local variable not accessible outside the function", correct: false },
+              ],
+              explanation:
+                "The formal parameter is a pointer to the original variable, so the function can modify its value.",
+            },
+            {
+              text:
+                "In the following code, what happens when x is passed by value to the formal parameter x?\n<pre class='code'>void function(int x) {\n    x = 10;\n}\n\nint main() {\n    int x = 5;\n    function(x);\n    printf(\"%d\\n\", x);\n    return 0;\n}</pre>",
+              options: [
+                { text: "Prints 10", correct: false },
+                { text: "Prints 5", correct: true },
+                { text: "Compilation error", correct: false },
+                { text: "Undefined behavior", correct: false },
+              ],
+              explanation:
+                "The function only modifies the local copy of x, so main prints 5.",
+            },
+            {
+              text:
+                "In the case of pass by address, which of the following statements is true regarding the formal and actual parameter?\n<pre class='code'>void function(int *x) {\n    *x = 30;\n}\n\nint main() {\n    int x = 5;\n    function(&x);\n    printf(\"%d\\n\", x);\n    return 0;\n}</pre>",
+              options: [
+                { text: "The formal parameter receives a copy of the actual parameter", correct: false },
+                { text: "The formal parameter can access and directly modify the original variable represented by the actual parameter", correct: true },
+                { text: "The actual parameter becomes a copy of the formal parameter", correct: false },
+                { text: "The formal parameter is only used to read the value without modifying it", correct: false },
+              ],
+              explanation:
+                "The formal parameter is a pointer that can modify the original variable.",
+            },
+            {
+              text:
+                "In the following code, what happens to the value of the variable x in main?\n<pre class='code'>void function(int *x) {\n    *x = 20;\n}\n\nint main() {\n    int x = 5;\n    function(&x);\n    printf(\"%d\\n\", x);\n    return 0;\n}</pre>",
+              options: [
+                { text: "The value of x does not change", correct: false },
+                { text: "The value of x becomes 20", correct: true },
+                { text: "The value of x becomes 10", correct: false },
+                { text: "The program does not compile", correct: false },
+              ],
+              explanation:
+                "The function modifies the value of x through the pointer, so x becomes 20.",
+            },
+            {
+              text:
+                "In the following code, what value is assigned to the formal parameter x inside the function?\n<pre class='code'>void function(int x) {\n    x = 10;\n}\n\nint main() {\n    int x = 5;\n    function(x);\n    printf(\"%d\\n\", x);\n    return 0;\n}</pre>",
+              options: [
+                { text: "x in function is assigned 10", correct: true },
+                { text: "x in function remains 5", correct: false },
+                { text: "x in main is changed to 10", correct: false },
+                { text: "None of the above", correct: false },
+              ],
+              explanation:
+                "In the function, x is assigned 10, but this change does not affect x in main.",
+            },
+            {
+              text:
+                "In the following code, what is the final result of the program?\n<pre class='code'>void function(int *x) {\n    *x = 10;\n}\n\nint main() {\n    int x = 5;\n    function(&x);\n    printf(\"%d\\n\", x);\n    return 0;\n}</pre>",
+              options: [
+                { text: "Prints 5", correct: false },
+                { text: "Prints 10", correct: true },
+                { text: "Prints 0", correct: false },
+                { text: "Prints 15", correct: false },
+              ],
+              explanation:
+                "The function modifies x through the pointer, so it prints 10.",
+            },
+            {
+              text:
+                "In the following code, what happens when the function is called?\n<pre class='code'>void function(int *x) {\n    *x = 30;\n}\n\nint main() {\n    int x = 5;\n    function(&x);\n    printf(\"%d\\n\", x);\n    return 0;\n}</pre>",
+              options: [
+                { text: "The value of x remains 5", correct: false },
+                { text: "The value of x becomes 30", correct: true },
+                { text: "The value of x is incremented by 25", correct: false },
+                { text: "The program generates an error", correct: false },
+              ],
+              explanation:
+                "The function modifies x through the pointer, so x becomes 30.",
+            },
+            {
+              text:
+                "In the following code, what does the program print if the formal parameter x is passed by value?\n<pre class='code'>void function(int x) {\n    x = 10;\n}\n\nint main() {\n    int x = 5;\n    function(x);\n    printf(\"%d\\n\", x);\n    return 0;\n}</pre>",
+              options: [
+                { text: "Prints 10", correct: false },
+                { text: "Prints 5", correct: true },
+                { text: "Prints 0", correct: false },
+                { text: "Runtime error", correct: false },
+              ],
+              explanation:
+                "The function only modifies the local copy of x, so main prints 5.",
+            },
+            {
+              text:
+                "What does the program do?\nUse of malloc, struct, and dynamic arrays\n<pre class='code'>typedef struct {\n    int x;\n    int y;\n} Point;\n\nint main() {\n    Point *points;\n    int n = 3;\n    points = (Point *)malloc(n * sizeof(Point));\n    for (int i = 0; i < n; i++) {\n        points[i].x = i;\n        points[i].y = i * 2;\n    }\n    for (int i = 0; i < n; i++) {\n        printf(\"Point %d: x = %d, y = %d\\n\", i, points[i].x, points[i].y);\n    }\n    free(points);\n    return 0;\n}</pre>",
+              options: [
+                { text: "Dynamically allocates an array of 3 Point and prints x and y values.", correct: true },
+                { text: "Allocates 3 integers and prints them.", correct: false },
+                { text: "Causes a memory error due to a malfunction in malloc.", correct: false },
+                { text: "Allocates a fixed-size array of 3 integers.", correct: false },
+              ],
+              explanation:
+                "The program dynamically allocates an array of 3 struct Point and prints their values.",
+            },
+            {
+              text:
+                "What does the program print? (Pointer to pointer)\n<pre class='code'>void modify(int **ptr) {\n    **ptr = 10;\n}\n\nint main() {\n    int x = 5;\n    int *p = &x;\n    int **pp = &p;\n    modify(pp);\n    printf(\"%d\\n\", x);\n    return 0;\n}</pre>",
+              options: [
+                { text: "5", correct: false },
+                { text: "10", correct: true },
+                { text: "Compilation error", correct: false },
+                { text: "Memory address", correct: false },
+              ],
+              explanation:
+                "**pp accesses x via double pointer, so x is changed to 10.",
+            },
+            {
+              text:
+                "What will be the value of b printed by the program?\nExplicit and implicit casting\n<pre class='code'>double a = 9.7;\nint b = (int)a;\nprintf(\"%d\\n\", b);</pre>",
+              options: [
+                { text: "9", correct: true },
+                { text: "10", correct: false },
+                { text: "9.7", correct: false },
+                { text: "Type error", correct: false },
+              ],
+              explanation: "The cast truncates the decimal part, so b is 9.",
+            },
+            {
+              text:
+                "What does the program print?\nArray and for loop with malloc\n<pre class='code'>int *arr;\nint n = 5;\narr = (int *)malloc(n * sizeof(int));\nfor (int i = 0; i < n; i++) {\n    arr[i] = i * i;\n}\nfor (int i = 0; i < n; i++) {\n    printf(\"%d \", arr[i]);\n}\nfree(arr);</pre>",
+              options: [
+                { text: "0 1 4 9 16", correct: true },
+                { text: "0 1 2 3 4", correct: false },
+                { text: "Compilation error", correct: false },
+                { text: "0 0 0 0 0", correct: false },
+              ],
+              explanation:
+                "Each element is the square of the index: 0 1 4 9 16.",
+            },
+            {
+              text:
+                "What does the program print?\nUse of for loop with struct and array\n<pre class='code'>typedef struct {\n    int a;\n    int b;\n} Pair;\n\nint main() {\n    Pair arr[3] = {{1, 2}, {3, 4}, {5, 6}};\n    for (int i = 0; i < 3; i++) {\n        printf(\"Pair %d: a = %d, b = %d\\n\", i, arr[i].a, arr[i].b);\n    }\n    return 0;\n}</pre>",
+              options: [
+                { text: "Pair 0: a = 1, b = 2", correct: false },
+                { text: "Pair 0: a = 1, b = 2; Pair 1: a = 3, b = 4; Pair 2: a = 5, b = 6", correct: true },
+                { text: "Pair 1: a = 3, b = 4", correct: false },
+                { text: "Compilation error", correct: false },
+              ],
+              explanation:
+                "Prints all values of the Pair structs in the array.",
+            },
+            {
+              text:
+                'What does the program print?\nDynamic allocation of array of structs\n<pre class=\'code\'>typedef struct {\n    char name[20];\n    int age;\n} Person;\n\nint main() {\n    Person *people;\n    int n = 3;\n    people = (Person *)malloc(n * sizeof(Person));\n    for (int i = 0; i < n; i++) {\n        snprintf(people[i].name, 20, "Person %d", i+1);\n        people[i].age = 20 + i;\n    }\n    for (int i = 0; i < n; i++) {\n        printf("%s, %d years\\n", people[i].name, people[i].age);\n    }\n    free(people);\n    return 0;\n}</pre>',
+              options: [
+                { text: "Person 1, 20 years; Person 2, 21 years; Person 3, 22 years", correct: true },
+                { text: "Person 1, 20 years; Person 1, 21 years; Person 1, 22 years", correct: false },
+                { text: "Person 1, 0 years; Person 2, 0 years; Person 3, 0 years", correct: false },
+                { text: "Compilation error", correct: false },
+              ],
+              explanation:
+                "Prints the names and ages of the three dynamically created people.",
+            },
+            {
+              text:
+                "What does the program print?\nPointer to array of structs\n<pre class='code'>typedef struct {\n    int x;\n    int y;\n} Point;\n\nint main() {\n    Point points[2] = {{1, 2}, {3, 4}};\n    Point *p = points;\n    for (int i = 0; i < 2; i++) {\n        printf(\"Point %d: x = %d, y = %d\\n\", i, p[i].x, p[i].y);\n    }\n    return 0;\n}</pre>",
+              options: [
+                { text: "Point 0: x = 1, y = 2; Point 1: x = 3, y = 4", correct: true },
+                { text: "Point 0: x = 0, y = 0; Point 1: x = 0, y = 0", correct: false },
+                { text: "Point 0: x = 1, y = 2; Point 1: x = 2, y = 3", correct: false },
+                { text: "Compilation error", correct: false },
+              ],
+              explanation:
+                "The pointer p points to the points array, so it prints the correct values.",
+            },
+            {
+              text:
+                'What does the program print?\nUse of malloc for multidimensional arrays\n<pre class=\'code\'>int m = 3, n = 4;\nint **matrix = (int **)malloc(m * sizeof(int *));\nfor (int i = 0; i < m; i++) {\n    matrix[i] = (int *)malloc(n * sizeof(int));\n}\nfor (int i = 0; i < m; i++) {\n    for (int j = 0; j < n; j++) {\n        matrix[i][j] = i + j;\n    }\n}\nfor (int i = 0; i < m; i++) {\n    for (int j = 0; j < n; j++) {\n        printf("%d ", matrix[i][j]);\n    }\n    printf("\\n");\n}\nfor (int i = 0; i < m; i++) {\n    free(matrix[i]);\n}\nfree(matrix);</pre>',
+              options: [
+                { text: "0 1 2 3\n1 2 3 4\n2 3 4 5", correct: true },
+                { text: "0 0 0 0\n1 1 1 1\n2 2 2 2", correct: false },
+                { text: "0 1 2 4 5 7 8", correct: false },
+                { text: "Compilation error", correct: false },
+              ],
+              explanation:
+                "Each element is i+j, so the matrix is printed row by row.",
+            },
+            {
+              text:
+                "What does the program print?\nImplicit casting between data types\n<pre class='code'>float f = 3.14;\nint i;\ni = f;\nprintf(\"%d\\n\", i);</pre>",
+              options: [
+                { text: "3", correct: true },
+                { text: "3.14", correct: false },
+                { text: "0", correct: false },
+                { text: "Compilation error", correct: false },
+              ],
+              explanation:
+                "The float value is truncated to integer, so it prints 3.",
+            },
+            {
+              text:
+                "What does the program print?\nUse of for loop with struct and pointers\n<pre class='code'>typedef struct {\n    int a;\n    int b;\n} Pair;\n\nint main() {\n    Pair arr[2] = {{1, 2}, {3, 4}};\n    Pair *p = arr;\n    for (int i = 0; i < 2; i++) {\n        printf(\"Pair %d: a = %d, b = %d\\n\", i, (p + i)->a, (p + i)->b);\n    }\n    return 0;\n}</pre>",
+              options: [
+                { text: "Pair 0: a = 1, b = 2; Pair 1: a = 3, b = 4", correct: true },
+                { text: "Pair 0: a = 0, b = 0; Pair 1: a = 0, b = 0", correct: false },
+                { text: "Pair 0: a = 1, b = 2; Pair 1: a = 1, b = 2", correct: false },
+                { text: "Compilation error", correct: false },
+              ],
+              explanation:
+                "The pointer p is used to access the elements of the array.",
+            },
+            {
+              text:
+                "What is the error in the code?\n<pre class='code'>int arr[3] = {1, 2, 3};\nprintf(\"%d\", arr[5]);</pre>",
+              options: [
+                { text: "Index 5 is valid for the arr array.", correct: false },
+                { text: "The program tries to access an out-of-bounds index.", correct: true },
+                { text: "The arr array has only 2 elements, not 3.", correct: false },
+                { text: "There are no errors in the code.", correct: false },
+              ],
+              explanation:
+                "Index 5 is out of bounds (valid indices: 0,1,2).",
+            },
+            {
+              text:
+                "What is the error in the code?\n<pre class='code'>float x = 3.5;\nint y = x;\nprintf(\"%d\", y);</pre>",
+              options: [
+                { text: "float type cannot be directly assigned to int without casting.", correct: true },
+                { text: "Variable y must be of type float.", correct: false },
+                { text: "The program causes an overflow error.", correct: false },
+                { text: "There are no errors in the code. Variable x", correct: false },
+              ],
+              explanation:
+                "Assignment from float to int happens with implicit conversion, but it's better to use an explicit cast.",
+            },
+            {
+              text:
+                "What is the error in the code?\n<pre class='code'>int *p = malloc(5 * sizeof(int));\np[5] = 10;\nfree(p);</pre>",
+              options: [
+                { text: "The array p has 5 elements, so index 5 is out of bounds.", correct: true },
+                { text: "The allocated memory is never freed.", correct: false },
+                { text: "The program causes a compilation error due to a malfunction in malloc.", correct: false },
+                { text: "There is no error, the program works correctly.", correct: false },
+              ],
+              explanation:
+                "Valid indices are 0 to 4, p[5] is out of bounds.",
+            },
+            {
+              text:
+                "What is the error in the code?\n<pre class='code'>typedef struct {\n    int x;\n    int y;\n} Point;\n\nint main() {\n    Point p = {10, 20};\n    Point *ptr = p;\n    printf(\"%d\", ptr->x);\n    return 0;\n}</pre>",
+              options: [
+                { text: "ptr must be a pointer to Point, but p is not passed as an address.", correct: true },
+                { text: "ptr must be an array, not a pointer.", correct: false },
+                { text: "Variable p must be declared as a pointer.", correct: false },
+                { text: "There is no error in the code.", correct: false },
+              ],
+              explanation: "ptr must be initialized with &p, not p.",
+            },
+            {
+              text:
+                'What is the error in the code?\n<pre class=\'code\'>char *str = "Hello, World!";\nstr = 123;\nprintf("%s", str);</pre>',
+              options: [
+                { text: "It is impossible to assign an integer to a char pointer.", correct: true },
+                { text: "Variable str should be declared as int*.", correct: false },
+                { text: 'The string "Hello, World!" is not a valid value.', correct: false },
+                { text: "There is no error in the code.", correct: false },
+              ],
+              explanation:
+                "You cannot assign an integer value to a char pointer.",
+            },
+            {
+              text:
+                "What is the error in the code?\n<pre class='code'>int *arr;\narr = malloc(5 * sizeof(int));\narr[5] = 10;\nfree(arr);</pre>",
+              options: [
+                { text: "Index 5 is out of bounds for the array, which has only 5 elements (valid indices are 0 to 4).", correct: true },
+                { text: "The malloc function was not called correctly.", correct: false },
+                { text: "Variable arr must be declared as a static array, not as a pointer.", correct: false },
+                { text: "There is no error, the program works correctly.", correct: false },
+              ],
+              explanation: "arr[5] is out of bounds (valid indices: 0-4).",
+            },
+            {
+              text:
+                "What is the error in the code?\n<pre class='code'>int x = 10;\nint *ptr = &x;\nprintf(\"%d\", sizeof(ptr));</pre>",
+              options: [
+                { text: "sizeof(ptr) returns the size of the pointer type, not the pointed variable.", correct: true },
+                { text: "sizeof(ptr) should return the size of x, not the pointer.", correct: false },
+                { text: "sizeof(ptr) is syntactically incorrect and causes a compilation error.", correct: false },
+                { text: "There is no error, the program works correctly.", correct: false },
+              ],
+              explanation:
+                "sizeof(ptr) returns the size of the pointer, not the pointed value.",
+            },
+            {
+              text:
+                "What is the error in the code?\n<pre class='code'>int arr[3] = {1, 2, 3};\nint *p = arr;\np = arr[0];\nprintf(\"%d\", p);</pre>",
+              options: [
+                { text: "arr[0] is an integer value and cannot be assigned to an int* pointer.", correct: true },
+                { text: "Variable p must be an array, not a pointer.", correct: false },
+                { text: "It is not possible to use arr[0] in an assignment expression to a pointer.", correct: false },
+                { text: "There is no error in the code.", correct: false },
+              ],
+              explanation:
+                "p = arr[0] assigns an int to a pointer, which is a type error.",
+            },
+            {
+              text:
+                "What is the error in the code?\n<pre class='code'>int x = 10;\n{\n    int x = 20;\n}\nprintf(\"%d\", x);</pre>",
+              options: [
+                { text: "The program prints 20, even though x is also defined outside the block.", correct: false },
+                { text: "The program prints 10 because the x declared inside the block is not visible outside.", correct: true },
+                { text: "There is no error, the program works correctly.", correct: false },
+                { text: "The program causes a compilation error due to repeated declaration of x.", correct: false },
+              ],
+              explanation:
+                "The inner x is local to the block, so outside the block 10 is printed.",
+            },
+          ],
+        },
+      ];
+
+      // Save user answers in localStorage
+      const STORAGE_KEY = "quiz-progr2-answers";
+
+      function saveAnswer(catIdx, qIdx, optIdx) {
+        let answers = {};
+        try {
+          answers = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        } catch (e) {}
+        if (!answers[catIdx]) answers[catIdx] = {};
+        answers[catIdx][qIdx] = optIdx;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+      }
+
+      function loadAnswers() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function resetAnswers() {
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+      }
+
+      document.getElementById("resetQuizBtn").onclick = resetAnswers;
+
+      // Simple highlighting for C/C++ code
+      function highlightCCode(html) {
+        // Replace keywords, types, numbers, strings, comments
+        html = html
+          .replace(/(\/\/.*?$)/gm, "<span class='com'>$1</span>")
+          .replace(/("(?:[^"\\]|\\.)*")/g, "<span class='str'>$1</span>")
+          .replace(
+            /\b(int|float|double|char|void|short|long|unsigned|signed|struct|typedef|return|if|else|for|while|do|switch|case|break|continue|sizeof|malloc|free|printf|snprintf|main)\b/g,
+            "<span class='kw'>$1</span>"
+          )
+          .replace(/\b(Point|Pair|Person)\b/g, "<span class='type'>$1</span>")
+          .replace(/(\d+\.\d+|\d+)/g, "<span class='num'>$1</span>");
+        return html;
+      }
+
+      // Function to generate the quiz
+      function createQuiz(quizData) {
+        const quizDiv = document.getElementById("quiz");
+        quizDiv.innerHTML = "";
+        const savedAnswers = loadAnswers();
+        quizData.forEach((cat, catIdx) => {
+          // Questions
+          cat.questions.forEach((q, qIdx) => {
+            const questionDiv = document.createElement("div");
+            questionDiv.className = "question";
+
+            // Question text
+            const questionText = document.createElement("div");
+            questionText.className = "question-text";
+            // Highlight code in <pre class='code'>
+            let text = q.text.replace(
+              /<pre class=['"]code['"]>([\s\S]*?)<\/pre>/g,
+              function (_, code) {
+                return `<pre class="code">${highlightCCode(code)}</pre>`;
+              }
+            );
+            questionText.innerHTML = `<b>Question ${catIdx + 1}.${qIdx + 1}:</b> ${text}`;
+            questionDiv.appendChild(questionText);
+
+            // Options
+            const optionsDiv = document.createElement("div");
+            optionsDiv.className = "options";
+
+            q.options.forEach((opt, optIdx) => {
+              const btn = document.createElement("button");
+              btn.type = "button";
+              btn.className = "option-btn";
+              btn.innerHTML =
+                String.fromCharCode(97 + optIdx) + ") " + opt.text;
+              btn.onclick = function () {
+                // Disable all buttons
+                Array.from(optionsDiv.children).forEach(
+                  (b) => (b.disabled = true)
+                );
+
+                // Highlight answers
+                q.options.forEach((o, i) => {
+                  if (o.correct)
+                    optionsDiv.children[i].classList.add("correct");
+                  else if (i === optIdx)
+                    optionsDiv.children[i].classList.add("incorrect");
+                });
+
+                // Show explanation
+                explanationDiv.classList.add("show");
+
+                // Save answer
+                saveAnswer(catIdx, qIdx, optIdx);
+              };
+              optionsDiv.appendChild(btn);
+            });
+            questionDiv.appendChild(optionsDiv);
+
+            // Explanation
+            const explanationDiv = document.createElement("div");
+            explanationDiv.className = "explanation";
+            // Highlight code in explanation
+            explanationDiv.innerHTML = q.explanation.replace(
+              /<code>([\s\S]*?)<\/code>/g,
+              function (_, code) {
+                return `<code class="code">${highlightCCode(code)}</code>`;
+              }
+            );
+            questionDiv.appendChild(explanationDiv);
+
+            quizDiv.appendChild(questionDiv);
+
+            // Restore saved answer (if present)
+            const savedAnswer =
+              savedAnswers[catIdx] && savedAnswers[catIdx][qIdx];
+            if (
+              typeof savedAnswer !== "undefined" &&
+              savedAnswer !== null
+            ) {
+              // Simulate click on saved answer
+              setTimeout(() => {
+                optionsDiv.children[savedAnswer].click();
+              }, 0);
+            }
+          });
+        });
+      }
+
+      window.onload = function () {
+        createQuiz(quizData);
+      };
+    </script>
+  </body>
+</html>

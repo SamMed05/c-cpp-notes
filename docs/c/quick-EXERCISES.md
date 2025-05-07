@@ -1,16 +1,20 @@
 ---
 sidebar_position: 19
 id: quick_exercises_1
-title: Quick exercises
+title: Pointer exercises
 hide_title: false
 hide_table_of_contents: false
-sidebar_label: QUICK EXERCISES
-description: Quick exercises on various C topics.
+sidebar_label: POINTER EXERCISES
+description: Exercises on pointers.
 slug: /c/quick_exercises_1
 custom_edit_url: null
 ---
 
 import ExCount from '@site/src/components/ExCount';
+
+:::info **Want more practice?** 
+Try the [C Programming Quiz](/c/quiz) for a variety of multiple-choice questions on C concepts!
+:::
 
 This page presents a series of short, focused problems designed to help you practice and reinforce your understanding of key C concepts. Try to solve each exercise before revealing the answer and explanation.
 
