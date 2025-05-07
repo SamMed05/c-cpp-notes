@@ -125,11 +125,13 @@ int main() {
 <summary>Answer</summary>
 
 **How the call works:**  
+
 - `f(f1, f2, a, 4);` passes two function pointers (`f1` and `f2`), the array `a`, and its length `4` into `f`.  
 - Inside `f`, the parameter `fun1` refers to `f1` and `fun2` refers to `f2`.  
 - `f` then applies these callbacks to array elements based on the index.
 
 **Element-by-element computation:**  
+
 - i = 0 (<2): v[0] = fun1(0+1) = f1(1) = 1×1 = 1  
 - i = 1 (<2): v[1] = fun1(1+1) = f1(2) = 2×2 = 4  
 - i = 2 (≥2): v[2] = fun2(1 + v[0]) = f2(1+1) = f2(2) = 2×2 = 4  
@@ -459,6 +461,7 @@ int main() {
 
 **Explanation:**
 The function performs several operations:
+
 1. `a` remains unchanged (5) in main because `i` is passed by value
 2. `b` is set to 10 through `*p = (*q)--` but then changed to 19 through `*ri = 19`
 3. `ptr` points to `b`, so `*ptr` is 19
