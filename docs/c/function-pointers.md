@@ -12,7 +12,7 @@ custom_edit_url: null
 
 In C, pointers not only reference data but can also hold the address of executable code (i.e. functions). By treating functions as values, you gain the flexibility to pass behavior into other functions, select implementations at runtime, and implement callback patterns for cleaner, more modular code.
 
-## What are Function Pointers?
+## What are function pointers?
 
 A function pointer is a variable that stores the address of a function. Just as data pointers point to data in memory, function pointers point to executable code in memory.
 
@@ -22,8 +22,9 @@ Function pointers allow you to:
 - Store functions in arrays or other data structures
 - Select functions to execute at runtime
 - Implement callbacks and event-driven programming
+- Create more flexible and reusable code
 
-## Declaring Function Pointers
+## Declaring function pointers
 
 The syntax for declaring a function pointer includes the return type, a pointer name in parentheses with an asterisk, and the parameter types:
 
@@ -37,7 +38,7 @@ For example, to declare a pointer to a function that takes a `double` and an `in
 int (*func_ptr)(double, int);
 ```
 
-:::caution Parentheses Matter
+:::caution Parentheses matter
 The parentheses around `*func_ptr` are essential. Without them:
 
 ```c
@@ -47,7 +48,7 @@ int *func_ptr(double, int);
 This would declare a function named `func_ptr` that returns a pointer to an `int`, not a pointer to a function.
 :::
 
-## Assigning Function Pointers
+## Assigning function pointers
 
 To assign a function's address to a function pointer, simply use the function's name (without parentheses):
 
@@ -69,7 +70,7 @@ int main() {
 
 The function pointer's parameter types and return type must match exactly with the function it points to.
 
-## Calling Functions through Pointers
+## Calling functions through pointers
 
 There are two equivalent ways to call a function through a function pointer:
 
@@ -83,7 +84,7 @@ result = func_ptr(10.5, 5);
 
 Both methods are valid in C. The second form is more common in modern code due to its simplicity.
 
-### Example: Using Function Pointers
+### 📍 Example: Using function pointers
 
 ```c
 #include <stdio.h>
@@ -130,7 +131,7 @@ int main() {
 </code>
 </div>
 
-## Arrays of Function Pointers
+## Arrays of function pointers
 
 You can create arrays of function pointers to store multiple functions with the same signature. This is useful for implementing function tables and dispatch mechanisms.
 
@@ -147,7 +148,7 @@ You can access and call these functions using array indexing:
 result = operations[2](x, y);  // Same as: result = multiply(x, y);
 ```
 
-### Example: Menu System with Function Pointers
+### 📍 Example: Menu system with function pointers
 
 ```c
 #include <stdio.h>
@@ -193,9 +194,17 @@ int main() {
 
 This example implements a simple calculator using an array of function pointers to select the appropriate operation based on user input, without using `if` or `switch` statements for the operation logic.
 
-## Passing Function Pointers as Arguments
+## Higher-order functions
 
-Functions can accept other functions as parameters via function pointers. This enables powerful patterns like callbacks, where a function can invoke user-defined behavior.
+Higher-order functions are functions that can:
+1. Take one or more functions as arguments
+2. Return a function as their result
+
+In C, we implement higher-order functions using function pointers. This concept enables powerful programming patterns like callbacks, function composition, and algorithm parameterization.
+
+### Functions as parameters
+
+When a function takes another function as a parameter, it becomes more flexible and reusable. Instead of hard-coding behavior, you can inject different behaviors through function arguments.
 
 ```c
 void apply_operation(int a, int b, int (*operation)(int, int)) {
@@ -208,7 +217,7 @@ apply_operation(10, 5, add);      // Result: 15
 apply_operation(10, 5, multiply); // Result: 50
 ```
 
-### Example: Function to Sum Values from Another Function
+### 📍 Example: Function to sum values from another function
 
 Here's a function that calculates the sum of the first n values of any function that takes an integer and returns an integer:
 
@@ -250,7 +259,52 @@ Sum of cubes from 1 to 5: 225
 </code>
 </div>
 
-## Simplifying Function Pointer Declarations with `typedef`
+### Applying functions to arrays
+
+A common pattern is to apply operations to each element of an array:
+
+```c
+void map_int_array(int arr[], int size, int (*transform)(int)) {
+    for (int i = 0; i < size; i++) {
+        arr[i] = transform(arr[i]);
+    }
+}
+
+// Example transformations
+int double_it(int x) { return x * 2; }
+int square_it(int x) { return x * x; }
+
+// Usage
+int numbers[5] = {1, 2, 3, 4, 5};
+map_int_array(numbers, 5, double_it);  // numbers becomes {2, 4, 6, 8, 10}
+```
+
+### Functions as return values
+
+Though less common in C than in functional programming languages, you can also return function pointers:
+
+```c
+typedef int (*IntOperation)(int, int);
+
+// Function that returns a function pointer based on a character
+IntOperation select_operation(char op) {
+    switch (op) {
+        case '+': return add;
+        case '-': return subtract;
+        case '*': return multiply;
+        case '/': return divide;
+        default: return NULL;
+    }
+}
+
+// Usage
+IntOperation op = select_operation('+');
+if (op != NULL) {
+    int result = op(10, 5);  // result = 15
+}
+```
+
+## Simplifying function pointer declarations with `typedef`
 
 Function pointer declarations can become complex. Using `typedef` can make your code more readable:
 
@@ -266,7 +320,7 @@ void perform_math(int x, int y, Operation op) {
 }
 ```
 
-## Practical Applications of Function Pointers
+## Practical applications of function pointers
 
 Function pointers are widely used in C for many important programming patterns:
 
@@ -280,7 +334,17 @@ Function pointers are widely used in C for many important programming patterns:
 
 5. **Function dispatching**: Create fast lookup tables for operations instead of using lengthy if/else or switch statements.
 
-## Comparing Function Pointers
+### Benefits of function pointer patterns
+
+Using function pointers provides several advantages:
+
+1. **Modularity**: Separate "what to do" from "how to do it"
+2. **Code reuse**: Apply the same algorithm with different behaviors
+3. **Extensibility**: Add new operations without changing existing code
+4. **Flexibility**: Select implementations at runtime based on conditions
+5. **Reduced complexity**: Avoid large switch/if-else structures
+
+## Comparing function pointers
 
 Function pointers can be compared using standard comparison operators:
 
@@ -297,9 +361,9 @@ if (func_ptr != NULL) {
 
 ## 📝 Exercises
 
-### Exercise 1: Create a Simple Calculator
+### Exercise 1: Flexible calculator
 
-Implement a calculator program that uses function pointers to perform basic arithmetic operations (addition, subtraction, multiplication, division) based on user input. Use an array of function pointers to select the appropriate operation without using `if` or `switch` statements.
+Implement a calculator program that uses function pointers to perform basic arithmetic operations (addition, subtraction, multiplication, division) based on user input. Use an array of function pointers to select the appropriate operation without using `if` or `switch` statements for operation selection.
 
 <details>
 <summary>Show Solution</summary>
@@ -308,44 +372,31 @@ Implement a calculator program that uses function pointers to perform basic arit
 #include <stdio.h>
 
 // Function declarations
-float add(float a, float b) { return a + b; }
-float subtract(float a, float b) { return a - b; }
-float multiply(float a, float b) { return a * b; }
-float divide(float a, float b) { return b != 0 ? a / b : 0; }
+int add(int a, int b) { return a + b; }
+int subtract(int a, int b) { return a - b; }
+int multiply(int a, int b) { return a * b; }
+int divide(int a, int b) { return b != 0 ? a / b : 0; } // simple check for division by zero
+
+// Higher-order function
+int apply_operation(int a, int b, int (*operation)(int, int)) {
+    return operation(a, b);
+}
 
 int main() {
-    // Array of function pointers
-    float (*operations[4])(float, float) = {add, subtract, multiply, divide};
-    char operators[4] = {'+', '-', '*', '/'};
-    
-    float a, b;
-    int choice;
-    
-    printf("Enter two numbers: ");
-    scanf("%f %f", &a, &b);
-    
-    printf("\nChoose operation:\n");
-    printf("0: Addition (+)\n");
-    printf("1: Subtraction (-)\n");
-    printf("2: Multiplication (*)\n");
-    printf("3: Division (/)\n");
-    printf("Enter choice (0-3): ");
-    scanf("%d", &choice);
-    
-    if (choice >= 0 && choice < 4) {
-        float result = operations[choice](a, b);
-        printf("%.2f %c %.2f = %.2f\n", a, operators[choice], b, result);
-    } else {
-        printf("Invalid choice\n");
-    }
-    
+    int x = 10, y = 5;
+
+    printf("Addition: %d\n", apply_operation(x, y, add));
+    printf("Subtraction: %d\n", apply_operation(x, y, subtract));
+    printf("Multiplication: %d\n", apply_operation(x, y, multiply));
+    printf("Division: %d\n", apply_operation(x, y, divide));
+
     return 0;
 }
 ```
 
 </details>
 
-### Exercise 2: Function Application
+### Exercise 2: Function application
 
 Write a function called `apply_to_array` that takes an array of integers, its size, and a function pointer. The function should apply the given function to each element of the array and store the result back in the array.
 

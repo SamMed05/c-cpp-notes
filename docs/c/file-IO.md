@@ -27,7 +27,7 @@ Files are generally categorized as:
 - **Text files**: Store data as sequences of human-readable characters (e.g., ASCII, UTF-8). Suitable for configuration files, logs, and documents.
 - **Binary files**: Store data in raw byte format, mirroring how data is represented in memory. Used for images, executables, and structured data.
 
-:::info Windows vs Unix/Linux: File Types and Extensions
+:::info Windows vs Unix/Linux: File types and extensions
 
 - On **Windows**, file extensions (like `.txt`, `.bin`, `.exe`) are commonly used to indicate file type, and the OS may treat files differently based on their extension. For example, opening a file in text mode (`"rt"`) or binary mode (`"rb"`) can affect how line endings (`\r\n` vs `\n`) are handled.
 - On **Unix/Linux**, file extensions are not required or enforced by the OS—they are just part of the filename. The kernel treats all files as streams of bytes, regardless of extension. There is no technical distinction between "text" and "binary" files at the OS level; it's up to programs to interpret the contents.
@@ -41,36 +41,38 @@ Using files allows programs to save, retrieve, and share data reliably, making p
 In C, file I/O operations are typically **buffered**. This means data is temporarily stored in a buffer (a small region of memory) before being written to the actual file, or read from the file into the buffer. This improves efficiency by reducing the number of direct interactions with the storage device. The C standard library functions like `fopen`, `fread`, `fwrite`, `fprintf`, `fscanf`, etc., operate on these buffered streams.
 :::
 
-## Core File Operations
+## Core file operations
 
 Working with files in C generally involves three main phases:
 
-1. **Opening a File**:
+1. **Opening a file**:
     * Request access to the file from the operating system.
     * The OS prepares internal data structures to manage the file.
     * A `FILE` pointer is returned to your program to interact with the file.
-2. **Reading/Writing Data**:
+2. **Reading/Writing data**:
     * Perform read or write operations using the `FILE` pointer.
     * Data is typically transferred via a buffer.
-3. **Closing a File**:
+3. **Closing a file**:
     * Any pending data in the output buffer is written to the file (flushed).
     * Resources allocated by the OS for the file are released.
     * The `FILE` pointer is no longer valid.
 
-## File Opening Modes
+## File opening modes
 
 When opening a file, you must specify the mode, which dictates how the file can be accessed. Key modes include:
 
-- `"r"` (read): Opens a text file for reading. The file must exist.
-- `"w"` (write): Opens a text file for writing. If the file exists, its contents are overwritten. If it doesn't exist, a new file is created.
-- `"a"` (append): Opens a text file for appending. Data is written to the end of the file. If the file doesn't exist, a new file is created.
-- `"rb"` (read binary): Opens a binary file for reading.
-- `"wb"` (write binary): Opens a binary file for writing (truncates or creates).
-- `"ab"` (append binary): Opens a binary file for appending (creates if non-existent).
+| Mode | Description |
+|------|-------------|
+| `"r"` | Opens a text file for reading. The file must exist. |
+| `"w"` | Opens a text file for writing. If the file exists, its contents are overwritten. If it doesn't exist, a new file is created. |
+| `"a"` | Opens a text file for appending. Data is written to the end of the file. If the file doesn't exist, a new file is created. |
+| `"rb"` | Opens a binary file for reading. |
+| `"wb"` | Opens a binary file for writing (truncates or creates). |
+| `"ab"` | Opens a binary file for appending (creates if non-existent). |
 
 Other modes like `"r+"`, `"w+"`, `"a+"` (and their binary counterparts `"rb+"`, `"wb+"`, `"ab+"`) allow both reading and writing.
 
-## The File Position Indicator (Cursor)
+## The file position indicator (cursor)
 
 When a file is opened, the system maintains a **file position indicator** (often conceptualized as a cursor). This indicator marks the current position within the file where the next read or write operation will occur.
 
@@ -79,9 +81,9 @@ When a file is opened, the system maintains a **file position indicator** (often
 - For modes `"a"`, `"ab"`, the cursor is initially at the end of the file.
 - After each read or write operation, the cursor automatically advances by the number of bytes read or written.
 
-## Working with Files
+## Working with files
 
-### The `FILE` Structure
+### The `FILE` structure
 
 All file operations in C are performed using a pointer to a `FILE` structure. This structure is defined in `<stdio.h>` and holds information about the file stream, such as the buffer, current position, and error indicators.
 
@@ -93,7 +95,7 @@ You don't need to know the internal details of the `FILE` structure. You'll simp
 FILE *fptr; // Declare a file pointer
 ```
 
-### Opening a File: `fopen()`
+### Opening a file: `fopen()`
 
 The `fopen()` function is used to open a file.
 
@@ -103,7 +105,7 @@ FILE* fopen(const char *filename, const char *mode);
 
 - `filename`: A string containing the name (and path) of the file.
 - `mode`: A string specifying the access mode (e.g., `"r"`, `"w"`, `"rb"`).
-- **Return Value**:
+- **Return value**:
     - On success, `fopen()` returns a `FILE` pointer.
     - On failure (e.g., file not found, no permission), it returns `NULL`.
 
@@ -130,7 +132,7 @@ int main() {
 }
 ```
 
-### Closing a File: `fclose()`
+### Closing a file: `fclose()`
 
 The `fclose()` function is used to close an opened file.
 
@@ -139,7 +141,7 @@ int fclose(FILE *stream);
 ```
 
 - `stream`: The `FILE` pointer to the file to be closed.
-- **Return Value**:
+- **Return value**:
     - Returns `0` on success.
     - Returns `EOF` (a special constant, usually -1) on error.
 - `fclose()` flushes any unwritten data from the buffer to the file and releases system resources.
@@ -169,7 +171,7 @@ int main() {
 }
 ```
 
-### Standard I/O Streams
+### Standard I/O streams
 
 When a C program starts, three standard I/O streams are automatically opened:
 
@@ -182,9 +184,9 @@ These are `FILE` pointers. Functions like `printf()` and `scanf()` are convenien
 - `printf(...)` is equivalent to `fprintf(stdout, ...)`
 - `scanf(...)` is equivalent to `fscanf(stdin, ...)`
 
-## Text File I/O
+## 1️⃣ Text file I/O
 
-### Writing to Text Files
+### Writing to text files
 
 - **`fprintf()`**: Writes formatted output to a file.
     ```c
@@ -208,7 +210,7 @@ These are `FILE` pointers. Functions like `printf()` and `scanf()` are convenien
     // Returns a non-negative value on success, or EOF on error.
     ```
 
-### Reading from Text Files
+### Reading from text files
 
 - **`fscanf()`**: Reads formatted input from a file.
     ```c
@@ -244,11 +246,11 @@ These are `FILE` pointers. Functions like `printf()` and `scanf()` are convenien
     }
     ```
 
-## Binary File I/O
+## 2️⃣ Binary file I/O
 
 Binary files store data as raw bytes, exactly as they are represented in memory. This is efficient for non-textual data like images, audio, or complex data structures.
 
-### Writing to Binary Files: `fwrite()`
+### Writing to binary files: `fwrite()`
 
 ```c
 size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);
@@ -258,9 +260,9 @@ size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);
 - `size`: Size in bytes of each element to be written.
 - `nmemb`: Number of elements, each one with a size of `size` bytes.
 - `stream`: The `FILE` pointer.
-- **Return Value**: The number of elements successfully written (which may be less than `nmemb` if an error occurs).
+- **Return value**: The number of elements successfully written (which may be less than `nmemb` if an error occurs).
 
-### Reading from Binary Files: `fread()`
+### Reading from binary files: `fread()`
 
 ```c
 size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);
@@ -270,7 +272,7 @@ size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);
 - `size`: Size in bytes of each element to be read.
 - `nmemb`: Number of elements, each one with a size of `size` bytes.
 - `stream`: The `FILE` pointer.
-- **Return Value**: The number of elements successfully read (which may be less than `nmemb` if the end of the file is reached or an error occurs).
+- **Return value**: The number of elements successfully read (which may be less than `nmemb` if the end of the file is reached or an error occurs).
 
 :::tip Using `sizeof`
 Always use the `sizeof` operator to determine the `size` argument for `fread` and `fwrite`. This ensures portability, as data type sizes can vary across different systems.
@@ -335,7 +337,7 @@ int main() {
 </code>
 </div>
 
-### `fprintf` vs. `fwrite` for an Integer
+### Text vs binary file operations: A comparison
 
 Consider `int x = 31466;` (which is `0x7AEA` in hexadecimal).
 
@@ -357,9 +359,13 @@ Consider `int x = 31466;` (which is `0x7AEA` in hexadecimal).
         00000000: ea7a 0000                                .z..
         ```
 
-This distinction is crucial. Text files are human-readable; binary files are machine-readable and generally more compact and faster for structured data.
+This distinction is crucial:
+- Text files are human-readable but less space-efficient
+- Binary files are compact and faster for data exchange between programs but not directly readable
+- Binary files preserve exact memory representation, which is vital for structured data
+- Text files are better for interoperability between systems with different architectures
 
-## File Positioning
+## File positioning
 
 You can control the file position indicator using these functions:
 
@@ -423,7 +429,7 @@ int main() {
 For text files, the value returned by `ftell` might not always correspond to the exact byte count from the beginning on some systems due to character encoding or line ending conversions. For accurate byte offsets and file sizes, it's often better to open files in binary mode (`"rb"`, `"wb"`, etc.) when using `fseek` and `ftell`.
 :::
 
-## Buffer Management: `fflush()`
+## Buffer management: `fflush()`
 
 As mentioned, output to files is usually buffered. The `fflush()` function forces a write of any unwritten data in the stream's buffer to the host environment's file.
 
@@ -437,7 +443,7 @@ int fflush(FILE *stream);
 
 `fclose()` automatically calls `fflush()` before closing the file. However, `fflush()` can be useful if you need to ensure data is written at a specific point without closing the file, for example, in applications that log data continuously. Frequent use of `fflush()` can degrade performance.
 
-## Error Handling
+## Error handling
 
 After file operations, it's good practice to check for errors using:
 
@@ -463,11 +469,11 @@ After file operations, it's good practice to check for errors using:
 
 ## 📝 Exercises
 
-### Exercise 1: Storing Person Data
+### Exercise 1: Storing person data
 
 Create a program `insert_person.c` that prompts the user to enter data for one person (surname, name, gender, birth year) and writes this data as a single record to a binary file named `people.dat`.
 
-**Data Structure:**
+**Data structure:**
 
 - Surname (max 30 characters)
 - Name (max 30 characters)
@@ -552,7 +558,7 @@ gcc insert_person.c -o insert_person
 ```
 </details>
 
-### Exercise 2: Reading Person Data
+### Exercise 2: Reading person data
 
 Create a program `read_people.c` that reads all person records from the binary file `people.dat` (created in Exercise 1) and prints them to the console.
 
@@ -611,4 +617,218 @@ int main() {
 gcc read_people.c -o read_people
 ./read_people
 ```
+</details>
+
+### Exercise 3: Merging exam records
+
+Create a program that processes student exam records from two different sources:
+
+**Requirements:**
+- Read two binary files (`transcript1.bin` and `transcript2.bin`) containing exam records
+- Each record consists of:
+  - A course name (string up to 20 characters plus null terminator)
+  - A grade (integer)
+- For each exam, select the higher grade between the two files
+- Write a new binary file (`results.bin`) containing all exams with their highest grades
+- After writing, read and display the output file to verify correctness
+- Use proper error handling for all file operations
+
+**Notes:**
+- Both input files have the same structure and contain the same exams in the same order
+- Organize your code using functions to handle file operations and data processing
+- Define appropriate structures to represent the exam records
+
+<details>
+<summary>Show Solution for Exercise 3</summary>
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define MAX_COURSE_LEN 21  // 20 characters + null terminator
+
+typedef struct {
+    char course[MAX_COURSE_LEN];
+    int grade;
+} ExamRecord;
+
+int main() {
+    ExamRecord rec1, rec2;
+    FILE *f1, *f2, *fout;
+    
+    f1 = fopen("transcript1.bin", "rb");
+    f2 = fopen("transcript2.bin", "rb");
+    fout = fopen("results.bin", "w+b");  // w+ for write and read
+    
+    if (f1 == NULL || f2 == NULL || fout == NULL) {
+        printf("Error opening one of the files. Exiting...\n");
+        exit(-1);
+    }
+
+    // Read both files and write the higher grade to the output file
+    while (fread(&rec1, sizeof(ExamRecord), 1, f1)) {
+        fread(&rec2, sizeof(ExamRecord), 1, f2);
+        
+        if (strcmp(rec1.course, rec2.course) == 0) {  // Verify courses match
+            if (rec1.grade < rec2.grade) {
+                rec1.grade = rec2.grade;  // Take the higher grade
+            }
+            fwrite(&rec1, sizeof(ExamRecord), 1, fout);
+        }
+    }
+    
+    fclose(f1);
+    fclose(f2);
+    
+    // Rewind the output file to read from the beginning
+    rewind(fout);
+    
+    // Read and print the results file to verify
+    printf("Contents of results.bin:\n");
+    printf("------------------------\n");
+    printf("%-20s | %s\n", "Course", "Grade");
+    printf("------------------------\n");
+    
+    while (fread(&rec1, sizeof(ExamRecord), 1, fout)) {
+        printf("%-20s | %d\n", rec1.course, rec1.grade);
+    }
+    
+    fclose(fout);
+    
+    return 0;
+}
+```
+
+</details>
+
+### Exercise 4: Alien communication decoder
+
+NASA operators have intercepted strange signals from an alien civilization! The signals consist of sequences of 'g' and 'G' characters. A secret file has been discovered that contains the key to decode these messages.
+
+**Part 1: Decoding alien messages**
+
+Create a program that:
+- Reads a translation key from `correspondence.txt` where:
+  - Each line contains a Latin letter, a space, and a 3-character sequence of 'g' and 'G'
+  - Example: `H GgG`
+- Reads alien messages from `messages.txt` where:
+  - Each message consists of sequences of 'g' and 'G' characters grouped in threes
+- Decodes each message and displays the translated text
+- Uses appropriate data structures to organize the translation data
+- Handles file operations safely with error checking
+
+**Part 2: Encoding messages for aliens**
+
+Extend your program to:
+- Allow users to input messages in Latin characters
+- Encode these messages into the alien 'g'/'G' format
+- Display the encoded message
+- Design your solution with appropriate functions for modularity
+
+<details>
+<summary>Show Solution for Exercise 4</summary>
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char letter[2];    // Latin letter + null terminator
+    char code[4];      // 3 character alien code + null terminator
+} TranslationPair;
+
+int main() {
+    int table_size = 0;
+    int i = 0;
+    int j;
+    char current_triplet[4];   // Buffer for reading triplets (3 chars + null terminator)
+    char message[50];          // Buffer for reading message lines
+    FILE *fp;                  // File pointer
+    TranslationPair translations[26];  // Array to store letter-code pairs (max 26 letters)
+
+    // Open correspondence.txt file
+    fp = fopen("correspondence.txt", "rt");
+
+    // Error handling for file opening
+    if (fp == NULL) {
+        printf("Cannot open correspondence.txt file\n");
+        return -1;
+    }
+
+    // Read translation table from file
+    while (fscanf(fp, "%s %s", translations[table_size].letter, translations[table_size].code) > 0) {
+        printf("%c %s\n", translations[table_size].letter[0], translations[table_size].code);
+        table_size++;
+    }
+
+    fclose(fp);
+
+    // Open messages.txt file
+    fp = fopen("messages.txt", "rt");
+
+    if (fp == NULL) {
+        printf("Cannot open messages.txt file\n");
+        return -1;
+    }
+
+    // Process each line from messages.txt
+    printf("\nDecoded messages:\n");
+    printf("----------------\n");
+    
+    while (fscanf(fp, "%s", message) > 0) {
+        i = 0;
+        printf("Encoded: %s\n", message);
+        printf("Decoded: ");
+
+        // Process each triplet in the message
+        while (message[i] != '\0') {
+            // Extract a triplet
+            current_triplet[0] = message[i];
+            current_triplet[1] = message[i+1];
+            current_triplet[2] = message[i+2];
+            current_triplet[3] = '\0';
+
+            // Look up the triplet in our translation table
+            for (j = 0; j < table_size; j++) {
+                if (strcmp(current_triplet, translations[j].code) == 0) {
+                    printf("%c", translations[j].letter[0]);
+                    i += 3;  // Move to the next triplet
+                    break;
+                }
+            }
+            
+            // If no match found, we should have some error handling here
+            if (j == table_size) {
+                i++;  // Move forward if no match (prevents infinite loop)
+            }
+        }
+
+        printf("\n\n");
+    }
+
+    fclose(fp);
+
+    // Part 2: Encode a message from the user
+    printf("Enter a message to encode: ");
+    scanf("%s", message);
+
+    // Encode the message
+    printf("Encoded: ");
+    i = 0;
+    while (message[i] != '\0') {
+        for (j = 0; j < table_size; j++) {
+            if (translations[j].letter[0] == message[i]) {
+                printf("%s", translations[j].code);
+                break;
+            }
+        }
+        i++;
+    }
+    printf("\n");
+
+    return 0;
+}
+```
+
 </details>
