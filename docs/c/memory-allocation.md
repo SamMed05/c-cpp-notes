@@ -364,6 +364,12 @@ int main() {
 </code>
 </div>
 
+:::note
+The formula `matrix[i * cols + j] = i * j;` is used to access and assign values in a 2D matrix stored as a single contiguous block of memory. Here, `i` is the row index and `j` is the column index. 
+
+Since the matrix is stored as a 1D array, the element at row `i` and column `j` is located at the position `i * cols + j`. This formula "flattens" the 2D coordinates into a single index, allowing you to simulate 2D access in a 1D array.
+:::
+
 ### 2. Array of pointers
 
 This approach uses a double pointer structure (an array of pointers to arrays):
@@ -413,6 +419,28 @@ free(matrix);
 </div>
 
 This second approach allows for variable row sizes and more familiar `matrix[i][j]` notation.
+
+Here's an ASCII visualization of that:
+
+```{}
+   Matrix         Row Pointers            Row Data
+     │                 │                     │
+     │                 │                     │
+     ▼                 ▼                     ▼
+┌────────┐         ┌───────┐         ┌───┬───┬───┬───┐
+│        │         │       │         │   │   │   │   │
+│   **   ├────────►│   *   ├────────►│ 0 │ 0 │ 0 │ 0 │
+│        │         │       │         │   │   │   │   │
+└────────┘         ├───────┤         └───┴───┴───┴───┘
+                   │       │         ┌───┬───┬───┬───┐
+                   │   *   ├────────►│ 0 │ 1 │ 2 │ 3 │
+                   │       │         │   │   │   │   │
+                   ├───────┤         └───┴───┴───┴───┘
+                   │       │         ┌───┬───┬───┬───┐
+                   │   *   ├────────►│ 0 │ 2 │ 4 │ 6 │
+                   │       │         │   │   │   │   │
+                   └───────┘         └───┴───┴───┴───┘
+```
 
 ## Variable-size arrays
 

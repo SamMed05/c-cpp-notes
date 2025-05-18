@@ -172,7 +172,24 @@ printf("%s\n", *(ptr+1));  // Prints "Bob"
 
 3. **Building data structures** like linked lists where you need to modify head pointers
 
-4. **Creating 2D and multi-dimensional arrays dynamically**
+4. **Creating 2D and multi-dimensional arrays (arrays of arrays) dynamically**
+
+    ```c {3-6}
+    int rows = 3, cols = 4;
+    // Allocate memory
+    int **matrix = (int**)malloc(rows * sizeof(int*));
+    for (int i = 0; i < rows; i++) {
+        matrix[i] = (int*)malloc(cols * sizeof(int));
+    }
+
+    // Use matrix[row][col] ...
+
+    // Free memory
+    for (int i = 0; i < rows; i++) {
+        free(matrix[i]);
+    }
+    free(matrix);
+    ```
 
 ![Graphical representation of double pointers for dynamic matrices](../c/assets/matrices-pointers.svg)
 <figcaption>
@@ -180,6 +197,8 @@ Fig.3. Graphical representation of how double pointers are used to implement dyn
 The vertical gray rectangle on the left represents an array of pointers, with each pointer (<code>*</code>) corresponding to a row of the matrix. Each pointer points to a dynamically allocated array of integers (the green rows on the right). The double asterisk (<code>**</code>) at the top represents the double pointer variable, which points to the array of row pointers.  
 On the right, the matrix is shown as a collection of rows (<b>array of arrays</b>). Each row is a separate (dynamically allocated) array of integers. This structure allows for flexible, non-contiguous memory allocation for each row, which is typical when creating 2D arrays (dynamically) using double pointers in C.
 </figcaption>
+
+(We'll cover malloc in the next chapter)
 
 :::info
 Many standard C library functions that need to modify string pointers use double pointers. For example, sorting an array of strings might use this pattern.
@@ -194,8 +213,10 @@ int x = 10;
 int *p = &x;
 int **pp = &p;
 
-printf("%d\n", **pp);  // Correct: 10
-printf("%d\n", *pp);   // Wrong! This is an address, not an int
+// This is correct
+printf("%d\n", **pp);  // ✔️ Correct: 10
+// This will error
+printf("%d\n", *pp);   // ❌ Wrong! It's an address, not an int. Use %p format specifier
 ```
 
 Remember that each level of indirection (`*`) drops you down one level in the reference chain.
@@ -241,7 +262,7 @@ While C allows any level of pointer indirection, using more than two levels is r
 
 ## Double pointers vs. multi-dimensional arrays
 
-It's important not to confuse double pointers with 2D arrays, even though they can sometimes be used interchangeably. 
+It's important not to confuse double pointers with 2D arrays, even though they can sometimes be used interchangeably.
 
 A 2D array has contiguous memory allocation, while a double pointer can point to arrays that are scattered through memory.
 
