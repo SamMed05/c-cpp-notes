@@ -44,6 +44,10 @@ int zeros[100] = {0};
 
 // Method 4: Let the compiler determine the size based on initializers
 int auto_sized[] = {1, 2, 3, 4};  // Creates an array of size 4
+
+// ❌ Error - more initializers than specified size
+// This will error
+double wrong[2] = {5.4, 3.87, 3.55};  // Compilation error
 ```
 
 :::note Zero initialization
@@ -56,6 +60,15 @@ int matrix[50][50] = {0};  // All 2500 elements set to zero
 
 This works because C automatically sets any unspecified initializers to zero when you provide at least one initializer value.
 :::
+
+### Important rules for array initialization
+
+When initializing arrays with the syntax `type name[size] = { values... }`, keep these rules in mind:
+
+1. If `size` is specified and there are fewer initializers than the size, remaining elements are automatically initialized to zero
+2. If `size` is specified, you cannot provide more initializers than the declared size
+3. If `size` is omitted (`[]`), the compiler will determine the size based on the number of initializers provided
+4. Without initialization, local arrays (automatic storage duration) will contain garbage values
 
 ## Array input and output
 
@@ -261,11 +274,132 @@ Fig. 1. This diagram illustrates how arrays and pointers are represented in memo
 
 Remember that each data type has a specific size; for example, an `int` typically occupies 32 bits (4 bytes) in most C implementations.
 
+## The relationship between arrays and pointers
+
+In C, arrays have a special relationship with pointers. When you use an array name in most expressions, it's automatically converted to a pointer to its first element.
+
+This is why you can assign an array to a pointer:
+
+```c
+int numbers[5] = {10, 20, 30, 40, 50};
+int *p = numbers;  // p now points to numbers[0]
+```
+
+However, there are two important cases where arrays are not converted to pointers:
+
+1. When using the `sizeof` operator:
+   ```c
+   int arr[10];
+   size_t arr_size = sizeof(arr);      // Returns 10 * sizeof(int), typically 40 bytes
+   size_t ptr_size = sizeof(int*);     // Returns pointer size, typically 4 or 8 bytes
+   ```
+
+2. When using the address-of operator `&`:
+   ```c
+   int arr[5];
+   int *p1 = arr;     // OK: arr converted to &arr[0]
+   int (*p2)[5] = &arr; // Different type: pointer to an array of 5 ints
+   ```
+
+### Memory layout and access
+
+Arrays in C are stored in contiguous memory locations. For example, if each integer takes 4 bytes, a 5-element integer array would look like this in memory:
+
+```
+Element:  [0]    [1]    [2]    [3]    [4]
+Address:  1000   1004   1008   1012   1016
+         └─ 4 bytes ─┘
+```
+
+This contiguous layout enables efficient access using pointer arithmetic. The compiler uses the formula:
+
+$$
+\text{address\_of\_arr}[i] = \text{base\_address} + (i \times \text{sizeof(element)})
+$$
+
+## Passing arrays to functions
+
+When you pass an array to a function, you're actually passing a pointer to its first element. The array size information is not passed automatically:
+
+```c
+// These function declarations are equivalent:
+void process_array(int arr[], size_t size);
+void process_array(int *arr, size_t size);
+```
+
+This means:
+
+1. The function receives only the address of the first element, not a copy of the entire array.
+2. Changes made to array elements within the function affect the original array.
+3. The function cannot determine the array size by itself - you must pass it as a separate parameter.
+
+```c
+void modify_array(int arr[], size_t size) {
+    for (size_t i = 0; i < size; i++) {
+        arr[i] *= 2;  // Doubles each element
+    }
+}
+
+int main() {
+    int numbers[5] = {1, 2, 3, 4, 5};
+    modify_array(numbers, 5);
+    // numbers is now {2, 4, 6, 8, 10}
+}
+```
+
+:::warning Common array size mistake in functions
+When passing arrays to functions, a common mistake is trying to determine the array size inside the function like this:
+
+```c
+void func(int a[]) { 
+    size_t n = sizeof a / sizeof *a;
+    // ... use n as the array size ...
+}
+```
+
+**This won't work!** Inside the function:
+
+- `a` is of type `int*` (pointer to int), so `sizeof a` equals 4 (on 32-bit systems)
+- `*a` (`a[0]`) is the first element of type `int`, so `sizeof *a` equals 4
+- The result `n` will always be 1, regardless of the actual array size!
+
+To correctly work with arrays in functions, you must pass the size as a separate parameter:
+
+```c
+void func(int a[], size_t n) {
+    // ...
+}
+```
+
+Or equivalently:
+
+```c
+void func(int *a, size_t n) {
+    // ...
+}
+```
+
+:::
+
+### Using const with array parameters
+
+If your function shouldn't modify the array, use the `const` keyword:
+
+```c
+void print_array(const int arr[], size_t size) {
+    for (size_t i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+        // arr[i] = 0;  // Error: cannot modify a const array
+    }
+}
+```
+
+This prevents accidental modification of the array elements and makes your code's intent clearer.
+
 ## Dynamic arrays
 
 Static arrays have a fixed size determined at compile time. For variable-sized arrays allocated at runtime, C provides dynamic memory allocation:
 
-```c
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -376,7 +510,8 @@ for (int i = 0; i < 5; i++) {
 ```c
 int a[5] = {1, 2, 3, 4, 5};
 int b[5];
-// b = a; // Wrong! This does not work in C
+// This will error
+b = a; // ❌ Wrong! This does not work in C
 
 // Correct way to copy:
 for (int i = 0; i < 5; i++) {
@@ -384,7 +519,6 @@ for (int i = 0; i < 5; i++) {
 }
 ```
 
-Arrays are fundamental to C programming and serve as the foundation for many more complex data structures like strings, matrices, and tables.
 
 ## 📝 Exercise: Analyze weekly temperatures
 

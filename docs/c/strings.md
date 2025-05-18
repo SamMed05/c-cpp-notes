@@ -359,24 +359,31 @@ These functions are especially useful when processing text input or validating s
 
 int main() {
     char str[] = "Hello123!";
-    int letters = 0, digits = 0, others = 0;
-    
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (isalpha(str[i]))
-            letters++;
-        else if (isdigit(str[i]))
-            digits++;
-        else
-            others++;
+    int i = 0;
+    char ch;
+
+    while ((ch = str[i]) != '\0') {
+        if (isalpha(ch)) {
+            printf("'%c' is an alphabet character.\n", ch);
+        } else if (isdigit(ch)) {
+            printf("'%c' is a digit.\n", ch);
+        } else if (isprint(ch)) {
+            printf("'%c' is a printable character (but not alpha/digit).\n", ch);
+        }
+        // Example of case conversion
+        if (islower(ch)) {
+            printf("Lowercase '%c' to uppercase: '%c'\n", ch, toupper(ch));
+        } else if (isupper(ch)) {
+            printf("Uppercase '%c' to lowercase: '%c'\n", ch, tolower(ch));
+        }
+        i++;
     }
-    
-    printf("Letters: %d\nDigits: %d\nOthers: %d\n", letters, digits, others);
     return 0;
 }
 ```
 
 :::warning
-The `<ctype.h>` functions expect an `int` parameter that represents an unsigned char value, or EOF. Passing a signed char value with high bit set can lead to unexpected behavior.
+The `<ctype.h>` functions expect an `int` parameter that represents an `unsigned char` value, or `EOF`. Passing a `signed char` value with its high bit set (which might be negative if `char` is signed and has a negative value) can lead to undefined behavior. It's safer to cast the argument to `unsigned char`: `isdigit((unsigned char)ch)`.
 :::
 
 ## Character encoding in C
@@ -407,28 +414,41 @@ printf("ASCII value of %c is %d\n", ch, ch);
 
 ### Extended ASCII and multi-byte character sets
 
-Many C implementations support extended ASCII (8-bit, values 128-255) for additional characters like accented letters and symbols. However, extended ASCII is not standardized and varies between systems.
+Many C implementations support extended ASCII (8-bit, values 128-255) for additional characters like accented letters and symbols. However, extended ASCII is not standardized and varies between systems (different "code pages" can exist for different languages).
 
-For international character support:
-
-- **Extended ASCII**: Different code pages for different languages
-- **Multi-byte encodings**: UTF-8, UTF-16, etc. where characters may use multiple bytes
+For broader international character support, more complex encodings are used:
+- **Multi-byte encodings**: Characters can be represented by one or more bytes. UTF-8 is a prominent example.
 
 ### Working with Unicode in C
 
-Standard C doesn't have built-in support for Unicode, but there are approaches to handle it:
+Standard C (up to C99/C11) has limited built-in support for Unicode directly within the `char` type, which is typically 8 bits. However, there are several ways to work with Unicode:
 
-1. **UTF-8 encoding**: Compatible with ASCII for the first 127 characters, can be stored in char arrays but requires special handling for multi-byte characters
+1.  **UTF-8 encoding**:
+    *   UTF-8 is a variable-width encoding that represents Unicode characters using one to four bytes.
+    *   It's backward compatible with ASCII (characters 0-127 are represented by a single byte, identical to their ASCII codes).
+    *   UTF-8 strings can be stored in `char` arrays. However, standard C string functions (like `strlen()`, `strcpy()`) treat each byte as a separate character. Processing multi-byte characters requires careful, custom logic or specialized libraries. For example, `strlen()` on a UTF-8 string will return the number of bytes, not the number of Unicode characters.
 
-2. **Wide character support**: Using `wchar_t` type with `<wchar.h>` functions:
-   ```c
-   #include <wchar.h>
-   
-   wchar_t wide_str[] = L"Hello, 世界";
-   wprintf(L"%ls\n", wide_str);
-   ```
+2.  **Wide character support**:
+    *   C provides the `wchar_t` type (defined in `<stddef.h>`) and functions in `<wchar.h>` for handling wide characters. `wchar_t` is an integer type whose size is implementation-defined and large enough to represent any character in the supported locales.
+    *   Wide string literals are prefixed with `L`: `L"Hello, 世界"`.
+    *   Functions like `wprintf()`, `wcslen()`, `wcscpy()` operate on wide character strings.
+    ```c
+    #include <wchar.h>
+    #include <stdio.h> // For wprintf, though often included by wchar.h
+    #include <locale.h> // For setlocale
 
-3. **External libraries**: Libraries like ICU (International Components for Unicode) provide comprehensive Unicode support
+    int main() {
+        // Set locale to support wide character printing
+        setlocale(LC_ALL, ""); 
+
+        wchar_t wide_str[] = L"Hello, 世界";
+        wprintf(L"Wide string: %ls\n", wide_str);
+        wprintf(L"Length of wide string: %zu characters\n", wcslen(wide_str));
+        return 0;
+    }
+    ```
+
+3.  **External libraries**: Libraries like ICU (International Components for Unicode) provide comprehensive Unicode support, including complex text layout, collation, and conversion.
 
 :::info
 UTF-8 has become the most common encoding for international text because:
@@ -439,3 +459,40 @@ UTF-8 has become the most common encoding for international text because:
 
 However, processing UTF-8 strings in C requires careful handling since a single character may span multiple bytes.
 :::
+
+## String Literals
+
+String literals (e.g., `"hello"`) are sequences of characters enclosed in double quotes. They have specific properties in C:
+
+1.  **Type**: A string literal like `"hello"` is of type `char[6]` (5 characters + 1 for the null terminator `\0`). In general, a string literal of `N` visible characters has type `char[N+1]`. An empty string `""` has type `char[1]` (it contains only the null terminator).
+
+2.  **Storage**: String literals are typically stored in a read-only section of memory. This means attempting to modify a string literal results in undefined behavior (often a program crash).
+
+    ```c
+    char *s = "hello";
+    // s[0] = 'H'; // Undefined behavior! Do not do this.
+    ```
+    To have a modifiable string, initialize a `char` array with the literal:
+    ```c
+    char s[] = "hello";
+    s[0] = 'H'; // OK, s is now "Hello"
+    ```
+    It's good practice to use `const char *` when a pointer is intended to point to a string literal, as this allows the compiler to warn against accidental modification attempts:
+    ```c
+    const char *s = "hello"; // Preferred for literals
+    ```
+
+3.  **Concatenation**: Adjacent string literals are automatically concatenated by the compiler at compile time.
+    ```c
+    const char *message = "Hello, " "world" "!";
+    // This is equivalent to:
+    // const char *message = "Hello, world!";
+
+    // This also works across multiple lines:
+    const char *long_message = "This is a very long message "
+                               "that spans multiple lines "
+                               "for readability.";
+    ```
+    Note: This concatenation happens at compile time. It's not a runtime string operation.
+
+4.  **Null Termination**: All string literals are automatically null-terminated by the compiler. You don't need to add `\0` explicitly.
