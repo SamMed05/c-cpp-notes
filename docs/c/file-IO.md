@@ -12,17 +12,26 @@ custom_edit_url: null
 
 File Input/Output (I/O) in C allows programs to interact with files stored on secondary storage, enabling data persistence. This means data can be saved and retrieved even after the program terminates.
 
+In C, all I/O operations are performed on **streams**, which are sequences of bytes. A **file** is a common source or destination for a stream.
+
+The C standard library, primarily through `<stdio.h>`, provides an abstraction layer, allowing uniform access to various data sources and sinks (like disk files, keyboard, screen) as if they were all files.
+
 ## Data persistence through files
 
 To retain information beyond the execution of a program, we rely on **persistent storage**—typically achieved through files on disk.
 
-A **file** is:
+A **file stream** in C is:
 
-- An abstraction managed by the operating system's file system.
-- A named collection of data stored on secondary storage (such as a hard drive or SSD).
-- Organized as a sequence of records or bytes.
+- An abstraction managed by the operating system's file system, accessed via functions in `<stdio.h>`.
+- A named collection of data stored on secondary storage (such as a hard drive or SSD) or a device (like the keyboard or console).
+- Conceptually, a sequence of bytes that can be read from or written to sequentially.
 
-Files are generally categorized as:
+Even devices like the keyboard (`stdin`) and screen (`stdout`, `stderr`) are treated as files by C programs, allowing for consistent I/O operations. The C standard library handles the underlying details, so the programmer doesn't need to manage device-specific complexities.
+
+Files are generally categorized by how C interprets their content when opened in different modes:
+
+- **Text files**: When opened in text mode, data is interpreted as sequences of human-readable characters. Special processing, like newline character translation (`\n` to `\r\n` on Windows), might occur. Suitable for configuration files, logs, and documents.
+- **Binary files**: When opened in binary mode, data is treated as a raw sequence of bytes, mirroring how it's represented in memory. No translation occurs. Used for images, executables, and structured data.
 
 - **Text files**: Store data as sequences of human-readable characters (e.g., ASCII, UTF-8). Suitable for configuration files, logs, and documents.
 - **Binary files**: Store data in raw byte format, mirroring how data is represented in memory. Used for images, executables, and structured data.
@@ -30,6 +39,8 @@ Files are generally categorized as:
 :::info Windows vs Unix/Linux: File types and extensions
 
 - On **Windows**, file extensions (like `.txt`, `.bin`, `.exe`) are commonly used to indicate file type, and the OS may treat files differently based on their extension. For example, opening a file in text mode (`"rt"`) or binary mode (`"rb"`) can affect how line endings (`\r\n` vs `\n`) are handled.
+    - In text mode on Windows, `\n` (newline) characters are automatically translated to `\r\n` (carriage return + newline) when writing, and `\r\n` is translated back to `\n` when reading.
+    - In binary mode, no such translation occurs, preserving the exact byte sequence.
 - On **Unix/Linux**, file extensions are not required or enforced by the OS—they are just part of the filename. The kernel treats all files as streams of bytes, regardless of extension. There is no technical distinction between "text" and "binary" files at the OS level; it's up to programs to interpret the contents.
 - In fact, in Unix-like systems, **everything is a file**: not just regular files, but also devices, pipes, and even directories are accessed using file descriptors. This unified approach allows powerful tools like `cat`, `less`, or `vim` to open and edit almost any file, though not all files are human-readable as text.
 
@@ -77,17 +88,19 @@ Other modes like `"r+"`, `"w+"`, `"a+"` (and their binary counterparts `"rb+"`, 
 When a file is opened, the system maintains a **file position indicator** (often conceptualized as a cursor). This indicator marks the current position within the file where the next read or write operation will occur.
 
 - For modes `"r"`, `"rb"`, `"w"`, `"wb"`, the cursor is initially at the beginning of the file.
-    - Remember: for `"w"` and `"wb"`, existing content is deleted.
-- For modes `"a"`, `"ab"`, the cursor is initially at the end of the file.
+    - Remember: for `"w"` and `"wb"`, existing content is deleted (file is truncated).
+- For modes `"a"`, `"ab"`, the cursor is initially at the end of the file. All writes happen at the current end of the file, regardless of explicit positioning attempts with `fseek` before writing.
 - After each read or write operation, the cursor automatically advances by the number of bytes read or written.
+
+It's worth noting that **EOF (End-Of-File)** is not a character stored at the end of a file. It's a special signal (a negative integer constant, typically -1) returned by input functions (like `fgetc`, `fscanf`) to indicate that the end of the file has been reached or an error has occurred. The operating system knows the size of the file and signals an end-of-file condition when a read operation attempts to go beyond the last byte.
 
 ## Working with files
 
 ### The `FILE` structure
 
-All file operations in C are performed using a pointer to a `FILE` structure. This structure is defined in `<stdio.h>` and holds information about the file stream, such as the buffer, current position, and error indicators.
+All file operations in C are performed using a pointer to a `FILE` structure. This structure is defined in `<stdio.h>` and is an **opaque type**; its internal details are hidden from the programmer and should not be accessed directly. It holds information necessary to manage the stream, such as the buffer, current position, error indicators, and end-of-file status.
 
-You don't need to know the internal details of the `FILE` structure. You'll simply declare a pointer of type `FILE*` and use it with standard library functions.
+You don't need to know the internal details of the `FILE` structure. You'll simply declare a pointer of type `FILE*` and use it with standard library functions. All standard file I/O functions take a `FILE*` as an argument to specify the stream they operate on.
 
 ```c
 #include <stdio.h>
@@ -97,7 +110,7 @@ FILE *fptr; // Declare a file pointer
 
 ### Opening a file: `fopen()`
 
-The `fopen()` function is used to open a file.
+The `fopen()` function is used to open a file and associate it with a stream.
 
 ```c
 FILE* fopen(const char *filename, const char *mode);
@@ -107,7 +120,7 @@ FILE* fopen(const char *filename, const char *mode);
 - `mode`: A string specifying the access mode (e.g., `"r"`, `"w"`, `"rb"`).
 - **Return value**:
     - On success, `fopen()` returns a `FILE` pointer.
-    - On failure (e.g., file not found, no permission), it returns `NULL`.
+    - On failure (e.g., file not found for reading, no permission, invalid mode), it returns `NULL`.
 
 **Always check the return value of `fopen()`:**
 
@@ -134,7 +147,7 @@ int main() {
 
 ### Closing a file: `fclose()`
 
-The `fclose()` function is used to close an opened file.
+The `fclose()` function is used to close an opened file, disassociating it from the stream.
 
 ```c
 int fclose(FILE *stream);
@@ -144,7 +157,9 @@ int fclose(FILE *stream);
 - **Return value**:
     - Returns `0` on success.
     - Returns `EOF` (a special constant, usually -1) on error.
-- `fclose()` flushes any unwritten data from the buffer to the file and releases system resources.
+- `fclose()` flushes any unwritten data from the output buffer to the file and releases system resources (like file descriptors) allocated by the OS for the file.
+
+It's crucial to close files when they are no longer needed. Operating systems have a limit on the number of files a process can have open simultaneously (e.g., 1024 on Linux by default, 2048 on Windows). Failing to close files can lead to resource leaks and prevent the program (or other programs) from opening more files.
 
 ```c
 #include <stdio.h>
@@ -384,8 +399,9 @@ You can control the file position indicator using these functions:
 - **`ftell()`**: Returns the current value of the file position indicator.
     ```c
     long ftell(FILE *stream);
-    // Returns current position in bytes from the beginning, or -1L on error.
     ```
+    
+    This function returns the current position in bytes from the beginning of the file, or -1L on error. For files opened in binary mode, this is the exact byte offset from the start. For files opened in text mode, the value might not be a simple byte count due to potential newline translations or other system-specific encodings. However, the value returned by `ftell()` in text mode can still be reliably used with `fseek()` to return to that position.
 
 - **`rewind()`**: Sets the file position indicator to the beginning of the file.
     ```c
@@ -426,7 +442,11 @@ int main() {
 }
 ```
 :::note
-For text files, the value returned by `ftell` might not always correspond to the exact byte count from the beginning on some systems due to character encoding or line ending conversions. For accurate byte offsets and file sizes, it's often better to open files in binary mode (`"rb"`, `"wb"`, etc.) when using `fseek` and `ftell`.
+For text files, the value returned by `ftell` might not always correspond to the exact byte count from the beginning on some systems due to character encoding or line ending conversions (e.g., `\n` vs. `\r\n`). 
+
+For accurate byte offsets and file sizes, it's generally better to open files in binary mode (`"rb"`, `"wb"`, etc.) when using `fseek` and `ftell` for arbitrary positioning or size calculation. 
+
+However, any value returned by `ftell()` (even for a text stream) is guaranteed to be usable by `fseek()` with `SEEK_SET` to return to that same position.
 :::
 
 ## Buffer management: `fflush()`
@@ -561,6 +581,19 @@ gcc insert_person.c -o insert_person
 ### Exercise 2: Reading person data
 
 Create a program `read_people.c` that reads all person records from the binary file `people.dat` (created in Exercise 1) and prints them to the console.
+
+import Spoiler from '@site/src/components/Spoiler';
+
+What to do?
+<Spoiler>
+<ol>
+    <li>Define a <code>person</code> structure.</li>
+    <li>In <code>main</code>, define an array of <code>person</code> structures.</li>
+    <li>Open the file for reading.</li>
+    <li>Read one record at a time, and store the data for each person in an element of the array.</li>
+    <li>Print the records that were read.</li>
+</ol>
+</Spoiler>
 
 <details>
 <summary>Show Solution for Exercise 2</summary>
