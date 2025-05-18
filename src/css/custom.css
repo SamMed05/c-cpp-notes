@@ -385,39 +385,3 @@ thead {
   padding: 0 var(--ifm-pre-padding);
   border-left: 3px solid #09af2d80;
 }
-
-/* Spoiler text styling */
-.spoiler {
-  background-color: #f0f0f0;
-  padding: 5px;
-  border-radius: 4px;
-  position: relative;
-  cursor: pointer;
-}
-
-.spoiler .spoiler-text {
-  color: transparent;
-  user-select: none;
-}
-
-.spoiler:hover .spoiler-text,
-.spoiler:focus .spoiler-text,
-.spoiler:active .spoiler-text {
-  color: inherit;
-  user-select: auto;
-}
-
-/* Dark mode support */
-[data-theme='dark'] .spoiler {
-  background-color: #2d333b;
-}
-
-[data-theme='dark'] .spoiler .spoiler-text {
-  color: transparent;
-}
-
-[data-theme='dark'] .spoiler:hover .spoiler-text,
-[data-theme='dark'] .spoiler:focus .spoiler-text,
-[data-theme='dark'] .spoiler:active .spoiler-text {
-  color: inherit;
-}

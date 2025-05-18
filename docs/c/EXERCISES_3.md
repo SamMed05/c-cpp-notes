@@ -21,15 +21,82 @@ For exercises on topics before pointers, refer to C++ exercises [Part 1](/docs/c
 
 If you come from C++, this table will help you quickly check the main differences and similarities between the two languages:
 
-| **Aspect**             | **C**                                              | **C++**                                             |
-|------------------------|----------------------------------------------------|-----------------------------------------------------|
-| Input/Output           | printf, scanf, puts, gets                          | std::cout, std::cin, std::getline, std::endl        |
-| Type casting           | (int)x                                             | static_cast&lt;int&gt;(x), etc.                      |
-| struct and typedef     | typedef struct {...} Name; struct Name var         | struct Name { ... }; Name var                       |
-| Standard Libraries     | &lt;stdio.h&gt;, &lt;stdlib.h&gt;, &lt;string.h&gt; | &lt;iostream&gt;, &lt;vector&gt;, &lt;string&gt;, &lt;algorithm&gt; |
-| Dynamic allocation     | malloc, calloc, realloc, free                      | new, delete                                         |
-| Namespaces             | Not supported                                      | using namespace std                                 |
-| Error handling         | Errno, return -1, perror()                         | Try-catch                                           |
+<table>
+    <thead>
+        <tr>
+            <th>Aspect</th>
+            <th>C</th>
+            <th>C++</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Input/Output</td>
+            <td>
+                <code>printf</code>, <code>scanf</code>, <code>puts</code>, <code>gets</code>
+            </td>
+            <td>
+                <code>std::cout</code>, <code>std::cin</code>, <code>std::getline</code>, <code>std::endl</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Type casting</td>
+            <td>
+                <code>(int)x</code>
+            </td>
+            <td>
+                <code>static_cast&lt;int&gt;(x)</code>, etc.
+            </td>
+        </tr>
+        <tr>
+            <td>struct and typedef</td>
+            <td>
+                <code>typedef struct &#123;...&#125; Name;</code><br/>
+                <code>struct Name var</code>
+            </td>
+            <td>
+                <code>struct Name &#123; ... &#125;;</code><br/>
+                <code>Name var</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Standard Libraries</td>
+            <td>
+                <code>&lt;stdio.h&gt;</code>, <code>&lt;stdlib.h&gt;</code>, <code>&lt;string.h&gt;</code>
+            </td>
+            <td>
+                <code>&lt;iostream&gt;</code>, <code>&lt;vector&gt;</code>, <code>&lt;string&gt;</code>, <code>&lt;algorithm&gt;</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Dynamic allocation</td>
+            <td>
+                <code>malloc</code>, <code>calloc</code>, <code>realloc</code>, <code>free</code>
+            </td>
+            <td>
+                <code>new</code>, <code>delete</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Namespaces</td>
+            <td>
+                Not supported
+            </td>
+            <td>
+                <code>using namespace std</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Error handling</td>
+            <td>
+                <code>Errno</code>, <code>return -1</code>, <code>perror()</code>
+            </td>
+            <td>
+                Try-catch
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 :::
 
@@ -1888,6 +1955,616 @@ int main() {
 ```
 
 </details>
+
+
+## Matrix and Nested Structure Exercises
+
+These exercises focus on working with matrices (2D arrays) and nested data structures in C. They build upon your understanding of pointers, memory allocation, and arrays to work with more complex data structures.
+
+### Matrix Edge Sum (★★☆)
+
+Implement a function that calculates the sum of all values in the "frame" or edge of a matrix (the outer border). The function should follow this prototype:
+
+```c
+long matrix_edge(unsigned n_rows, unsigned n_cols, int **m);
+```
+
+Where:
+
+- `m` is the input matrix with `n_rows` rows and `n_cols` columns
+- The function calculates and returns the sum of all elements along the perimeter
+
+
+<Spoiler>
+Remember that the edge consists of the first and last rows entirely, plus the first and last columns (excluding the corners which would otherwise be counted twice).
+
+![Matrix edge diagram](../c/assets/matrix-edge-diagram.svg)
+<figcaption style={{zIndex: -10}}>
+    Diagram of a matrix with its edge (border) elements highlighted and corners marked, illustrating which elements are included in the edge sum calculation.
+</figcaption>
+
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+<Tabs>
+<TabItem value="solution1" label="Solution 1 (2D array approach)">
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+long matrix_edge(unsigned n_rows, unsigned n_cols, int **m) {
+    int sumExternalRows = 0;
+    int sumExternalCols = 0;
+
+    for (unsigned i = 0; i < n_cols; i++) {
+        sumExternalRows += m[0][i] + m[n_rows - 1][i];
+    }
+    for (unsigned i = 0; i < n_rows; i++) {
+        sumExternalCols += m[i][n_cols - 1] + m[i][0];
+    }
+
+    // Subtract the corners, counted two times
+    long edge = sumExternalRows + sumExternalCols 
+              - m[n_rows-1][n_cols-1] - m[0][0]
+              - m[0][n_cols-1] - m[n_rows-1][0];
+
+    return edge;
+}
+
+int main() {
+    int rows = 3;
+    int cols = 4;
+
+    int **matr = (int**) malloc(rows * sizeof(int*));
+    for (int i=0; i<rows; i++) {
+        matr[i] = (int*) malloc(cols * sizeof(int));
+    }
+
+    if (matr == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);
+    }
+
+    // Initialize matrix with random values and print
+    srand((unsigned)time(NULL));
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            matr[i][j] = rand() % 10; // Random between 0 and 9
+            printf("%d ", matr[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("Edge sum: %ld\n", matrix_edge(rows, cols, matr)); 
+    
+    // Free memory
+    for (int i = 0; i < rows; i++) {
+        free(matr[i]);
+    }
+    free(matr);
+    
+    return 0;
+}
+```
+
+This solution uses a dynamically allocated 2D array approach, where the matrix is represented as an array of pointers to arrays. We calculate the sum of the first and last rows, and then the first and last columns, being careful to subtract the corners which would otherwise be counted twice.
+
+</TabItem>
+
+<TabItem value="solution2" label="Solution 2 (1D array approach)">
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+long matrix_edge(unsigned n_rows, unsigned n_cols, int *m) {
+    long sum = 0;
+    if (n_rows == 0 || n_cols == 0) return 0;
+    
+    // First and last row
+    for (unsigned j = 0; j < n_cols; ++j) {
+        sum += m[0 * n_cols + j];
+        if (n_rows > 1)
+            sum += m[(n_rows - 1) * n_cols + j];
+    }
+    
+    // First and last column (excluding the corners already counted)
+    for (unsigned i = 1; i < n_rows - 1; ++i) {
+        sum += m[i * n_cols + 0];
+        if (n_cols > 1)
+            sum += m[i * n_cols + (n_cols - 1)];
+    }
+    
+    return sum;
+}
+
+int main() {
+    int m[3][4] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12}
+    };
+    
+    printf("Edge sum: %ld\n", matrix_edge(3, 4, (int *)m));
+    return 0;
+}
+```
+
+This solution treats the 2D matrix as a flat 1D array in memory, which is how C actually stores multi-dimensional arrays. We calculate the position of each element using the formula `i * n_cols + j`. This approach avoids the need for double pointer notation and can work directly with C's built-in 2D arrays.
+
+</TabItem>
+</Tabs>
+
+</details>
+
+### Matrix Diagonals (★★☆)
+
+Implement a function that extracts the main diagonal and the secondary diagonal from a square matrix. The function should follow this prototype:
+
+```c
+void diagonals(int *rdp, int *rds, unsigned size, const int matrix[][size]);
+```
+
+Where:
+
+- `matrix` is the input square matrix with `size` rows and columns
+- `rdp` is a pointer where the main diagonal will be stored
+- `rds` is a pointer where the secondary diagonal will be stored
+- You can assume that both `rdp` and `rds` point to already properly allocated memory areas
+
+<Spoiler>
+Remember that the elements of the main diagonal have the same row and column indices (i,i), while the secondary diagonal elements have indices where the sum of row and column equals size-1 (i,size-1-i).
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+#include <stdio.h>
+
+void diagonals(int *rdp, int *rds, unsigned size, const int matrix[][size]) {
+    // Extract main diagonal (top-left to bottom-right)
+    for (unsigned i = 0; i < size; i++) {
+        rdp[i] = matrix[i][i];
+    }
+    
+    // Extract secondary diagonal (top-right to bottom-left)
+    for (unsigned i = 0; i < size; i++) {
+        rds[i] = matrix[i][size - 1 - i];
+    }
+}
+
+// Example usage:
+int main() {
+    // Example 4x4 matrix
+    int matrix[4][4] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12},
+        {13, 14, 15, 16}
+    };
+    
+    int main_diagonal[4];    // To store the main diagonal
+    int secondary_diagonal[4];  // To store the secondary diagonal
+    
+    // Print the matrix
+    printf("Matrix:\n");
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf("%2d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    
+    // Extract diagonals
+    diagonals(main_diagonal, secondary_diagonal, 4, matrix);
+    
+    // Print main diagonal
+    printf("\nMain diagonal: ");
+    for (int i = 0; i < 4; i++) {
+        printf("%d ", main_diagonal[i]);
+    }
+    
+    // Print secondary diagonal
+    printf("\nSecondary diagonal: ");
+    for (int i = 0; i < 4; i++) {
+        printf("%d ", secondary_diagonal[i]);
+    }
+    
+    return 0;
+}
+```
+
+**Output:**
+<div class="output">
+<code class="output">
+Matrix:<br/>
+ 1  2  3  4 <br/>
+ 5  6  7  8 <br/>
+ 9 10 11 12 <br/>
+13 14 15 16 <br/>
+<br/>
+Main diagonal: 1 6 11 16 <br/>
+Secondary diagonal: 4 7 10 13 <br/>
+</code>
+</div><br/>
+
+This solution extracts both diagonals from the square matrix:
+
+- The main diagonal elements are at positions (0,0), (1,1), (2,2), etc.
+- The secondary diagonal elements are at positions (0,n-1), (1,n-2), (2,n-3), etc., where n is the size of the matrix.
+
+For the 4×4 matrix in the example, the main diagonal contains [1, 6, 11, 16] and the secondary diagonal contains [4, 7, 10, 13].
+
+</details>
+
+### Tabula Recta (★★☆)
+
+Implement a function that creates a tabula recta matrix (also known as a Vigenère table) of the English alphabet. The function should follow this prototype:
+
+```c
+void tabula_recta(char t[][26]);
+```
+
+Where:
+
+- `t` is the matrix where the generated table will be stored
+
+A tabula recta is a 26×26 table of characters where each row is the alphabet shifted by the row number. The first row contains the alphabet as is, the second row starts with 'B', etc.
+
+<Spoiler>
+You can use modular arithmetic to handle the wrapping of the alphabet. For each position (i,j), the character will be 'A' + ((i + j) % 26).
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+#include <stdio.h>
+
+void tabula_recta(char t[][26]) {
+    // Fill the matrix with the tabula recta
+    for (int i = 0; i < 26; i++) {
+        for (int j = 0; j < 26; j++) {
+            // Each row starts with a different letter of the alphabet
+            // and continues with the alphabet wrapping around
+            t[i][j] = 'A' + ((i + j) % 26);
+        }
+    }
+}
+
+// Example usage:
+int main() {
+    char table[26][26];
+    
+    // Generate the tabula recta
+    tabula_recta(table);
+    
+    // Print the tabula recta (with row and column headers)
+    printf("    ");
+    for (int i = 0; i < 26; i++) {
+        printf("%c ", 'A' + i);
+    }
+    printf("\n");
+    
+    printf("   +");
+    for (int i = 0; i < 26; i++) {
+        printf("--");
+    }
+    printf("\n");
+    
+    for (int i = 0; i < 26; i++) {
+        printf("%c | ", 'A' + i);
+        for (int j = 0; j < 26; j++) {
+            printf("%c ", table[i][j]);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
+```
+
+**Output:**
+
+<div class="output">
+<code class="output">
+&nbsp;&nbsp;&nbsp;&nbsp;A B C D E F G H I J K L M N O P Q R S T U V W X Y Z <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+----------------------------------------------------<br/>
+A | A B C D E F G H I J K L M N O P Q R S T U V W X Y Z <br/>
+B | B C D E F G H I J K L M N O P Q R S T U V W X Y Z A <br/>
+C | C D E F G H I J K L M N O P Q R S T U V W X Y Z A B <br/>
+D | D E F G H I J K L M N O P Q R S T U V W X Y Z A B C <br/>
+E | E F G H I J K L M N O P Q R S T U V W X Y Z A B C D <br/>
+F | F G H I J K L M N O P Q R S T U V W X Y Z A B C D E <br/>
+G | G H I J K L M N O P Q R S T U V W X Y Z A B C D E F <br/>
+H | H I J K L M N O P Q R S T U V W X Y Z A B C D E F G <br/>
+I | I J K L M N O P Q R S T U V W X Y Z A B C D E F G H <br/>
+J | J K L M N O P Q R S T U V W X Y Z A B C D E F G H I <br/>
+K | K L M N O P Q R S T U V W X Y Z A B C D E F G H I J <br/>
+L | L M N O P Q R S T U V W X Y Z A B C D E F G H I J K <br/>
+M | M N O P Q R S T U V W X Y Z A B C D E F G H I J K L <br/>
+N | N O P Q R S T U V W X Y Z A B C D E F G H I J K L M <br/>
+O | O P Q R S T U V W X Y Z A B C D E F G H I J K L M N <br/>
+P | P Q R S T U V W X Y Z A B C D E F G H I J K L M N O <br/>
+Q | Q R S T U V W X Y Z A B C D E F G H I J K L M N O P <br/>
+R | R S T U V W X Y Z A B C D E F G H I J K L M N O P Q <br/>
+S | S T U V W X Y Z A B C D E F G H I J K L M N O P Q R <br/>
+T | T U V W X Y Z A B C D E F G H I J K L M N O P Q R S <br/>
+U | U V W X Y Z A B C D E F G H I J K L M N O P Q R S T <br/>
+V | V W X Y Z A B C D E F G H I J K L M N O P Q R S T U <br/>
+W | W X Y Z A B C D E F G H I J K L M N O P Q R S T U V <br/>
+X | X Y Z A B C D E F G H I J K L M N O P Q R S T U V W <br/>
+Y | Y Z A B C D E F G H I J K L M N O P Q R S T U V W X <br/>
+Z | Z A B C D E F G H I J K L M N O P Q R S T U V W X Y <br/>
+</code>
+</div><br/>
+
+This solution creates a tabula recta, which is a table where:
+
+- The first row is the regular alphabet: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+- The second row is the alphabet shifted by 1: BCDEFGHIJKLMNOPQRSTUVWXYZA
+- The third row is the alphabet shifted by 2: CDEFGHIJKLMNOPQRSTUVWXYZAB
+- And so on...
+
+This table is historically used in encryption techniques like the Vigenère cipher. Each character at position (i,j) is calculated as 'A' + ((i + j) % 26) to handle the alphabet wrapping.
+
+</details>
+
+### String List Creation and Destruction (★★★)
+
+Implement two functions useful for allocating and deallocating a list of strings. The functions should follow these prototypes:
+
+```c
+char **create_list(unsigned list_size, const unsigned *sizes);
+void destroy_list(char **list_p);
+```
+
+Where:
+
+- `create_list` allocates memory for a list of strings:
+  - `list_size` is the number of strings in the list
+  - `sizes` is a pointer to an array of length `list_size` containing the sizes to allocate for each string
+  - The function returns a pointer to the list, or NULL in case of memory allocation error
+  - Ensure the list is initialized with empty strings
+- `destroy_list` deallocates the memory of the list pointed to by the input variable `list_p`
+
+<Spoiler>
+Remember to allocate memory for both the array of pointers and each individual string. Also, don't forget to initialize each string with a null character to create empty strings.
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char **create_list(unsigned list_size, const unsigned *sizes) {
+    // Allocate memory for the array of pointers
+    char **list = (char **)malloc(list_size * sizeof(char *));
+    if (list == NULL) {
+        return NULL;  // Memory allocation failed
+    }
+    
+    // Allocate memory for each string
+    for (unsigned i = 0; i < list_size; i++) {
+        // +1 for the null terminator
+        list[i] = (char *)malloc((sizes[i] + 1) * sizeof(char));
+        if (list[i] == NULL) {
+            // If allocation fails, free all previously allocated memory
+            for (unsigned j = 0; j < i; j++) {
+                free(list[j]);
+            }
+            free(list);
+            return NULL;
+        }
+        
+        // Initialize with empty string
+        list[i][0] = '\0';
+    }
+    
+    return list;
+}
+
+void destroy_list(char **list_p) {
+    if (list_p == NULL) {
+        return;  // Nothing to free
+    }
+    
+    // Free each string
+    unsigned i = 0;
+    while (list_p[i] != NULL) {
+        free(list_p[i]);
+        i++;
+    }
+    
+    // Free the array of pointers
+    free(list_p);
+}
+
+// Example usage:
+int main() {
+    unsigned list_size = 3;
+    unsigned sizes[3] = {10, 5, 20};  // Sizes for 3 strings
+    
+    // Create list of strings
+    char **string_list = create_list(list_size, sizes);
+    if (string_list == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+    
+    // Use the strings
+    strcpy(string_list[0], "Hello");
+    strcpy(string_list[1], "World");
+    strcpy(string_list[2], "This is a test");
+    
+    // Print the strings
+    for (unsigned i = 0; i < list_size; i++) {
+        printf("String %u: %s\n", i, string_list[i]);
+    }
+    
+    // Destroy the list when done
+    destroy_list(string_list);
+    
+    return 0;
+}
+```
+
+This solution manages memory allocation for a list of strings with specific sizes. It handles allocation failures by properly freeing any already allocated memory. The `create_list` function allocates memory for both the array of string pointers and each individual string, while `destroy_list` frees all this memory.
+
+Note: This implementation of `destroy_list` assumes that the list is NULL-terminated (the last element after the valid strings is NULL). If this is not the case, you would need to pass the list size as an additional parameter.
+
+</details>
+
+### String Splitting (★★★)
+
+Implement a function that, given a string containing a sequence of words separated by spaces, creates a list of strings where the last element of the list is followed by a NULL value. The function should follow this prototype:
+
+```c
+char **split(const char *s);
+```
+
+Where:
+
+- `s` is a pointer to the input C string
+- The function returns a pointer to the list, or NULL in case of memory allocation error
+
+<Spoiler>
+To implement this function, you'll need to:
+1. Count the number of words in the string
+2. Allocate memory for an array of pointers (one more than the number of words, for the NULL terminator)
+3. For each word, allocate memory, copy the word, and store the pointer
+4. Set the last element to NULL
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+char **split(const char *s) {
+    if (s == NULL) {
+        return NULL;
+    }
+    
+    // Count words
+    int word_count = 0;
+    int in_word = 0;
+    
+    for (int i = 0; s[i] != '\0'; i++) {
+        if (isspace(s[i])) {
+            in_word = 0;
+        } else if (!in_word) {
+            in_word = 1;
+            word_count++;
+        }
+    }
+    
+    // Allocate array of pointers (+1 for NULL terminator)
+    char **result = (char **)malloc((word_count + 1) * sizeof(char *));
+    if (result == NULL) {
+        return NULL;
+    }
+    
+    // Extract words
+    int word_index = 0;
+    in_word = 0;
+    int word_start = 0;
+    
+    for (int i = 0; ; i++) {
+        if (s[i] == '\0' || isspace(s[i])) {
+            if (in_word) {
+                // End of a word - allocate memory and copy it
+                int word_length = i - word_start;
+                result[word_index] = (char *)malloc((word_length + 1) * sizeof(char));
+                
+                if (result[word_index] == NULL) {
+                    // Clean up if allocation fails
+                    for (int j = 0; j < word_index; j++) {
+                        free(result[j]);
+                    }
+                    free(result);
+                    return NULL;
+                }
+                
+                // Copy the word
+                strncpy(result[word_index], &s[word_start], word_length);
+                result[word_index][word_length] = '\0';
+                word_index++;
+                in_word = 0;
+            }
+            
+            if (s[i] == '\0') {
+                break;  // End of string
+            }
+        } else if (!in_word) {
+            // Start of a new word
+            word_start = i;
+            in_word = 1;
+        }
+    }
+    
+    // Set NULL terminator
+    result[word_count] = NULL;
+    
+    return result;
+}
+
+// Example usage:
+int main() {
+    const char *test_string = "The quick brown fox jumps over the lazy dog";
+    
+    char **words = split(test_string);
+    if (words == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+    
+    printf("Original string: \"%s\"\n\n", test_string);
+    printf("Split into words:\n");
+    
+    int i = 0;
+    while (words[i] != NULL) {
+        printf("Word %d: \"%s\"\n", i, words[i]);
+        i++;
+    }
+    
+    // Free the allocated memory
+    i = 0;
+    while (words[i] != NULL) {
+        free(words[i]);
+        i++;
+    }
+    free(words);
+    
+    return 0;
+}
+```
+
+This solution:
+
+1. Counts the number of words in the input string
+2. Allocates memory for the array of pointers (plus one for the NULL terminator)
+3. Parses the string to identify each word
+4. For each word, allocates memory and copies the word
+5. Sets the last element of the array to NULL
+6. Handles memory allocation failures by cleaning up any already allocated memory
+
+The function returns a NULL-terminated list of strings, where each string is a separate word from the input string. This is a common pattern in C for string array functions, similar to how environment variables or command-line arguments are passed to the `main` function.
+
+</details>
+
 
 ## Advanced Pointer Exercises
 

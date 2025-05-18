@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="280" height="220" version="1.1" xmlns="http://www.w3.org/2000/svg">
+ <!-- Parametri -->
+ <rect x="20" y="20" width="239.5" height="180.66" fill="#e9e9e9" fill-rule="evenodd"/>
+ <defs>
+  <style>.grid   { fill: none; stroke: #000; }
+      .topbot { fill: lightblue; opacity: .5; }
+      .sides  { fill: yellow;    opacity: .5; }
+      .cross  { stroke: red; stroke-width:3 }
+      .lbl    { font: bold 12px sans-serif; fill: #000 }</style>
+ </defs>
+ <!-- evidenzio prima e ultima riga -->
+ <rect class="topbot" x="20" y="20" width="240" height="60"/>
+ <rect class="topbot" x="20" y="140" width="240" height="60"/>
+ <!-- evidenzio prima e ultima colonna -->
+ <rect class="sides" x="20" y="20" width="60" height="180"/>
+ <rect class="sides" x="199.5" y="20.664" width="60" height="180"/>
+ <!-- griglia 3&#215;4 -->
+ <rect class="grid" x="20" y="20" width="240" height="180"/>
+ <!-- linee orizzontali -->
+ <line class="grid" x1="20" x2="260" y1="80" y2="80"/>
+ <line class="grid" x1="20" x2="260" y1="140" y2="140"/>
+ <!-- linee verticali -->
+ <line class="grid" x1="80" x2="80" y1="20" y2="200"/>
+ <line class="grid" x1="140" x2="140" y1="20" y2="200"/>
+ <line class="grid" x1="200" x2="200" y1="20" y2="200"/>
+ <!-- croci rosse sui 4 corner -->
+ <!-- top-left -->
+ <line class="cross" x1="20" x2="80" y1="20" y2="80"/>
+ <line class="cross" x1="20" x2="80" y1="80" y2="20"/>
+ <!-- top-right -->
+ <!-- bottom-left -->
+ <line class="cross" x1="20" x2="80" y1="140" y2="200"/>
+ <line class="cross" x1="20" x2="80" y1="200" y2="140"/>
+ <!-- bottom-right -->
+ <!-- etichette corner -->
+ <text class="lbl" x="25" y="15">m[0][0]</text>
+ <g font-family="sans-serif" font-size="12px" font-weight="bold">
+  <text class="lbl" x="201" y="15" style="line-height:normal">m[0][n−1]</text>
+  <text class="lbl" x="23" y="213" style="line-height:normal">m[n−1][0]</text>
+  <text class="lbl" x="195" y="213" style="line-height:normal">m[n−1][n−1]</text>
+ </g>
+ <g stroke="#f00" stroke-width="3">
+  <line class="cross" x1="200" x2="260" y1="20" y2="80"/>
+  <line class="cross" x1="200" x2="260" y1="80" y2="20"/>
+  <line class="cross" x1="200" x2="260" y1="140" y2="200"/>
+  <line class="cross" x1="200" x2="260" y1="200" y2="140"/>
+ </g>
+</svg>

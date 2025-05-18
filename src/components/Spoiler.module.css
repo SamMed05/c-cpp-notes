@@ -14,6 +14,34 @@
   user-select: none;
 }
 
+/* Blur images, SVGs, and other content inside Spoiler component too */
+.spoiler:not(.revealed) img,
+.spoiler:not(.revealed) svg,
+.spoiler:not(.revealed) figure,
+.spoiler:not(.revealed) figcaption {
+  opacity: 0.8;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+  filter: blur(5px);
+}
+
+/* Handle dark mode specifically for images */
+html[data-theme="dark"] .spoiler:not(.revealed) p img {
+  filter: blur(10px) invert(100%);
+}
+
+.spoiler.revealed img,
+.spoiler.revealed svg,
+.spoiler.revealed figure,
+.spoiler.revealed figcaption {
+  filter: none;
+  opacity: 1;
+}
+
+/* Ensure revealed images in dark mode maintain inversion */
+html[data-theme="dark"] .spoiler.revealed p img {
+  filter: invert(100%);
+}
+
 .spoiler:hover:not(.revealed) {
   background-color: #e0e0e0;
 }
