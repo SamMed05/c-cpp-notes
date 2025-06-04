@@ -2761,8 +2761,8 @@ Where:
 
 - `r` is a pointer to the structure where the calculated values will be stored
 
-<details>
-<summary>Show solution</summary>
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
 
 ```c
 void array_stats(array_info_t *r, const int *values, unsigned size) {
@@ -2796,9 +2796,86 @@ void array_stats(array_info_t *r, const int *values, unsigned size) {
     }
     r->variance = sum_squared_diff / size;
 }
+
+int main() {
+    int values[] = {4, 7, 2, 8, 1, 9, 5};
+    unsigned size = sizeof(values) / sizeof(values[0]);
+    array_info_t stats; // ⚠️ Not a pointer
+
+    array_stats(&stats, values, size); // Pass the address
+    
+    printf("Array statistics:\n");
+    printf("Min: %d\n", stats.min);
+    printf("Max: %d\n", stats.max);
+    printf("Mean: %.2f\n", stats.mean);
+    printf("Variance: %.2f\n", stats.variance);
+    
+    return 0;
+}
 ```
 
-</details>
+</TabItem>
+
+<TabItem value="solution2" label="Solution 2">
+
+```c
+void array_stats(array_info_t *r, const int *values, unsigned size) {
+    array_info_t result;
+    
+    // Initialize min and max with the first value
+    result.min = values[0];
+    result.max = values[0];
+    
+    // Calculate sum for mean
+    float sum = 0;
+    for (unsigned i = 0; i < size; i++) {
+        // Update min and max
+        if (values[i] < result.min) {
+            result.min = values[i];
+        }
+        if (values[i] > result.max) {
+            result.max = values[i];
+        }
+        
+        // Add to sum for mean calculation
+        sum += values[i];
+    }
+    
+    // Calculate mean
+    result.mean = sum / size;
+    
+    // Calculate variance
+    float sum_squared_diff = 0;
+    for (unsigned i = 0; i < size; i++) {
+        float diff = values[i] - result.mean;
+        sum_squared_diff += diff * diff;
+    }
+    result.variance = sum_squared_diff / size;
+
+    *r = result;
+}
+
+int main() {
+    int values[] = {4, 7, 2, 8, 1, 9, 5};
+    unsigned size = sizeof(values) / sizeof(values[0]);
+    array_info_t stats;
+    
+    array_stats(&stats, values, size);
+    
+    printf("Array statistics:\n");
+    printf("Min: %d\n", stats.min);
+    printf("Max: %d\n", stats.max);
+    printf("Mean: %.2f\n", stats.mean);
+    printf("Variance: %.2f\n", stats.variance);
+    
+    return 0;
+}
+```
+
+This solution uses a local variable `result` as in the previous exercise to accumulate the statistics, then assigns it to the output pointer at the end with `*r = result;`.
+
+</TabItem>
+</Tabs>
 
 #### Variant 2 - Dynamic Allocation
 
