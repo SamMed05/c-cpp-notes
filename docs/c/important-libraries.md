@@ -377,7 +377,7 @@ These functions convert strings to numerical types. They are more robust than ol
         *   `base`: the numerical base (2-36). If `base` is 0, the base is auto-detected from the string prefix: `0` for octal, `0x` or `0X` for hexadecimal, otherwise decimal.
         *   Returns the converted value. If no conversion, 0 is returned. If out of range, `LONG_MIN/MAX`, `LLONG_MIN/MAX`, `ULONG_MAX`, `ULLONG_MAX` is returned, and `errno` is set to `ERANGE`.
 
-```c
+```c {13-18}
 // Example strtol:
 #include <stdlib.h>
 #include <stdio.h>
@@ -385,17 +385,23 @@ These functions convert strings to numerical types. They are more robust than ol
 
 int main(void) {
     const char *str = "  12345 and some text";
-    char *end;
+    char *endptr;
     long val;
 
     errno = 0; // Clear errno before call
-    val = strtol(str, &end, 10);
 
-    if (end == str) {
+    // Convert the string starting at pointer p to a long integer, 
+    // interpreting the number in base 10 (decimal).
+    // endptr will point to the first character after the number in the string.
+    val = strtol(str, &endptr, 10);
+    // val == 12345
+    // endptr points to " and some text"
+
+    if (endptr == str) {
         printf("No digits were found.\n");
-    } else if (*end != '\0') {
+    } else if (*endptr != '\0') {
         printf("Converted value: %ld\n", val);
-        printf("Remaining string: \"%s\"\n", end);
+        printf("Remaining string: \"%s\"\n", endptr);
     } else {
         printf("Converted value: %ld (entire string consumed)\n", val);
     }
@@ -406,6 +412,13 @@ int main(void) {
     return 0;
 }
 ```
+
+<div class="output">
+<code class="output">
+Converted value: 12345<br/>
+Remaining string: " and some text"
+</code>
+</div>
 
 ## `<math.h>`
 

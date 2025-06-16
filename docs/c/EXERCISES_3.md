@@ -3660,6 +3660,9 @@ Find the last occurrence of the character using `strrchr()`. Then allocate memor
 <details>
 <summary>Show solution</summary>
 
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
+
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -3728,11 +3731,70 @@ int main() {
 }
 ```
 
+</TabItem>
+
+<TabItem value="solution2" label="Solution 2">
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* mysubstring(const char* s, char symbol) {
+    unsigned size = strlen(s); // Get the length of the string (excluding null terminator)
+    char* extractedString = NULL;
+
+    // Scan the string backwards to find the last occurrence of 'symbol'
+    for (int i = size - 1; i >= 0; i--) {
+        if (s[i] == symbol) {
+            // Allocate enough memory for the substring (from s + i to end) plus null terminator
+            extractedString = (char*)malloc(strlen(s + i) + 1);
+            // strlen(s + i) gives the length from position i to the end
+            // malloc(strlen(s + i) + 1) allocates space for the substring and '\0'
+            printf("Size allocated: %zu\n", strlen(s + i) + 1); // '%zu' prints a size_t
+            if (extractedString != NULL) {
+                strcpy(extractedString, s + i);
+            }
+            break;
+        }
+    }
+
+    // If symbol not found, extractedString remains NULL
+    return extractedString;
+}
+
+int main() {
+    char s[] = "Hello World!";
+    char sy = 'l';
+
+    char* result = mysubstring(s, sy);
+
+    if (result != NULL) {
+        printf("Extracted substring from last '%c': %s\n", sy, result);
+        free(result);
+    } else {
+        printf("Symbol not found in the string.\n");
+    }
+
+    return 0;
+}
+```
+
+**Notes:**
+
+- This solution manually scans the string from the end to find the last occurrence of the symbol, then allocates and copies the substring from that point.
+- Rememeber that `sizeof(s)/sizeof(s[0])` does **not** work for string length (since `s` is a pointer, not an array, and it also counts `\0`).
+- The allocation uses `strlen(s + i) + 1` to ensure enough space for the substring and the null terminator.
+- Always free the returned string after use to avoid memory leaks.
+
+</TabItem>
+</Tabs>
+
 </details>
 
 ### String to Numbers Conversion (★★★)
 
-Implement a function that converts a comma-separated list of integers in a string to an array of long integers. The function should have the following prototype:
+Implement a function to convert a C string representing a comma-separated list of integers into a dynamically allocated array of longs. The function must use this prototype:
 
 ```c
 int stringsplit(long **values, const char *s);
@@ -3740,9 +3802,17 @@ int stringsplit(long **values, const char *s);
 
 Where:
 
-- `values` is a pointer to a pointer that will be set to the dynamically allocated array of numbers
-- `s` is the input string containing comma-separated numbers
-- The function returns the number of values successfully converted, or a negative value in case of error
+- `s` points to a C string of integers (positive or negative) separated by commas (`','`).
+- `values` is set to point to a newly allocated array of `long` holding the converted numbers.
+- The function returns the number of values parsed on success, or a negative error code.
+
+Behavior:
+
+- If `s` is an empty string, set `*values = NULL` and return 0.
+- On conversion errors (non-numeric tokens, missing values, etc.), return –1.
+- On memory allocation failures, return –2.
+
+Example: for `s = "5,7,-10"`, the call allocates an array `{5, 7, -10}`, sets `*values` to it, and returns 3.
 
 <Spoiler>
 First count the number of commas in the string to determine the number of values. Then allocate an array of the appropriate size. Finally, parse the string using `strtol` to convert each number.
@@ -3750,6 +3820,9 @@ First count the number of commas in the string to determine the number of values
 
 <details>
 <summary>Show solution</summary>
+
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
 
 ```c
 #include <stdio.h>
@@ -3851,6 +3924,96 @@ int main() {
     return 0;
 }
 ```
+
+</TabItem>
+
+<TabItem value="solution2" label="Solution 2">
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h> // For isdigit
+
+int stringsplit(long **values, const char *s) {
+    // If string is empty or pointer is invalid
+    if (s == NULL || s[0] == '\0') {
+        *values = NULL;
+        return 0;
+    }
+
+    // Validate input: only digits, commas, and minus signs in correct positions
+    if (s[0] == ',' || s[strlen(s)-1] == ',') {
+        printf("Errore di conversione\n");
+        return -1;
+    }
+    for (unsigned i = 0; i < strlen(s); i++) {
+        char c = s[i];
+        if (!(isdigit(c) || c == ',' || c == '-')) {
+            printf("Errore di conversione\n");
+            return -1;
+        }
+        if (c == ',' && (i == 0 || s[i-1] == ',' || s[i-1] == '-')) {
+            printf("Errore di conversione\n");
+            return -1;
+        }
+        if (c == '-' && (i != 0 && s[i-1] != ',')) {
+            printf("Errore di conversione\n");
+            return -1;
+        }
+    }
+
+    // Count numbers to allocate correct memory
+    int numCount = 1;
+    for (unsigned i = 0; i < strlen(s); i++) {
+        if (s[i] == ',') numCount++;
+    }
+    *values = (long *) malloc(numCount * sizeof(long));
+    if (*values == NULL) {
+        printf("Errore di allocazione\n");
+        return -2;
+    }
+
+    int count = 0;
+    const char *ptr = s;
+    char *endptr;
+    while (*ptr != '\0') {
+        long val = strtol(ptr, &endptr, 10);
+        if (ptr == endptr) {
+            printf("Errore di conversione\n");
+            free(*values);
+            *values = NULL;
+            return -1;
+        }
+        (*values)[count++] = val;
+        ptr = endptr;
+        if (*ptr == ',') {
+            ptr++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    char s[] = "5,7,-10";
+    long *val = NULL;
+
+    int retVal = stringsplit(&val, s);
+
+    if (retVal > 0 && val != NULL) {
+        for (int i = 0; i < retVal; i++) {
+            printf("%ld ", val[i]);
+        }
+        printf("\n");
+        free(val);
+    }
+    
+    return 0;
+}
+```
+
+</TabItem>
+</Tabs>
 
 </details>
 
