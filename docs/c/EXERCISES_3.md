@@ -2761,6 +2761,9 @@ Where:
 
 - `r` is a pointer to the structure where the calculated values will be stored
 
+<details>
+<summary>Show solution</summary>
+
 <Tabs>
 <TabItem value="solution1" label="Solution 1">
 
@@ -2876,6 +2879,8 @@ This solution uses a local variable `result` as in the previous exercise to accu
 
 </TabItem>
 </Tabs>
+
+</details>
 
 #### Variant 2 - Dynamic Allocation
 
@@ -3247,7 +3252,7 @@ int main() {
 
 </details>
 
-### Computing Polygon Area (★★★)
+### Computing Polygon Area (Shoelace formula) (★★★)
 
 Implement a function to calculate the area of an irregular polygon given the coordinates of its vertices. Use the shoelace formula:
 
@@ -3276,8 +3281,10 @@ float compute_area(const polygon_t *p);
 Where:
 
 - `point_t` represents a point on the plane with $x$ and $y$ coordinates
-- `polygon_t` represents a polygon with $n$ vertices
-- `compute_area` calculates the area of the polygon
+- `polygon_t` represents a polygon with $n$ vertices, each identiﬁed as a point on the plane
+- `compute_area` is the function for calculating the area:
+  - accepts the pointer `p` to the structure representing the polygon;
+  - returns the area of ​​the polygon.
 
 <Spoiler>
 The shoelace formula requires you to iterate through each vertex and its next vertex (wrapping around to the first vertex after the last). For each pair, compute (x₁×y₂ - x₂×y₁) and sum these values. The absolute value of half this sum is the area.
@@ -3285,6 +3292,9 @@ The shoelace formula requires you to iterate through each vertex and its next ve
 
 <details>
 <summary>Show solution</summary>
+
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
 
 ```c
 #include <stdio.h>
@@ -3352,6 +3362,64 @@ int main() {
     return 0;
 }
 ```
+
+</TabItem>
+<TabItem value="solution2" label="Solution 2">
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+typedef struct point {
+    float x;
+    float y;
+} point_t;
+
+typedef struct polygon {
+    unsigned n;
+    point_t *vertices;
+} polygon_t;
+
+// Area = 0.5 * |sum_{i=0}^{n-1} (x_i * y_{i+1} - x_{i+1} * y_i)|
+float compute_area(const polygon_t *p) {
+    float sum = 0;
+    for (unsigned i=0; i<p->n; i++) {
+        unsigned j = (i + 1) % p->n; // wrap around
+        sum += p->vertices[i].x * p->vertices[j].y;
+        sum -= p->vertices[j].x * p->vertices[i].y;
+
+        printf("Partial sum: %f\n", sum);
+    }
+    return (float) fabsf(sum) / 2;
+}
+
+int main() {
+    // Create a square with vertices at (2,1), (4,1), (4,3), (2,3)
+    point_t p1 = {2, 1};
+    point_t p2 = {4, 1};
+    point_t p3 = {4, 3};
+    point_t p4 = {2, 3};
+    point_t svert[4] = {p1, p2, p3, p4};
+    polygon_t square = {4, svert};
+
+    printf("Area of square: %f\n", compute_area(&square));
+
+    // Create a triangle with vertices at (0,0), (4,0), (2,3)
+    point_t t1 = {0, 0};
+    point_t t2 = {4, 0};
+    point_t t3 = {2, 3};
+    point_t tvert[3] = {t1, t2, t3};
+    polygon_t tri = {3, tvert};
+
+    printf("Area of triangle: %f\n", compute_area(&tri));
+    
+    return 0;
+}
+```
+
+</TabItem>
+</Tabs>
 
 </details>
 
