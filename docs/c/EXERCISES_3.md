@@ -3057,7 +3057,7 @@ void merge(int_array_t **r, const int_array_t *a1, const int_array_t *a2);
 Where:
 
 - `int_array_t` is the structure for managing an integer array
-- `r` is a pointer to the structure that will manage the resulting array
+- `r` is a pointer to the structure that will manage the resulting array, to be allocated by the function;
 - `a1` is a pointer to the structure managing the first input array
 - `a2` is a pointer to the structure managing the second input array
 
@@ -3067,6 +3067,9 @@ First allocate memory for the result structure, then allocate memory for the mer
 
 <details>
 <summary>Show solution</summary>
+
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
 
 ```c
 #include <stdio.h>
@@ -3161,6 +3164,86 @@ int main() {
     return 0;
 }
 ```
+
+</TabItem>
+
+<TabItem value="solution2" label="Solution 2">
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct int_array {
+    int *p;
+    unsigned size;
+} int_array_t;
+
+void merge(int_array_t **r, const int_array_t *a1, const int_array_t *a2) {
+    // Store the address via *r so the caller's pointer is updated
+    *r = (int_array_t *)malloc(sizeof(int_array_t));
+    if (*r == NULL) {
+        return; // Memory allocation failed
+    }
+
+    // Set the size and allocate the merged array
+    (*r)->size = a1->size + a2->size;
+    (*r)->p = (int *)malloc(((*r)->size) * sizeof(int));
+    if ((*r)->p == NULL) {
+        free(*r);
+        *r = NULL;
+        return;
+    }
+
+    // Merging logic to fill (*r)->p with values from a1->p and a2->p
+    unsigned i = 0, j = 0, k = 0;
+    while (i < a1->size && j < a2->size) {
+        if (a1->p[i] <= a2->p[j]) {
+            (*r)->p[k++] = a1->p[i++];
+        } else {
+            (*r)->p[k++] = a2->p[j++];
+        }
+    }
+    // Copy any remaining elements from a1
+    while (i < a1->size) {
+        (*r)->p[k++] = a1->p[i++];
+    }
+    // Copy any remaining elements from a2
+    while (j < a2->size) {
+        (*r)->p[k++] = a2->p[j++];
+    }
+}
+
+int main() {
+    // Static initialization for the two input arrays
+    int x[5] = {0, 1, 3, 9, 9};
+    int y[4] = {0, 3, 5, 8};
+    int_array_t a1 = { .p = x, .size = 5 }; // x == &x[0]
+    int_array_t a2 = { y, 4 }; // Automatic member assignment
+
+    int_array_t *result = NULL; // Will be allocated inside merge
+
+    merge(&result, &a1, &a2);
+
+    if (result == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    printf("Merged array: ");
+    for (unsigned i = 0; i < a1.size + a2.size; i++) {
+        printf("%d ", result->p[i]);
+    }
+    printf("\n");
+
+    free(result->p);
+    free(result);
+
+    return 0;
+}
+```
+
+</TabItem>
+</Tabs>
 
 </details>
 

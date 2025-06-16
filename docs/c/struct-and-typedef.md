@@ -318,6 +318,47 @@ This creates:
 
 Now you can use either `struct point_s` or simply `Point` to declare variables.
 
+
+<details>
+<summary>Struct Syntax: C 🆚 C++</summary>
+
+### Struct Syntax: C 🆚 C++
+
+- In C, use `typedef` to create an alias and avoid rewriting `struct`:
+
+```c showLineNumbers
+typedef struct int_array {
+    int *p;
+    unsigned size;
+} int_array_t;
+
+// or, equivalently
+struct int_array {
+    int *p;
+    unsigned size;
+};
+typedef struct int_array int_array_t;
+
+int_array_t arr;
+```
+
+```cpp
+struct int_array {
+    int *p;
+    unsigned size;
+};
+int_array a;
+```
+
+So
+
+> - C requires `struct int_array x;` unless you add a typedef.  
+> - C++ allows `int_array x;` directly.  
+> - The memory layout and usage are otherwise identical.
+
+
+</details>
+
 ### When to use `typedef`
 
 The `typedef` keyword is most useful when:
