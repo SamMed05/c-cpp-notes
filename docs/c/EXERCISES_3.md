@@ -3568,6 +3568,204 @@ int main() {
 
 These exercises focus on working with strings in C.
 
+### Pig Latin translation (★☆☆)
+
+Implement a function to translate a single English word into Pig Latin. The function should follow this prototype:
+
+```c
+void pig_latin(char *r, const char *s);
+```
+
+Rules:
+- If a word starts with one or more consonants, move the initial consonant cluster to the end and append `"ay"`.  
+    Example:  
+    `house` → `ousehay`  
+    `string` → `ingstray`
+- If a word starts with a vowel (`a, e, i, o, u`, case‐insensitive), simply append `"ay"` to the end.  
+    Example:  
+    `apple` → `appleay`  
+    `Orange` → `Orangeay`
+
+<Spoiler>
+Use `strlen()`, `strcpy()`, `strncat()` or pointer arithmetic to split the word at the first vowel.
+Also try without using any string library function.
+</Spoiler>
+
+<details>
+<summary>Show solution</summary>
+
+<Tabs>
+<TabItem value="solution1" label="Solution 1">
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+// Check (case‐insensitive) if a character is a vowel: 1 if vowel, 0 if not
+int is_vowel(char c) {
+    c = tolower(c);
+    return c=='a' || c=='e' || c=='i' || c=='o' || c=='u';
+}
+
+// Translate s into Pig Latin, result in r (r must have enough space)
+void pig_latin(char *r, const char *s) {
+    size_t i = 0, len = strlen(s);
+
+    // Find length of initial consonant cluster
+    while (i < len && !is_vowel(s[i])) {
+        i++;
+    }
+
+    if (i == 0) {
+        // Starts with vowel
+        strcpy(r, s);
+    } else {
+        // Move consonants to end
+        strcpy(r, s + i); // Copy from first vowel
+        strncat(r, s, i); // Append consonant cluster
+    }
+    strcat(r, "ay"); // Append "ay"
+}
+
+int main(void) {
+    const char *words[] = {
+        "house", "string", "apple", "Orange", "crypt", "eat", NULL
+    };
+    char buffer[100];
+
+    for (int j = 0; words[j] != NULL; j++) {
+        pig_latin(buffer, words[j]);
+        printf("%s -> %s\n", words[j], buffer);
+    }
+    return 0;
+}
+```
+
+<div class="output">
+<code class="output">
+house -> ousehay<br/>
+string -> ingstray<br/>
+apple -> appleay<br/>
+Orange -> Orangeay<br/>
+crypt -> cryptay<br/>
+eat -> eatay
+</code>
+</div>
+
+</TabItem>
+
+<TabItem value="solution2" label="Solution 2">
+
+```c
+#include <ctype.h>  // For tolower
+#include <stdio.h>
+#include <string.h>  // For strlen, strcpy, strcat
+
+int is_vowel(char c) {  // 1 true, 0 false
+    c = tolower(c);
+    return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+}
+
+int main() {
+    char s[] = "house";
+    char r[100];
+
+    if (is_vowel(s[0])) {
+        strcpy(r, s);
+        strcat(r, "ay");
+    } else {
+        unsigned i = 0;
+        while (!is_vowel(s[i]) && i < strlen(s)) {
+            i++;
+        }
+        // Copy the rest of the string excluding the first consonant cluster
+        strcpy(r, s + i);
+        // Concatenate first i characters of s to r (to put consonants at the end)
+        int len = strlen(r);
+        for (unsigned j = 0; j < i; j++) {
+            r[len + j] = s[j];
+        }
+        r[len + i] = '\0';
+        strcat(r, "ay");
+    }
+
+    printf("Result: %s", r);
+
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="solution3" label="Solution 3">
+
+```c
+#include <stdio.h>
+#define DIM 100
+#define DIM2 300
+
+int main() {
+    char word[DIM], new_word[DIM2], consonants[DIM];
+    int found_consonant = 0;
+    int i = 0, n = 0, j = 0, k = 0;
+
+    printf("Enter a word (max 20 characters):\n");
+    scanf("%s", word);
+
+    // Compute the length of the input word
+    while (word[n] != '\0') {
+        n++;
+    }
+    printf("The word %s has length %d\n", word, n);
+
+    // Collect initial consonants (assuming only lowercase vowels)
+    while (i < n && word[i] != 'a' && word[i] != 'e' &&
+           word[i] != 'i' && word[i] != 'o' && word[i] != 'u') {
+        consonants[j] = word[i];
+        found_consonant = 1;
+        i++;
+        j++;
+    }
+
+    if (found_consonant) {
+        // If the input word starts with at least one consonant:
+        // Copy all characters from the first vowel to the end of the word into new_word
+        for (i = 0; i + j < n; i++) {
+            new_word[i] = word[i + j];
+        }
+        // Append the initial consonant cluster to the end of new_word
+        for (k = 0; k < j; k++) {
+            new_word[i] = consonants[k];
+            i++;
+        }
+    } else {
+        // If the word starts with a vowel, just copy the word
+        for (i = 0; i < n; i++) {
+            new_word[i] = word[i];
+        }
+    }
+
+    // Add the "ay" suffix
+    new_word[i] = 'a';
+    i++;
+    new_word[i] = 'y';
+    i++;
+
+    new_word[i] = '\0'; // Null-terminate the result
+
+    printf("Pig Latin: %s\n", new_word);
+    return 0;
+}
+```
+
+This solution is all inside main and doesn't use external functions for string manipulation.
+
+</TabItem>
+</Tabs>
+
+</details>
+
 ### Suffix Comparison (★★☆)
 
 Write a function that finds a specific substring within two strings and checks if the strings are identical from that point forward. The function should have the following prototype:
@@ -4007,6 +4205,96 @@ int main() {
         printf("\n");
         free(val);
     }
+    
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="solution3" label="Solution 3">
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <errno.h>
+
+int stringsplit(long **values, const char *s) {
+    if (s == NULL || *s == '\0') {
+        *values = NULL;
+        return 0; // Empty string
+    }
+
+    // Count the number of commas to determine the number of integers
+    int count = 1;
+    for (const char *p = s; *p != '\0'; ++p) {
+        if (*p == ',') {
+            count++;
+        }
+    }
+
+    // Allocate memory for the array of long integers
+    *values = (long *)malloc(count * sizeof(long));
+    if (*values == NULL) {
+        return -2; // Memory allocation error
+    }
+
+    int index = 0;
+    const char *start = s;
+    while (*start != '\0') {
+        char *end;
+        errno = 0;
+
+        long num = strtol(start, &end, 10);
+
+        if (errno != 0 || (end == start) || (*end != ',' && *end != '\0')) {
+            free(*values);
+            *values = NULL;
+            return -1; // Conversion error
+        }
+
+        (*values)[index++] = num;
+
+        if (*end == '\0') {
+            break;
+        }
+        start = end + 1; // Move past the comma
+    }
+
+    return count; // Return the number of integers
+}
+
+// Example usage
+int main() {
+
+    char input[100]; //= "587,72145,-10";
+    long *array = NULL;
+
+    fgets(input, sizeof(input), stdin);
+    // Remove newline character if present
+    size_t len = strlen(input);
+    if (len > 0 && input[len - 1] == '\n') {
+        input[len - 1] = '\0';
+    }
+    int result = stringsplit(&array, input);
+
+    if (result > 0) {
+        printf("Array: ");
+        for (int i = 0; i < result; i++) {
+            printf("%ld ", array[i]);
+        }
+        printf("\n");
+        free(array);
+    } else if (result == 0) {
+        printf("Empty string.\n");
+    } else if (result == -1) {
+        printf("Conversion error.\n");
+    } else if (result == -2) {
+        printf("Memory allocation error.\n");
+    }
+
     
     return 0;
 }
