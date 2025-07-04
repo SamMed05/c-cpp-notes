@@ -39,8 +39,8 @@ Files are generally categorized by how C interprets their content when opened in
 :::info Windows vs Unix/Linux: File types and extensions
 
 - On **Windows**, file extensions (like `.txt`, `.bin`, `.exe`) are commonly used to indicate file type, and the OS may treat files differently based on their extension. For example, opening a file in text mode (`"rt"`) or binary mode (`"rb"`) can affect how line endings (`\r\n` vs `\n`) are handled.
-    - In text mode on Windows, `\n` (newline) characters are automatically translated to `\r\n` (carriage return + newline) when writing, and `\r\n` is translated back to `\n` when reading.
-    - In binary mode, no such translation occurs, preserving the exact byte sequence.
+  - In text mode on Windows, `\n` (newline) characters are automatically translated to `\r\n` (carriage return + newline) when writing, and `\r\n` is translated back to `\n` when reading.
+  - In binary mode, no such translation occurs, preserving the exact byte sequence.
 - On **Unix/Linux**, file extensions are not required or enforced by the OS—they are just part of the filename. The kernel treats all files as streams of bytes, regardless of extension. There is no technical distinction between "text" and "binary" files at the OS level; it's up to programs to interpret the contents.
 - In fact, in Unix-like systems, **everything is a file**: not just regular files, but also devices, pipes, and even directories are accessed using file descriptors. This unified approach allows powerful tools like `cat`, `less`, or `vim` to open and edit almost any file, though not all files are human-readable as text.
 
@@ -57,16 +57,16 @@ In C, file I/O operations are typically **buffered**. This means data is tempora
 Working with files in C generally involves three main phases:
 
 1. **Opening a file**:
-    * Request access to the file from the operating system.
-    * The OS prepares internal data structures to manage the file.
-    * A `FILE` pointer is returned to your program to interact with the file.
+    - Request access to the file from the operating system.
+    - The OS prepares internal data structures to manage the file.
+    - A `FILE` pointer is returned to your program to interact with the file.
 2. **Reading/Writing data**:
-    * Perform read or write operations using the `FILE` pointer.
-    * Data is typically transferred via a buffer.
+    - Perform read or write operations using the `FILE` pointer.
+    - Data is typically transferred via a buffer.
 3. **Closing a file**:
-    * Any pending data in the output buffer is written to the file (flushed).
-    * Resources allocated by the OS for the file are released.
-    * The `FILE` pointer is no longer valid.
+    - Any pending data in the output buffer is written to the file (flushed).
+    - Resources allocated by the OS for the file are released.
+    - The `FILE` pointer is no longer valid.
 
 ## File opening modes
 
@@ -88,7 +88,7 @@ Other modes like `"r+"`, `"w+"`, `"a+"` (and their binary counterparts `"rb+"`, 
 When a file is opened, the system maintains a **file position indicator** (often conceptualized as a cursor). This indicator marks the current position within the file where the next read or write operation will occur.
 
 - For modes `"r"`, `"rb"`, `"w"`, `"wb"`, the cursor is initially at the beginning of the file.
-    - Remember: for `"w"` and `"wb"`, existing content is deleted (file is truncated).
+  - Remember: for `"w"` and `"wb"`, existing content is deleted (file is truncated).
 - For modes `"a"`, `"ab"`, the cursor is initially at the end of the file. All writes happen at the current end of the file, regardless of explicit positioning attempts with `fseek` before writing.
 - After each read or write operation, the cursor automatically advances by the number of bytes read or written.
 
@@ -119,8 +119,8 @@ FILE* fopen(const char *filename, const char *mode);
 - `filename`: A string containing the name (and path) of the file.
 - `mode`: A string specifying the access mode (e.g., `"r"`, `"w"`, `"rb"`).
 - **Return value**:
-    - On success, `fopen()` returns a `FILE` pointer.
-    - On failure (e.g., file not found for reading, no permission, invalid mode), it returns `NULL`.
+  - On success, `fopen()` returns a `FILE` pointer.
+  - On failure (e.g., file not found for reading, no permission, invalid mode), it returns `NULL`.
 
 **Always check the return value of `fopen()`:**
 
@@ -155,8 +155,8 @@ int fclose(FILE *stream);
 
 - `stream`: The `FILE` pointer to the file to be closed.
 - **Return value**:
-    - Returns `0` on success.
-    - Returns `EOF` (a special constant, usually -1) on error.
+  - Returns `0` on success.
+  - Returns `EOF` (a special constant, usually -1) on error.
 - `fclose()` flushes any unwritten data from the output buffer to the file and releases system resources (like file descriptors) allocated by the OS for the file.
 
 It's crucial to close files when they are no longer needed. Operating systems have a limit on the number of files a process can have open simultaneously (e.g., 1024 on Linux by default, 2048 on Windows). Failing to close files can lead to resource leaks and prevent the program (or other programs) from opening more files.
@@ -204,22 +204,27 @@ These are `FILE` pointers. Functions like `printf()` and `scanf()` are convenien
 ### Writing to text files
 
 - **`fprintf()`**: Writes formatted output to a file.
+
     ```c
     int fprintf(FILE *stream, const char *format, ...);
     // Returns the number of characters written, or a negative value on error.
     ```
+
     Example:
+
     ```c
     fprintf(fptr, "Name: %s, Age: %d\n", "Alice", 30);
     ```
 
 - **`fputc()`**: Writes a single character.
+
     ```c
     int fputc(int character, FILE *stream);
     // Returns the character written, or EOF on error.
     ```
 
 - **`fputs()`**: Writes a string (does not append a newline character automatically).
+
     ```c
     int fputs(const char *str, FILE *stream);
     // Returns a non-negative value on success, or EOF on error.
@@ -228,12 +233,15 @@ These are `FILE` pointers. Functions like `printf()` and `scanf()` are convenien
 ### Reading from text files
 
 - **`fscanf()`**: Reads formatted input from a file.
+
     ```c
     int fscanf(FILE *stream, const char *format, ...);
     // Returns the number of input items successfully matched and assigned,
     // or EOF if an input failure occurs before any conversion.
     ```
+
     Example:
+
     ```c
     char name[50];
     int age;
@@ -241,25 +249,31 @@ These are `FILE` pointers. Functions like `printf()` and `scanf()` are convenien
     ```
 
 - **`fgetc()`**: Reads a single character.
+
     ```c
     int fgetc(FILE *stream);
     // Returns the character read (as an int), or EOF on end-of-file or error.
     ```
 
 - **`fgets()`**: Reads a string (safer than `fscanf` for strings as it prevents buffer overflows).
+
     ```c
     char* fgets(char *str, int num, FILE *stream);
     // Reads up to num-1 characters, or until a newline, or EOF.
     // Stores the newline if read. Appends a null terminator.
     // Returns str on success, NULL on error or EOF if no characters were read.
     ```
+
     Example:
+
     ```c
     char line[256];
     if (fgets(line, sizeof(line), fptr) != NULL) {
         // Process the line
     }
     ```
+
+    See [Exercise 6: Reading student scores from a text file](#exercise-6-reading-student-scores-from-a-text-file) below for a practical example of using both `fscanf` and `fgets` to read lines from a file.
 
 ## 2️⃣ Binary file I/O
 
@@ -345,6 +359,7 @@ int main() {
     return 0;
 }
 ```
+
 <div class="output">
 <code class="output">
 5 integers written to numbers.dat<br/>
@@ -360,6 +375,7 @@ Consider `int x = 31466;` (which is `0x7AEA` in hexadecimal).
     - Converts the integer `31466` to its character representation `"31466"`.
     - Writes these 5 characters (ASCII bytes) to the file.
     - If you inspect the file with a hex editor (like `xxd`), you'd see the ASCII codes for '3', '1', '4', '6', '6'.
+
         ```bash
         $ xxd output_fprintf.txt
         00000000: 3331 3436 36                             31466
@@ -369,12 +385,14 @@ Consider `int x = 31466;` (which is `0x7AEA` in hexadecimal).
     - Takes the raw binary representation of `x` from memory (e.g., 4 bytes for a typical `int`).
     - Writes these bytes directly to the file.
     - If `int` is 4 bytes and the system is little-endian, `31466` (0x00007AEA) would be stored as `EA 7A 00 00`.
+
         ```bash
         $ xxd output_fwrite.bin
         00000000: ea7a 0000                                .z..
         ```
 
 This distinction is crucial:
+
 - Text files are human-readable but less space-efficient
 - Binary files are compact and faster for data exchange between programs but not directly readable
 - Binary files preserve exact memory representation, which is vital for structured data
@@ -385,18 +403,38 @@ This distinction is crucial:
 You can control the file position indicator using these functions:
 
 - **`fseek()`**: Sets the file position indicator to a specific location.
+
     ```c
     int fseek(FILE *stream, long offset, int origin);
     ```
-    - `stream`: The `FILE` pointer.
-    - `offset`: Number of bytes to move from `origin`.
-    - `origin`: Reference point for the offset. Can be:
-        - `SEEK_SET`: Beginning of the file.
-        - `SEEK_CUR`: Current file position.
-        - `SEEK_END`: End of the file.
-    - Returns `0` on success, non-zero on error.
+
+  - `stream`: The `FILE` pointer.
+  - `offset`: Number of bytes to move from `origin`.
+  - `origin`: Reference point for the offset. Can be:
+    - `SEEK_SET`: Beginning of the file.
+    - `SEEK_CUR`: Current file position.
+    - `SEEK_END`: End of the file.
+  - Returns `0` on success, non-zero on error.
+
+:::tip Example (reset file position indicator to start of file)
+
+To reset the file position indicator back to the start after reading (since reading advances it automatically), use fseek with an offset of 0 and SEEK_SET. You should always check its return value for errors:
+
+```c
+// Reset file position to the beginning
+if (fseek(fptr, 0L, SEEK_SET) != 0) {
+    perror("Error seeking to start");
+    fclose(fptr);
+    return 1;
+}
+```
+
+The execution of `fseek` inside the if statement condition will reset the file position indicator back to the start of the file.
+
+:::
 
 - **`ftell()`**: Returns the current value of the file position indicator.
+
     ```c
     long ftell(FILE *stream);
     ```
@@ -404,12 +442,14 @@ You can control the file position indicator using these functions:
     This function returns the current position in bytes from the beginning of the file, or -1L on error. For files opened in binary mode, this is the exact byte offset from the start. For files opened in text mode, the value might not be a simple byte count due to potential newline translations or other system-specific encodings. However, the value returned by `ftell()` in text mode can still be reliably used with `fseek()` to return to that position.
 
 - **`rewind()`**: Sets the file position indicator to the beginning of the file.
+
     ```c
     void rewind(FILE *stream);
     // Equivalent to fseek(stream, 0L, SEEK_SET), but clears error indicators.
     ```
 
 **Example: Get file size using `fseek` and `ftell`**
+
 ```c
 #include <stdio.h>
 
@@ -441,6 +481,7 @@ int main() {
     return 0;
 }
 ```
+
 :::note
 For text files, the value returned by `ftell` might not always correspond to the exact byte count from the beginning on some systems due to character encoding or line ending conversions (e.g., `\n` vs. `\r\n`). 
 
@@ -468,21 +509,28 @@ int fflush(FILE *stream);
 After file operations, it's good practice to check for errors using:
 
 - **`ferror()`**: Checks if the error indicator for the given stream is set.
+
     ```c
     int ferror(FILE *stream);
     // Returns non-zero if error indicator is set, 0 otherwise.
     ```
+
 - **`feof()`**: Checks if the end-of-file indicator for the given stream is set.
+
     ```c
     int feof(FILE *stream);
     // Returns non-zero if EOF indicator is set, 0 otherwise.
     ```
+
 - **`perror()`**: Prints a system error message corresponding to the current value of `errno`.
+
     ```c
     void perror(const char *s);
     // Prints s, a colon, a space, the error message, and a newline.
     ```
+
 - **`clearerr()`**: Clears the end-of-file and error indicators for the stream.
+
     ```c
     void clearerr(FILE *stream);
     ```
@@ -501,7 +549,7 @@ Create a program `insert_person.c` that prompts the user to enter data for one p
 - Birth Year (integer)
 
 <details>
-<summary>Show Solution for Exercise 1</summary>
+<summary>Show solution</summary>
 
 ```c
 // insert_person.c
@@ -571,11 +619,14 @@ int main() {
     return 0;
 }
 ```
+
 **To compile and run:**
+
 ```bash
 gcc insert_person.c -o insert_person
 ./insert_person
 ```
+
 </details>
 
 ### Exercise 2: Reading person data
@@ -596,7 +647,7 @@ What to do?
 </Spoiler>
 
 <details>
-<summary>Show Solution for Exercise 2</summary>
+<summary>Show solution</summary>
 
 ```c
 // read_people.c
@@ -645,11 +696,14 @@ int main() {
     return 0;
 }
 ```
+
 **To compile and run (after running `insert_person` at least once):**
+
 ```bash
 gcc read_people.c -o read_people
 ./read_people
 ```
+
 </details>
 
 ### Exercise 3: Merging exam records
@@ -657,6 +711,7 @@ gcc read_people.c -o read_people
 Create a program that processes student exam records from two different sources:
 
 **Requirements:**
+
 - Read two binary files (`transcript1.bin` and `transcript2.bin`) containing exam records
 - Each record consists of:
   - A course name (string up to 20 characters plus null terminator)
@@ -667,12 +722,13 @@ Create a program that processes student exam records from two different sources:
 - Use proper error handling for all file operations
 
 **Notes:**
+
 - Both input files have the same structure and contain the same exams in the same order
 - Organize your code using functions to handle file operations and data processing
 - Define appropriate structures to represent the exam records
 
 <details>
-<summary>Show Solution for Exercise 3</summary>
+<summary>Show solution</summary>
 
 ```c
 #include <stdio.h>
@@ -742,6 +798,7 @@ NASA operators have intercepted strange signals from an alien civilization! The 
 **Part 1: Decoding alien messages**
 
 Create a program that:
+
 - Reads a translation key from `correspondence.txt` where:
   - Each line contains a Latin letter, a space, and a 3-character sequence of 'g' and 'G'
   - Example: `H GgG`
@@ -754,13 +811,14 @@ Create a program that:
 **Part 2: Encoding messages for aliens**
 
 Extend your program to:
+
 - Allow users to input messages in Latin characters
 - Encode these messages into the alien 'g'/'G' format
 - Display the encoded message
 - Design your solution with appropriate functions for modularity
 
 <details>
-<summary>Show Solution for Exercise 4</summary>
+<summary>Show solution</summary>
 
 ```c
 #include <stdio.h>
@@ -861,6 +919,213 @@ int main() {
     printf("\n");
 
     return 0;
+}
+```
+
+</details>
+
+### Exercise 6: Reading student scores from a text file
+
+The input file `student_scores.txt` has the following format:
+
+1. The first line contains an integer `N` – the number of students.  
+2. For each student, two lines follow:  
+    - Line 1: `<ID> <Name>`  
+    - Line 2: `<Score1> <Score2>` (two floating-point numbers)
+
+Example `student_scores.txt`:
+```
+4
+101 Alice
+28.5 32.0
+102 Bob
+30.0 29.5
+103 Carol
+31.0 30.5
+104 Dave
+29.5 28.0
+```
+
+Task:
+
+- Define a `Student` struct with fields `id`, `name[50]`, `score1`, `score2`.  
+- Read the file with `fscanf` into a dynamically allocated array of `Student`.  
+- Compute the average for each student and print a table:
+
+<pre><div class="output">
+  <code class="output">
+  ID   Name    Score1  Score2  Average<br/>
+  101  Alice   28.50   32.00   30.25
+  </code>
+</div></pre>
+
+<details>
+<summary>Show solution</summary>
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int    id;
+    char   name[50]; // Student name (up to 49 chars + '\0')
+    float  score1;
+    float  score2;
+} Student;
+
+int main(void) {
+    // Open the input file for reading
+    FILE *f = fopen("student_scores.txt", "r");
+    if (!f) {
+        perror("Error opening file");
+        return 1;
+    }
+
+    // Read the number of students from the first line
+    int n;
+    if (fscanf(f, "%d", &n) != 1) {
+        fprintf(stderr, "Invalid header in file\n");
+        fclose(f);
+        return 1;
+    }
+
+    // Allocate an array for n Student records
+    Student *students = malloc(n * sizeof *students);
+    if (!students) {
+        perror("malloc failed");
+        fclose(f);
+        return 1;
+    }
+
+    // Read each student's data
+    for (int i = 0; i < n; i++) {
+        // Read ID and name (name is whitespace‐delimited)
+        if (fscanf(f, "%d %49s", &students[i].id, students[i].name) != 2) {
+            fprintf(stderr, "Invalid student #%d header\n", i + 1);
+            free(students);
+            fclose(f);
+            return 1;
+        }
+        // Read the two scores for this student
+        if (fscanf(f, "%f %f",
+                   &students[i].score1,
+                   &students[i].score2) != 2) {
+            fprintf(stderr, "Invalid scores for student #%d\n", i + 1);
+            free(students);
+            fclose(f);
+            return 1;
+        }
+    }
+    fclose(f);
+
+    // Print the table header
+    printf("ID   Name       Score1  Score2  Average\n");
+    printf("---------------------------------------\n");
+
+    // Compute and display each student's average
+    for (int i = 0; i < n; i++) {
+        float avg = (students[i].score1 + students[i].score2) / 2.0f;
+        printf("%-4d %-9s %6.2f %7.2f %8.2f\n",
+               students[i].id,
+               students[i].name,
+               students[i].score1,
+               students[i].score2,
+               avg);
+    }
+
+    // Clean up
+    free(students);
+    return 0;
+}
+```
+
+:::danger
+Using `scanf`/`fscanf` for string input (`%s`) can be unsafe:
+
+- Stops at whitespace (so names with spaces break).
+- No built-in bounds checking → buffer overflows.
+- Mixing with other I/O leaves stray newlines in the buffer.
+
+Prefer reading lines with `fgets` then parsing (e.g., via `sscanf`) for more robust and secure input.
+:::
+
+#### Alternative solution using fgets
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+     int id;
+     char name[50];
+     float score1;
+     float score2;
+} Student;
+
+int main(void) {
+     FILE *f = fopen("student_scores.txt", "r");
+     if (!f) {
+          perror("Error opening file");
+          return 1;
+     }
+
+     char line[128];
+     int n;
+     // Read header line
+     if (!fgets(line, sizeof(line), f) ||
+          sscanf(line, "%d", &n) != 1) {
+          fprintf(stderr, "Invalid header\n");
+          fclose(f);
+          return 1;
+     }
+
+     Student *students = malloc(n * sizeof *students);
+     if (!students) {
+          perror("malloc");
+          fclose(f);
+          return 1;
+     }
+
+     for (int i = 0; i < n; i++) {
+          // Read ID and name
+          if (!fgets(line, sizeof(line), f) ||
+                sscanf(line, "%d %49[^\n]",
+                         &students[i].id,
+                         students[i].name) != 2) {
+                fprintf(stderr, "Invalid student #%d data\n", i+1);
+                free(students);
+                fclose(f);
+                return 1;
+          }
+          // Read scores
+          if (!fgets(line, sizeof(line), f) ||
+                sscanf(line, "%f %f",
+                         &students[i].score1,
+                         &students[i].score2) != 2) {
+                fprintf(stderr, "Invalid scores for student #%d\n", i+1);
+                free(students);
+                fclose(f);
+                return 1;
+          }
+     }
+     fclose(f);
+
+     // Print results
+     printf("ID   Name       Score1  Score2  Average\n");
+     printf("---------------------------------------\n");
+     for (int i = 0; i < n; i++) {
+          float avg = (students[i].score1 + students[i].score2) / 2.0f;
+          printf("%-4d %-9s %6.2f %7.2f %8.2f\n",
+                    students[i].id,
+                    students[i].name,
+                    students[i].score1,
+                    students[i].score2,
+                    avg);
+     }
+
+     free(students);
+     return 0;
 }
 ```
 
