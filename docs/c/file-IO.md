@@ -1039,14 +1039,24 @@ int main(void) {
 }
 ```
 
-:::danger
-Using `scanf`/`fscanf` for string input (`%s`) can be unsafe:
+:::danger Why `scanf`/`fscanf` can be problematic for string input
 
-- Stops at whitespace (so names with spaces break).
-- No built-in bounds checking → buffer overflows.
-- Mixing with other I/O leaves stray newlines in the buffer.
+Using `scanf`/`fscanf` with the `%s` format specifier has several significant issues:
 
-Prefer reading lines with `fgets` then parsing (e.g., via `sscanf`) for more robust and secure input.
+- **Whitespace termination**: `%s` stops reading at any whitespace character, so names like "John Smith" will only capture "John"
+- **Buffer overflow vulnerability**: No built-in bounds checking means input longer than your buffer can corrupt memory
+- **Input buffer pollution**: Mixing `scanf` with other input functions often leaves stray newlines and characters in the input buffer, causing unexpected behavior
+
+**Better alternatives:**
+
+- Use `fgets()` to read entire lines safely, then parse with `sscanf()`
+- Use `%49s` (for a 50-char buffer) to limit input length, though this doesn't solve the whitespace issue
+- For names with spaces, use `%49[^\n]` format in `sscanf()` after reading the line with `fgets()`
+
+For more info on why to avoid `scanf` and what to use instead, see: [A beginners' guide away from scanf()](https://sekrit.de/webdocs/c/beginners-guide-away-from-scanf.html).
+
+For these exercises we only consider cases where the input is always valid.
+
 :::
 
 #### Alternative solution using fgets
